@@ -33,7 +33,7 @@ export default function SendOtp() {
       setPhone(state.phone);
 
       /** redirect */
-      navigate(`/verify-otp`);
+      navigate(`/verify?phone=${state.phone}`);
 
       toast.success("Kode OTP berhasil dikirim!", {
         position: "top-center",

@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { ChevronLeftIcon } from "@assets/icons";
@@ -11,6 +11,7 @@ import useVerifyOtp from "@services/auth/hooks/useVerifyOtp";
 
 export default function VerifyOtp() {
   const otpLength = 6;
+  const navigate = useNavigate();
   // const phone = useGlobalStore((state) => state.phone);
 
   const [searchParams] = useSearchParams();
@@ -23,6 +24,7 @@ export default function VerifyOtp() {
     try {
       await handleVerifyOtp(phone, otp);
 
+      navigate("/user/dashboard");
       toast.success("Verifikasi akun berhasil!", {
         position: "top-center",
       });

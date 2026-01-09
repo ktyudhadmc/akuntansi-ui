@@ -68,16 +68,25 @@ export default function AuthMiddleware({
       return;
     }
 
-    if (["/admin/login", "/company/login", "/login"].includes(pathname)) {
+    if (
+      [
+        "/admin/request",
+        "/company/request",
+        "/request",
+        "/admin/verify",
+        "/company/verify",
+        "/verify",
+      ].includes(pathname)
+    ) {
       return;
     }
 
     if (pathname.startsWith("admin")) {
-      navigate("/admin/login");
+      navigate("/admin/request");
     } else if (pathname.startsWith("company")) {
-      navigate("/company/login");
+      navigate("/company/request");
     } else {
-      navigate("/login");
+      navigate("/request");
     }
   };
 
@@ -86,7 +95,7 @@ export default function AuthMiddleware({
       redirectToLogin();
       setMounted(true);
     } else if (isLoggedIn) {
-      if (pathname.includes("login")) {
+      if (pathname.includes("request") || pathname.includes("verify")) {
         redirectToDashboard();
       }
 
