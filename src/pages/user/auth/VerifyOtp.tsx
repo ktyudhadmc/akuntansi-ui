@@ -1,50 +1,35 @@
-import { Link, useNavigate } from "react-router";
-import { ChevronLeftIcon } from "@assets/icons";
-import { useForm, type SubmitHandler } from "react-hook-form";
-
-import Input from "@components/form/input/InputField";
-import Button from "@components/ui/button/Button";
-import Form from "@components/form/Form";
-import Spinner from "@components/Reusable/Spinner";
-import useGlobalStore from "@store/useStore";
-
-import useVerifyOtp from "@services/auth/hooks/useVerifyOtp";
-import { isAxiosError } from "axios";
+import { Link } from "react-router";
+import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-interface CredentialPayload {
-  otp: string;
-}
+import { ChevronLeftIcon } from "@assets/icons";
+
+import OtpInput from "@components/form/input/OtpInput";
+import useVerifyOtp from "@services/auth/hooks/useVerifyOtp";
+
+// import useGlobalStore from "@store/useStore";
 
 export default function VerifyOtp() {
-  // const navigate = useNavigate();
-  const phone = useGlobalStore((state) => state.phone);
+  const otpLength = 6;
+  // const phone = useGlobalStore((state) => state.phone);
 
-  /** form */
-  const methods = useForm<CredentialPayload>({ mode: "onChange" });
-  const { isSubmitting } = methods.formState;
-  const isValid = methods.formState.isValid;
+  const [searchParams] = useSearchParams();
+  const phone = searchParams.get("phone") ?? "";
 
   const { handleVerifyOtp } = useVerifyOtp("user");
 
-  const onSubmit: SubmitHandler<CredentialPayload> = async (state) => {
+  const onSubmit = async (otp: string) => {
+    if (otp.length !== otpLength) return;
     try {
-      await handleVerifyOtp(phone, state.otp);
+      await handleVerifyOtp(phone, otp);
 
-      // navigate(`/user/verify-otp?phone=${state.phone}`);
-      toast.success("Verfifikasi akun berhasil!", {
+      toast.success("Verifikasi akun berhasil!", {
         position: "top-center",
       });
     } catch (error) {
-      if (isAxiosError(error)) {
-        toast.error(error.response?.data?.message, {
-          position: "top-center",
-        });
-      } else {
-        toast.error((error as Error).message, {
-          position: "top-center",
-        });
-      }
+      toast.error("Kode verifikasi tidak valid!", {
+        position: "top-center",
+      });
     }
   };
 
@@ -67,28 +52,22 @@ export default function VerifyOtp() {
               <span className="text-sm italic font-bold"> by DMC</span>
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Masukkan Nomor WhatsApp untuk masuk akun!
+              Kode Verifikasi telah dikirimkan ke <b>{phone}</b> untuk masuk
+              akun!
             </p>
           </div>
           <div>
             <div className="space-y-6">
-              <Form {...methods} onSubmit={onSubmit}>
-                <Input
-                  label="Kode OTP"
-                  name="otp"
-                  type="text"
-                  required={true}
-                />
-
-                <Button
-                  type="submit"
-                  className="w-full uppercase"
-                  size="sm"
-                  disabled={!isValid || isSubmitting}
-                >
-                  {!isSubmitting ? "Verifikasi" : <Spinner />}
-                </Button>
-              </Form>
+              <OtpInput
+                numOfInputs={otpLength}
+                autoFocus
+                onChange={(value) => {
+                  if (value.length === otpLength) {
+                    onSubmit(value);
+                  }
+                }}
+                autoSubmit
+              />
             </div>
           </div>
         </div>
