@@ -1,25 +1,38 @@
 import AuthLayout from "@layouts/AuthLayout";
-// import DefaultLayout from "@layouts/DefaultLayout";
+import DefaultLayout from "@layouts/DefaultLayout";
 import * as User from "@pages/user";
+import AuthMiddleware from "./middleware/AuthMiddleware";
 
 export default [
   /** AUTH */
   {
-    path: "/send-otp",
-    element: <AuthLayout children={<User.SendOtp />} />,
+    path: "/request",
+    element: (
+      <AuthMiddleware>
+        <AuthLayout children={<User.SendOtp />} />
+      </AuthMiddleware>
+    ),
   },
   {
-    path: "/verify-otp",
-    element: <AuthLayout children={<User.VerifyOtp />} />,
+    path: "/verify",
+    element: (
+      <AuthMiddleware>
+        <AuthLayout children={<User.VerifyOtp />} />
+      </AuthMiddleware>
+    ),
   },
 
   /** USER */
-  // {
-  //   path: "/user",
-  //   element: <DefaultLayout />,
-  //   children: [
-  //     { index: true, element: <User.Dashboard /> },
-  //     { path: "home", element: <User.Home /> },
-  //   ],
-  // },
+  {
+    path: "/user",
+    element: (
+      <AuthMiddleware>
+        <DefaultLayout />
+      </AuthMiddleware>
+    ),
+    children: [
+      { index: true, element: <User.Dashboard /> },
+      { path: "dashboard", element: <User.Home /> },
+    ],
+  },
 ];

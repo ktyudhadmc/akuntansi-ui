@@ -1,9 +1,5 @@
+import ComingSoon from "@pages/global/OtherPage/ComingSoonPage";
+
 export default function Home() {
-  return (
-    <div>
-      <div>
-        <h1>It Works!</h1>
-      </div>
-    </div>
-  );
+  return <ComingSoon />;
 }
