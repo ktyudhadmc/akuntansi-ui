@@ -5,7 +5,7 @@ interface Props {
   size?: string;
 }
 
-export default function AvatarText({ text, size = '20' }: Props) {
+export default function AvatarText({ text, size = "20" }: Props) {
   return (
     <div
       className={`w-${size} h-${size} overflow-hidden border border-gray-200 rounded-full dark:border-gray-800 bg-[#465FFF]`}
