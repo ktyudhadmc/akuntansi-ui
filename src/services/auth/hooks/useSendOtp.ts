@@ -2,7 +2,7 @@ import { useShallow } from "zustand/shallow";
 
 import axiosInstance from "@lib/axios-instance";
 import type { Role } from "../role.def";
-import type { ILoginResponse } from "../interfaces/user.types";
+import type { ILoginResponse } from "../interfaces/user.type";
 import useGlobalStore from "@store/useStore";
 
 export default function useSendOtp(role: Role) {

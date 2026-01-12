@@ -32,7 +32,10 @@ export default [
     ),
     children: [
       { index: true, element: <User.Dashboard /> },
-      { path: "dashboard", element: <User.Home /> },
+      { path: "dashboard", element: <User.Dashboard /> },
+
+      /** PROFIL */
+      { path: "profile", element: <User.ProfilePage /> },
     ],
   },
 ];
