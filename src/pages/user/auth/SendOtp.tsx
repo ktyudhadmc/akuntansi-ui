@@ -35,18 +35,12 @@ export default function SendOtp() {
       /** redirect */
       navigate(`/verify?phone=${state.phone}`);
 
-      toast.success("Kode OTP berhasil dikirim!", {
-        position: "top-center",
-      });
+      toast.success("Kode OTP berhasil dikirim!");
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.error(error.response?.data?.message, {
-          position: "top-center",
-        });
+        toast.error(error.response?.data?.message);
       } else {
-        toast.error((error as Error).message, {
-          position: "top-center",
-        });
+        toast.error((error as Error).message);
       }
     }
   };

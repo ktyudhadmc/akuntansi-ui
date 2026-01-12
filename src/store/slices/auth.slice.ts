@@ -1,4 +1,4 @@
-import type { User } from "@services/auth/interfaces/user.types";
+import type { User } from "@services/auth/interfaces/user.type";
 import type { StateCreator } from "zustand";
 
 export declare interface AuthState {
