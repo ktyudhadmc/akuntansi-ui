@@ -7,3 +7,6 @@ export { default as VerifyOtp } from "./auth/VerifyOtp";
 
 // PROFILE
 export { default as ProfilePage } from "./profile";
+
+// ACCOUNT
+export { default as AccountPage } from "./account";

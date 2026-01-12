@@ -36,6 +36,9 @@ export default [
 
       /** PROFIL */
       { path: "profile", element: <User.ProfilePage /> },
+
+      /** ACCOUNT */
+      { path: "accounts", element: <User.AccountPage /> },
     ],
   },
 ];

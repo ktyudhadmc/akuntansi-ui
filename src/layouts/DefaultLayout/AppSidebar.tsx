@@ -15,6 +15,9 @@ import {
   // PlugInIcon,
   // TableIcon,
 } from "@assets/icons";
+
+import { AiOutlineBank } from "react-icons/ai";
+
 import { useSidebar } from "@context/SidebarContext";
 // import SidebarWidget from "./SidebarWidget";
 
@@ -41,11 +44,11 @@ const navItems: NavItem[] = [
     name: "Profil",
     path: "/user/profile",
   },
-  // {
-  //   icon: <CalenderIcon />,
-  //   name: "Calendar",
-  //   path: "/calendar",
-  // },
+  {
+    icon: <AiOutlineBank />,
+    name: "Kas & Bank",
+    path: "/user/accounts",
+  },
   // {
   //   name: "Forms",
   //   icon: <ListIcon />,
