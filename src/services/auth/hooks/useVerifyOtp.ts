@@ -3,7 +3,7 @@ import { useShallow } from "zustand/shallow";
 
 import axiosInstance from "@lib/axios-instance";
 import type { Role } from "@services/auth/role.def";
-import type { ILoginResponse } from "@services/auth/interfaces/user.types";
+import type { ILoginResponse } from "@services/auth/interfaces/user.type";
 import useGlobalStore from "@store/useStore";
 
 export default function useVerifyOtp(role: Role) {

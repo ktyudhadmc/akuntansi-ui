@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import Spinner from "@components/ui/spinner";
 
 import useGlobalStore from "@store/useStore";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { getMe } from "@services/auth/hooks/useGetMe";
 
 type Props = {
   children: React.ReactNode;
@@ -14,7 +17,7 @@ export default function AuthMiddleware({
   withoutRedirection,
 }: Props) {
   const [mounted, setMounted] = useState(false);
-  // const setMe = useGlobalStore((state) => state.setMe);
+  const setMe = useGlobalStore((state) => state.setMe);
   const setRole = useGlobalStore((state) => state.setRole);
   const setIsLoggedIn = useGlobalStore((state) => state.setIsLoggedIn);
 
@@ -38,13 +41,13 @@ export default function AuthMiddleware({
 
   useEffect(() => {
     if (role) {
-      // getMe(role).then(({ data }) => {
-      //   setMe(data.data as User);
-      // });
+      getMe(role).then(({ data }) => {
+        setMe(data.data);
+      });
 
       setRole(role);
     }
-  }, [role, setRole]);
+  }, [role, setMe, setRole]);
 
   const redirectToDashboard = () => {
     switch (role) {
@@ -103,5 +106,5 @@ export default function AuthMiddleware({
     }
   }, [isLoggedIn, pathname]);
 
-  return <>{mounted ? children : <>Loading...</>}</>;
+  return <>{mounted ? children : <Spinner />}</>;
 }

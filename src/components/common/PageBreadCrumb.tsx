@@ -1,3 +1,4 @@
+import useGlobalStore from "@store/useStore";
 import { Link } from "react-router";
 
 interface BreadcrumbProps {
@@ -5,6 +6,21 @@ interface BreadcrumbProps {
 }
 
 const PageBreadcrumb: React.FC<BreadcrumbProps> = ({ pageTitle }) => {
+  const role = useGlobalStore((state) => state.role);
+
+  const redirectToDashboard = () => {
+    switch (role) {
+      case "admin":
+        return "/admin/dashboard";
+      case "company":
+        return "/company/dashboard";
+      case "user":
+        return "/user/dashboard";
+      default:
+        return "/";
+    }
+  };
+
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
       <h2
@@ -18,9 +34,9 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({ pageTitle }) => {
           <li>
             <Link
               className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
-              to="/"
+              to={redirectToDashboard()}
             >
-              Home
+              Beranda
               <svg
                 className="stroke-current"
                 width="17"

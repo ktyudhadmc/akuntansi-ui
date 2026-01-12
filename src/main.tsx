@@ -21,7 +21,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <ToastContainer />
+    <ToastContainer position="top-right" style={{ zIndex: 100000 }} />
     <ThemeProvider>
       <AppWrapper>
         <RouterProvider router={router} />
