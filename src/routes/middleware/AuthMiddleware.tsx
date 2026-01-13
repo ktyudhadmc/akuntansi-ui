@@ -6,6 +6,7 @@ import useGlobalStore from "@store/useStore";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { getMe } from "@services/auth/hooks/useGetMe";
+import useGetCompany from "@services/user/company/hooks/useGet";
 
 type Props = {
   children: React.ReactNode;
@@ -20,6 +21,9 @@ export default function AuthMiddleware({
   const setMe = useGlobalStore((state) => state.setMe);
   const setRole = useGlobalStore((state) => state.setRole);
   const setIsLoggedIn = useGlobalStore((state) => state.setIsLoggedIn);
+  const setIsSelectCompany = useGlobalStore(
+    (state) => state.setIsSelectCompany
+  );
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -29,9 +33,15 @@ export default function AuthMiddleware({
     Cookies.get("token-company") ||
     Cookies.get("token");
 
+  const currentCompany = localStorage.getItem("current-company");
+
   /** set is loggedIn */
   const isLoggedIn = !!token;
   setIsLoggedIn(!!isLoggedIn);
+
+  /** set is select company */
+  const isSelectCompany = !!currentCompany;
+  setIsSelectCompany(isSelectCompany);
 
   const role = Cookies.get("token")
     ? "admin"
@@ -44,6 +54,10 @@ export default function AuthMiddleware({
       getMe(role).then(({ data }) => {
         setMe(data.data);
       });
+
+      // if (currentCompany) {
+      //   useGetCompany(currentCompany);
+      // }
 
       setRole(role);
     }
