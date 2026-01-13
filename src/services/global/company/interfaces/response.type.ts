@@ -1,19 +1,20 @@
 export interface IGetAllResponse {
   status?: string;
   message?: string;
-  data: Account[];
+  data: Company[];
 }
 
 export interface IGetResponse {
   status?: string;
   message?: string;
-  data: Account;
+  data: Company;
 }
 
-export interface Account {
+export interface Company {
   id: number;
   code: string;
   name: string;
-  normal_balance: string;
-  report_type: string;
+  email: string | null;
+  phone: string | null;
+  address: string | null;
 }

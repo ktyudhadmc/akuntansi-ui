@@ -21,7 +21,7 @@ export default function AvatarText({ text, size = "20" }: Props) {
       className={clsx(
         "flex items-center justify-center rounded-full",
         "border border-gray-200 dark:border-gray-800",
-        "bg-[#465FFF] text-white",
+        "bg-brand-600 text-white",
         sizeClasses[size]
       )}
     >

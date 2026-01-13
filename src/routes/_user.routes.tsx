@@ -39,6 +39,7 @@ export default [
 
       /** ACCOUNT */
       { path: "accounts", element: <User.AccountPage /> },
+      { path: "accounts/create", element: <User.CreateAccountPage /> },
     ],
   },
 ];

@@ -10,3 +10,4 @@ export { default as ProfilePage } from "./profile";
 
 // ACCOUNT
 export { default as AccountPage } from "./account";
+export { default as CreateAccountPage } from "./account/create";
