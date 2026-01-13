@@ -8,9 +8,9 @@ export default function ComingSoon() {
       <div className="relative z-1 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden p-6">
         <div className="mx-auto w-full max-w-[460px] text-center">
           <Link to="/" className="mb-6 inline-block">
-            <h1 className="mb-2 font-semibold text-[#465FFF] text-title-sm dark:text-white/90 sm:text-title-md">
-              Akuntansi
-              <span className="text-sm italic font-normal"> by DMC</span>
+            <h1 className="mb-2 font-semibold text-brand-600 text-title-sm dark:text-white/90 sm:text-title-md">
+              Dinamika
+              <span className="text-sm italic font-normal"> Jurnal</span>
             </h1>
           </Link>
 
