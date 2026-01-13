@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 
 import type { Role } from "../role.def";
 import axiosInstance from "@lib/axios-instance";
+import config from "@constants/config";
 
 export default function useLogout() {
   const handleLogout = async (role: Role) => {
@@ -32,6 +33,7 @@ export default function useLogout() {
 
       /** remove token */
       Cookies.remove(tokenKeys[role], { path: "/" });
+      localStorage.removeItem(config.LOCAL_STORAGE_COMPANY_KEY);
 
       return { data: data.message, error: null };
     } catch (error: any) {

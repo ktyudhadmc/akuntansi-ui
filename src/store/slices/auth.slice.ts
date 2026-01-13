@@ -1,4 +1,4 @@
-import type { Company } from "@services/auth/interfaces/company.type";
+import type { Company } from "@services/global/company/interfaces/response.type";
 import type { User } from "@services/auth/interfaces/user.type";
 import type { StateCreator } from "zustand";
 
@@ -9,8 +9,8 @@ export declare interface AuthState {
   setRole: (role: "admin" | "company" | "user") => void;
   me?: User;
   setMe: (user: User) => void;
-  currentCompany?: Company;
-  setCurrentCompany: (company: Company) => void;
+  currentCompany?: Company | null;
+  setCurrentCompany: (company: Company | null) => void;
   isLoggedIn: boolean;
   setIsLoggedIn: (isLoggedIn: boolean) => void;
   isSelectCompany: boolean;

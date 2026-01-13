@@ -6,7 +6,9 @@ import useGlobalStore from "@store/useStore";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { getMe } from "@services/auth/hooks/useGetMe";
-import useGetCompany from "@services/user/company/hooks/useGet";
+// import useGetCompany from "@services/global/company/hooks/useGet";
+import config from "@constants/config";
+import useCurrentCompany from "@services/auth/hooks/useCurrentCompany";
 
 type Props = {
   children: React.ReactNode;
@@ -18,7 +20,10 @@ export default function AuthMiddleware({
   withoutRedirection,
 }: Props) {
   const [mounted, setMounted] = useState(false);
+
   const setMe = useGlobalStore((state) => state.setMe);
+  const currentCompany = useGlobalStore((state) => state.currentCompany);
+  const setCurrentCompany = useGlobalStore((state) => state.setCurrentCompany);
   const setRole = useGlobalStore((state) => state.setRole);
   const setIsLoggedIn = useGlobalStore((state) => state.setIsLoggedIn);
   const setIsSelectCompany = useGlobalStore(
@@ -33,31 +38,43 @@ export default function AuthMiddleware({
     Cookies.get("token-company") ||
     Cookies.get("token");
 
-  const currentCompany = localStorage.getItem("current-company");
+  const storageCompany = localStorage.getItem(config.LOCAL_STORAGE_COMPANY_KEY);
 
   /** set is loggedIn */
   const isLoggedIn = !!token;
-  setIsLoggedIn(!!isLoggedIn);
+  // setIsLoggedIn(!!isLoggedIn);
 
   /** set is select company */
-  const isSelectCompany = !!currentCompany;
-  setIsSelectCompany(isSelectCompany);
+  const isSelectCompany = !!storageCompany;
+  // setIsSelectCompany(isSelectCompany);
+
+  const { data: company } = useCurrentCompany(storageCompany as string);
 
   const role = Cookies.get("token")
     ? "admin"
     : Cookies.get("token-company")
-    ? "company"
-    : "user";
+      ? "company"
+      : "user";
+
+  useEffect(() => {
+    setIsLoggedIn(isLoggedIn);
+    setRole(role);
+    setIsSelectCompany(isSelectCompany);
+  }, [isLoggedIn, role, isSelectCompany]);
+
+
+  useEffect(() => {
+    if (company) {
+      setCurrentCompany(company);
+    }
+  }, [company]);
+
 
   useEffect(() => {
     if (role) {
       getMe(role).then(({ data }) => {
         setMe(data.data);
       });
-
-      // if (currentCompany) {
-      //   useGetCompany(currentCompany);
-      // }
 
       setRole(role);
     }
@@ -112,13 +129,18 @@ export default function AuthMiddleware({
       redirectToLogin();
       setMounted(true);
     } else if (isLoggedIn) {
+
+      if (!currentCompany) {
+        redirectToDashboard();
+      }
+
       if (pathname.includes("request") || pathname.includes("verify")) {
         redirectToDashboard();
       }
 
       setMounted(true);
     }
-  }, [isLoggedIn, pathname]);
+  }, [isLoggedIn, currentCompany, pathname]);
 
   return <>{mounted ? children : <Spinner />}</>;
 }

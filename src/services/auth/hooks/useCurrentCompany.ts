@@ -1,18 +1,23 @@
-import useGetCompany from "@services/user/company/hooks/useGet";
+import config from "@constants/config";
+import useGetCompany from "@services/global/company/hooks/useGet";
 import useGlobalStore from "@store/useStore";
+import { useEffect } from "react";
 
 export default function useCurrentCompany(companyId: string) {
-  const currentCompanyName = "current-company";
+
   const setCurrentCompany = useGlobalStore((state) => state.setCurrentCompany);
 
-  const { data: dataCompany, loading, error } = useGetCompany(companyId);
+  const { data, loading, error } = useGetCompany(companyId);
 
-  if (dataCompany) {
-    setCurrentCompany(dataCompany);
+  useEffect(() => {
+    if (!data) return;
+    setCurrentCompany(data);
 
     /** simpan company */
-    localStorage.setItem(currentCompanyName, dataCompany.id);
-  }
+    localStorage.setItem(config.LOCAL_STORAGE_COMPANY_KEY, data.id.toString());
 
-  return { data: dataCompany, loading, error };
+  }, [data, setCurrentCompany]);
+
+
+  return { data, loading, error };
 }
