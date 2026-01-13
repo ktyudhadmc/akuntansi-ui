@@ -19,12 +19,12 @@ export default function AuthLayout({
             <div className="flex flex-col items-center max-w-xs">
               <Link to="/" className="block mb-4">
                 <h1 className="mb-2 font-semibold text-white text-title-sm dark:text-white/90 sm:text-title-md">
-                  Akuntansi
-                  <span className="text-sm italic font-bold"> by DMC</span>
+                  Dinamika
+                  <span className="text-sm italic font-bold"> Jurnal</span>
                 </h1>
               </Link>
               <p className="text-center text-gray-400 dark:text-white/60">
-                Akuntansi — Biar Laporan Nggak Pakai Perasaan.
+                Dinamika — Biar Laporan Nggak Pakai Perasaan.
               </p>
             </div>
           </div>
