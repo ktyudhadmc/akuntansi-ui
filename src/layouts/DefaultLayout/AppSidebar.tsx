@@ -17,8 +17,10 @@ import {
 } from "@assets/icons";
 
 import { AiOutlineBank } from "react-icons/ai";
+import { MdOutlineSell, MdOutlineShoppingCart } from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
+import AvatarText from "@components/ui/avatar/AvatarText";
 // import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
@@ -48,6 +50,17 @@ const navItems: NavItem[] = [
     icon: <AiOutlineBank />,
     name: "Kas & Bank",
     path: "/user/accounts",
+  },
+  {
+    icon: <MdOutlineSell />,
+    name: "Penjualan",
+    path: "/user/sales",
+  },
+
+  {
+    icon: <MdOutlineShoppingCart />,
+    name: "Pembelian",
+    path: "/user/purchases",
   },
   // {
   //   name: "Forms",
@@ -314,20 +327,22 @@ const AppSidebar: React.FC = () => {
         <Link to="/">
           {isExpanded || isHovered || isMobileOpen ? (
             <>
-              <h3 className="dark:text-white text-[#465FFF] h-[40px] font-semibold text-2xl tracking-wide">
-                Akuntansi
+              <h3 className="dark:text-white text-brand-600 h-[40px] font-semibold text-2xl tracking-wide">
+                Dinamika
                 <span className="text-sm font-normal italic tracking-normal">
-                  by DMC
+                  Jurnal
                 </span>
               </h3>
             </>
           ) : (
-            <img
-              src="/images/logo/logo-icon.svg"
-              alt="Logo"
-              width={32}
-              height={32}
-            />
+            // <img
+            //   src="/images/logo/logo-icon.svg"
+            //   alt="Logo"
+            //   width={32}
+            //   height={32}
+            // />
+
+            <AvatarText text="DMC" size="11" />
           )}
         </Link>
       </div>

@@ -26,6 +26,7 @@
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
+    "query-string": "^9.3.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.9.0",
     "react-dnd": "^16.0.1",

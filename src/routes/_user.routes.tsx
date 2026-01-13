@@ -39,6 +39,9 @@ export default [
 
       /** ACCOUNT */
       { path: "accounts", element: <User.AccountPage /> },
+      { path: "accounts/create", element: <User.CreateAccountPage /> },
+      { path: "accounts/:id/edit", element: <User.EditAccountPage /> },
+      { path: "accounts/:id/import", element: <User.ImportAccountPage /> },
     ],
   },
 ];
