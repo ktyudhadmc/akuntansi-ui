@@ -7,7 +7,7 @@ import { isEmpty } from "lodash";
 
 export default function AccountTable() {
   const { data, loading, setName } = useGetAll();
-  console.log(data);
+
   return (
     <>
       <TableHeader setSearchCallback={(e) => setName(e)} />

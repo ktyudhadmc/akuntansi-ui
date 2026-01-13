@@ -12,3 +12,8 @@ export const transactionalOptions = [
   { label: "Diizinkan", value: "1" },
   { label: "Tidak diizinkan", value: "0" },
 ];
+
+export const bankOptions = [
+  { label: "BANK BCA", value: "1" },
+  { label: "BANK MANDIRI", value: "0" },
+];

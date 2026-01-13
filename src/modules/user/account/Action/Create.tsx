@@ -45,8 +45,8 @@ export default function CreateAccount() {
     <div>
       <Form {...methods} onSubmit={onSubmit}>
         <div className="grid md:grid-cols-2 gap-4">
-          <Input label="Kode akun" name="code" required />
-          <Input label="Nama akun" name="name" required />
+          <Input label="Kode akun" placeholder="Kode akun" name="code" required />
+          <Input label="Nama akun" placeholder="Nama akun" name="name" required />
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           <Select
