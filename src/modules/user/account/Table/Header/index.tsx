@@ -33,7 +33,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
   return (
     <>
       {/* card */}
-      <div className="grid md:grid-cols-4 gap-4">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
         <TableHeaderCard
           title="Pemasukan 30 hari mendatang"
           count={0}
