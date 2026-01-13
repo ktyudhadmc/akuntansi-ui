@@ -55,7 +55,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
       <div className="flex md:flex-row flex-col justify-between gap-4">
         <div className="relative">
           <Button size="sm" onClick={toggleDropdown}>
-            <span>Buat akun/transaki</span>
+            <span>Buat akun/transaksi</span>
             <AiFillCaretDown />
           </Button>
 

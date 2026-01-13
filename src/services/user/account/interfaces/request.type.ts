@@ -1,8 +1,7 @@
 export interface ICreateAccountPayload {
-  company_id: string;
+  company_id: number;
   code: string;
   name: string;
-  level: number;
   is_posting: boolean;
   normal_balance: string;
   report_type: string;

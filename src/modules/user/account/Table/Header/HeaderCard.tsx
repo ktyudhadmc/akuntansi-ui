@@ -39,7 +39,7 @@ export default function TableHeaderCard({
         <span className="text-sm font-medium">{title}</span>
 
         <div
-          className={`rounded-full ${countVariants[variant]} text-white px-2`}
+          className={`rounded-full ${countVariants[variant]} min-w-6 h-6 text-white px-2 flex items-center`}
         >
           {count}
         </div>

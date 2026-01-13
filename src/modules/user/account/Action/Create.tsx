@@ -10,6 +10,7 @@ import Select from "@components/form/Select";
 import {
   normalBalanceOptions,
   reportTypeOptions,
+  transactionalOptions,
 } from "./select-options.constants";
 
 import useCreate from "@services/user/account/hooks/useCreate";
@@ -28,7 +29,7 @@ export default function CreateAccount() {
 
   const onSubmit: SubmitHandler<FormFields> = async (state) => {
     console.log(state);
-    const { error, response } = await createData(state);
+    const { error, response } = await createData({ ...state, company_id: 1 });
     if (error || response) {
       if (error) {
         toast.error("Gagal menyimpan data!");
@@ -46,22 +47,32 @@ export default function CreateAccount() {
         <div className="grid md:grid-cols-2 gap-4">
           <Input label="Kode akun" name="code" required />
           <Input label="Nama akun" name="name" required />
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          <Select
+            label="Akun ini bisa dipakai transaksi?"
+            name="is_posting"
+            placeholder="--- Pilih ---"
+            options={transactionalOptions}
+            required
+          />
 
           <Select
-            label="Saldo Normal"
+            label="Saldo normal"
             name="normal_balance"
             placeholder="--- Pilih Saldo ---"
             options={normalBalanceOptions}
             required
           />
           <Select
-            label="Jenis Laporan"
+            label="Jenis laporan"
             name="report_type"
             placeholder="--- Pilih Jenis ---"
             options={reportTypeOptions}
             required
           />
         </div>
+
         <div className="flex justify-end mt-4 gap-2">
           <Button
             type="button"

@@ -6,27 +6,35 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
   id: number;
+  code: string;
   name: string;
 }
 
-export default function TableItemMenu({ id, name }: Props) {
-  const { openModal } = useModal();
+export default function TableItemMenu({ id, code, name }: Props) {
+  const { openModal, isOpen, closeModal } = useModal();
+
   const navigate = useNavigate();
 
   return (
     <>
-      <DeleteAccount id={id} name={name} />
+      <DeleteAccount
+        id={id}
+        code={code}
+        name={name}
+        key={`modal-delete-${name}`}
+        onOpen={isOpen}
+        onClose={closeModal}
+      />
+
       <div className="flex gap-2">
         <Button
           onClick={() => navigate(`${id}/edit`)}
-          className="cursor-pointer px-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-cyan-300 dark:focus:ring-cyan-800"
+          size="sm"
+          variant="outline"
         >
           <HiPencil />
         </Button>
-        <Button
-          onClick={openModal}
-          className="cursor-pointer px-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-cyan-300 dark:focus:ring-cyan-800"
-        >
+        <Button onClick={openModal} size="sm" variant="outline">
           <HiTrash />
         </Button>
       </div>

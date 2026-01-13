@@ -67,7 +67,7 @@ export default function TableItem({ nomor, item }: Props) {
         </Dropdown>
       </td>
       <td>
-        <TableItemMenu id={item.id} name={item.name} />
+        <TableItemMenu id={item.id} name={item.name} code={item.code} />
       </td>
     </tr>
   );

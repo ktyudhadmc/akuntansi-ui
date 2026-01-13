@@ -17,6 +17,7 @@ import {
 } from "@assets/icons";
 
 import { AiOutlineBank } from "react-icons/ai";
+import { MdOutlineSell, MdOutlineShoppingCart } from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
 import AvatarText from "@components/ui/avatar/AvatarText";
@@ -49,6 +50,17 @@ const navItems: NavItem[] = [
     icon: <AiOutlineBank />,
     name: "Kas & Bank",
     path: "/user/accounts",
+  },
+  {
+    icon: <MdOutlineSell />,
+    name: "Penjualan",
+    path: "/user/sales",
+  },
+
+  {
+    icon: <MdOutlineShoppingCart />,
+    name: "Pembelian",
+    path: "/user/purchases",
   },
   // {
   //   name: "Forms",
