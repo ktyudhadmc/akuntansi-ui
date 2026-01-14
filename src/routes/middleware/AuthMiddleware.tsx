@@ -53,8 +53,8 @@ export default function AuthMiddleware({
   const role = Cookies.get("token")
     ? "admin"
     : Cookies.get("token-company")
-      ? "company"
-      : "user";
+    ? "company"
+    : "user";
 
   useEffect(() => {
     setIsLoggedIn(isLoggedIn);
@@ -62,13 +62,11 @@ export default function AuthMiddleware({
     setIsSelectCompany(isSelectCompany);
   }, [isLoggedIn, role, isSelectCompany]);
 
-
   useEffect(() => {
     if (company) {
       setCurrentCompany(company);
     }
   }, [company]);
-
 
   useEffect(() => {
     if (role) {
@@ -90,6 +88,22 @@ export default function AuthMiddleware({
         break;
       case "user":
         navigate("/user/dashboard");
+        break;
+      default:
+        navigate("/");
+    }
+  };
+
+  const redirectToOnBoard = () => {
+    switch (role) {
+      case "admin":
+        navigate("/admin/onboard");
+        break;
+      case "company":
+        navigate("/company/onboard");
+        break;
+      case "user":
+        navigate("/user/onboard");
         break;
       default:
         navigate("/");
@@ -129,11 +143,10 @@ export default function AuthMiddleware({
       redirectToLogin();
       setMounted(true);
     } else if (isLoggedIn) {
-
       if (!currentCompany) {
-        redirectToDashboard();
+        redirectToOnBoard();
       }
-
+      
       if (pathname.includes("request") || pathname.includes("verify")) {
         redirectToDashboard();
       }

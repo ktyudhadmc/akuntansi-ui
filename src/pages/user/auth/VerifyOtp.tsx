@@ -24,7 +24,7 @@ export default function VerifyOtp() {
     try {
       await handleVerifyOtp(phone, otp);
 
-      navigate("/user/dashboard");
+      navigate("/user/onboard");
       toast.success("Verifikasi akun berhasil!");
     } catch (error) {
       toast.error("Kode verifikasi tidak valid!");

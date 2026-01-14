@@ -6,11 +6,10 @@ import { formattedCurrency } from "@helpers/currency";
 import TableItemMenu from "./TableItemMenu";
 
 interface Props {
-  nomor: number;
   item: Account;
 }
 
-export default function TableItem({ nomor, item }: Props) {
+export default function TableItem({ item }: Props) {
   return (
     <tr>
       {/* <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">

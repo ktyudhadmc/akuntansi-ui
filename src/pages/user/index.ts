@@ -1,5 +1,5 @@
 export { default as Dashboard } from "./dashboard";
-export { default as Home } from "./dashboard/Home";
+export { default as OnBoardPage } from "./onboard";
 
 // AUTHENTICATION
 export { default as SendOtp } from "./auth/SendOtp";
