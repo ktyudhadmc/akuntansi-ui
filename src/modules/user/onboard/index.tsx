@@ -4,8 +4,11 @@ import { useSetCurrentCompany } from "@services/auth/hooks/useSetCurrentCompany"
 
 import useGetAllCompany from "@services/global/company/hooks/useGetAll";
 import Skeleton from "@components/Skeleton/Skeleton";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function OnBoard() {
+  const navigate = useNavigate();
   const { setCompany } = useSetCurrentCompany();
 
   const { data, loading } = useGetAllCompany();
@@ -25,7 +28,11 @@ export default function OnBoard() {
               <div
                 key={`onboard-company-${idx}`}
                 className={`border border-brand-600 rounded-lg pt-4 cursor-pointer`}
-                onClick={() => setCompany(item.id.toString())}
+                onClick={() => {
+                  setCompany(item.id.toString());
+                  toast.success("Berhasil memilih perusahaan");
+                  navigate("/user/dashboard");
+                }}
               >
                 <h4 className="px-4 mb-4 text-sm dark:text-white font-semibold ">
                   {item.name}
