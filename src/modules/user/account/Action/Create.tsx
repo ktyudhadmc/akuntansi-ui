@@ -28,7 +28,6 @@ export default function CreateAccount() {
   const { createData } = useCreate();
 
   const onSubmit: SubmitHandler<FormFields> = async (state) => {
-    console.log(state);
     const { error, response } = await createData({ ...state, company_id: 1 });
     if (error || response) {
       if (error) {
