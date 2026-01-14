@@ -21,6 +21,7 @@ import { MdOutlineSell, MdOutlineShoppingCart } from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
 import AvatarText from "@components/ui/avatar/AvatarText";
+import useGlobalStore from "@store/useStore";
 // import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
@@ -114,6 +115,9 @@ const navItems: NavItem[] = [
 // ];
 
 const AppSidebar: React.FC = () => {
+  /** select company */
+  const isSelectCompany = useGlobalStore((state) => state.isSelectCompany);
+
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const location = useLocation();
 
@@ -349,7 +353,7 @@ const AppSidebar: React.FC = () => {
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <nav className="mb-6">
           <div className="flex flex-col gap-4">
-            {renderMenuItems(navItems, "main")}
+            {isSelectCompany && renderMenuItems(navItems, "main")}
 
             {/* <div>
               <h2

@@ -32,6 +32,7 @@ export default [
     ),
     children: [
       { index: true, element: <User.Dashboard /> },
+      { path: "onboard", element: <User.OnBoardPage /> },
       { path: "dashboard", element: <User.Dashboard /> },
 
       /** PROFIL */

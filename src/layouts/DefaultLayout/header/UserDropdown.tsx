@@ -15,6 +15,9 @@ import Button from "@components/ui/button/Button";
 import AvatarText from "@components/ui/avatar/AvatarText";
 
 export default function UserDropdown() {
+  /** select company */
+  const currentCompany = useGlobalStore((state) => state.currentCompany);
+
   const navigate = useNavigate();
   const { isOpen, openModal, closeModal } = useModal();
   const [isOpenDropown, setIsOpenDropdown] = useState(false);
@@ -158,6 +161,22 @@ export default function UserDropdown() {
                 />
               </svg>
               Pengaturan Akun
+            </DropdownItem>
+          </li>
+          <li>
+            <DropdownItem
+              onItemClick={closeDropdown}
+              tag="a"
+              to="/user/onboard"
+              className="bg-brand-100 gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+            >
+              {currentCompany && (
+                <>
+                  <p className="text-sm font-bold">{currentCompany.name}</p>
+                  <p className="text-xs">CODE: {currentCompany.code}</p>
+                </>
+              )}
+              <span className="text-brand-600 ">Lihat daftar perusahaan</span>
             </DropdownItem>
           </li>
         </ul>
