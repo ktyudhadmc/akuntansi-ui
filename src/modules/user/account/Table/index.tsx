@@ -2,8 +2,8 @@ import TableItem from "./TableItem";
 import TableHeader from "./Header";
 
 import useGetAll from "@services/user/account/hooks/useGetAll";
-import Loader from "@components/Reusable/Loader";
 import { isEmpty } from "lodash";
+import { BeatLoader } from "react-spinners";
 
 export default function AccountTable() {
   const { data, loading, setName } = useGetAll();
@@ -36,8 +36,10 @@ export default function AccountTable() {
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="text-center">
-                    <Loader />
+                  <td colSpan={5} className="text-center py-16">
+                    <div className="sweet-loading">
+                      <BeatLoader color="var(--color-brand-600)" />
+                    </div>
                   </td>
                 </tr>
               ) : isEmpty(data) || !data ? (
@@ -49,11 +51,7 @@ export default function AccountTable() {
               ) : (
                 data.map((item, index) => {
                   return (
-                    <TableItem
-                      key={`table-account-${index}`}
-                      nomor={++index}
-                      item={item}
-                    />
+                    <TableItem key={`table-account-${index}`} item={item} />
                   );
                 })
               )}

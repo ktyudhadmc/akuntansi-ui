@@ -3,7 +3,11 @@ import Cookies from "js-cookie";
 import type { Role } from "../role.def";
 import axiosInstance from "@lib/axios-instance";
 
+import { useUnsetCurrentCompany } from "./useUnsetCurrentCompany";
+
 export default function useLogout() {
+  const { unsetCompany } = useUnsetCurrentCompany();
+
   const handleLogout = async (role: Role) => {
     const tokenKeys = {
       admin: "token",
@@ -32,6 +36,9 @@ export default function useLogout() {
 
       /** remove token */
       Cookies.remove(tokenKeys[role], { path: "/" });
+
+      /** unset company */
+      unsetCompany();
 
       return { data: data.message, error: null };
     } catch (error: any) {
