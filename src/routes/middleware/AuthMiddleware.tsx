@@ -143,10 +143,10 @@ export default function AuthMiddleware({
       redirectToLogin();
       setMounted(true);
     } else if (isLoggedIn) {
-      if (!currentCompany) {
+      if (!isSelectCompany) {
         redirectToOnBoard();
       }
-      
+
       if (pathname.includes("request") || pathname.includes("verify")) {
         redirectToDashboard();
       }
