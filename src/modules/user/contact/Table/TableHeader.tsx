@@ -21,10 +21,11 @@ export default function TableHeader({ setSearchCallback }: Props) {
   );
   return (
     <div className="flex lg:flex-row flex-col lg:justify-between gap-4">
-      <div className="flex gap-4 items-start">
+      <div className="flex items-start">
         <Button
           variant={activeTab == "customer" ? "primary" : "outline"}
           size="sm"
+          className="rounded-r-none !ring-0"
           onClick={() => setActiveTab("customer")}
         >
           <MdPerson /> Pelanggan
@@ -32,6 +33,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
         <Button
           variant={activeTab == "supplier" ? "primary" : "outline"}
           size="sm"
+          className="rounded-l-none !ring-0"
           onClick={() => setActiveTab("supplier")}
         >
           <MdPerson />

@@ -1,4 +1,4 @@
-import { BeatLoader } from "react-spinners";
+// import { BeatLoader } from "react-spinners";
 import TableHeader from "./TableHeader";
 import type { Contact } from "@services/user/contact/interfaces/response.type";
 import TableItem from "./TableItem";
