@@ -8,7 +8,7 @@ export default function useGetProduct(productId: string) {
       .get(url)
       .then((res) => res.data);
 
-  const { data, error } = useSWR(`/products/${productId}`, fetcher);
+  const { data, error } = useSWR(`/material/${productId}`, fetcher);
 
   return {
     loading: !data && !error,

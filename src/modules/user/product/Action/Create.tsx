@@ -3,13 +3,13 @@ import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
 import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
-import useCreate from "@services/user/supplier/hooks/useCreate";
-import type { ICreateContactPayload } from "@services/user/supplier/interfaces/request.type";
+import useCreate from "@services/user/product/index/hooks/useCreate";
+import type { ICreateProductPayload } from "@services/user/product/index/interfaces/request.type";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-type FormFields = ICreateContactPayload;
+type FormFields = ICreateProductPayload;
 
 export default function CreateContact() {
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ export default function CreateContact() {
   const { createData } = useCreate();
 
   const onSubmit: SubmitHandler<FormFields> = async (state) => {
-    console.log(state);
     const { error, response } = await createData(state);
     if (error || response) {
       if (error) {
@@ -39,15 +38,22 @@ export default function CreateContact() {
       <Form {...methods} onSubmit={onSubmit}>
         <div className="grid md:grid-cols-2 gap-4">
           <Input
-            label="Kode supplier"
-            placeholder="Kode supplier"
+            label="Kode produk"
+            placeholder="Kode produk"
             name="code"
             required
           />
+          <Input label="Nama" placeholder="Nama produk" name="name" required />
           <Input
             label="Nama"
-            placeholder="Nama supplier"
-            name="name"
+            placeholder="Nama produk"
+            name="spesification"
+            required
+          />
+          <Input
+            label="Kategori produk"
+            placeholder="Nama produk"
+            name="class"
             required
           />
         </div>

@@ -1,4 +1,4 @@
-import type { ProductCategory } from "../../category/interfaces/response.type";
+// import type { ProductCategory } from "../../category/interfaces/response.type";
 
 export interface IGetAllResponse {
   status?: string;
@@ -14,24 +14,33 @@ export interface IGetResponse {
 
 export interface Product {
   id: number;
+  code: string;
   name: string;
-  sku: string;
-  description: string;
-  type: string;
-  is_purchasable: boolean;
-  is_sellable: boolean;
-  is_stock: boolean;
-  product_category: ProductCategory;
-  units?: ProductUnit[] | null;
+  spesification: string;
+  class: string;
 }
 
-interface ProductUnit {
-  id: number;
-  conversion: number;
-  unit: Unit;
-}
+// cmivv :)
+// export interface Product {
+//   id: number;
+//   name: string;
+//   sku: string;
+//   description: string;
+//   type: string;
+//   is_purchasable: boolean;
+//   is_sellable: boolean;
+//   is_stock: boolean;
+//   product_category: ProductCategory;
+//   units?: ProductUnit[] | null;
+// }
 
-interface Unit {
-  id: number;
-  name: string;
-}
+// interface ProductUnit {
+//   id: number;
+//   conversion: number;
+//   unit: Unit;
+// }
+
+// interface Unit {
+//   id: number;
+//   name: string;
+// }

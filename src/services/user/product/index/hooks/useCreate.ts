@@ -22,7 +22,7 @@ export default function useCreate() {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).post(`/products`, {
+      }).post(`/material`, {
         product_category_id,
         name,
         description,
@@ -35,7 +35,7 @@ export default function useCreate() {
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/products/);
+        revalidateMutationsByKey(/^\/material/);
       }
 
       return { response: res, error: null };

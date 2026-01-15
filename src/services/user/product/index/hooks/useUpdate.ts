@@ -21,7 +21,7 @@ export default function useUpdate(productCategoryId: string) {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).post(`/products/${productCategoryId}`, {
+      }).post(`/material/${productCategoryId}`, {
         product_category_id,
         name,
         description,
@@ -35,7 +35,7 @@ export default function useUpdate(productCategoryId: string) {
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/products/);
+        revalidateMutationsByKey(/^\/material/);
       }
 
       return { response: res, error: null };

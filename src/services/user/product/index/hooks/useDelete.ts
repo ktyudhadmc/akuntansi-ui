@@ -9,10 +9,10 @@ export default function useDelete() {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).delete(`/products/${productId}`);
+      }).delete(`/material/${productId}`);
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/products/);
+        revalidateMutationsByKey(/^\/material/);
       }
 
       return { response: res, error: null };

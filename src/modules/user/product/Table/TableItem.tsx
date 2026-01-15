@@ -2,7 +2,7 @@
 
 // import TableItemMenu from "./TableItemMenu";
 import type { Product } from "@services/user/product/index/interfaces/response.type";
-import Badge from "@components/ui/badge/Badge";
+// import Badge from "@components/ui/badge/Badge";
 import TableItemMenu from "./TableItemMenu";
 
 interface Props {
@@ -16,13 +16,13 @@ export default function TableItem({ item }: Props) {
         {nomor}
       </td> */}
       <td className="px-5 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 whitespace-nowrap font-semibold">
-        {item.sku}
+        {item.code}
       </td>
       <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
         <h4 className="font-bold uppercase">{item.name}</h4>
-        <p className="text-xs">{item.description}</p>
+        <p className="text-xs">{item.spesification}</p>
       </td>
-      <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+      {/* <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
         <div className="flex gap-2 mt-2">
           {item.is_purchasable && (
             <Badge variant="light" color="primary">
@@ -40,9 +40,9 @@ export default function TableItem({ item }: Props) {
             </Badge>
           )}
         </div>
-      </td>
+      </td> */}
       <td className="px-4 py-3  whitespace-nowrap text-gray-500 text-start text-theme-sm dark:text-gray-400">
-        <TableItemMenu id={item.id} name={item.name} sku={item.sku} />
+        <TableItemMenu id={item.id} name={item.name} sku={item.code} />
       </td>
     </tr>
   );
