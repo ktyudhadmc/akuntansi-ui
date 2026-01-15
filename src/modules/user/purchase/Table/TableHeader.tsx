@@ -28,7 +28,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
         onClick={() => navigateKeepHash(navigate, location, "create")}
       >
         <HiPlus />
-        Buat kontak pelanggan
+        Buat Kontak Supplier
       </Button>
       <div className="flex lg:flex-row flex-col gap-2">
         <Button size="sm" variant="outline">

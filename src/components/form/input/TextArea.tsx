@@ -1,31 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 
+import Label from "@components/form/Label";
+import { useFormContext } from "react-hook-form";
 interface TextareaProps {
   placeholder?: string; // Placeholder text
   rows?: number; // Number of rows
   value?: string; // Current value
-  onChange?: (value: string) => void; // Change handler
+  // onChange?: (value: string) => void; // Change handler
   className?: string; // Additional CSS classes
   disabled?: boolean; // Disabled state
   error?: boolean; // Error state
   hint?: string; // Hint text to display
+
+  label?: string;
+  name?: string;
+  defaultValue?: string | number;
+  required?: boolean;
+
 }
 
 const TextArea: React.FC<TextareaProps> = ({
+  label,
+  name,
+  defaultValue,
   placeholder = "Enter your message", // Default placeholder
   rows = 3, // Default number of rows
-  value = "", // Default value
-  onChange, // Callback for changes
+  value, // Default value
+  // onChange, // Callback for changes
   className = "", // Additional custom styles
   disabled = false, // Disabled state
   error = false, // Error state
+  required = false,
   hint = "", // Default hint text
+  ...restProps
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (onChange) {
-      onChange(e.target.value);
-    }
-  };
+  /** REGISTER FORM */
+  const { register, unregister } = useFormContext();
+
+  useEffect(
+    () => () => {
+      unregister(name);
+    },
+    [name, unregister]
+  );
 
   let textareaClasses = `w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs focus:outline-hidden ${className} `;
 
@@ -37,25 +54,44 @@ const TextArea: React.FC<TextareaProps> = ({
     textareaClasses += ` bg-transparent text-gray-900 dark:text-gray-300 text-gray-900 border-gray-300 focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800`;
   }
 
+
+
   return (
-    <div className="relative">
-      <textarea
-        placeholder={placeholder}
-        rows={rows}
-        value={value}
-        onChange={handleChange}
-        disabled={disabled}
-        className={textareaClasses}
-      />
-      {hint && (
-        <p
-          className={`mt-2 text-sm ${
-            error ? "text-error-500" : "text-gray-500 dark:text-gray-400"
-          }`}
-        >
-          {hint}
-        </p>
+    <div>
+      {label && (
+        <Label>
+          {label} {required && <span className="text-error-500">*</span>}
+        </Label>
       )}
+
+      <div className="relative">
+        <textarea
+          {...restProps}
+          {...(name &&
+            register(name, {
+              required: required && {
+                value: true,
+                message: "Tidak Boleh Kosong",
+              },
+            }))}
+          name={name}
+          placeholder={placeholder}
+          rows={rows}
+          value={value}
+          defaultValue={defaultValue}
+          // onChange={handleChange}
+          disabled={disabled}
+          className={textareaClasses}
+        />
+        {hint && (
+          <p
+            className={`mt-2 text-sm ${error ? "text-error-500" : "text-gray-500 dark:text-gray-400"
+              }`}
+          >
+            {hint}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

@@ -9,11 +9,11 @@ interface Props {
 export default function TableItem({ item }: Props) {
   return (
     <tr>
-      <td className="px-5 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 whitespace-nowrap  font-semibold">
+      <td className="px-5 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 whitespace-nowrap">
         {item.code}
       </td>
       <td className="px-5 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 whitespace-nowrap">
-        <h4 className="font-bold uppercase">{item.name}</h4>
+        {item.name}
         {/* <div className="flex gap-2 mt-2">
           {item.is_customer && (
             <Badge variant="light" color="info">

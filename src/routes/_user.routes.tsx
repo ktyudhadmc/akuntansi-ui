@@ -48,6 +48,20 @@ export default [
       { path: "contacts", element: <User.ContactPage /> },
       { path: "contacts/create", element: <User.CreateContactPage /> },
       { path: "contacts/:id/edit", element: <User.EditContactPage /> },
+
+      /** PRODUK */
+      { path: "products", element: <User.ProductPage /> },
+      { path: "products/create", element: <User.CreateProductPage /> },
+      { path: "products/:id/edit", element: <User.EditProductPage /> },
+
+      /** PURCHASE */
+      { path: "purchases", element: <User.PurchasePage /> },
+
+      /** SALE */
+      { path: "sales", element: <User.SalePage /> },
+
+      /** REPORT */
+      { path: "reports", element: <User.ReportPage /> },
     ],
   },
 ];
