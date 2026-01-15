@@ -1,15 +1,12 @@
 import type React from "react";
 import { type MaskOptions, useMask } from "@react-input/mask";
-import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
 interface CheckboxProps {
   label?: string;
-  checked?: boolean;
   className?: string;
   id?: string;
-  name?: string;
-  // onChange: (checked: boolean) => void;
+  name: string;
   disabled?: boolean;
   required?: boolean;
   maskOptions?: MaskOptions;
@@ -17,25 +14,24 @@ interface CheckboxProps {
 
 const Checkbox: React.FC<CheckboxProps> = ({
   label,
-  checked,
   id,
   name,
-  // onChange,
   className = "",
   disabled = false,
   required = false,
   maskOptions,
   ...restProps
 }) => {
-  const { register, unregister } = useFormContext();
+  const { register, watch } = useFormContext();
   const inputRef = useMask(maskOptions);
+  const checked = watch(name);
 
-  useEffect(
-    () => () => {
-      unregister(name);
-    },
-    [name, unregister]
-  );
+  // useEffect(
+  //   () => () => {
+  //     unregister(name);
+  //   },
+  //   [name, unregister]
+  // );
 
   return (
     <label
@@ -58,8 +54,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
           type="checkbox"
           className={`w-5 h-5 appearance-none cursor-pointer dark:border-gray-700 border border-gray-300 checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60 
           ${className}`}
-          checked={checked}
-          // onChange={(e) => onChange(e.target.checked)}
           disabled={disabled}
         />
         {checked && (

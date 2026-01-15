@@ -5,6 +5,7 @@ import Label from "@components/form/Label";
 import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import type { ICreateContactPayload } from "@services/user/contact/interfaces/request.type";
+
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +13,9 @@ type FormFields = ICreateContactPayload;
 
 export default function EditContact() {
   const navigate = useNavigate();
-  const methods = useForm<FormFields>({ mode: "onChange" });
+  const methods = useForm<FormFields>({
+    mode: "onChange",
+  });
   const { isSubmitting } = methods.formState;
 
   const contactType =

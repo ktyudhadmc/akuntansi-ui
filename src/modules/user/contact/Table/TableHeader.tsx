@@ -25,7 +25,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
         <Button
           variant={activeTab == "customer" ? "primary" : "outline"}
           size="sm"
-          className="rounded-r-none !ring-0"
+          className="rounded-r-none !ring-0 w-full"
           onClick={() => setActiveTab("customer")}
         >
           <MdPerson /> Pelanggan
@@ -33,7 +33,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
         <Button
           variant={activeTab == "supplier" ? "primary" : "outline"}
           size="sm"
-          className="rounded-l-none !ring-0"
+          className="rounded-l-none !ring-0 w-full"
           onClick={() => setActiveTab("supplier")}
         >
           <MdPerson />
@@ -47,16 +47,19 @@ export default function TableHeader({ setSearchCallback }: Props) {
         </Button>
         <Button size="sm" variant="outline">
           Ekspor
-        </Button> */}
+        </Button>*/}
         <Button size="sm" variant="primary" onClick={() => navigate("create")}>
           <HiPlus />
           Buat Kontak
         </Button>
         <div className="flex gap-2">
-          <SearchInput
-            placeholder="Cari"
-            onChange={(e) => debouncedSearch(e.target.value)}
-          />
+          <div className="w-full">
+            <SearchInput
+              placeholder="Cari"
+              onChange={(e) => debouncedSearch(e.target.value)}
+            />
+          </div>
+
           <Button size="sm" variant="outline">
             <HiOutlineFilter />
           </Button>
