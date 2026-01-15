@@ -1,24 +1,29 @@
+import { useFormContext, useWatch } from "react-hook-form";
+
 interface RadioProps {
-  id: string; // Unique ID for the radio button
+  id?: string; // Unique ID for the radio button
   name: string; // Radio group name
   value: string; // Value of the radio button
-  checked: boolean; // Whether the radio button is checked
   label: string; // Label for the radio button
-  onChange: (value: string) => void; // Handler for value change
   className?: string; // Optional additional classes
   disabled?: boolean; // Optional disabled state for the radio button
+  required?: boolean;
 }
 
 const Radio: React.FC<RadioProps> = ({
   id,
   name,
   value,
-  checked,
   label,
-  onChange,
   className = "",
   disabled = false,
+  required = false,
+  ...restProps
 }) => {
+  const { register, control } = useFormContext();
+  const selectedValue = useWatch({ control, name });
+  const checked = selectedValue === value;
+
   return (
     <label
       htmlFor={id}
@@ -29,12 +34,18 @@ const Radio: React.FC<RadioProps> = ({
       } ${className}`}
     >
       <input
+        {...restProps}
+        {...(name &&
+          register(name, {
+            required: required && {
+              value: true,
+              message: "Tidak Boleh Kosong",
+            },
+          }))}
         id={id}
         name={name}
         type="radio"
         value={value}
-        checked={checked}
-        onChange={() => !disabled && onChange(value)} // Prevent onChange when disabled
         className="sr-only"
         disabled={disabled} // Disable input
       />
@@ -43,18 +54,15 @@ const Radio: React.FC<RadioProps> = ({
           checked
             ? "border-brand-500 bg-brand-500"
             : "bg-transparent border-gray-300 dark:border-gray-700"
-        } ${
-          disabled
-            ? "bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-700"
-            : ""
         }`}
       >
         <span
           className={`h-2 w-2 rounded-full bg-white ${
             checked ? "block" : "hidden"
           }`}
-        ></span>
+        />
       </span>
+
       {label}
     </label>
   );

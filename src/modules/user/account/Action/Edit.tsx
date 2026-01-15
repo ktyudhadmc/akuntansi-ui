@@ -17,6 +17,7 @@ import useUpdate from "@services/user/account/hooks/useUpdate";
 import type { ICreateAccountPayload } from "@services/user/account/interfaces/request.type";
 import useGetAccount from "@services/user/account/hooks/useGet";
 import Skeleton from "@components/Skeleton/Skeleton";
+import SelectTwo from "@components/form/SelectTwo";
 
 type FormFields = ICreateAccountPayload;
 
@@ -44,8 +45,6 @@ export default function EditAccount() {
       }
     }
   };
-
-  console.log(data);
 
   return (
     <div>
@@ -81,13 +80,21 @@ export default function EditAccount() {
           </Skeleton>
 
           <Skeleton isLoading={loading}>
-            <Select
+            {/* <Select
               label="Saldo Normal"
               name="normal_balance"
               placeholder="--- Pilih Saldo ---"
               options={normalBalanceOptions}
               defaultValue={data?.normal_balance}
               required
+            /> */}
+            <SelectTwo
+              label="Saldo Normal"
+              name="normal_balance"
+              selectTwoOptions={normalBalanceOptions}
+              defaultValue={data?.normal_balance}
+              isClearable
+              isSearchable
             />
           </Skeleton>
           <Skeleton isLoading={loading}>

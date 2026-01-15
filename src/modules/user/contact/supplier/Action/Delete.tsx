@@ -1,5 +1,6 @@
 import Button from "@components/ui/button/Button";
 import { Modal } from "@components/ui/modal";
+import useDelete from "@services/user/supplier/hooks/useDelete";
 
 import { toast } from "react-toastify";
 
@@ -18,17 +19,18 @@ export default function DeleteContact({
   onOpen,
   onClose,
 }: Props) {
+  const { deleteData } = useDelete();
+
   const onDelete = async () => {
-    console.log("onDelete()", id);
-    toast.success("Berhasil menghapus data!");
-    // const { error, response } = await deleteData(id);
-    // if (error || response) {
-    //   if (error) {
-    //     toast.error("Gagal menghapus data!");
-    //   } else {
-    //     onClose();
-    //   }
-    // }
+    const { error, response } = await deleteData(id);
+    if (error || response) {
+      if (error) {
+        toast.error("Gagal menghapus data!");
+      } else {
+        toast.success("Berhasil menghapus data!");
+        onClose();
+      }
+    }
   };
 
   return (

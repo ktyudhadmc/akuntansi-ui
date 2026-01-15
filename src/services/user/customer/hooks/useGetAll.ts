@@ -3,10 +3,10 @@ import useSWR, { type Fetcher } from "swr";
 import type { IGetAllResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
-import useGlobalStore from "@store/useStore";
+// import useGlobalStore from "@store/useStore";
 
 export default function useGetAll() {
-  const currentCompany = useGlobalStore((state) => state.currentCompany);
+  // const currentCompany = useGlobalStore((state) => state.currentCompany);
   const [name, setName] = useState("");
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
@@ -20,7 +20,8 @@ export default function useGetAll() {
   );
 
   const { data, error } = useSWR(
-    `/company/${currentCompany?.id}/contacts?${qs}`,
+    // `/company/${currentCompany?.id}/contacts?${qs}`,
+    `/customer?${qs}`,
     fetcher
   );
 
