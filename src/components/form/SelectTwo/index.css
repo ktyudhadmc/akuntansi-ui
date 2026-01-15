@@ -1,0 +1,6 @@
+.select-NamaLabel__control,
+.select-NamaLabel__control--is-focused,
+.css-gyghm8-control,
+.css-1xepz10-control {
+    box-shadow: var(--color-brand-600) !important;
+}
