@@ -46,8 +46,6 @@ export default function EditAccount() {
     }
   };
 
-  console.log(data);
-
   return (
     <div>
       <Form {...methods} onSubmit={onSubmit}>

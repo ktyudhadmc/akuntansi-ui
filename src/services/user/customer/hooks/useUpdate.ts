@@ -1,29 +1,25 @@
 import axiosInstance from "@/lib/axios-instance";
 import useRevalidateMutation from "@/lib/swr/useRevalidateMutation";
-import type { ICreateContactPayload } from "../interfaces/request.type";
-import useGlobalStore from "@store/useStore";
+import type { ICreateCustomerPayload } from "../interfaces/request.type";
 
 export default function useUpdate(contactId: string) {
-  const currentCompany = useGlobalStore((state) => state.currentCompany);
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const updateData = async (payload: ICreateContactPayload) => {
-    const { name, email, phone, is_supplier, is_customer } = payload;
+  const updateData = async (payload: ICreateCustomerPayload) => {
+    const { name, code, parent_unit } = payload;
     try {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).post(`/company/${currentCompany?.id}/contacts/${contactId}`, {
+      }).post(`/customer/${contactId}`, {
         name,
-        email,
-        phone,
-        is_supplier,
-        is_customer,
+        code,
+        parent_unit,
         _method: "PUT",
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/contacts/);
+        revalidateMutationsByKey(/^\/customer/);
       }
 
       return { response: res, error: null };

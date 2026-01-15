@@ -1,29 +1,25 @@
 import useRevalidateMutation from "@lib/swr/useRevalidateMutation";
-import type { ICreateContactPayload } from "../interfaces/request.type";
+import type { ICreateCustomerPayload } from "../interfaces/request.type";
 import axiosInstance from "@lib/axios-instance";
-import useGlobalStore from "@store/useStore";
 
 export default function useCreate() {
-  const currentCompany = useGlobalStore((state) => state.currentCompany);
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const createData = async (payload: ICreateContactPayload) => {
-    const { name, email, phone, is_supplier, is_customer } = payload;
+  const createData = async (payload: ICreateCustomerPayload) => {
+    const { name, code, parent_unit } = payload;
 
     try {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).post(`/company/${currentCompany?.id}/contacts`, {
+      }).post(`/customer`, {
         name,
-        email,
-        phone,
-        is_supplier,
-        is_customer,
+        code,
+        parent_unit,
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/contacts/);
+        revalidateMutationsByKey(/^\/customer/);
       }
 
       return { response: res, error: null };
@@ -32,7 +28,7 @@ export default function useCreate() {
         return { response: null, error: "Server error" };
       }
 
-      return { response: null, error: error.data.message };
+      return { response: null, error: error.response.data.message };
     }
   };
 
