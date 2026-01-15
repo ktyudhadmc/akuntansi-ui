@@ -7,30 +7,14 @@ export default function useUpdate(productCategoryId: string) {
 
   const updateData = async (payload: ICreateProductPayload) => {
     const {
-      product_category_id,
-      name,
-      description,
-      type,
-      is_purchasable,
-      is_sellable,
-      is_stock,
-      unit_id,
-      product_units,
+      code, name, specification, category
     } = payload;
     try {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
       }).post(`/material/${productCategoryId}`, {
-        product_category_id,
-        name,
-        description,
-        type,
-        is_purchasable,
-        is_sellable,
-        is_stock,
-        unit_id,
-        product_units,
+        code, name, specification, class: category,
         _method: "PUT",
       });
 

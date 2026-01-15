@@ -51,6 +51,8 @@ export default [
 
       /** PRODUK */
       { path: "products", element: <User.ProductPage /> },
+      { path: "products/create", element: <User.CreateProductPage /> },
+      { path: "products/:id/edit", element: <User.EditProductPage /> },
 
       /** PURCHASE */
       { path: "purchases", element: <User.PurchasePage /> },

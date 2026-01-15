@@ -7,31 +7,14 @@ export default function useCreate() {
 
   const createData = async (payload: ICreateProductPayload) => {
     const {
-      product_category_id,
-      name,
-      description,
-      type,
-      is_purchasable,
-      is_sellable,
-      is_stock,
-      unit_id,
-      product_units,
-    } = payload;
+      code, name, specification, category } = payload;
 
     try {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
       }).post(`/material`, {
-        product_category_id,
-        name,
-        description,
-        type,
-        is_purchasable,
-        is_sellable,
-        is_stock,
-        unit_id,
-        product_units,
+        code, name, specification, class: category
       });
 
       if (res.status === 200) {

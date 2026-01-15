@@ -59,6 +59,12 @@ export default function ProductTable() {
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Nama
                 </th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Kategori
+                </th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Spesifikasi
+                </th>
                 <th></th>
               </tr>
             </thead>

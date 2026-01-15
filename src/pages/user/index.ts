@@ -21,6 +21,8 @@ export { default as EditContactPage } from "./contact/edit";
 
 // PRODUCT
 export { default as ProductPage } from "./product";
+export { default as CreateProductPage } from "./product/create";
+export { default as EditProductPage } from "./product/edit";
 
 // PURCHASE
 export { default as PurchasePage } from "./purchase";

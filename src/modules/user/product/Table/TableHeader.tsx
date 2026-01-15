@@ -1,10 +1,9 @@
 import SearchInput from "@components/form/input/SearchInput";
 import Button from "@components/ui/button/Button";
-import { navigateKeepHash } from "@helpers/navigation";
 import { debounce } from "lodash";
 import { useCallback } from "react";
 import { HiOutlineFilter, HiPlus } from "react-icons/hi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   setSearchCallback: (param: string) => void;
@@ -12,7 +11,6 @@ interface Props {
 
 export default function TableHeader({ setSearchCallback }: Props) {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -26,7 +24,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
         <Button
           size="sm"
           variant="primary"
-          onClick={() => navigateKeepHash(navigate, location, "create")}
+          onClick={() => navigate("create")}
         >
           <HiPlus />
           Tambah produk baru
@@ -34,7 +32,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
         <Button
           size="sm"
           variant="outline"
-          onClick={() => navigateKeepHash(navigate, location, "create")}
+          onClick={() => console.log('productCategory')}
         >
           Atur kategori produk
         </Button>

@@ -16,7 +16,7 @@ export interface Product {
   id: number;
   code: string;
   name: string;
-  spesification: string;
+  specification: string;
   class: string;
 }
 
