@@ -1,23 +1,24 @@
-// import _companyRoutes from "./_company.routes";
+import { lazy } from "react";
 import _userRoutes from "./_user.routes";
 
-import * as Landing from "@pages/landing";
-import * as Global from "@pages/global";
+const NotFoundPage = lazy(() => import("@pages/global/OtherPage/NotFoundPage"));
+const ComingSoonPage = lazy(() => import("@pages/global/OtherPage/ComingSoonPage"));
+
 
 export default function GetBrowserRoutes() {
   return [
     {
       path: "/",
-      element: <Landing.Home />,
+      element: <ComingSoonPage />
     },
 
     {
       path: "/error-page",
-      element: <Global.NotFoundPage />,
+      element: <NotFoundPage />,
     },
     {
       path: "*",
-      element: <Global.NotFoundPage />,
+      element: <NotFoundPage />,
     },
 
     ..._userRoutes,
