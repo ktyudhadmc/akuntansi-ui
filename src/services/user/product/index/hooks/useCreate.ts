@@ -1,25 +1,41 @@
 import useRevalidateMutation from "@lib/swr/useRevalidateMutation";
-import type { ICreateCustomerPayload } from "../interfaces/request.type";
+import type { ICreateProductPayload } from "../interfaces/request.type";
 import axiosInstance from "@lib/axios-instance";
 
 export default function useCreate() {
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const createData = async (payload: ICreateCustomerPayload) => {
-    const { name, code, parent_unit } = payload;
+  const createData = async (payload: ICreateProductPayload) => {
+    const {
+      product_category_id,
+      name,
+      description,
+      type,
+      is_purchasable,
+      is_sellable,
+      is_stock,
+      unit_id,
+      product_units,
+    } = payload;
 
     try {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).post(`/product-category`, {
+      }).post(`/products`, {
+        product_category_id,
         name,
-        code,
-        parent_unit,
+        description,
+        type,
+        is_purchasable,
+        is_sellable,
+        is_stock,
+        unit_id,
+        product_units,
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/product-category/);
+        revalidateMutationsByKey(/^\/products/);
       }
 
       return { response: res, error: null };

@@ -18,3 +18,15 @@ export { default as ImportAccountPage } from "./account/import";
 export { default as ContactPage } from "./contact";
 export { default as CreateContactPage } from "./contact/create";
 export { default as EditContactPage } from "./contact/edit";
+
+// PRODUCT
+export { default as ProductPage } from "./product";
+
+// PURCHASE
+export { default as PurchasePage } from "./purchase";
+
+// SALE
+export { default as SalePage } from "./sale";
+
+// REPORT
+export { default as ReportPage } from "./report";
