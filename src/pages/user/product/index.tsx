@@ -1,6 +1,7 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
 import ProductHeader from "@modules/user/product/Header";
+import ProductTable from "@modules/user/product/Table";
 
 export default function ProductPage() {
   const pageTitle = "Produk";
@@ -13,7 +14,8 @@ export default function ProductPage() {
         <div className="space-y-6">
           <ProductHeader />
 
-          <h4>Halaman Produk, It Works!</h4>
+          {/* <h4>Halaman Produk, It Works!</h4> */}
+          <ProductTable />
         </div>
       </div>
     </>

@@ -22,7 +22,7 @@ export interface Product {
   is_sellable: boolean;
   is_stock: boolean;
   product_category: ProductCategory;
-  units: ProductUnit[];
+  units?: ProductUnit[] | null;
 }
 
 interface ProductUnit {

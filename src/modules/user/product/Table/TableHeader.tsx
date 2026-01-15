@@ -22,14 +22,24 @@ export default function TableHeader({ setSearchCallback }: Props) {
   );
   return (
     <div className="flex lg:flex-row flex-col lg:justify-between gap-2">
-      <Button
-        size="sm"
-        variant="primary"
-        onClick={() => navigateKeepHash(navigate, location, "create")}
-      >
-        <HiPlus />
-        Buat kontak pelanggan
-      </Button>
+      <div className="flex lg:flex-row flex-col gap-2">
+        <Button
+          size="sm"
+          variant="primary"
+          onClick={() => navigateKeepHash(navigate, location, "create")}
+        >
+          <HiPlus />
+          Tambah produk baru
+        </Button>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => navigateKeepHash(navigate, location, "create")}
+        >
+          Atur kategori produk
+        </Button>
+      </div>
+
       <div className="flex lg:flex-row flex-col gap-2">
         <Button size="sm" variant="outline">
           Impor

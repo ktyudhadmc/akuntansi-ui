@@ -4,37 +4,51 @@
 // import useGetAll from "@services/user/supplier/hooks/useGetAll";
 // import TableHeader from "./TableHeader";
 
+import type { Product } from "@services/user/product/index/interfaces/response.type";
+import TableItem from "./TableItem";
+import TableHeader from "./TableHeader";
+
 export default function ProductTable() {
-  // const navItems: NavItem[] = [
-  // const dataContact: Contact[] = [
-  //   {
-  //     id: 1,
-  //     name: "PT DINAMIKA MEGATAMA CITRA",
-  //     code: "DMC-001",
-  //     email: "dmc@dinamikajurnal.com",
-  //     phone: "081234567890",
-  //     is_customer: true,
-  //     is_supplier: true,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "PT DINAMIKA MEGATAMA CITRA 2",
-  //     code: "DMC-002",
-  //     email: "dmc@dinamikajurnal.com",
-  //     phone: "081234567890",
-  //     is_customer: false,
-  //     is_supplier: true,
-  //   },
-  // ];
+  const data: Product[] = [
+    {
+      id: 1,
+      sku: "32000845",
+      name: "BUSHING TEFLON TYPE SKA",
+      description: "ID 20MM OD 38MM TINGGI 24,15MM ",
+      type: "stock",
+      is_purchasable: true,
+      is_sellable: true,
+      is_stock: true,
+      product_category: {
+        id: 1,
+        name: "MEKANIK DAN SPARE PART",
+      },
+      units: null,
+    },
+    {
+      id: 2,
+      sku: "32000845",
+      name: "BUSHING TEFLON TYPE SKA",
+      description: "ID 20MM OD 38MM TINGGI 24,15MM ",
+      type: "stock",
+      is_purchasable: true,
+      is_sellable: true,
+      is_stock: true,
+      product_category: {
+        id: 1,
+        name: "MEKANIK DAN SPARE PART",
+      },
+      units: null,
+    },
+  ];
 
   // const { data, loading, setName } = useGetAll();
 
   return (
     <>
-      {/* <TableHeader setSearchCallback={setName} /> */}
+      <TableHeader setSearchCallback={(e) => console.log(e)} />
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-        <h1>Purchases, It Works!</h1>
-        {/* <div className="max-w-full overflow-x-auto">
+        <div className="max-w-full overflow-x-auto">
           <table className="w-full">
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
@@ -49,7 +63,7 @@ export default function ProductTable() {
             </thead>
 
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {loading ? (
+              {/* {loading ? (
                 <tr>
                   <td colSpan={3} className="text-center py-16">
                     <div className="sweet-loading">
@@ -63,16 +77,14 @@ export default function ProductTable() {
                     Data tidak tersedia
                   </td>
                 </tr>
-              ) : (
-                data?.map((item, index) => {
-                  return (
-                    <TableItem key={`table-contact-${index}`} item={item} />
-                  );
-                })
-              )}
+              ) : ( */}
+              {data?.map((item, index) => {
+                return <TableItem key={`table-product-${index}`} item={item} />;
+              })}
+              {/* )} */}
             </tbody>
           </table>
-        </div> */}
+        </div>
       </div>
     </>
   );
