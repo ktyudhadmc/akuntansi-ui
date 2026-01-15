@@ -16,11 +16,13 @@ import {
   // TableIcon,
 } from "@assets/icons";
 
+import { HiOutlineCube } from "react-icons/hi";
 import { AiOutlineBank } from "react-icons/ai";
 import {
   MdOutlineSell,
   MdOutlineShoppingCart,
-  MdOutlineBook,
+  MdOutlineContacts,
+  MdOutlineShowChart,
 } from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
@@ -52,6 +54,11 @@ const navItems: NavItem[] = [
     path: "/user/profile",
   },
   {
+    icon: <MdOutlineShowChart />,
+    name: "Laporan",
+    path: "/user/reports",
+  },
+  {
     icon: <AiOutlineBank />,
     name: "Kas & Bank",
     path: "/user/accounts",
@@ -69,9 +76,15 @@ const navItems: NavItem[] = [
   },
 
   {
-    icon: <MdOutlineBook />,
+    icon: <MdOutlineContacts />,
     name: "Kontak",
     path: "/user/contacts",
+  },
+
+  {
+    icon: <HiOutlineCube />,
+    name: "Produk",
+    path: "/user/products",
   },
   // {
   //   name: "Forms",

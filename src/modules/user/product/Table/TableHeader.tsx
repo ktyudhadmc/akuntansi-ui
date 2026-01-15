@@ -1,10 +1,9 @@
 import SearchInput from "@components/form/input/SearchInput";
 import Button from "@components/ui/button/Button";
-import { navigateKeepHash } from "@helpers/navigation";
 import { debounce } from "lodash";
 import { useCallback } from "react";
 import { HiOutlineFilter, HiPlus } from "react-icons/hi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   setSearchCallback: (param: string) => void;
@@ -12,7 +11,6 @@ interface Props {
 
 export default function TableHeader({ setSearchCallback }: Props) {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -22,14 +20,24 @@ export default function TableHeader({ setSearchCallback }: Props) {
   );
   return (
     <div className="flex lg:flex-row flex-col lg:justify-between gap-2">
-      <Button
-        size="sm"
-        variant="primary"
-        onClick={() => navigateKeepHash(navigate, location, "create")}
-      >
-        <HiPlus />
-        Buat kontak pelanggan
-      </Button>
+      <div className="flex lg:flex-row flex-col gap-2">
+        <Button
+          size="sm"
+          variant="primary"
+          onClick={() => navigate("create")}
+        >
+          <HiPlus />
+          Tambah produk baru
+        </Button>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => console.log('productCategory')}
+        >
+          Atur kategori produk
+        </Button>
+      </div>
+
       <div className="flex lg:flex-row flex-col gap-2">
         <Button size="sm" variant="outline">
           Impor
