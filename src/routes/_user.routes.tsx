@@ -43,6 +43,11 @@ export default [
       { path: "accounts/create", element: <User.CreateAccountPage /> },
       { path: "accounts/:id/edit", element: <User.EditAccountPage /> },
       { path: "accounts/:id/import", element: <User.ImportAccountPage /> },
+
+      /** CONTACT */
+      { path: "contacts", element: <User.ContactPage /> },
+      { path: "contacts/create", element: <User.CreateContactPage /> },
+      { path: "contacts/:id/edit", element: <User.EditContactPage /> },
     ],
   },
 ];

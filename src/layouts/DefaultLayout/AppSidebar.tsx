@@ -17,7 +17,11 @@ import {
 } from "@assets/icons";
 
 import { AiOutlineBank } from "react-icons/ai";
-import { MdOutlineSell, MdOutlineShoppingCart } from "react-icons/md";
+import {
+  MdOutlineSell,
+  MdOutlineShoppingCart,
+  MdOutlineBook,
+} from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
 import AvatarText from "@components/ui/avatar/AvatarText";
@@ -62,6 +66,12 @@ const navItems: NavItem[] = [
     icon: <MdOutlineShoppingCart />,
     name: "Pembelian",
     path: "/user/purchases",
+  },
+
+  {
+    icon: <MdOutlineBook />,
+    name: "Kontak",
+    path: "/user/contacts",
   },
   // {
   //   name: "Forms",
@@ -132,7 +142,7 @@ const AppSidebar: React.FC = () => {
 
   // const isActive = (path: string) => location.pathname === path;
   const isActive = useCallback(
-    (path: string) => location.pathname === path,
+    (path: string) => location.pathname.startsWith(path),
     [location.pathname]
   );
 
