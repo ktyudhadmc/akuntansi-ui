@@ -3,7 +3,7 @@ import PageMeta from "@components/common/PageMeta";
 import ImportAccount from "@modules/user/account/Action/Import";
 
 export default function ImportAccountPage() {
-  const pageTitle = "Kas & Bank";
+  const pageTitle = "Impor Kas & Bank";
   return (
     <>
       <PageMeta title={pageTitle} />
