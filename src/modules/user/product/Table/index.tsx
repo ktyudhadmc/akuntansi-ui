@@ -6,7 +6,7 @@ import { isEmpty } from "lodash";
 
 // import type { Product } from "@services/user/product/index/interfaces/response.type";
 import TableItem from "./TableItem";
-import TableHeader from "./TableHeader";
+import TableHeader from "./Header";
 import useGetAll from "@services/user/product/index/hooks/useGetAll";
 
 export default function ProductTable() {
@@ -54,7 +54,7 @@ export default function ProductTable() {
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Kode Supplier
+                  Kode
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Nama

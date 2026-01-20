@@ -3,7 +3,7 @@ import PageMeta from "@components/common/PageMeta";
 import CreateProduct from "@modules/user/product/Action/Create";
 
 export default function CreateProductPage() {
-  const pageTitle = "Produk";
+  const pageTitle = "Material";
   return (
     <>
       <PageMeta title={pageTitle} />
