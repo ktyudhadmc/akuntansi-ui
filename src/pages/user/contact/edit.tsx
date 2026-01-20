@@ -5,7 +5,7 @@ import EditSupplier from "@modules/user/contact/supplier/Action/Edit";
 // import useUserStore from "@store/useUserStore";
 
 export default function EditContactPage() {
-  const pageTitle = "Kontak";
+  const pageTitle = "Ubah Kontak";
 
   // const activeTabContact = useUserStore((state) => state.activeTabContact);
   const activeTabContact =

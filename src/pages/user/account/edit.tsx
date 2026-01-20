@@ -3,7 +3,7 @@ import PageMeta from "@components/common/PageMeta";
 import EditAccount from "@modules/user/account/Action/Edit";
 
 export default function EditAccountPage() {
-  const pageTitle = "Kas & Bank";
+  const pageTitle = "Ubah Kas & Bank";
   return (
     <>
       <PageMeta title={pageTitle} />

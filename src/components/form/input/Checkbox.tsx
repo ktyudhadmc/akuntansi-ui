@@ -6,6 +6,7 @@ interface CheckboxProps {
   label?: string;
   className?: string;
   id?: string;
+  value?: string;
   name: string;
   disabled?: boolean;
   required?: boolean;
@@ -16,6 +17,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   label,
   id,
   name,
+  value,
   className = "",
   disabled = false,
   required = false,
@@ -24,7 +26,10 @@ const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
   const { register, watch } = useFormContext();
   const inputRef = useMask(maskOptions);
-  const checked = watch(name);
+  // const checked = watch(name);
+
+  const selectedValues = watch(name) || [];
+  const checked = value ? selectedValues.includes(value) : selectedValues;
 
   // useEffect(
   //   () => () => {
@@ -51,6 +56,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
               },
             }))}
           id={id}
+          value={value}
           type="checkbox"
           className={`w-5 h-5 appearance-none cursor-pointer dark:border-gray-700 border border-gray-300 checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60 
           ${className}`}
