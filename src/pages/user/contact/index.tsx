@@ -1,13 +1,14 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
 
-import Button from "@components/ui/button/Button";
-import { MdPerson } from "react-icons/md";
+// import Button from "@components/ui/button/Button";
+// import { MdPerson } from "react-icons/md";
 
 import SupplierTable from "@modules/user/contact/supplier/Table";
 // import useUserStore from "@store/useUserStore";
 import CustomerTable from "@modules/user/contact/customer/Table";
 import { useNavigate } from "react-router-dom";
+import TabsNav from "@components/ui/tabs";
 
 export default function ContactPage() {
   const pageTitle = "Kontak";
@@ -17,8 +18,13 @@ export default function ContactPage() {
     location.hash === "#supplier"
       ? "supplier"
       : location.hash === "#customer"
-      ? "customer"
-      : "customer";
+        ? "customer"
+        : "customer";
+
+  const tabs = [
+    { value: "customer", label: "Pelanggan" },
+    { value: "supplier", label: "Supplier" },
+  ];
 
   // const activeTabContact = useUserStore((state) => state.activeTabContact);
   // const setActiveTabContact = useUserStore(
@@ -32,7 +38,7 @@ export default function ContactPage() {
 
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
-          <div className="flex lg:flex-row flex-col lg:justify-between gap-4">
+          {/* <div className="flex lg:flex-row flex-col lg:justify-between gap-4">
             <div className="flex items-start">
               <Button
                 variant={activeTabContact == "customer" ? "primary" : "outline"}
@@ -58,7 +64,13 @@ export default function ContactPage() {
                 Supplier
               </Button>
             </div>
-          </div>
+          </div> */}
+
+          <TabsNav
+            tabs={tabs}
+            initialActive="customer"
+            onChange={(e) => navigate(`#${e}`)}
+          />
 
           {activeTabContact == "supplier" ? (
             <SupplierTable />

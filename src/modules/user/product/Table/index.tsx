@@ -72,7 +72,7 @@ export default function ProductTable() {
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {loading ? (
                 <tr>
-                  <td colSpan={3} className="text-center py-16">
+                  <td colSpan={5} className="text-center py-16">
                     <div className="sweet-loading">
                       <BeatLoader color="var(--color-brand-600)" />
                     </div>
@@ -80,7 +80,7 @@ export default function ProductTable() {
                 </tr>
               ) : isEmpty(data) || !data ? (
                 <tr>
-                  <td colSpan={3} className="text-center py-4">
+                  <td colSpan={5} className="text-center py-4">
                     Data tidak tersedia
                   </td>
                 </tr>
