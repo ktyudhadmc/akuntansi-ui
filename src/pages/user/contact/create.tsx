@@ -5,7 +5,7 @@ import CreateContact from "@modules/user/contact/supplier/Action/Create";
 // import useUserStore from "@store/useUserStore";
 
 export default function CreateContactPage() {
-  const pageTitle = "Kontak";
+  const pageTitle = "Tambah Kontak";
 
   const activeTabContact =
     location.hash === "#supplier"

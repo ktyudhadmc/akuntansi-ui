@@ -3,7 +3,7 @@ import PageMeta from "@components/common/PageMeta";
 import CreateAccount from "@modules/user/account/Action/Create";
 
 export default function CreateAccountPage() {
-  const pageTitle = "Kas & Bank";
+  const pageTitle = "Tambah Kas & Bank";
   return (
     <>
       <PageMeta title={pageTitle} />
