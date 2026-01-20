@@ -83,7 +83,7 @@ const navItems: NavItem[] = [
 
   {
     icon: <HiOutlineCube />,
-    name: "Produk",
+    name: "Material",
     path: "/user/products",
   },
   // {
@@ -149,14 +149,14 @@ const AppSidebar: React.FC = () => {
     index: number;
   } | null>(null);
   const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>(
-    {}
+    {},
   );
   const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   // const isActive = (path: string) => location.pathname === path;
   const isActive = useCallback(
     (path: string) => location.pathname.startsWith(path),
-    [location.pathname]
+    [location.pathname],
   );
 
   // useEffect(() => {
@@ -338,8 +338,8 @@ const AppSidebar: React.FC = () => {
           isExpanded || isMobileOpen
             ? "w-[290px]"
             : isHovered
-            ? "w-[290px]"
-            : "w-[90px]"
+              ? "w-[290px]"
+              : "w-[90px]"
         }
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0`}

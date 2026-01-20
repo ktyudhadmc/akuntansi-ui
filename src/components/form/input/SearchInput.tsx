@@ -1,7 +1,9 @@
 import type React from "react";
 import { type FC } from "react";
+import Label from "@components/form/Label";
 
 interface InputProps {
+  label?: string;
   type?: "text" | "number" | "email" | "password" | "date" | "time" | string;
   id?: string;
   name?: string;
@@ -20,6 +22,7 @@ interface InputProps {
 }
 
 const SearchInput: FC<InputProps> = ({
+  label,
   type = "text",
   id,
   name,
@@ -52,6 +55,7 @@ const SearchInput: FC<InputProps> = ({
 
   return (
     <div>
+      {label && <Label>{label}</Label>}
       <div className="relative">
         <input
           id={id}
@@ -74,8 +78,8 @@ const SearchInput: FC<InputProps> = ({
               error
                 ? "text-error-500"
                 : success
-                ? "text-success-500"
-                : "text-gray-500"
+                  ? "text-success-500"
+                  : "text-gray-500"
             }`}
           >
             {hint}

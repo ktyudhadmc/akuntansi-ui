@@ -4,7 +4,7 @@ import ProductHeader from "@modules/user/product/Header";
 import ProductTable from "@modules/user/product/Table";
 
 export default function ProductPage() {
-  const pageTitle = "Produk";
+  const pageTitle = "Material";
   return (
     <>
       <PageMeta title={pageTitle} />

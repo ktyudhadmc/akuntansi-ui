@@ -3,7 +3,7 @@ import PageMeta from "@components/common/PageMeta";
 import EditProduct from "@modules/user/product/Action/Edit";
 
 export default function EditProductPage() {
-  const pageTitle = "Produk";
+  const pageTitle = "Material";
   return (
     <>
       <PageMeta title={pageTitle} />
