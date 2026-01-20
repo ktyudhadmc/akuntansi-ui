@@ -23,7 +23,7 @@ export default function Filter({ onClose, onOpen }: Props) {
     <Drawer onOpen={onOpen} onClose={onClose} label="Filter Material">
       <Form {...methods} onSubmit={onSubmit}>
         {/* category */}
-        <Label>Kategori</Label>
+        <Label>Tgl. transaksi</Label>
         <Checkbox
           label="MEKANIK DAN SPARE PART"
           name="category_id"
