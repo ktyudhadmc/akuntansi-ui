@@ -46,35 +46,36 @@ export default function TableHeader({ setSearchCallback }: Props) {
           </Button>
 
           <Dropdown isOpen={isOpenDropown} onClose={closeDropdown}>
-            <div className=" px-2 pt-2 text-sm uppercase text-gray-400 font-light">
-              Akun
-            </div>
-            <DropdownItem onItemClick={() => navigate("create")}>
-              Buat akun baru
+            <DropdownItem onClick={() => navigate("create")}>
+              Pembelian
             </DropdownItem>
-
-            <span className=" px-2 pt-2 text-sm uppercase text-gray-400 font-light">
-              Transaksi
-            </span>
-
-            <DropdownItem>Transfer uang</DropdownItem>
-            <DropdownItem>Terima uang</DropdownItem>
-            <DropdownItem>Kirim uang</DropdownItem>
+            <DropdownItem>Pengiriman</DropdownItem>
+            <DropdownItem>Pesanan</DropdownItem>
+            <DropdownItem>Penawaran</DropdownItem>
           </Dropdown>
         </div>
 
         {/* Search */}
-        <div className="flex gap-2">
-          <div className="w-full">
-            <SearchInput
-              placeholder="Cari"
-              onChange={(e) => debouncedSearch(e.target.value)}
-            />
-          </div>
-
-          <Button size="sm" variant="outline" onClick={toggleDrawer}>
-            <HiOutlineFilter />
+        <div className="flex lg:flex-row flex-col gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => navigate("import")}
+          >
+            Impor
           </Button>
+          <div className="flex gap-2">
+            <div className="w-full">
+              <SearchInput
+                placeholder="Cari"
+                onChange={(e) => debouncedSearch(e.target.value)}
+              />
+            </div>
+
+            <Button size="sm" variant="outline" onClick={toggleDrawer}>
+              <HiOutlineFilter />
+            </Button>
+          </div>
         </div>
       </div>
     </>

@@ -27,7 +27,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
     debounce((value: string) => {
       setSearchCallback(value);
     }, 500),
-    [] // make sure debounce isn't recreated on every render
+    [], // make sure debounce isn't recreated on every render
   );
 
   return (
