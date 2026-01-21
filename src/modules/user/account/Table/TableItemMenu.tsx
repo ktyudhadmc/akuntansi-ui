@@ -45,13 +45,13 @@ export default function TableItemMenu({ id, code, name }: Props) {
           <div className="flex whitespace-nowrap">
             <button
               onClick={() => navigate(`${id}/import`)}
-              className="px-4 py-3 text-sm bg-white text-brand-600 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300 font-medium rounded inline-flex items-center justify-center gap-2 rounded-l-lg rounded-r-none transition"
+              className="px-3 py-2.5 text-theme-xs bg-white text-brand-600 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300 font-medium rounded inline-flex items-center justify-center gap-2 rounded-l-lg rounded-r-none transition"
             >
               Impor rekening koran
             </button>
             <button
               onClick={toggleDropdown}
-              className="dropdown-toggle px-4 py-3 text-sm bg-white text-brand-600 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300 font-medium rounded inline-flex items-center justify-center gap-2 rounded-r-lg rounded-l-none transition"
+              className="dropdown-toggle px-3 py-2.5 text-theme-xs bg-white text-brand-600 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300 font-medium rounded inline-flex items-center justify-center gap-2 rounded-r-lg rounded-l-none transition"
             >
               <AiFillCaretDown />
             </button>
@@ -66,14 +66,14 @@ export default function TableItemMenu({ id, code, name }: Props) {
         {/* edit */}
         <Button
           onClick={() => navigate(`${id}/edit`)}
-          size="sm"
+          size="xs"
           variant="outline"
         >
           <HiPencil />
         </Button>
 
         {/* delete */}
-        <Button onClick={openModal} size="sm" variant="outline">
+        <Button onClick={openModal} size="xs" variant="outline">
           <HiTrash />
         </Button>
       </div>

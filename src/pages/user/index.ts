@@ -26,6 +26,9 @@ export { default as EditProductPage } from "./product/edit";
 
 // PURCHASE
 export { default as PurchasePage } from "./purchase";
+export { default as CreatePurchasePage } from "./purchase/create";
+export { default as EditPurchasePage } from "./purchase/edit";
+export { default as ImportPurchasePage } from "./purchase/import";
 
 // SALE
 export { default as SalePage } from "./sale";

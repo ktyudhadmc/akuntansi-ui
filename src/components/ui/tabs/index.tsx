@@ -31,7 +31,7 @@ export default function TabsNav({
 
   return (
     <nav
-      className={`flex overflow-x-auto rounded-lg bg-gray-100 p-1 dark:bg-gray-900 w-fit
+      className={`flex overflow-x-auto rounded-lg bg-gray-100 p-1 dark:bg-gray-900 lg:w-fit
       [&::-webkit-scrollbar-thumb]:rounded-full
       [&::-webkit-scrollbar-thumb]:bg-gray-200
       dark:[&::-webkit-scrollbar-thumb]:bg-gray-600
