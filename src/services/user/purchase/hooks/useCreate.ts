@@ -6,18 +6,38 @@ export default function useCreate() {
   const revalidateMutationsByKey = useRevalidateMutation();
 
   const createData = async (payload: ICreatePurchasePayload) => {
-    const { name } = payload;
+    const {
+      account_id,
+      counter_account_id,
+      supplier_id,
+      material_id,
+      unit_of_measure_id,
+      document_number,
+      date,
+      due_date,
+      qty,
+      price,
+    } = payload;
 
     try {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).post(`/purchases`, {
-        name,
+      }).post(`/purchase`, {
+        account_id,
+        counter_account_id,
+        supplier_id,
+        material_id,
+        unit_of_measure_id,
+        document_number,
+        date,
+        due_date,
+        qty,
+        price,
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/purchases/);
+        revalidateMutationsByKey(/^\/purchase/);
       }
 
       return { response: res, error: null };

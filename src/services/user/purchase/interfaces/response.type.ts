@@ -14,6 +14,20 @@ export interface Purchase {
   id: string;
   purchase_category: PurchaseCategory;
   supplier: Supplier;
+  account: Account;
+  material: Product;
+  unit: Unit;
+  qty: number;
+  price: number;
+  total_price: number;
+  date: string;
+  due_date: string;
+  document_number: string;
+}
+export interface PurchaseOld {
+  id: string;
+  purchase_category: PurchaseCategory;
+  supplier: Supplier;
   debit_account: Account;
   credit_account: Account;
   purchase_order_number: string;
@@ -62,6 +76,11 @@ interface Product {
 }
 
 interface ReceivedBy {
+  id: string;
+  name: string;
+}
+
+interface Unit {
   id: string;
   name: string;
 }

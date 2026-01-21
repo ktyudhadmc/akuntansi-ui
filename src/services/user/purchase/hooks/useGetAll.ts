@@ -21,7 +21,7 @@ export default function useGetAll() {
 
   const { data, error } = useSWR(
     // `/company/${currentCompany?.id}/contacts?${qs}`,
-    `/purchases?${qs}`,
+    `/purchase?${qs}`,
     fetcher,
   );
 
