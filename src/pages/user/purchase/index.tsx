@@ -30,7 +30,6 @@ export default function PurchasePage() {
           />
 
           {/* purchase */}
-          <hr />
           <PurchaseTable />
         </div>
       </div>
