@@ -22,17 +22,17 @@ export default function TableItem({ item }: Props) {
       {/* <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
         {nomor}
       </td> */}
-      <td className="px-5 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 whitespace-nowrap font-semibold">
+      <td className="px-5 py-3 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap font-semibold">
         {item.code}
       </td>
-      <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+      <td className="px-4 py-3 text-gray-500 text-start text-theme-xs dark:text-gray-400">
         <h4 className="font-bold uppercase">{item.name}</h4>
-        <p className="text-xs">{item.specification}</p>
+        <p className="text-theme-xs">{item.specification}</p>
       </td>
-      <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 whitespace-nowrap">
+      <td className="px-4 py-3 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
 
         {item.class && (
-          <Badge variant="light" color={categoryColorMap[item.class] ?? "primary"}>
+          <Badge variant="light" color={categoryColorMap[item.class] ?? "primary"} size="sm">
             {item.class}
           </Badge>
         )}
@@ -49,7 +49,7 @@ export default function TableItem({ item }: Props) {
           )}
         </div> */}
       </td>
-      <td className="px-4 py-3  whitespace-nowrap text-gray-500 text-start text-theme-sm dark:text-gray-400">
+      <td className="px-4 py-3  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
         <TableItemMenu id={item.id} name={item.name} sku={item.code} />
       </td>
     </tr>
