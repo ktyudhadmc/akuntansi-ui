@@ -62,7 +62,7 @@ export default function CreatePurchase() {
           required
         />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <DatePicker label="Tgl. transaksi" id="date" name="date" required />
           <DatePicker
             label="Tgl. tempo"
@@ -122,7 +122,7 @@ export default function CreatePurchase() {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <Skeleton isLoading={accountLoading}>
             <SelectTwo
               label="Akun debit"

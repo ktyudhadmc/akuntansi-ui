@@ -22,7 +22,7 @@ export default function useUpdate(purchaseId: string) {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).post(`/purchases/${purchaseId}`, {
+      }).post(`/purchase/${purchaseId}`, {
         account_id,
         counter_account_id,
         supplier_id,

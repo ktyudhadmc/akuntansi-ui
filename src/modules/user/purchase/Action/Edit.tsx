@@ -68,7 +68,7 @@ export default function EditPurchase() {
           />
         </Skeleton>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <Skeleton isLoading={loading}>
             <DatePicker
               label="Tgl. transaksi"
@@ -155,7 +155,7 @@ export default function EditPurchase() {
           </Skeleton>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <Skeleton isLoading={accountLoading || loading}>
             <SelectTwo
               label="Akun debit"
