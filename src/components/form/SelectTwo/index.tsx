@@ -12,6 +12,7 @@ export interface OptionValue {
 interface Props {
   label?: string;
   name: string;
+  placeholder?: string;
   isMulti?: boolean;
   isRequired?: boolean;
   isSearchable?: boolean;
@@ -29,6 +30,7 @@ interface Props {
 export default function SelectTwo({
   label,
   name,
+  placeholder,
   isMulti,
   isRequired,
   isSearchable = false,
@@ -60,7 +62,7 @@ export default function SelectTwo({
     () => () => {
       unregister(name);
     },
-    [name, unregister]
+    [name, unregister],
   );
 
   return (
@@ -76,7 +78,7 @@ export default function SelectTwo({
         name={name}
         className={clsx(`${isMulti ? "basic-multi-select" : "basic-single"}`)}
         classNamePrefix={`select-${label}`}
-        placeholder={`Pilih ${label}`}
+        placeholder={placeholder ?? `Pilih ${label}`}
         {...(name &&
           register(name, {
             required: isRequired && {
@@ -100,14 +102,14 @@ export default function SelectTwo({
         classNames={{
           control: () =>
             clsx(
-              "!text-black dark:!bg-gray-900 dark:!border-gray-700 !text-white dark:!text-white dark:focus:!border-brand-800 dark:text-white/90"
+              "!text-black dark:!bg-gray-900 dark:!border-gray-700 !text-white dark:!text-white dark:focus:!border-brand-800 dark:text-white/90",
             ),
           menu: () => "dark:!bg-gray-700 !rounded-lg",
           menuList: () => "dark:!bg-gray-700 !rounded-lg !p-0",
           option: () =>
             clsx(
               "hover:!bg-brand-100 dark:!bg-gray-900 !cursor-pointer hover:dark:!bg-gray-700 dark:!text-white !text-sm",
-              textTransform ?? "capitalize"
+              textTransform ?? "capitalize",
             ),
           singleValue: () =>
             clsx("dark:!text-white", textTransform ?? "capitalize"),
@@ -133,8 +135,8 @@ export default function SelectTwo({
             backgroundColor: state.isSelected
               ? "var(--color-brand-600)" // selected
               : state.isFocused
-              ? "var(--color-brand-600)" // hover / active
-              : "transparent",
+                ? "var(--color-brand-600)" // hover / active
+                : "transparent",
           }),
         }}
         onChange={(e: any) => {
@@ -142,8 +144,8 @@ export default function SelectTwo({
           const selectedValues = isMulti
             ? e.map((item: any) => item.value)
             : e
-            ? e.value
-            : null;
+              ? e.value
+              : null;
           setSelectedValue(selectedValues);
           setValue(name, selectedValues);
         }}

@@ -3,27 +3,38 @@ import "flatpickr/dist/flatpickr.css";
 import Label from "./Label";
 import { CalenderIcon } from "@assets/icons";
 import flatpickr from "flatpickr";
+import { useFormContext } from "react-hook-form";
 
-type Hook = flatpickr.Options.Hook;
-type DateOption = flatpickr.Options.DateOption;
+// type Hook = flatpickr.Options.Hook;
+// type DateOption = flatpickr.Options.DateOption;
+
+import type { Hook, DateOption } from "@def/option";
 
 type PropsType = {
-  id: string;
+  id?: string;
+
+  name?: string;
   mode?: "single" | "multiple" | "range" | "time";
   onChange?: Hook | Hook[];
   defaultDate?: DateOption;
   label?: string;
   placeholder?: string;
+  required?: boolean;
 };
 
 export default function DatePicker({
   id,
+  name,
   mode,
   onChange,
   label,
   defaultDate,
   placeholder,
+  required = false,
+  ...restProps
 }: PropsType) {
+  const { register, unregister } = useFormContext();
+
   useEffect(() => {
     const flatPickr = flatpickr(`#${id}`, {
       mode: mode || "single",
@@ -41,12 +52,29 @@ export default function DatePicker({
     };
   }, [mode, onChange, id, defaultDate]);
 
+  useEffect(
+    () => () => {
+      unregister(name);
+    },
+    [name, unregister],
+  );
   return (
     <div>
-      {label && <Label htmlFor={id}>{label}</Label>}
-
+      {label && (
+        <Label htmlFor={id}>
+          {label} {required && <span className="text-error-500">*</span>}
+        </Label>
+      )}
       <div className="relative">
         <input
+          {...restProps}
+          {...(name &&
+            register(name, {
+              required: required && {
+                value: true,
+                message: "Tidak Boleh Kosong",
+              },
+            }))}
           id={id}
           placeholder={placeholder}
           className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30  bg-transparent text-gray-800 border-gray-300 focus:border-brand-300 focus:ring-brand-500/20 dark:border-gray-700  dark:focus:border-brand-800"
