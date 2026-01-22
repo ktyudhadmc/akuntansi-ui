@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import Button from "@components/ui/button/Button";
 
-import { Dropdown, DropdownItem } from "@components/ui/dropdown";
+// import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 
 import debounce from "lodash/debounce";
-import { AiFillCaretDown } from "react-icons/ai";
-import { useCallback, useState } from "react";
+// import { AiFillCaretDown } from "react-icons/ai";
+import { useCallback } from "react";
 import SearchInput from "@components/form/input/SearchInput";
 import Filter from "./Filter";
 import { useDrawer } from "@hooks/useDrawer";
-import { HiOutlineFilter } from "react-icons/hi";
+import { HiOutlineFilter, HiPlus } from "react-icons/hi";
 
 interface Props {
   setSearchCallback: (param: string) => void;
@@ -18,14 +18,14 @@ interface Props {
 export default function TableHeader({ setSearchCallback }: Props) {
   const navigate = useNavigate();
   const { isExpanded, toggleDrawer, closeDrawer } = useDrawer();
-  const [isOpenDropown, setIsOpenDropdown] = useState(false);
-  function toggleDropdown() {
-    setIsOpenDropdown(!isOpenDropown);
-  }
+  // const [isOpenDropown, setIsOpenDropdown] = useState(false);
+  // function toggleDropdown() {
+  //   setIsOpenDropdown(!isOpenDropown);
+  // }
 
-  function closeDropdown() {
-    setIsOpenDropdown(false);
-  }
+  // function closeDropdown() {
+  //   setIsOpenDropdown(false);
+  // }
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -39,7 +39,8 @@ export default function TableHeader({ setSearchCallback }: Props) {
       <Filter onOpen={isExpanded} onClose={closeDrawer} />
       {/* Create */}
       <div className="flex md:flex-row flex-col justify-between gap-4">
-        <div className="relative">
+        {/* Button create with detail */}
+        {/* <div className="relative">
           <Button size="sm" onClick={toggleDropdown}>
             <span>Buat pembelian baru</span>
             <AiFillCaretDown />
@@ -53,7 +54,12 @@ export default function TableHeader({ setSearchCallback }: Props) {
             <DropdownItem>Pesanan</DropdownItem>
             <DropdownItem>Penawaran</DropdownItem>
           </Dropdown>
-        </div>
+        </div> */}
+
+        <Button size="sm" variant="primary" onClick={() => navigate("create")}>
+          <HiPlus />
+          Buat pembelian baru
+        </Button>
 
         {/* Search */}
         <div className="flex lg:flex-row flex-col gap-2">

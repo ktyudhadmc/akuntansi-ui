@@ -6,13 +6,33 @@ export default function useUpdate(purchaseId: string) {
   const revalidateMutationsByKey = useRevalidateMutation();
 
   const updateData = async (payload: ICreatePurchasePayload) => {
-    const { name } = payload;
+    const {
+      account_id,
+      counter_account_id,
+      supplier_id,
+      material_id,
+      unit_of_measure_id,
+      document_number,
+      date,
+      due_date,
+      qty,
+      price,
+    } = payload;
     try {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
       }).post(`/purchases/${purchaseId}`, {
-        name,
+        account_id,
+        counter_account_id,
+        supplier_id,
+        material_id,
+        unit_of_measure_id,
+        document_number,
+        date,
+        due_date,
+        qty,
+        price,
         _method: "PUT",
       });
 

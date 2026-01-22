@@ -5,8 +5,10 @@ import { CalenderIcon } from "@assets/icons";
 import flatpickr from "flatpickr";
 import { useFormContext } from "react-hook-form";
 
-type Hook = flatpickr.Options.Hook;
-type DateOption = flatpickr.Options.DateOption;
+// type Hook = flatpickr.Options.Hook;
+// type DateOption = flatpickr.Options.DateOption;
+
+import type { Hook, DateOption } from "@def/option";
 
 type PropsType = {
   id?: string;

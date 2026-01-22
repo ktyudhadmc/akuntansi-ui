@@ -28,8 +28,8 @@ export default function TableItem({ item }: Props) {
         <p className="text-theme-xs">{item.account.name}</p>
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        {item.account.code}
-        <p className="text-theme-xs">{item.account.name}</p>
+        {item.counter_account.code}
+        <p className="text-theme-xs">{item.counter_account.name}</p>
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
         {item.qty} {item.unit.name}

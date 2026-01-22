@@ -15,6 +15,7 @@ export interface Purchase {
   purchase_category: PurchaseCategory;
   supplier: Supplier;
   account: Account;
+  counter_account: Account;
   material: Product;
   unit: Unit;
   qty: number;

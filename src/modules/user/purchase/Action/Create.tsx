@@ -76,6 +76,7 @@ export default function CreatePurchase() {
           <SelectTwo
             label="Supplier"
             name="supplier_id"
+            placeholder="--- Pilih Supplier ---"
             selectTwoOptions={supplierOptions}
             isSearchable
             isClearable
@@ -86,6 +87,7 @@ export default function CreatePurchase() {
           <SelectTwo
             label="Material"
             name="material_id"
+            placeholder="--- Pilih Material ---"
             selectTwoOptions={productOptions}
             isSearchable
             isClearable
@@ -125,6 +127,7 @@ export default function CreatePurchase() {
             <SelectTwo
               label="Akun debit"
               name="account_id"
+              placeholder="--- Pilih Akun Debit ---"
               selectTwoOptions={accountOptions}
               isSearchable
               isClearable
@@ -135,6 +138,7 @@ export default function CreatePurchase() {
             <SelectTwo
               label="Akun kredit"
               name="counter_account_id"
+              placeholder="--- Pilih Akun Kredit ---"
               selectTwoOptions={accountOptions}
               isSearchable
               isClearable

@@ -49,7 +49,12 @@ export default function ImportAccount() {
     const { error, response } = await importData({ file: file?.file });
     if (error || response) {
       if (error) {
-        toast.error("Gagal mengimpor data!");
+        toast.error(
+          <div>
+            <strong>Gagal mengimpor data</strong>
+            <p>Pastikan file sesuai dengan template yang disediakan!</p>
+          </div>,
+        );
       } else {
         methods.reset();
         navigate(-1);
@@ -61,7 +66,7 @@ export default function ImportAccount() {
   return (
     <div>
       {/* download template */}
-      <div className="flex gap-4 mb-4">
+      <div className="flex gap-4 my-4">
         <div className="w-fit">
           <AvatarText text="1" size="10" />
         </div>
