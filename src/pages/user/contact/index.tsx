@@ -68,7 +68,7 @@ export default function ContactPage() {
 
           <TabsNav
             tabs={tabs}
-            initialActive="customer"
+            initialActive={activeTabContact ?? "customer"}
             onChange={(e) => navigate(`#${e}`)}
           />
 

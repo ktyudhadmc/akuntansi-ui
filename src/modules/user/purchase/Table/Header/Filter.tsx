@@ -64,7 +64,7 @@ export default function Filter({ onClose, onOpen }: Props) {
   };
 
   return (
-    <Drawer onOpen={onOpen} onClose={onClose} label="Filter Material">
+    <Drawer onOpen={onOpen} onClose={onClose} label="Filter">
       <Form {...methods} onSubmit={onSubmit}>
         {/* transaction date */}
         {/* <DatePicker

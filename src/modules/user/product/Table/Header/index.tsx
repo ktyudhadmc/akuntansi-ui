@@ -1,21 +1,28 @@
 import SearchInput from "@components/form/input/SearchInput";
+import Select from "@components/form/default/Select";
 import Button from "@components/ui/button/Button";
 
-import { useDrawer } from "@hooks/useDrawer";
+// import { useDrawer } from "@hooks/useDrawer";
 import { debounce } from "lodash";
 import { useCallback } from "react";
-import { HiOutlineFilter, HiPlus } from "react-icons/hi";
+import { HiPlus } from "react-icons/hi";
 
 import { useNavigate } from "react-router-dom";
-import Filter from "./Filter";
+// import Filter from "./Filter";
+
+import { categoryOptions } from "@modules/user/product/Action/select-options.constants";
 
 interface Props {
   setSearchCallback: (param: string) => void;
+  setCategoryCallback: (param: string) => void;
 }
 
-export default function TableHeader({ setSearchCallback }: Props) {
+export default function TableHeader({
+  setSearchCallback,
+  setCategoryCallback,
+}: Props) {
   const navigate = useNavigate();
-  const { isExpanded, toggleDrawer, closeDrawer } = useDrawer();
+  // const { isExpanded, toggleDrawer, closeDrawer } = useDrawer();
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -24,9 +31,16 @@ export default function TableHeader({ setSearchCallback }: Props) {
     [], // make sure debounce isn't recreated on every render
   );
 
+  const debouncedCategory = useCallback(
+    debounce((value: string) => {
+      setCategoryCallback(value);
+    }, 500),
+    [], // make sure debounce isn't recreated on every render
+  );
+
   return (
     <>
-      <Filter onOpen={isExpanded} onClose={closeDrawer} />
+      {/* <Filter onOpen={isExpanded} onClose={closeDrawer} /> */}
       <div className="flex lg:flex-row flex-col lg:justify-between gap-2">
         <div className="flex lg:flex-row flex-col gap-2">
           <Button
@@ -35,24 +49,29 @@ export default function TableHeader({ setSearchCallback }: Props) {
             onClick={() => navigate("create")}
           >
             <HiPlus />
-            Tambah
+            Tambah material baru
           </Button>
-          <Button
+
+          <Select
+            placeholder="--- Semua Kategori ---"
+            options={categoryOptions}
+            onChange={(e) => debouncedCategory(e)}
+          />
+
+          {/* <Button
             size="sm"
             variant="outline"
             onClick={() => console.log("productCategory")}
           >
             Atur kategori
-          </Button>
+          </Button> */}
         </div>
 
         <div className="flex lg:flex-row flex-col gap-2">
           <Button size="sm" variant="outline">
             Impor
           </Button>
-          <Button size="sm" variant="outline">
-            Ekspor
-          </Button>
+
           <div className="flex gap-2">
             <div className="w-full">
               <SearchInput
@@ -61,9 +80,9 @@ export default function TableHeader({ setSearchCallback }: Props) {
               />
             </div>
 
-            <Button size="sm" variant="outline" onClick={toggleDrawer}>
+            {/* <Button size="sm" variant="outline" onClick={toggleDrawer}>
               <HiOutlineFilter />
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
