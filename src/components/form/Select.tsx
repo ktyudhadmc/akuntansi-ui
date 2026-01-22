@@ -49,7 +49,7 @@ const Select: React.FC<SelectProps> = ({
     () => () => {
       unregister(name);
     },
-    [name, unregister]
+    [name, unregister],
   );
 
   return (
@@ -89,7 +89,6 @@ const Select: React.FC<SelectProps> = ({
           <option
             key={`select-item-${option.value}`}
             value={option.value}
-            selected={option.value == defaultValue}
             className="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
           >
             {option.label}
