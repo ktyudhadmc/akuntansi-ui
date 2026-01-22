@@ -15,11 +15,14 @@ export default function useGetAll() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { name },
-    { skipEmptyString: true, skipNull: true }
+    { search: name },
+    { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/accounts/company/${currentCompany?.id}?${qs}`, fetcher);
+  const { data, error } = useSWR(
+    `/accounts/company/${currentCompany?.id}?${qs}`,
+    fetcher,
+  );
 
   const onSetName = useCallback((name: string) => {
     setName(name);

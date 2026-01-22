@@ -23,7 +23,7 @@ export default function useGetAll() {
 
   const qs = querystring.stringify(
     {
-      name,
+      search: name,
       start_transaction_date: startTransactionDate,
       end_transaction_date: endTransactionDate,
       start_due_date: startDueDate,
