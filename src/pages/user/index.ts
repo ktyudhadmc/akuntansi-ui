@@ -32,6 +32,9 @@ export { default as ImportPurchasePage } from "./purchase/import";
 
 // SALE
 export { default as SalePage } from "./sale";
+export { default as CreateSalePage } from "./sale/create";
+export { default as EditSalePage } from "./sale/edit";
+export { default as ImportSalePage } from "./sale/import";
 
 // REPORT
 export { default as ReportPage } from "./report";
