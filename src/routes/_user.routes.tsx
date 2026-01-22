@@ -66,6 +66,9 @@ export default [
 
       /** SALE */
       { path: "sales", element: <User.SalePage /> },
+      { path: "sales/create", element: <User.CreateSalePage /> },
+      { path: "sales/:id/edit", element: <User.EditSalePage /> },
+      { path: "sales/import", element: <User.ImportSalePage /> },
 
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
