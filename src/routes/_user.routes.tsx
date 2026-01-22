@@ -1,7 +1,11 @@
+import { Navigate } from "react-router-dom";
 import AuthLayout from "@layouts/AuthLayout";
 import DefaultLayout from "@layouts/DefaultLayout";
-import * as User from "@pages/user";
+
 import AuthMiddleware from "./middleware/AuthMiddleware";
+
+import * as User from "@pages/user";
+import * as UserSetting from "@pages/user/setting";
 
 export default [
   /** AUTH */
@@ -65,6 +69,16 @@ export default [
 
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
+
+      /** SETTING */
+      {
+        path: "settings",
+        children: [
+          { index: true, element: <Navigate to="companies" replace /> },
+          { path: "companies", element: <UserSetting.CompanyPage /> },
+          { path: "users", element: <UserSetting.UserPage /> },
+        ],
+      },
     ],
   },
 ];
