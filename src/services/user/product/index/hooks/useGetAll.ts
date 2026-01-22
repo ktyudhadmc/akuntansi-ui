@@ -8,6 +8,7 @@ import querystring from "query-string";
 export default function useGetAll() {
   // const currentCompany = useGlobalStore((state) => state.currentCompany);
   const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, tokenType: "user" })
@@ -15,18 +16,22 @@ export default function useGetAll() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { name },
-    { skipEmptyString: true, skipNull: true }
+    { name, category_id: category },
+    { skipEmptyString: true, skipNull: true },
   );
 
   const { data, error } = useSWR(
     // `/company/${currentCompany?.id}/contacts?${qs}`,
     `/material?${qs}`,
-    fetcher
+    fetcher,
   );
 
   const onSetName = useCallback((name: string) => {
     setName(name);
+  }, []);
+
+  const onSetCategory = useCallback((category: string) => {
+    setCategory(category);
   }, []);
 
   return {
@@ -35,5 +40,7 @@ export default function useGetAll() {
     error,
     name,
     setName: onSetName,
+    category,
+    setCategory: onSetCategory,
   };
 }

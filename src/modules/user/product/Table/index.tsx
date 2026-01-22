@@ -43,11 +43,14 @@ export default function ProductTable() {
   //   },
   // ];
 
-  const { data, loading, setName } = useGetAll();
+  const { data, loading, setName, setCategory } = useGetAll();
 
   return (
     <>
-      <TableHeader setSearchCallback={setName} />
+      <TableHeader
+        setSearchCallback={setName}
+        setCategoryCallback={setCategory}
+      />
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full">
