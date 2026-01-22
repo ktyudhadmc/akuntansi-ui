@@ -17,7 +17,7 @@ import {
 } from "@assets/icons";
 
 import { HiOutlineCube } from "react-icons/hi";
-import { AiOutlineBank } from "react-icons/ai";
+import { AiOutlineBank, AiOutlineSetting } from "react-icons/ai";
 import {
   MdOutlineSell,
   MdOutlineShoppingCart,
@@ -85,6 +85,11 @@ const navItems: NavItem[] = [
     icon: <HiOutlineCube />,
     name: "Material",
     path: "/user/products",
+  },
+  {
+    icon: <AiOutlineSetting />,
+    name: "Pengaturan",
+    path: "/user/settings",
   },
   // {
   //   name: "Forms",

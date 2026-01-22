@@ -1,8 +1,19 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
+import TabsNav from "@components/ui/tabs";
+import SaleTable from "@modules/user/sale/Table";
 
 export default function SalePage() {
   const pageTitle = "Penjualan";
+
+  const tabs = [
+    { value: "invoice", label: "Penagihan" },
+    { value: "delivery", label: "Pengiriman" },
+    { value: "order", label: "Pesanan" },
+    { value: "quote", label: "Penawaran" },
+    { value: "approval", label: "Membutuhkan Persetujuan" },
+  ];
+
   return (
     <>
       <PageMeta title={pageTitle} />
@@ -10,7 +21,15 @@ export default function SalePage() {
 
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
-          <h4>Halaman penjualan, It Works!</h4>
+          {/* tabs */}
+          <TabsNav
+            tabs={tabs}
+            initialActive="invoice"
+            onChange={(e) => console.log(e)}
+          />
+
+          {/* purchase */}
+          <SaleTable />
         </div>
       </div>
     </>
