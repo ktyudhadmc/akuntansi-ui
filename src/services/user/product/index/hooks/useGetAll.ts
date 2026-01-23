@@ -11,7 +11,7 @@ export default function useGetAll() {
   const [category, setCategory] = useState("");
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
-    axiosInstance({ withToken: true, tokenType: "user" })
+   axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
       .get(url)
       .then((res) => res.data);
 

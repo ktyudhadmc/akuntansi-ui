@@ -94,6 +94,39 @@ export default function EditSale() {
           </Skeleton>
         </div>
 
+        <div className="grid md:grid-cols-2 gap-4">
+          <Skeleton isLoading={accountLoading || loading}>
+            <SelectTwo
+              label="Akun debit"
+              name="account_id"
+              placeholder="--- Pilih Akun Debit ---"
+              selectTwoOptions={accountOptions}
+              defaultValue={{
+                label: data?.account.name,
+                value: data?.account.id,
+              }}
+              isSearchable
+              isClearable
+              isRequired
+            />
+          </Skeleton>
+          <Skeleton isLoading={accountLoading || loading}>
+            <SelectTwo
+              label="Akun kredit"
+              name="counter_account_id"
+              placeholder="--- Pilih Akun Kredit ---"
+              selectTwoOptions={accountOptions}
+              defaultValue={{
+                label: data?.counter_account.name,
+                value: data?.counter_account.id,
+              }}
+              isSearchable
+              isClearable
+              isRequired
+            />
+          </Skeleton>
+        </div>
+
         <Skeleton isLoading={customerLoading || loading}>
           <SelectTwo
             label="Pelanggan"
@@ -169,39 +202,6 @@ export default function EditSale() {
               name="price"
               defaultValue={data?.price}
               required
-            />
-          </Skeleton>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-4">
-          <Skeleton isLoading={accountLoading || loading}>
-            <SelectTwo
-              label="Akun debit"
-              name="account_id"
-              placeholder="--- Pilih Akun Debit ---"
-              selectTwoOptions={accountOptions}
-              defaultValue={{
-                label: data?.account.name,
-                value: data?.account.id,
-              }}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
-          <Skeleton isLoading={accountLoading || loading}>
-            <SelectTwo
-              label="Akun kredit"
-              name="counter_account_id"
-              placeholder="--- Pilih Akun Kredit ---"
-              selectTwoOptions={accountOptions}
-              defaultValue={{
-                label: data?.counter_account.name,
-                value: data?.counter_account.id,
-              }}
-              isSearchable
-              isClearable
-              isRequired
             />
           </Skeleton>
         </div>
