@@ -11,7 +11,7 @@ export interface IGetResponse {
 }
 
 export interface Unit {
-  id: number;
+  id: string;
   code: string;
   name: string;
 }
