@@ -3,16 +3,9 @@ import useSWR, { type Fetcher } from "swr";
 import type { IGetAllResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
-import useUserStore from "@store/useUserStore";
 
 export default function useGetAll() {
   const [name, setName] = useState("");
-  const startTransactionDate = useUserStore(
-    (state) => state.startTransactionDate,
-  );
-  const endTransactionDate = useUserStore((state) => state.endTransactionDate);
-  const startDueDate = useUserStore((state) => state.startDueDate);
-  const endDueDate = useUserStore((state) => state.endDueDate);
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, tokenType: "user" })
@@ -22,15 +15,11 @@ export default function useGetAll() {
   const qs = querystring.stringify(
     {
       search: name,
-      start_transaction_date: startTransactionDate,
-      end_transaction_date: endTransactionDate,
-      start_due_date: startDueDate,
-      end_due_date: endDueDate,
     },
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/sales?${qs}`, fetcher);
+  const { data, error } = useSWR(`/service-type?${qs}`, fetcher);
 
   const onSetName = useCallback((name: string) => {
     setName(name);

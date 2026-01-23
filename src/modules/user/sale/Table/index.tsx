@@ -1,6 +1,6 @@
 import { BeatLoader } from "react-spinners";
 import TableHeader from "./Header";
-import useGetAll from "@services/user/purchase/hooks/useGetAll";
+import useGetAll from "@services/user/sale/hooks/useGetAll";
 import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
 

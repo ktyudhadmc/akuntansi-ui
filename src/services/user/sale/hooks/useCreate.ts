@@ -7,27 +7,39 @@ export default function useCreate() {
 
   const createData = async (payload: ICreateSalePayload) => {
     const {
-      debit_account_id,
-      credit_account_id,
-      payment_due_date,
-      paid_at,
-      status,
+      account_id,
+      counter_account_id,
+      customer_id,
+      material_id,
+      unit_of_measure_id,
+      document_number,
+      service_type_id,
+      date,
+      due_date,
+      qty,
+      price,
     } = payload;
 
     try {
       const res = await axiosInstance({
         withToken: true,
         tokenType: "user",
-      }).post(`/sale`, {
-        debit_account_id,
-        credit_account_id,
-        payment_due_date,
-        paid_at,
-        status,
+      }).post(`/sales`, {
+        account_id,
+        counter_account_id,
+        customer_id,
+        material_id,
+        unit_of_measure_id,
+        document_number,
+        service_type_id,
+        date,
+        due_date,
+        qty,
+        price,
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/sale/);
+        revalidateMutationsByKey(/^\/sales/);
       }
 
       return { response: res, error: null };

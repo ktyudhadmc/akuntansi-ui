@@ -1,16 +1,18 @@
 import { MdOutlineRefresh } from "react-icons/md";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
+import useUserStore from "@store/useUserStore";
+
 import Form from "@components/form/Form";
 import Drawer from "@components/ui/drawer";
 import Button from "@components/ui/button/Button";
 import DatePicker from "@components/form/date-picker";
 import SelectTwo from "@components/form/SelectTwo";
-import useGetAll from "@services/user/supplier/hooks/useGetAll";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import Label from "@components/form/Label";
-import useUserStore from "@store/useUserStore";
-// import Select from "@components/form/Select";
+
+import useGetAll from "@services/user/customer/hooks/useGetAll";
+import Skeleton from "@components/Skeleton/Skeleton";
 
 interface Props {
   onOpen: boolean;
@@ -44,15 +46,12 @@ export default function Filter({ onClose, onOpen }: Props) {
   const setStartDueDate = useUserStore((state) => state.setStartDueDate);
   const setEndDueDate = useUserStore((state) => state.setEndDueDate);
 
-  const { data: suppliers } = useGetAll();
-  const supplierOptions = useMapInputOptions(suppliers);
+  const { data: customers, loading: customerLoading } = useGetAll();
+  const customerOptions = useMapInputOptions(customers);
 
   const methods = useForm({ mode: "onChange" });
-  // console.log(startTransactionDate);
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    console.log(state);
-
     setStartTransactionDate(state.start_date);
     setEndTransactionDate(state.end_date);
     setStartDueDate(state.start_due_date);
@@ -112,14 +111,15 @@ export default function Filter({ onClose, onOpen }: Props) {
             required
           />
         </div>
-
-        <SelectTwo
-          label="Supplier"
-          name="supplier_id"
-          selectTwoOptions={supplierOptions}
-          isClearable
-          isSearchable
-        />
+        <Skeleton isLoading={customerLoading}>
+          <SelectTwo
+            label="Pelanggan"
+            name="customer_id"
+            selectTwoOptions={customerOptions}
+            isClearable
+            isSearchable
+          />
+        </Skeleton>
 
         {/* <Select
           label="Status"
