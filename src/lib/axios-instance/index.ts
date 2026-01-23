@@ -7,7 +7,9 @@ import type { CreateAxiosDefaults } from "axios";
 
 type AxiosInstanceParams = {
   withToken: boolean;
+  withCompany?: boolean;
   tokenType?: "admin" | "company" | "user";
+  currentCompany?: string;
 };
 
 const mapToken = new Map([
@@ -18,26 +20,35 @@ const mapToken = new Map([
 
 export default function axiosInstance(
   param?: AxiosInstanceParams,
-  instanceSettings?: CreateAxiosDefaults
+  instanceSettings?: CreateAxiosDefaults,
 ) {
   const _activeRole = Cookies.get("token")
     ? "admin"
     : Cookies.get("token-company")
-    ? "company"
-    : "user";
+      ? "company"
+      : "user";
 
   const role = (
     param?.tokenType === "user" ? _activeRole : param?.tokenType
   ) as Role;
   const token = role ? Cookies.get(mapToken.get(role) as string) : null;
 
+  const storageCompany = localStorage.getItem(config.LOCAL_STORAGE_COMPANY_KEY);
+
+  /** HEADER */
+  const headers: Record<string, string> = {};
+
+  if (param?.withToken) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  if (param?.withCompany && storageCompany) {
+    headers["x-company"] = storageCompany;
+  }
+
   const instance = axios.create({
     baseURL: config.BASE_API_URL,
-    headers: param?.withToken
-      ? {
-          Authorization: `Bearer ${token}`,
-        }
-      : undefined,
+    headers: Object.keys(headers).length ? headers : undefined,
     ...instanceSettings,
   });
 
@@ -50,7 +61,7 @@ export default function axiosInstance(
       }
 
       return Promise.reject(err);
-    }
+    },
   );
 
   return instance;

@@ -4,7 +4,7 @@ import type { IGetResponse } from "../interfaces/response.type";
 
 export default function useGetSale(saleId: string) {
   const fetcher: Fetcher<IGetResponse, string> = (url) =>
-    axiosInstance({ withToken: true, tokenType: "user" })
+   axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
       .get(url)
       .then((res) => res.data);
 

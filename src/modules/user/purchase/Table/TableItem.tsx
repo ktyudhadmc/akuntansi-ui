@@ -17,22 +17,22 @@ export default function TableItem({ item }: Props) {
         {item.document_number}
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        {item.supplier.name}
+        <span className="font-semibold">{item.supplier.name}</span>
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {item.material.code}
+        <span className="font-semibold">{item.material.code}</span>
         <h4 className="uppercase">{item.material.name}</h4>
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        {item.account.code}
+        <span className="font-semibold">{item.account.code}</span>
         <p className="text-theme-xs">{item.account.name}</p>
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        {item.counter_account.code}
+        <span className="font-semibold">{item.counter_account.code}</span>
         <p className="text-theme-xs">{item.counter_account.name}</p>
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {item.qty} {item.unit.name}
+        {item.qty} <p className="text-theme-xs">{item.unit.name}</p>
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
         {formattedCurrency(item.price)}

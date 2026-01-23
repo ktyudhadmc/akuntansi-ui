@@ -76,6 +76,31 @@ export default function CreateSale() {
           />
         </div>
 
+        <div className="grid md:grid-cols-2 gap-4">
+          <Skeleton isLoading={accountLoading}>
+            <SelectTwo
+              label="Akun debit"
+              name="account_id"
+              placeholder="--- Pilih Akun Debit ---"
+              selectTwoOptions={accountOptions}
+              isSearchable
+              isClearable
+              isRequired
+            />
+          </Skeleton>
+          <Skeleton isLoading={accountLoading}>
+            <SelectTwo
+              label="Akun kredit"
+              name="counter_account_id"
+              placeholder="--- Pilih Akun Kredit ---"
+              selectTwoOptions={accountOptions}
+              isSearchable
+              isClearable
+              isRequired
+            />
+          </Skeleton>
+        </div>
+
         <Skeleton isLoading={customerLoading}>
           <SelectTwo
             label="Pelanggan"
@@ -84,6 +109,7 @@ export default function CreateSale() {
             selectTwoOptions={cutomerOptions}
             isSearchable
             isClearable
+            isRequired
           />
         </Skeleton>
 
@@ -94,6 +120,7 @@ export default function CreateSale() {
               placeholder="--- Pilih Layanan ---"
               name="service_type_id"
               options={serviceOptions}
+              required
             />
           </Skeleton>
 
@@ -136,31 +163,6 @@ export default function CreateSale() {
             name="price"
             required
           />
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-4">
-          <Skeleton isLoading={accountLoading}>
-            <SelectTwo
-              label="Akun debit"
-              name="account_id"
-              placeholder="--- Pilih Akun Debit ---"
-              selectTwoOptions={accountOptions}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
-          <Skeleton isLoading={accountLoading}>
-            <SelectTwo
-              label="Akun kredit"
-              name="counter_account_id"
-              placeholder="--- Pilih Akun Kredit ---"
-              selectTwoOptions={accountOptions}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
         </div>
 
         <div className="flex justify-end mt-4 gap-2">

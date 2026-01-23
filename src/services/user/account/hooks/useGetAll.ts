@@ -10,7 +10,7 @@ export default function useGetAll() {
   const [name, setName] = useState("");
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
-    axiosInstance({ withToken: true, tokenType: "user" })
+   axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
       .get(url)
       .then((res) => res.data);
 
