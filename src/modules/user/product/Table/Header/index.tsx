@@ -2,7 +2,7 @@ import SearchInput from "@components/form/input/SearchInput";
 import Select from "@components/form/default/Select";
 import Button from "@components/ui/button/Button";
 
-// import { useDrawer } from "@hooks/useDrawer";
+import { useDrawer } from "@hooks/useDrawer";
 import { debounce } from "lodash";
 import { useCallback } from "react";
 import { HiPlus } from "react-icons/hi";
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 // import Filter from "./Filter";
 
 import { categoryOptions } from "@modules/user/product/Action/select-options.constants";
+import Unit from "@modules/user/product/Action/Unit";
 
 interface Props {
   setSearchCallback: (param: string) => void;
@@ -22,7 +23,7 @@ export default function TableHeader({
   setCategoryCallback,
 }: Props) {
   const navigate = useNavigate();
-  // const { isExpanded, toggleDrawer, closeDrawer } = useDrawer();
+  const { isExpanded, toggleDrawer, closeDrawer } = useDrawer();
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -41,6 +42,8 @@ export default function TableHeader({
   return (
     <>
       {/* <Filter onOpen={isExpanded} onClose={closeDrawer} /> */}
+      <Unit onOpen={isExpanded} onClose={closeDrawer} />
+
       <div className="flex lg:flex-row flex-col lg:justify-between gap-2">
         <div className="flex lg:flex-row flex-col gap-2">
           <Button
@@ -52,25 +55,21 @@ export default function TableHeader({
             Tambah material baru
           </Button>
 
-          <Select
-            placeholder="--- Semua Kategori ---"
-            options={categoryOptions}
-            onChange={(e) => debouncedCategory(e)}
-          />
-
-          {/* <Button
-            size="sm"
-            variant="outline"
-            onClick={() => console.log("productCategory")}
-          >
-            Atur kategori
-          </Button> */}
+          <Button size="sm" variant="outline" onClick={toggleDrawer}>
+            Atur satuan material
+          </Button>
         </div>
 
         <div className="flex lg:flex-row flex-col gap-2">
           <Button size="sm" variant="outline">
             Impor
           </Button>
+
+          <Select
+            placeholder="--- Semua Kategori ---"
+            options={categoryOptions}
+            onChange={(e) => debouncedCategory(e)}
+          />
 
           <div className="flex gap-2">
             <div className="w-full">

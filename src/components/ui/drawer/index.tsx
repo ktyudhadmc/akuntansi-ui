@@ -5,9 +5,22 @@ interface Props {
   onClose: () => void;
   label: string;
   children: React.ReactNode;
+  size?: "sm" | "md" | "lg";
 }
 
-export default function Drawer({ onOpen, onClose, label, children }: Props) {
+export default function Drawer({
+  onOpen,
+  onClose,
+  label,
+  children,
+  size = "sm",
+}: Props) {
+  const sizeClasses = {
+    sm: "md:w-sm w-3/4",
+    md: "md:w-md w-3/4",
+    lg: "md:w-lg w-3/4",
+  };
+
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -45,7 +58,7 @@ export default function Drawer({ onOpen, onClose, label, children }: Props) {
 
       <aside
         className={`fixed flex flex-col lg:mt-0 top-0 right-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-dvh transition-all duration-300 ease-in-out z-[100000] border-r border-gray-200 drop-shadow 
-          ${onOpen ? "md:w-sm w-3/4" : "w-0"}
+          ${onOpen ? sizeClasses[size] : "w-0"}
           translate-x-0`}
       >
         {onOpen && (
