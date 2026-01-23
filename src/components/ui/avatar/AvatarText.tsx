@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import getInitial from "@helpers/get-initial";
+import { getInitial } from "@helpers/index";
 
 interface Props {
   text: string;
@@ -22,7 +22,7 @@ export default function AvatarText({ text, size = "20" }: Props) {
         "flex items-center justify-center rounded-full",
         "border border-gray-200 dark:border-gray-800",
         "bg-brand-600 text-white",
-        sizeClasses[size]
+        sizeClasses[size],
       )}
     >
       <span className="flex items-center justify-center w-full h-full font-bold text-white">
