@@ -11,7 +11,7 @@ export interface OptionValue {
 }
 interface Props {
   label?: string;
-  id: string;
+  id?: string;
   name: string;
   placeholder?: string;
   isMulti?: boolean;
