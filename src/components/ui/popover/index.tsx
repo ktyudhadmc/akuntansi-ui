@@ -22,6 +22,7 @@ export default function PopOver({
   children,
 }: Props) {
   const { refs, floatingStyles, update } = useFloating({
+    strategy: "fixed",
     middleware: [offset(16), flip(), shift({ padding: 20 })],
   });
 

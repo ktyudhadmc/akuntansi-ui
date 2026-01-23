@@ -10,6 +10,7 @@ export interface Option {
 
 interface SelectProps {
   label?: string;
+  id?: string;
   name: string;
   required?: boolean;
   disabled?: boolean;
@@ -23,6 +24,7 @@ interface SelectProps {
 
 const Select: React.FC<SelectProps> = ({
   label,
+  id,
   name,
   required,
   disabled,
@@ -55,7 +57,7 @@ const Select: React.FC<SelectProps> = ({
   return (
     <div>
       {label && (
-        <Label>
+        <Label htmlFor={id}>
           {label} {required && <span className="text-error-500">*</span>}
         </Label>
       )}
@@ -70,7 +72,8 @@ const Select: React.FC<SelectProps> = ({
               message: "Tidak Boleh Kosong",
             },
           }))}
-        key={name}
+        key={id}
+        id={id}
         value={value ?? undefined}
         defaultValue={defaultValue ?? undefined}
         required={required}
