@@ -11,6 +11,7 @@ export interface OptionValue {
 }
 interface Props {
   label?: string;
+  id?: string;
   name: string;
   placeholder?: string;
   isMulti?: boolean;
@@ -29,6 +30,7 @@ interface Props {
 
 export default function SelectTwo({
   label,
+  id,
   name,
   placeholder,
   isMulti,
@@ -68,13 +70,15 @@ export default function SelectTwo({
   return (
     <div className="flex flex-col">
       {label && (
-        <Label htmlFor={name}>
+        <Label htmlFor={id}>
           {label} {isRequired && <span className="text-red-500">*</span>}
         </Label>
       )}
 
       <ReactSelect
         {...restProps}
+        key={id}
+        id={id}
         name={name}
         className={clsx(`${isMulti ? "basic-multi-select" : "basic-single"}`)}
         classNamePrefix={`select-${label}`}
@@ -86,7 +90,6 @@ export default function SelectTwo({
               message: "Tidak Boleh Kosong",
             },
           }))}
-        key={name}
         options={[
           // {
           //   label: `Pilih ${label}`,

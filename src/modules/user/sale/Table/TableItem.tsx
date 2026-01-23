@@ -1,38 +1,39 @@
 // import Badge from "@components/ui/badge/Badge";
 import TableItemMenu from "./TableItemMenu";
 import { formattedCurrency } from "@helpers/currency";
-import type { Purchase } from "@services/user/purchase/interfaces/response.type";
+import type { Sale } from "@services/user/sale/interfaces/response.type";
 
 interface Props {
-  item: Purchase;
+  item: Sale;
 }
 
 export default function TableItem({ item }: Props) {
   return (
     <tr>
-      <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400">
+      <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
         {item.date}
       </td>
-      <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
+      <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
         {item.document_number}
       </td>
-      <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        {item.supplier.name}
+      <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 font-semibold uppercase">
+        {item.customer.name}
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {item.material.code}
+        <span className="font-semibold">{item.material.code}</span>
         <h4 className="uppercase">{item.material.name}</h4>
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        {item.account.code}
+        <span className="font-semibold">{item.account.code}</span>
         <p className="text-theme-xs">{item.account.name}</p>
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        {item.counter_account.code}
+        <span className="font-semibold">{item.counter_account.code}</span>
         <p className="text-theme-xs">{item.counter_account.name}</p>
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {item.qty} {item.unit.name}
+        {item.qty}
+        <p className="text-theme-xs">{item.unit.name}</p>
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
         {formattedCurrency(item.price)}
@@ -45,7 +46,7 @@ export default function TableItem({ item }: Props) {
         <TableItemMenu
           id={item.id}
           name={item.material.name}
-          sku={item.material.code}
+          invoice={item.document_number}
         />
       </td>
     </tr>

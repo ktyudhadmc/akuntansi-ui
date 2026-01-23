@@ -1,18 +1,17 @@
 import Button from "@components/ui/button/Button";
 import { Modal } from "@components/ui/modal";
-import useDelete from "@services/user/purchase/hooks/useDelete";
+import useDelete from "@services/user/sale/hooks/useDelete";
 
 import { toast } from "react-toastify";
 
 interface Props {
   id: string;
-  sku: string;
-  name: string;
+  invoice: string;
   onOpen: boolean;
   onClose: () => void;
 }
 
-export default function DeleteSale({ id, sku, name, onOpen, onClose }: Props) {
+export default function DeleteSale({ id, invoice, onOpen, onClose }: Props) {
   const { deleteData } = useDelete();
 
   const onDelete = async () => {
@@ -73,10 +72,7 @@ export default function DeleteSale({ id, sku, name, onOpen, onClose }: Props) {
           <p className="text-sm leading-6 text-gray-500 dark:text-gray-400">
             Apakah Anda yakin menghapus
             <br />
-            <b className="uppercase">
-              {sku} - {name}
-            </b>
-            ?
+            <b className="uppercase">{invoice}</b>?
           </p>
 
           <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">

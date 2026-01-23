@@ -12,8 +12,24 @@ export interface IGetResponse {
 
 export interface Sale {
   id: string;
+  date: string;
+  due_date: string;
+  document_number: string;
+  qty: number;
+  price: number;
+  total_price: number;
+  account: Account;
+  counter_account: Account;
+  customer: Customer;
+  material: Product;
+  unit: Unit;
+  service_type: ProductKind;
+}
+
+export interface SaleOld {
+  id: string;
   contact: Contact;
-  supplier: Supplier;
+  customer: Customer;
   debit_account: Account;
   credit_account: Account;
   transaction_number: string;
@@ -30,7 +46,7 @@ interface Contact {
   name: string;
 }
 
-interface Supplier {
+interface Customer {
   id: string;
   name: string;
 }
@@ -54,6 +70,10 @@ interface SaleItem {
 interface Product {
   id: string;
   code: string;
+  name: string;
+}
+interface ProductKind {
+  id: string;
   name: string;
 }
 

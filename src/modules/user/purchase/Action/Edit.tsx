@@ -62,6 +62,7 @@ export default function EditPurchase() {
           <Input
             label="Nomor dokumen"
             placeholder="Nomor dokumen pembelian"
+            id="document_number"
             name="document_number"
             defaultValue={data?.document_number}
             required
@@ -92,6 +93,7 @@ export default function EditPurchase() {
         <Skeleton isLoading={supplierLoading || loading}>
           <SelectTwo
             label="Supplier"
+            id="supplier_id"
             name="supplier_id"
             placeholder="--- Pilih Supplier ---"
             selectTwoOptions={supplierOptions}
@@ -108,6 +110,7 @@ export default function EditPurchase() {
         <Skeleton isLoading={productLoading || loading}>
           <SelectTwo
             label="Material"
+            id="material_id"
             name="material_id"
             placeholder="--- Pilih Material ---"
             selectTwoOptions={productOptions}
@@ -127,6 +130,7 @@ export default function EditPurchase() {
               label="Kuantitas"
               placeholder="Kuantitas"
               type="number"
+              id="qty"
               name="qty"
               defaultValue={data?.qty}
               required
@@ -137,9 +141,11 @@ export default function EditPurchase() {
             <Select
               label="Satuan"
               placeholder="--- Pilih Satuan ---"
+              id="unit_of_measure_id"
               name="unit_of_measure_id"
               options={unitOptions}
               defaultValue={data?.unit.id}
+              required
             />
           </Skeleton>
 
@@ -148,6 +154,7 @@ export default function EditPurchase() {
               label="Harga satuan"
               placeholder="Harga satuan"
               type="number"
+              id="price"
               name="price"
               defaultValue={data?.price}
               required
@@ -159,6 +166,7 @@ export default function EditPurchase() {
           <Skeleton isLoading={accountLoading || loading}>
             <SelectTwo
               label="Akun debit"
+              id="account_id"
               name="account_id"
               placeholder="--- Pilih Akun Debit ---"
               selectTwoOptions={accountOptions}
@@ -174,6 +182,7 @@ export default function EditPurchase() {
           <Skeleton isLoading={accountLoading || loading}>
             <SelectTwo
               label="Akun kredit"
+              id="counter_account_id"
               name="counter_account_id"
               placeholder="--- Pilih Akun Kredit ---"
               selectTwoOptions={accountOptions}

@@ -64,7 +64,7 @@ const Input: FC<InputProps> = ({
     () => () => {
       unregister(name);
     },
-    [name, unregister]
+    [name, unregister],
   );
 
   const onSwitchPasswordType = useCallback(() => {
@@ -93,7 +93,7 @@ const Input: FC<InputProps> = ({
   return (
     <div>
       {label && (
-        <Label>
+        <Label htmlFor={id}>
           {label} {required && <span className="text-error-500">*</span>}
         </Label>
       )}
@@ -110,6 +110,7 @@ const Input: FC<InputProps> = ({
               },
             }))}
           id={id}
+          key={id}
           name={name}
           placeholder={placeholder}
           value={value}
@@ -140,8 +141,8 @@ const Input: FC<InputProps> = ({
               error
                 ? "text-error-500"
                 : success
-                ? "text-success-500"
-                : "text-gray-500"
+                  ? "text-success-500"
+                  : "text-gray-500"
             }`}
           >
             {hint}

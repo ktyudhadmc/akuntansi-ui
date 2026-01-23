@@ -1,7 +1,9 @@
 import { MdUploadFile, MdNearMe } from "react-icons/md";
 import { HiTrash } from "react-icons/hi";
-import { type FileState } from "@hooks/useFileUpload";
 import { useEffect, useState } from "react";
+
+import { type FileState } from "@hooks/useFileUpload";
+
 import Button from "@components/ui/button/Button";
 
 interface Props {
@@ -15,7 +17,7 @@ interface Props {
   readOnly?: boolean;
 }
 
-export default function ImportDropZonePurchase({
+export default function ImportDropZone({
   file,
   defaultFile,
   getInputProps,

@@ -35,7 +35,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <ToastContainer position="top-right" style={{ zIndex: 100001 }} />
+    <ToastContainer position="top-center" style={{ zIndex: 100001 }} />
 
     <Suspense fallback={<Loader />} >
       <ThemeProvider>

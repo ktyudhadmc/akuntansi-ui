@@ -4,10 +4,8 @@ import type { IGetAllResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
-// import useGlobalStore from "@store/useStore";
 
 export default function useGetAll() {
-  // const currentCompany = useGlobalStore((state) => state.currentCompany);
   const [name, setName] = useState("");
   const startTransactionDate = useUserStore(
     (state) => state.startTransactionDate,
@@ -17,7 +15,7 @@ export default function useGetAll() {
   const endDueDate = useUserStore((state) => state.endDueDate);
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
-    axiosInstance({ withToken: true, tokenType: "user" })
+    axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
       .get(url)
       .then((res) => res.data);
 
@@ -32,11 +30,7 @@ export default function useGetAll() {
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(
-    // `/company/${currentCompany?.id}/contacts?${qs}`,
-    `/sale?${qs}`,
-    fetcher,
-  );
+  const { data, error } = useSWR(`/sales?${qs}`, fetcher);
 
   const onSetName = useCallback((name: string) => {
     setName(name);

@@ -1,20 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import { ExcelIcon } from "@assets/icons";
+import useFileUpload from "@hooks/useFileUpload";
+
+import ImportDropZone from "./DropZone";
 import Label from "@components/form/Label";
 import AvatarText from "@components/ui/avatar/AvatarText";
 import Button from "@components/ui/button/Button";
 import Spinner from "@components/Reusable/Spinner";
 import Form from "@components/form/Form";
-import ImportDropZonePurchase from "./DropZone";
 
-import useFileUpload from "@hooks/useFileUpload";
-import type { IImportPurchasePayload } from "@services/user/purchase/interfaces/request.type";
-import useImport from "@services/user/purchase/hooks/useImport";
-import { toast } from "react-toastify";
+import type { IImportSalePayload } from "@services/user/sale/interfaces/request.type";
+import useImport from "@services/user/sale/hooks/useImport";
 
-type FormFields = IImportPurchasePayload;
+type FormFields = IImportSalePayload;
 
 export default function ImportSale() {
   const navigate = useNavigate();
@@ -149,7 +150,7 @@ export default function ImportSale() {
               .xls
             </p>
 
-            <ImportDropZonePurchase
+            <ImportDropZone
               file={file}
               getRootProps={getRootProps}
               getInputProps={getInputProps}
