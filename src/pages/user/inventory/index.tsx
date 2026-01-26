@@ -1,21 +1,21 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
 import TabsNav from "@components/ui/tabs";
+import AdjustmentTable from "@modules/user/inventory/adjustment/Table";
+import InventoryTable from "@modules/user/inventory/Index/Table";
+import UsageTable from "@modules/user/inventory/usage/Table";
 import { useSearchParams } from "react-router-dom";
-import ReportBusinessPage from "./business";
 
-export default function ReportPage() {
-  const pageTitle = "Laporan";
+export default function InventoryPage() {
+  const pageTitle = "Persediaan";
+
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const activeTab = searchParams.get("tab") ?? "business";
+  const activeTab = searchParams.get("tab") ?? "stock";
   const tabs = [
-    { value: "business", label: "Sekilas bisnis" },
-    { value: "sales", label: "Penjualan" },
-    { value: "purchases", label: "Pembelian" },
-    { value: "products", label: "Produk" },
-    { value: "bank", label: "Bank" },
-    { value: "production", label: "Produksi" },
+    { value: "stock", label: "Persediaan" },
+    { value: "usage", label: "Pemakaian" },
+    { value: "adjustment", label: "Penyesuaian" },
   ];
 
   return (
@@ -31,9 +31,10 @@ export default function ReportPage() {
             initialActive={activeTab}
             onChange={(e) => setSearchParams({ tab: e })}
           />
-          {activeTab != "business" && <h4>Halaman {activeTab}, It Works!</h4>}
 
-          {activeTab == "business" && <ReportBusinessPage />}
+          {activeTab == "stock" && <InventoryTable />}
+          {activeTab == "adjustment" && <AdjustmentTable />}
+          {activeTab == "usage" && <UsageTable />}
         </div>
       </div>
     </>

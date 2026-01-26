@@ -70,8 +70,55 @@ export default [
       { path: "sales/:id/edit", element: <User.EditSalePage /> },
       { path: "sales/import", element: <User.ImportSalePage /> },
 
+      /** INVENTORY */
+      {
+        path: "inventories",
+        children: [
+          { index: true, element: <User.InventoryPage /> },
+
+          /** ADJUSTMENT */
+          {
+            path: "adjustments",
+            children: [
+              {
+                index: true,
+                element: <Navigate to=".." replace />,
+              },
+              {
+                path: "create",
+                element: <User.InventoryAdjustmentCreatePage />,
+              },
+              {
+                path: ":id/edit",
+                element: <User.InventoryAdjustmentEditPage />,
+              },
+            ],
+          },
+
+          /** USAGE */
+          {
+            path: "usages",
+            children: [
+              {
+                index: true,
+                element: <Navigate to=".." replace />,
+              },
+              {
+                path: "create",
+                element: <User.InventoryUsageCreatePage />,
+              },
+              {
+                path: ":id/edit",
+                element: <User.InventoryUsageEditPage />,
+              },
+            ],
+          },
+        ],
+      },
+
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
+      { path: "reports/journal", element: <User.ReportBusinessJournalPage /> },
 
       /** SETTING */
       {

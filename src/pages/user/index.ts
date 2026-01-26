@@ -36,5 +36,19 @@ export { default as CreateSalePage } from "./sale/create";
 export { default as EditSalePage } from "./sale/edit";
 export { default as ImportSalePage } from "./sale/import";
 
+// INVENTORY
+export { default as InventoryPage } from "./inventory";
+
+// INVENTORY - ADJUSTMENT
+export { default as InventoryAdjustmentCreatePage } from "./inventory/adjustment/create";
+export { default as InventoryAdjustmentEditPage } from "./inventory/adjustment/edit";
+
+// INVENTORY - USAGE
+export { default as InventoryUsageCreatePage } from "./inventory/usage/create";
+export { default as InventoryUsageEditPage } from "./inventory/usage/edit";
+
 // REPORT
 export { default as ReportPage } from "./report";
+
+// REPORT BUSINESS
+export { default as ReportBusinessJournalPage } from "./report/business/Journal";

@@ -1,28 +1,21 @@
 import Button from "@components/ui/button/Button";
 import { Modal } from "@components/ui/modal";
 
-import useDelete from "@services/user/account/hooks/useDelete";
+import useDelete from "@services/user/inventory/usage/hooks/useDelete";
 import { toast } from "react-toastify";
 
 interface Props {
-  id: number;
-  code: string;
+  id: string;
   name: string;
   onOpen: boolean;
   onClose: () => void;
 }
 
-export default function DeleteAccount({
-  id,
-  code,
-  name,
-  onOpen,
-  onClose,
-}: Props) {
+export default function UsageDelete({ id, name, onOpen, onClose }: Props) {
   const { deleteData } = useDelete();
 
   const onDelete = async () => {
-    const { error, response } = await deleteData(id);
+    const { error, response } = await deleteData(Number(id));
     if (error || response) {
       if (error) {
         toast.error("Gagal menghapus data!");
@@ -79,10 +72,7 @@ export default function DeleteAccount({
           <p className="text-sm leading-6 text-gray-500 dark:text-gray-400">
             Apakah Anda yakin menghapus
             <br />
-            <b className="uppercase">
-              {code} {name}
-            </b>
-            ?
+            <b className="uppercase">{name}</b>?
           </p>
 
           <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">
