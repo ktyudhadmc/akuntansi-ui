@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import ImportAccount from "@modules/user/account/Action/Import";
+import ImportAccount from "@modules/user/account/Action/import";
 
 export default function ImportAccountPage() {
   const pageTitle = "Impor Kas & Bank";
