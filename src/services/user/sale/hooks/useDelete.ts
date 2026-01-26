@@ -8,6 +8,7 @@ export default function useDelete() {
     try {
       const res = await axiosInstance({
         withToken: true,
+        withCompany: true,
         tokenType: "user",
       }).delete(`/sales/${saleId}`);
 

@@ -23,6 +23,7 @@ export default function useCreate() {
     try {
       const res = await axiosInstance({
         withToken: true,
+        withCompany: true,
         tokenType: "user",
       }).post(`/sales`, {
         account_id,

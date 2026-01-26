@@ -10,6 +10,7 @@ export default function useUpdate(contactId: string) {
     try {
       const res = await axiosInstance({
         withToken: true,
+        withCompany: true,
         tokenType: "user",
       }).post(`/supplier/${contactId}`, {
         name,

@@ -21,6 +21,7 @@ export default function useCreate() {
 
     try {
       const res = await axiosInstance({
+        withCompany: true,
         withToken: true,
         tokenType: "user",
       }).post(`/purchase`, {

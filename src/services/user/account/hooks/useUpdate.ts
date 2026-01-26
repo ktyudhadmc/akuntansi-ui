@@ -11,6 +11,7 @@ export default function useUpdate(accountId: string) {
     try {
       const res = await axiosInstance({
         withToken: true,
+        withCompany: true,
         tokenType: "user",
       }).post(`/accounts/${parseInt(accountId)}`, {
         company_id,
