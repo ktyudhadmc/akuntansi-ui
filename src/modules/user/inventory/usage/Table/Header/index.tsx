@@ -31,7 +31,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
           onClick={() => navigate("usages/create")}
         >
           <HiPlus />
-          Tambah pemakaian
+          Buat pemakaian
         </Button>
         <div className="flex gap-4">
           <SearchInput

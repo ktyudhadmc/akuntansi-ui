@@ -75,12 +75,15 @@ export default [
         path: "inventories",
         children: [
           { index: true, element: <User.InventoryPage /> },
-          { path: "create", element: <User.CreateInventoryPage /> },
 
           /** ADJUSTMENT */
           {
             path: "adjustments",
             children: [
+              {
+                index: true,
+                element: <Navigate to=".." replace />,
+              },
               {
                 path: "create",
                 element: <User.InventoryAdjustmentCreatePage />,
@@ -96,6 +99,10 @@ export default [
           {
             path: "usages",
             children: [
+              {
+                index: true,
+                element: <Navigate to=".." replace />,
+              },
               {
                 path: "create",
                 element: <User.InventoryUsageCreatePage />,

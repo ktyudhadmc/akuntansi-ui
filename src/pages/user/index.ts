@@ -38,7 +38,6 @@ export { default as ImportSalePage } from "./sale/import";
 
 // INVENTORY
 export { default as InventoryPage } from "./inventory";
-export { default as CreateInventoryPage } from "./inventory/create";
 
 // INVENTORY - ADJUSTMENT
 export { default as InventoryAdjustmentCreatePage } from "./inventory/adjustment/create";

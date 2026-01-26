@@ -1,6 +1,11 @@
-import debounce from "lodash/debounce";
 import { useCallback } from "react";
+import debounce from "lodash/debounce";
+
+import { formatMonthValue, parseMonthValue } from "@helpers/index";
+import { sourceTypeOptions } from "@modules/user/inventory/options.constants";
+
 import SearchInput from "@components/form/input/SearchInput";
+import Select from "@components/form/default/Select";
 // import DatePicker from "@components/form/default/DatePicker";
 
 interface Props {
@@ -27,18 +32,22 @@ export default function TableHeader({ setSearchCallback }: Props) {
           onChange={(e) => console.log(e)}
           required
         /> */}
-        <SearchInput
-          type="month"
-          onChange={(e) => {
-            const value = e.target.value;
-            const [year, month] = value.split("-");
+        <div className="flex md:flex-row flex-col gap-4">
+          <SearchInput
+            type="month"
+            defaultValue={formatMonthValue()}
+            onChange={(e) => {
+              console.log(parseMonthValue(e.target.value));
+            }}
+          />
 
-            console.log({
-              year: Number(year),
-              month: Number(month),
-            });
-          }}
-        />
+          <Select
+            placeholder="--- Semua Sumber Persediaan ---"
+            options={sourceTypeOptions}
+            onChange={(e) => console.log(e)}
+          />
+        </div>
+
         {/* Search */}
         <SearchInput
           placeholder="Cari"
