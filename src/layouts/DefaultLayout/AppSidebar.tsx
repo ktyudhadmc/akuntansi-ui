@@ -23,6 +23,7 @@ import {
   MdOutlineShoppingCart,
   MdOutlineContacts,
   MdOutlineShowChart,
+  MdOutlineInventory,
 } from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
@@ -73,6 +74,12 @@ const navItems: NavItem[] = [
     icon: <MdOutlineShoppingCart />,
     name: "Pembelian",
     path: "/user/purchases",
+  },
+
+  {
+    icon: <MdOutlineInventory />,
+    name: "Persediaan",
+    path: "/user/inventories",
   },
 
   {

@@ -70,6 +70,10 @@ export default [
       { path: "sales/:id/edit", element: <User.EditSalePage /> },
       { path: "sales/import", element: <User.ImportSalePage /> },
 
+      /** INVENTORY */
+      { path: "inventories", element: <User.InventoryPage /> },
+      { path: "inventories/create", element: <User.CreateInventoryPage /> },
+
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
 

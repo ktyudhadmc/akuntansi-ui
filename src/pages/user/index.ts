@@ -36,5 +36,9 @@ export { default as CreateSalePage } from "./sale/create";
 export { default as EditSalePage } from "./sale/edit";
 export { default as ImportSalePage } from "./sale/import";
 
+// INVENTORY
+export { default as InventoryPage } from "./inventory";
+export { default as CreateInventoryPage } from "./inventory/create";
+
 // REPORT
 export { default as ReportPage } from "./report";
