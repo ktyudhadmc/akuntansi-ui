@@ -3,6 +3,7 @@ import PageMeta from "@components/common/PageMeta";
 import TabsNav from "@components/ui/tabs";
 import AdjustmentTable from "@modules/user/inventory/adjustment/Table";
 import InventoryTable from "@modules/user/inventory/Index/Table";
+import UsageTable from "@modules/user/inventory/usage/Table";
 import { useSearchParams } from "react-router-dom";
 
 export default function InventoryPage() {
@@ -31,9 +32,9 @@ export default function InventoryPage() {
             onChange={(e) => setSearchParams({ tab: e })}
           />
 
-          {activeTab != "stock" && <h4>Halaman {activeTab}, It Works!</h4>}
           {activeTab == "stock" && <InventoryTable />}
           {activeTab == "adjustment" && <AdjustmentTable />}
+          {activeTab == "usage" && <UsageTable />}
         </div>
       </div>
     </>

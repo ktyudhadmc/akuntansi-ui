@@ -1,7 +1,7 @@
 import Button from "@components/ui/button/Button";
 import { Modal } from "@components/ui/modal";
 
-import useDelete from "@services/user/account/hooks/useDelete";
+import useDelete from "@services/user/inventory/usage/hooks/useDelete";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function DeleteInventory({ id, name, onOpen, onClose }: Props) {
+export default function UsageDelete({ id, name, onOpen, onClose }: Props) {
   const { deleteData } = useDelete();
 
   const onDelete = async () => {

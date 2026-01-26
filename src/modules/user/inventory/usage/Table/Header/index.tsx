@@ -1,13 +1,19 @@
-import debounce from "lodash/debounce";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { HiPlus } from "react-icons/hi";
+import debounce from "lodash/debounce";
+
+import { formatMonthValue, parseMonthValue } from "@helpers/index";
+
 import SearchInput from "@components/form/input/SearchInput";
-// import DatePicker from "@components/form/default/DatePicker";
+import Button from "@components/ui/button/Button";
 
 interface Props {
   setSearchCallback: (param: string) => void;
 }
 
 export default function TableHeader({ setSearchCallback }: Props) {
+  const navigate = useNavigate();
   const debouncedSearch = useCallback(
     debounce((value: string) => {
       setSearchCallback(value);
@@ -19,31 +25,28 @@ export default function TableHeader({ setSearchCallback }: Props) {
     <>
       {/* Create */}
       <div className="flex md:flex-row flex-col justify-between gap-4">
-        {/* <DatePicker
-          mode="month"
-          id="period_date"
-          name="period_date"
-          defaultDate={new Date()}
-          onChange={(e) => console.log(e)}
-          required
-        /> */}
-        <SearchInput
-          type="month"
-          onChange={(e) => {
-            const value = e.target.value;
-            const [year, month] = value.split("-");
-
-            console.log({
-              year: Number(year),
-              month: Number(month),
-            });
-          }}
-        />
-        {/* Search */}
-        <SearchInput
-          placeholder="Cari"
-          onChange={(e) => debouncedSearch(e.target.value)}
-        />
+        <Button
+          size="sm"
+          variant="primary"
+          onClick={() => navigate("usages/create")}
+        >
+          <HiPlus />
+          Tambah pemakaian
+        </Button>
+        <div className="flex gap-4">
+          <SearchInput
+            type="month"
+            defaultValue={formatMonthValue()}
+            onChange={(e) => {
+              console.log(parseMonthValue(e.target.value));
+            }}
+          />
+          {/* Search */}
+          <SearchInput
+            placeholder="Cari"
+            onChange={(e) => debouncedSearch(e.target.value)}
+          />
+        </div>
       </div>
     </>
   );

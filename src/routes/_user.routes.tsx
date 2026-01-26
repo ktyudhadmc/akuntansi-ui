@@ -91,6 +91,21 @@ export default [
               },
             ],
           },
+
+          /** USAGE */
+          {
+            path: "usages",
+            children: [
+              {
+                path: "create",
+                element: <User.InventoryUsageCreatePage />,
+              },
+              {
+                path: ":id/edit",
+                element: <User.InventoryUsageEditPage />,
+              },
+            ],
+          },
         ],
       },
 

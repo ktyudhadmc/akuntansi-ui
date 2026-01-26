@@ -26,7 +26,7 @@ export default function TableItemMenu({ id, name }: Props) {
       <div className="flex gap-2">
         {/* edit */}
         <Button
-          onClick={() => navigate(`${id}/edit`)}
+          onClick={() => navigate(`usages/${id}/edit`)}
           size="xs"
           variant="outline"
         >
