@@ -10,6 +10,7 @@ export default function useImport() {
     try {
       const res = await axiosInstance({
         withToken: true,
+        withCompany: true,
         tokenType: "user",
       }).post(
         `/sale/import`,
