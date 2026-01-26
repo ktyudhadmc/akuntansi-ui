@@ -7,7 +7,7 @@ interface Props {
   variant?: "income" | "outcome" | "primary";
 }
 
-export default function TableHeaderCard({
+export default function HeaderCard({
   title,
   count,
   amount,

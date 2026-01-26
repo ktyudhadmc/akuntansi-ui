@@ -1,5 +1,5 @@
 import TableItemMenu from "./TableItemMenu";
-import type { Inventory } from "@services/user/inventory/interfaces/response.type";
+import type { Inventory } from "@services/user/inventory/adjustment/interfaces/response.type";
 
 interface Props {
   item: Inventory;

@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import CreateInventory from "@modules/user/inventory/Action/Create";
+import CreateInventory from "@modules/user/inventory/Index/Action/Create";
 
 export default function CreateInventoryPage() {
   const pageTitle = "Tambah Persediaan";

@@ -7,8 +7,8 @@ import Input from "@components/form/input/InputField";
 import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 
-import useCreate from "@services/user/inventory/hooks/useCreate";
-import type { ICreateInventoryPayload } from "@services/user/inventory/interfaces/request.type";
+import useCreate from "@services/user/inventory/adjustment/hooks/useCreate";
+import type { ICreateInventoryPayload } from "@services/user/inventory/adjustment/interfaces/request.type";
 
 type FormFields = ICreateInventoryPayload;
 

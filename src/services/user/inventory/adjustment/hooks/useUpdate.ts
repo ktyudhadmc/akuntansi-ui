@@ -1,19 +1,28 @@
 import axiosInstance from "@/lib/axios-instance";
 import useRevalidateMutation from "@/lib/swr/useRevalidateMutation";
+import type { ICreateAdjustmentPayload } from "../interfaces/request.type";
 
-export default function useDelete() {
+export default function useUpdate(adjustmentId: string) {
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const deleteData = async (inventoryId: number) => {
+  const updateData = async (payload: ICreateAdjustmentPayload) => {
+    const { material_id, description, date, qty, type } = payload;
     try {
       const res = await axiosInstance({
         withCompany: true,
         withToken: true,
         tokenType: "user",
-      }).delete(`/inventory/${inventoryId}`);
+      }).post(`/adjustment/${adjustmentId}`, {
+        material_id,
+        description,
+        date,
+        qty,
+        type,
+        _method: "PUT",
+      });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/inventory/);
+        revalidateMutationsByKey(/^\/adjustment/);
       }
 
       return { response: res, error: null };
@@ -21,9 +30,10 @@ export default function useDelete() {
       if (error.status >= 500) {
         return { response: null, error: "Server error" };
       }
+
       return { response: null, error: error.response.data.message };
     }
   };
 
-  return { deleteData };
+  return { updateData };
 }

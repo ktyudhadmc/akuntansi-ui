@@ -71,8 +71,28 @@ export default [
       { path: "sales/import", element: <User.ImportSalePage /> },
 
       /** INVENTORY */
-      { path: "inventories", element: <User.InventoryPage /> },
-      { path: "inventories/create", element: <User.CreateInventoryPage /> },
+      {
+        path: "inventories",
+        children: [
+          { index: true, element: <User.InventoryPage /> },
+          { path: "create", element: <User.CreateInventoryPage /> },
+
+          /** ADJUSTMENT */
+          {
+            path: "adjustments",
+            children: [
+              {
+                path: "create",
+                element: <User.InventoryAdjustmentCreatePage />,
+              },
+              {
+                path: ":id/edit",
+                element: <User.InventoryAdjustmentEditPage />,
+              },
+            ],
+          },
+        ],
+      },
 
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },

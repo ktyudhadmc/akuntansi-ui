@@ -1,22 +1,22 @@
 import useRevalidateMutation from "@lib/swr/useRevalidateMutation";
-import type { ICreateInventoryPayload } from "../interfaces/request.type";
+import type { ICreateAdjustmentPayload } from "../interfaces/request.type";
 import axiosInstance from "@lib/axios-instance";
 
 export default function useCreate() {
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const createData = async (payload: ICreateInventoryPayload) => {
-    const { name } = payload;
+  const createData = async (payload: ICreateAdjustmentPayload) => {
+    const { material_id, description, date, qty, type } = payload;
 
     try {
       const res = await axiosInstance({
         withToken: true,
         withCompany: true,
         tokenType: "user",
-      }).post(`/inventory`, { name });
+      }).post(`/adjustment`, { material_id, description, date, qty, type });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/inventory/);
+        revalidateMutationsByKey(/^\/adjustment/);
       }
 
       return { response: res, error: null };

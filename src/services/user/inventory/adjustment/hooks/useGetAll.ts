@@ -17,7 +17,7 @@ export default function useGetAll() {
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/inventory?${qs}`, fetcher);
+  const { data, error } = useSWR(`/adjustment?${qs}`, fetcher);
 
   const onSetName = useCallback((name: string) => {
     setName(name);
