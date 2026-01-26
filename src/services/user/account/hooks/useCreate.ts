@@ -6,18 +6,13 @@ export default function useCreate() {
   const revalidateMutationsByKey = useRevalidateMutation();
 
   const createData = async (payload: ICreateAccountPayload) => {
-    const {
-      company_id,
-      code,
-      name,
-      is_posting,
-      normal_balance,
-      report_type,
-    } = payload;
+    const { company_id, code, name, is_posting, normal_balance, report_type } =
+      payload;
 
     try {
       const res = await axiosInstance({
         withToken: true,
+        withCompany: true,
         tokenType: "user",
       }).post("/accounts", {
         company_id,
