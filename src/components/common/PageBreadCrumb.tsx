@@ -1,13 +1,19 @@
 import useGlobalStore from "@store/useStore";
 import { Link } from "react-router";
 
+interface BreadcrumbItem {
+  label: string;
+  path?: string;
+}
 interface BreadcrumbProps {
   pageTitle: string;
+  breadcrumbs?: BreadcrumbItem[];
   showBreadCrumb?: boolean;
 }
 
 const PageBreadcrumb: React.FC<BreadcrumbProps> = ({
   pageTitle,
+  breadcrumbs,
   showBreadCrumb = true,
 }) => {
   const role = useGlobalStore((state) => state.role);
@@ -60,6 +66,38 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({
                 </svg>
               </Link>
             </li>
+
+            {breadcrumbs?.map((item, index) => (
+              <li key={`breadcrumb-item-${index}`}>
+                {item.path ? (
+                  <Link
+                    to={item.path}
+                    className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
+                  >
+                    {item.label}{" "}
+                    <svg
+                      className="stroke-current"
+                      width="17"
+                      height="16"
+                      viewBox="0 0 17 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6.0765 12.667L10.2432 8.50033L6.0765 4.33366"
+                        stroke=""
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                ) : (
+                  <span>{item.label}</span>
+                )}
+              </li>
+            ))}
+
             <li className="text-sm text-gray-800 dark:text-white/90">
               {pageTitle}
             </li>

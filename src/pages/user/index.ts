@@ -42,3 +42,6 @@ export { default as CreateInventoryPage } from "./inventory/create";
 
 // REPORT
 export { default as ReportPage } from "./report";
+
+// REPORT BUSINESS
+export { default as ReportBusinessJournalPage } from "./report/business/Journal";

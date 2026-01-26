@@ -1,40 +1,42 @@
+import { useNavigate } from "react-router-dom";
 import Button from "@components/ui/button/Button";
 
 export default function ReportBusinessPage() {
+  const navigate = useNavigate();
   const data = [
     {
       title: "Neraca",
-      path: "/report/balance-sheet",
+      path: "balance-sheet",
       description:
         "Menampilkan apa yang dimiliki (aset), apa saja utangnya (liabilitas), dan apa yang sudah diinvestasikan ke perusahaan ini (ekuitas) padatanggal tertentu",
     },
     {
       title: "Laba rugi",
-      path: "/report/profit-loss",
+      path: "profit-loss",
       description:
         "Menampilkan semua pendapatan yang diperoleh dan biaya yang dikeluarkan dalam periode tertentu. Template laporan versi terkini bisa Anda custom sesuai kebutuhan.",
     },
     {
       title: "Arus kas",
-      path: "/report/cash-flow",
+      path: "cash-flow",
       description:
         "Menampilkan pergerakan uang masuk dan keluar dari transaksi dalam periode tertentu. Template laporan ini bisa Anda custom sesuai kebutuhan.",
     },
     {
       title: "Buku besar",
-      path: "/report/general-ledger",
+      path: "general-ledger",
       description:
         "Menampilkan semua transaksi berdasarkan akun dalam periode tertentu, termasuk kronologi pergerakan transaksinya selama periode berlangsung.",
     },
     {
       title: "Jurnal",
-      path: "/report/journal",
+      path: "journal",
       description:
         "Menampilkan semua journal entry per transaksi dalam periode tertentu. Anda dapat melacak transaksi yang masuk ke masing-masing akun.",
     },
     {
       title: "Neraca saldo",
-      path: "/report/trial-balance",
+      path: "trial-balance",
       description:
         "Menampilkan saldo dari setiap akun, termasuk saldo awal, pergerakan, dan saldo akhir dalam periode tertentu.",
     },
@@ -51,7 +53,7 @@ export default function ReportBusinessPage() {
           <Button
             size="sm"
             variant="outline"
-            onClick={() => console.log(item.path)}
+            onClick={() => navigate(item.path)}
           >
             Lihat laporan
           </Button>
