@@ -24,6 +24,7 @@ import {
   MdOutlineContacts,
   MdOutlineShowChart,
   MdOutlineInventory,
+  MdOutlineInventory2,
 } from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
@@ -92,6 +93,11 @@ const navItems: NavItem[] = [
     icon: <HiOutlineCube />,
     name: "Material",
     path: "/user/products",
+  },
+  {
+    icon: <MdOutlineInventory2 />,
+    name: "Produksi",
+    path: "/user/productions",
   },
   {
     icon: <AiOutlineSetting />,

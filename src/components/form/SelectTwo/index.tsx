@@ -80,6 +80,8 @@ export default function SelectTwo({
         key={id}
         id={id}
         name={name}
+        menuPortalTarget={document.body}
+        menuPosition="fixed"
         className={clsx(`${isMulti ? "basic-multi-select" : "basic-single"}`)}
         classNamePrefix={`select-${label}`}
         placeholder={placeholder ?? `Pilih ${label}`}
@@ -141,6 +143,7 @@ export default function SelectTwo({
                 ? "var(--color-brand-600)" // hover / active
                 : "transparent",
           }),
+          menuPortal: (base) => ({ ...base, zIndex: 9999 }),
         }}
         onChange={(e: any) => {
           // Ambil hanya nilai value jika multi-select, jika single-select, ambil langsung value

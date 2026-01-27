@@ -24,6 +24,11 @@ export { default as ProductPage } from "./product";
 export { default as CreateProductPage } from "./product/create";
 export { default as EditProductPage } from "./product/edit";
 
+// PRODUCTION
+export { default as ProductionPage } from "./production";
+export { default as ProductionCreatePage } from "./production/create";
+export { default as ProductionEditPage } from "./production/edit";
+
 // PURCHASE
 export { default as PurchasePage } from "./purchase";
 export { default as CreatePurchasePage } from "./purchase/create";

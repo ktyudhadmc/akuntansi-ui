@@ -58,6 +58,11 @@ export default [
       { path: "products/create", element: <User.CreateProductPage /> },
       { path: "products/:id/edit", element: <User.EditProductPage /> },
 
+      /** PRODUKSI */
+      { path: "productions", element: <User.ProductionPage /> },
+      { path: "productions/create", element: <User.ProductionCreatePage /> },
+      { path: "productions/:id/edit", element: <User.ProductionEditPage /> },
+
       /** PURCHASE */
       { path: "purchases", element: <User.PurchasePage /> },
       { path: "purchases/create", element: <User.CreatePurchasePage /> },
