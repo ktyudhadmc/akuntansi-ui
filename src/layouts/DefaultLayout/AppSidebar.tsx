@@ -25,6 +25,7 @@ import {
   MdOutlineShowChart,
   MdOutlineInventory,
   MdOutlineInventory2,
+  MdOutlineReceiptLong,
 } from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
@@ -63,7 +64,7 @@ const navItems: NavItem[] = [
   {
     icon: <AiOutlineBank />,
     name: "Kas & Bank",
-    path: "/user/accounts",
+    path: "/user/accounts/cash-bank",
   },
   {
     icon: <MdOutlineSell />,
@@ -98,6 +99,11 @@ const navItems: NavItem[] = [
     icon: <MdOutlineInventory2 />,
     name: "Produksi",
     path: "/user/productions",
+  },
+  {
+    icon: <MdOutlineReceiptLong />,
+    name: "Daftar Akun",
+    path: "/user/accounts",
   },
 
   // {

@@ -14,6 +14,9 @@ export { default as CreateAccountPage } from "./account/create";
 export { default as EditAccountPage } from "./account/edit";
 export { default as ImportAccountPage } from "./account/import";
 
+//ACCOUNT CASH BANK
+export { default as AccountCashBankPage } from "./account/cash-bank";
+
 // CONTACT
 export { default as ContactPage } from "./contact";
 export { default as CreateContactPage } from "./contact/create";
