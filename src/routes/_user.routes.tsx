@@ -44,6 +44,7 @@ export default [
 
       /** ACCOUNT */
       { path: "accounts", element: <User.AccountPage /> },
+      { path: "accounts/cash-bank", element: <User.AccountCashBankPage /> },
       { path: "accounts/create", element: <User.CreateAccountPage /> },
       { path: "accounts/:id/edit", element: <User.EditAccountPage /> },
       { path: "accounts/:id/import", element: <User.ImportAccountPage /> },
@@ -57,6 +58,11 @@ export default [
       { path: "products", element: <User.ProductPage /> },
       { path: "products/create", element: <User.CreateProductPage /> },
       { path: "products/:id/edit", element: <User.EditProductPage /> },
+
+      /** PRODUKSI */
+      { path: "productions", element: <User.ProductionPage /> },
+      { path: "productions/create", element: <User.ProductionCreatePage /> },
+      { path: "productions/:id/edit", element: <User.ProductionEditPage /> },
 
       /** PURCHASE */
       { path: "purchases", element: <User.PurchasePage /> },
@@ -127,6 +133,7 @@ export default [
           { index: true, element: <Navigate to="companies" replace /> },
           { path: "companies", element: <UserSetting.CompanyPage /> },
           { path: "users", element: <UserSetting.UserPage /> },
+          { path: "accounts", element: <UserSetting.AccountPage /> },
         ],
       },
     ],

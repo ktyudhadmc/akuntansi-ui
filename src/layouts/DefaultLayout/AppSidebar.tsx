@@ -8,7 +8,7 @@ import {
   UserCircleIcon,
   // BoxCubeIcon,
   // CalenderIcon,
-  // HorizontaLDots,
+  HorizontaLDots,
   // ListIcon,
   // PageIcon,
   // PieChartIcon,
@@ -24,6 +24,8 @@ import {
   MdOutlineContacts,
   MdOutlineShowChart,
   MdOutlineInventory,
+  MdOutlineInventory2,
+  MdOutlineReceiptLong,
 } from "react-icons/md";
 
 import { useSidebar } from "@context/SidebarContext";
@@ -62,7 +64,7 @@ const navItems: NavItem[] = [
   {
     icon: <AiOutlineBank />,
     name: "Kas & Bank",
-    path: "/user/accounts",
+    path: "/user/accounts/cash-bank",
   },
   {
     icon: <MdOutlineSell />,
@@ -94,10 +96,16 @@ const navItems: NavItem[] = [
     path: "/user/products",
   },
   {
-    icon: <AiOutlineSetting />,
-    name: "Pengaturan",
-    path: "/user/settings",
+    icon: <MdOutlineInventory2 />,
+    name: "Produksi",
+    path: "/user/productions",
   },
+  {
+    icon: <MdOutlineReceiptLong />,
+    name: "Daftar Akun",
+    path: "/user/accounts",
+  },
+
   // {
   //   name: "Forms",
   //   icon: <ListIcon />,
@@ -118,36 +126,18 @@ const navItems: NavItem[] = [
   // },
 ];
 
-// const othersItems: NavItem[] = [
-//   {
-//     icon: <PieChartIcon />,
-//     name: "Charts",
-//     subItems: [
-//       { name: "Line Chart", path: "/line-chart", pro: false },
-//       { name: "Bar Chart", path: "/bar-chart", pro: false },
-//     ],
-//   },
-//   {
-//     icon: <BoxCubeIcon />,
-//     name: "UI Elements",
-//     subItems: [
-//       { name: "Alerts", path: "/alerts", pro: false },
-//       { name: "Avatar", path: "/avatars", pro: false },
-//       { name: "Badge", path: "/badge", pro: false },
-//       { name: "Buttons", path: "/buttons", pro: false },
-//       { name: "Images", path: "/images", pro: false },
-//       { name: "Videos", path: "/videos", pro: false },
-//     ],
-//   },
-//   {
-//     icon: <PlugInIcon />,
-//     name: "Authentication",
-//     subItems: [
-//       { name: "Sign In", path: "/signin", pro: false },
-//       { name: "Sign Up", path: "/signup", pro: false },
-//     ],
-//   },
-// ];
+const othersItems: NavItem[] = [
+  {
+    icon: <AiOutlineSetting />,
+    name: "Pengaturan",
+    path: "/user/settings",
+    subItems: [
+      { name: "Akuntansi", path: "/user/settings/accounts" },
+      { name: "Pengguna", path: "/user/settings/users" },
+      { name: "Perusahaan", path: "/user/settings/companies" },
+    ],
+  },
+];
 
 const AppSidebar: React.FC = () => {
   /** select company */
@@ -171,29 +161,29 @@ const AppSidebar: React.FC = () => {
     [location.pathname],
   );
 
-  // useEffect(() => {
-  //   let submenuMatched = false;
-  //   ["main", "others"].forEach((menuType) => {
-  //     const items = menuType === "main" ? navItems : othersItems;
-  //     items.forEach((nav, index) => {
-  //       if (nav.subItems) {
-  //         nav.subItems.forEach((subItem) => {
-  //           if (isActive(subItem.path)) {
-  //             setOpenSubmenu({
-  //               type: menuType as "main" | "others",
-  //               index,
-  //             });
-  //             submenuMatched = true;
-  //           }
-  //         });
-  //       }
-  //     });
-  //   });
+  useEffect(() => {
+    let submenuMatched = false;
+    ["main", "others"].forEach((menuType) => {
+      const items = menuType === "main" ? navItems : othersItems;
+      items.forEach((nav, index) => {
+        if (nav.subItems) {
+          nav.subItems.forEach((subItem) => {
+            if (isActive(subItem.path)) {
+              setOpenSubmenu({
+                type: menuType as "main" | "others",
+                index,
+              });
+              submenuMatched = true;
+            }
+          });
+        }
+      });
+    });
 
-  //   if (!submenuMatched) {
-  //     setOpenSubmenu(null);
-  //   }
-  // }, [location, isActive]);
+    if (!submenuMatched) {
+      setOpenSubmenu(null);
+    }
+  }, [location, isActive]);
 
   useEffect(() => {
     if (openSubmenu !== null) {
@@ -345,7 +335,7 @@ const AppSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
+      className={`fixed pt-16 flex flex-col lg:pt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
         ${
           isExpanded || isMobileOpen
             ? "w-[290px]"
@@ -374,13 +364,6 @@ const AppSidebar: React.FC = () => {
               </h3>
             </>
           ) : (
-            // <img
-            //   src="/images/logo/logo-icon.svg"
-            //   alt="Logo"
-            //   width={32}
-            //   height={32}
-            // />
-
             <AvatarText text="DMC" size="11" />
           )}
         </Link>
@@ -388,9 +371,7 @@ const AppSidebar: React.FC = () => {
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <nav className="mb-6">
           <div className="flex flex-col gap-4">
-            {isSelectCompany && renderMenuItems(navItems, "main")}
-
-            {/* <div>
+            <div>
               <h2
                 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
                   !isExpanded && !isHovered
@@ -403,10 +384,10 @@ const AppSidebar: React.FC = () => {
                 ) : (
                   <HorizontaLDots className="size-6" />
                 )}
-              </h2> */}
-
-            {/* </div> */}
-            {/* <div className="">
+              </h2>
+              {isSelectCompany && renderMenuItems(navItems, "main")}
+            </div>
+            <div className="">
               <h2
                 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
                   !isExpanded && !isHovered
@@ -421,7 +402,7 @@ const AppSidebar: React.FC = () => {
                 )}
               </h2>
               {renderMenuItems(othersItems, "others")}
-            </div> */}
+            </div>
           </div>
         </nav>
         {/* {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null} */}

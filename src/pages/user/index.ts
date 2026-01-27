@@ -14,6 +14,9 @@ export { default as CreateAccountPage } from "./account/create";
 export { default as EditAccountPage } from "./account/edit";
 export { default as ImportAccountPage } from "./account/import";
 
+//ACCOUNT CASH BANK
+export { default as AccountCashBankPage } from "./account/cash-bank";
+
 // CONTACT
 export { default as ContactPage } from "./contact";
 export { default as CreateContactPage } from "./contact/create";
@@ -23,6 +26,11 @@ export { default as EditContactPage } from "./contact/edit";
 export { default as ProductPage } from "./product";
 export { default as CreateProductPage } from "./product/create";
 export { default as EditProductPage } from "./product/edit";
+
+// PRODUCTION
+export { default as ProductionPage } from "./production";
+export { default as ProductionCreatePage } from "./production/create";
+export { default as ProductionEditPage } from "./production/edit";
 
 // PURCHASE
 export { default as PurchasePage } from "./purchase";
