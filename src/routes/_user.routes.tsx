@@ -132,6 +132,7 @@ export default [
           { index: true, element: <Navigate to="companies" replace /> },
           { path: "companies", element: <UserSetting.CompanyPage /> },
           { path: "users", element: <UserSetting.UserPage /> },
+          { path: "accounts", element: <UserSetting.AccountPage /> },
         ],
       },
     ],
