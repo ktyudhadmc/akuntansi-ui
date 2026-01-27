@@ -103,6 +103,11 @@ const navItems: NavItem[] = [
     icon: <AiOutlineSetting />,
     name: "Pengaturan",
     path: "/user/settings",
+    subItems: [
+      { name: "Akuntansi", path: "/user/settings/accounts" },
+      { name: "Pengguna", path: "/user/settings/users" },
+      { name: "Perusahaan", path: "/user/settings/companies" },
+    ],
   },
   // {
   //   name: "Forms",
