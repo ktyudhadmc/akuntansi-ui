@@ -9,10 +9,17 @@ export { default as VerifyOtp } from "./auth/VerifyOtp";
 export { default as ProfilePage } from "./profile";
 
 // ACCOUNT
-export { default as AccountPage } from "./account";
-export { default as CreateAccountPage } from "./account/create";
-export { default as EditAccountPage } from "./account/edit";
-export { default as ImportAccountPage } from "./account/import";
+export { default as COAPage } from "./account/chart-of-account";
+export { default as COACreatePage } from "./account/chart-of-account/CreatePage";
+export { default as COAEditPage } from "./account/chart-of-account/EditPage";
+export { default as COAImportPage } from "./account/chart-of-account/ImportPage";
+
+// ACCOUNT - CHART OF ACCOUNT
+export { default as COAShowPage } from "./account/chart-of-account/ShowPage";
+export { default as COABalanceSetupPage } from "./account/chart-of-account/BalanceSetupPage";
+export { default as COALockPeriodPage } from "./account/chart-of-account/LockPeriodPage";
+export { default as COAClosingBookPage } from "./account/chart-of-account/closing-book";
+export { default as COAClosingBookCreatePage } from "./account/chart-of-account/closing-book/CreatePage";
 
 //ACCOUNT CASH BANK
 export { default as AccountCashBankPage } from "./account/cash-bank";

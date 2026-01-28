@@ -103,7 +103,7 @@ const navItems: NavItem[] = [
   {
     icon: <MdOutlineReceiptLong />,
     name: "Daftar Akun",
-    path: "/user/accounts",
+    path: "/user/accounts/chart-of-account",
   },
 
   // {
