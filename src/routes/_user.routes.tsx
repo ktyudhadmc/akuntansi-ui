@@ -154,6 +154,31 @@ export default [
         ],
       },
 
+      /** JOURNAL */
+      {
+        path: "journals",
+        children: [
+          /** GENERAL JOURNAL */
+          {
+            path: "general",
+            children: [
+              {
+                index: true,
+                element: <User.GeneralJournalPage />,
+              },
+              {
+                path: "create",
+                element: <User.GeneralJournalCreatePage />,
+              },
+              {
+                path: ":id/edit",
+                element: <User.GeneralJournalEditPage />,
+              },
+            ],
+          },
+        ],
+      },
+
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
       { path: "reports/journal", element: <User.ReportBusinessJournalPage /> },
