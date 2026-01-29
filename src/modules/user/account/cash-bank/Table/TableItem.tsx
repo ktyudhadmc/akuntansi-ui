@@ -1,7 +1,7 @@
 import Button from "@components/ui/button/Button";
 
 import type { Account } from "@services/user/account/interfaces/response.type";
-import { formattedCurrency } from "@helpers/currency";
+import { formatIDR } from "@helpers/index";
 
 import TableItemMenu from "./TableItemMenu";
 
@@ -27,10 +27,10 @@ export default function TableItem({ item }: Props) {
         </div>
       </td>
       <td className="px-4 py-3  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {formattedCurrency(0)}
+        {formatIDR(0)}
       </td>
       <td className="px-4 py-3  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {formattedCurrency(0)}
+        {formatIDR(0)}
       </td>
       <td className="px-4 py-3  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
         <TableItemMenu id={item.id} name={item.name} code={item.code} />

@@ -115,7 +115,7 @@ export default function GeneralJournalEdit() {
             />
           </Skeleton>
 
-          <Skeleton isLoading={accountLoading ?? loading}>
+          <Skeleton isLoading={accountLoading || loading}>
             <SelectTwo
               label="Akun debit"
               name="account_id"
@@ -130,7 +130,8 @@ export default function GeneralJournalEdit() {
               isRequired
             />
           </Skeleton>
-          <Skeleton isLoading={accountLoading ?? loading}>
+
+          <Skeleton isLoading={accountLoading || loading}>
             <SelectTwo
               label="Akun kredit"
               name="counter_account_id"

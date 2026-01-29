@@ -3,12 +3,9 @@ import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
 import TableItem from "./TableItem";
 import TableHeader from "./TableHeader";
-import { formatIDRLocale, sumBy } from "@helpers/index";
 
 export default function GeneralJournal() {
   const { data, loading, setSearch } = useGetAll();
-
-  const grandTotal = sumBy(data, (i) => i.amount);
 
   return (
     <>
@@ -20,13 +17,28 @@ export default function GeneralJournal() {
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Akun
+                  Tanggal Transaksi
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Debit
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Nomor Transaksi
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Kredit
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Nomor Referensi
+                </th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Nominal
+                </th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Akun debit
+                </th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Akun kredit
+                </th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Deskripsi
+                </th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Catatan
                 </th>
                 <th></th>
               </tr>
@@ -55,19 +67,6 @@ export default function GeneralJournal() {
                 })
               )}
             </tbody>
-            <tfoot>
-              <tr>
-                <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white font-semibold">
-                  Total Keseluruhan
-                </td>
-                <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                  {formatIDRLocale(grandTotal)}
-                </td>
-                <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                  {formatIDRLocale(grandTotal)}
-                </td>
-              </tr>
-            </tfoot>
           </table>
         </div>
       </div>

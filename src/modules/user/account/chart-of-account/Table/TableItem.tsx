@@ -1,5 +1,5 @@
 import type { Account } from "@services/user/account/interfaces/response.type";
-import { formattedCurrency } from "@helpers/currency";
+import { formatIDR } from "@helpers/currency";
 
 import TableItemMenu from "./TableItemMenu";
 import { AiOutlineDash, AiOutlineLock } from "react-icons/ai";
@@ -32,10 +32,10 @@ export default function TableItem({ item }: Props) {
         </Link>
       </td>
       <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {formattedCurrency(0)}
+        {formatIDR(0)}
       </td>
       <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {formattedCurrency(0)}
+        {formatIDR(0)}
       </td>
       <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
         <TableItemMenu

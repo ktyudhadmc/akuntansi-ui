@@ -16,7 +16,7 @@ import {
   // TableIcon,
 } from "@assets/icons";
 
-import { HiOutlineCube, HiOutlineDocumentText } from "react-icons/hi";
+import { HiOutlineCube } from "react-icons/hi";
 import { AiOutlineBank, AiOutlineSetting } from "react-icons/ai";
 import {
   MdOutlineSell,
@@ -56,11 +56,11 @@ const navItems: NavItem[] = [
     name: "Profil",
     path: "/user/profile",
   },
-  {
-    icon: <HiOutlineDocumentText />,
-    name: "Jurnal Umum",
-    path: "/user/journals/general",
-  },
+  // {
+  //   icon: <HiOutlineDocumentText />,
+  //   name: "Jurnal Umum",
+  //   path: "/user/journals/general",
+  // },
   {
     icon: <MdOutlineShowChart />,
     name: "Laporan",

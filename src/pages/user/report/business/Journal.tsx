@@ -10,7 +10,7 @@ export default function ReportBusinessJournalPage() {
       <PageBreadcrumb
         pageTitle={pageTitle}
         breadcrumbs={[
-          { label: "Business", path: "/user/reports?tab=business" },
+          { label: "Sekilas bisnis", path: "/user/reports?tab=business" },
         ]}
       />
 
