@@ -13,7 +13,7 @@ import Skeleton from "@components/Skeleton/Skeleton";
 import SelectTwo from "@components/form/SelectTwo";
 
 import useCreate from "@services/user/journal/hooks/useCreate";
-import useGetAllAccount from "@services/user/account/hooks/useGetAll";
+import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import { toast } from "react-toastify";
 
@@ -56,6 +56,7 @@ export default function GeneralJournalCreate() {
         <div className="grid md:grid-cols-2 gap-4">
           <DatePicker
             label="Tgl. transaksi"
+            id="date"
             name="date"
             defaultDate={new Date()}
             required

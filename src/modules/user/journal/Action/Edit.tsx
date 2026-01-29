@@ -13,7 +13,7 @@ import DatePicker from "@components/form/date-picker";
 import Skeleton from "@components/Skeleton/Skeleton";
 import SelectTwo from "@components/form/SelectTwo";
 
-import useGetAllAccount from "@services/user/account/hooks/useGetAll";
+import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useUpdate from "@services/user/journal/hooks/useUpdate";
 import type { ICreateGeneralJournalPayload } from "@services/user/journal/interfaces/request.type";
 import useGetGeneralJournal from "@services/user/journal/hooks/useGet";

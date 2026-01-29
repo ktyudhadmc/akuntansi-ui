@@ -48,14 +48,28 @@ export default function GeneralJournal() {
                   </td>
                 </tr>
               ) : (
-                data.map((item, index) => {
-                  return (
-                    <TableItem key={`table-account-${index}`} item={item} />
-                  );
-                })
+                <>
+                  {data.map((item, index) => {
+                    return (
+                      <TableItem key={`table-account-${index}`} item={item} />
+                    );
+                  })}
+
+                  <tr>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white font-semibold">
+                      Total Keseluruhan
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
+                      {formatIDRLocale(grandTotal)}
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
+                      {formatIDRLocale(grandTotal)}
+                    </td>
+                  </tr>
+                </>
               )}
             </tbody>
-            <tfoot>
+            {/* <tfoot>
               <tr>
                 <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white font-semibold">
                   Total Keseluruhan
@@ -67,7 +81,7 @@ export default function GeneralJournal() {
                   {formatIDRLocale(grandTotal)}
                 </td>
               </tr>
-            </tfoot>
+            </tfoot> */}
           </table>
         </div>
       </div>

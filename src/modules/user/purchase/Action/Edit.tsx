@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import useGetPurchase from "@services/user/purchase/hooks/useGet";
 import useUpdate from "@services/user/purchase/hooks/useUpdate";
 import useGetAllUnit from "@services/user/product/unit/hooks/useGetAll";
-import useGetAllAccount from "@services/user/account/hooks/useGetAll";
+import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useGetAllProduct from "@services/user/product/index/hooks/useGetAll";
 import useGetAllSupplier from "@services/user/supplier/hooks/useGetAll";
 import useMapInputOptions from "@hooks/useMapInputOptions";

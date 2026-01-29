@@ -13,8 +13,8 @@ import {
   transactionalOptions,
 } from "./select-options.constants";
 
-import useCreate from "@services/user/account/hooks/useCreate";
-import type { ICreateAccountPayload } from "@services/user/account/interfaces/request.type";
+import useCreate from "@services/user/account/index/hooks/useCreate";
+import type { ICreateAccountPayload } from "@services/user/account/index/interfaces/request.type";
 
 type FormFields = ICreateAccountPayload;
 

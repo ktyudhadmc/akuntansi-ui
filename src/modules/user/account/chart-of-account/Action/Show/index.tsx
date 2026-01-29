@@ -1,4 +1,4 @@
-import useGetAccount from "@services/user/account/hooks/useGet";
+import useGetAccount from "@services/user/account/index/hooks/useGet";
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 

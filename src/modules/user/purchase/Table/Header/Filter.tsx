@@ -61,6 +61,11 @@ export default function Filter({ onClose, onOpen }: Props) {
 
   const onClear = () => {
     methods.reset();
+
+    setStartTransactionDate(null);
+    setEndTransactionDate(null);
+    setStartDueDate(null);
+    setEndDueDate(null);
   };
 
   return (
