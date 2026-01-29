@@ -1,4 +1,4 @@
-import useGetAll from "@services/user/journal/general/hooks/useGetAll";
+import useGetAll from "@services/user/report/journal/hooks/useGetAll";
 import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
 import TableItem from "./TableItem";

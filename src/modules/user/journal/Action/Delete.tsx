@@ -1,7 +1,7 @@
 import Button from "@components/ui/button/Button";
 import { Modal } from "@components/ui/modal";
 
-import useDelete from "@services/user/journal/general/hooks/useDelete";
+import useDelete from "@services/user/journal/hooks/useDelete";
 import { toast } from "react-toastify";
 
 interface Props {

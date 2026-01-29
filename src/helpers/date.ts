@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import type { DateOption } from "@def/option";
 
 export const formatMonthValue = (date = new Date()): string => {
@@ -11,6 +12,9 @@ export const parseMonthValue = (value: string) => {
     month: Number(month),
   };
 };
+
+export const formatDateYMD = (date: Date) => dayjs(date).format("YYYY-MM-DD");
+export const parseYMDToDate = (ymd: string) => dayjs(ymd, "YYYY-MM-DD").toDate();
 
 export function formatDateInput(
   date?: DateOption,

@@ -1,7 +1,7 @@
 import { formatIDR } from "@helpers/currency";
 
 import TableItemMenu from "./TableItemMenu";
-import type { GeneralJournal } from "@services/user/journal/general/interfaces/response.type";
+import type { GeneralJournal } from "@services/user/journal/interfaces/response.type";
 
 interface Props {
   item: GeneralJournal;

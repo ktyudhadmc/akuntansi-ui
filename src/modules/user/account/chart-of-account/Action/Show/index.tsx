@@ -36,7 +36,7 @@ export default function ChartOfAccountShow() {
           </div>
 
           <Button
-            onClick={() => navigate(`${data?.id}/edit`)}
+            onClick={() => navigate(`edit`)}
             size="xs"
             variant="outline"
             className="w-fit h-fit my-auto"
@@ -77,7 +77,7 @@ export default function ChartOfAccountShow() {
                   Tanggal
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Akun
+                  Nomor
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Kontak
@@ -97,7 +97,7 @@ export default function ChartOfAccountShow() {
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {loading && (
                 <tr>
-                  <td colSpan={5} className="text-center py-16">
+                  <td colSpan={6} className="text-center py-16">
                     <div className="sweet-loading">
                       <BeatLoader color="var(--color-brand-600)" />
                     </div>

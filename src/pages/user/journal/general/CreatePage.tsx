@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import GeneralJournalCreate from "@modules/user/journal/general/Action/Create";
+import GeneralJournalCreate from "@modules/user/journal/Action/Create";
 
 export default function GeneralJournalCreatePage() {
   const pageTitle = "Buat Jurnal Umum";

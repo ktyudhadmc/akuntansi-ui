@@ -1,9 +1,3 @@
-export interface IGetAllResponse {
-  status?: string;
-  message?: string;
-  data: GeneralJournal[];
-}
-
 export interface IGetResponse {
   status?: string;
   message?: string;

@@ -1,7 +1,7 @@
 import { formatIDRLocale } from "@helpers/index";
 
 // import TableItemMenu from "./TableItemMenu";
-import type { GeneralJournal } from "@services/user/journal/general/interfaces/response.type";
+import type { GeneralJournal } from "@services/user/journal/interfaces/response.type";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -30,7 +30,7 @@ export default function TableItem({ item }: Props) {
       <tr>
         <td className="px-8 py-1 text-gray-500 text-start text-sm dark:text-gray-400 ">
           <Link
-            to={`/user/accounts/chart-of-account/${item.id}/edit`}
+            to={`/user/accounts/chart-of-account/${item.account.id}`}
             className="cursor-pointer text-brand-400 dark:text-gray-400"
           >
             ({item.account.code}) - {item.account.name}
@@ -48,7 +48,7 @@ export default function TableItem({ item }: Props) {
       <tr className="border-b border-black dark:border-white">
         <td className="px-8 py-1 text-start text-sm">
           <Link
-            to={`/user/accounts/chart-of-account/${item.id}/edit`}
+            to={`/user/accounts/chart-of-account/${item.counter_account.id}`}
             className="cursor-pointer text-brand-400 dark:text-gray-400"
           >
             ({item.counter_account.code}) - {item.counter_account.name}
