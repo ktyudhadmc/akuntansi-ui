@@ -15,9 +15,10 @@ export default function useGetAll() {
   const endTransactionDate = useUserStore((state) => state.endTransactionDate);
   const startDueDate = useUserStore((state) => state.startDueDate);
   const endDueDate = useUserStore((state) => state.endDueDate);
+  const supplier = useUserStore((state) => state.supplier);
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
-   axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
+    axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
       .get(url)
       .then((res) => res.data);
 
@@ -28,6 +29,7 @@ export default function useGetAll() {
       end_transaction_date: endTransactionDate,
       start_due_date: startDueDate,
       end_due_date: endDueDate,
+      supplier_id: supplier,
     },
     { skipEmptyString: true, skipNull: true },
   );
