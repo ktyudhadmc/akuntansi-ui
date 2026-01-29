@@ -1,35 +1,22 @@
 import type React from "react";
-import { type MaskOptions, useMask } from "@react-input/mask";
-import { useFormContext } from "react-hook-form";
 
 interface CheckboxProps {
   label?: string;
+  checked: boolean;
   className?: string;
   id?: string;
-  value?: string;
-  name: string;
+  onChange: (checked: boolean) => void;
   disabled?: boolean;
-  required?: boolean;
-  maskOptions?: MaskOptions;
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
   label,
+  checked,
   id,
-  name,
-  value,
+  onChange,
   className = "",
   disabled = false,
-  required = false,
-  maskOptions,
-  ...restProps
 }) => {
-  const { register, watch } = useFormContext();
-  const inputRef = useMask(maskOptions);
-
-  const selectedValues = watch(name) || [];
-  const checked = value ? selectedValues.includes(value) : selectedValues;
-
   return (
     <label
       className={`flex items-center space-x-3 group cursor-pointer ${
@@ -38,20 +25,12 @@ const Checkbox: React.FC<CheckboxProps> = ({
     >
       <div className="relative w-5 h-5">
         <input
-          ref={inputRef as any}
-          {...restProps}
-          {...(name &&
-            register(name, {
-              required: required && {
-                value: true,
-                message: "Tidak Boleh Kosong",
-              },
-            }))}
           id={id}
-          value={value}
           type="checkbox"
           className={`w-5 h-5 appearance-none cursor-pointer dark:border-gray-700 border border-gray-300 checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60 
           ${className}`}
+          checked={checked}
+          onChange={(e) => onChange(e.target.checked)}
           disabled={disabled}
         />
         {checked && (

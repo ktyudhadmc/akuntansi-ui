@@ -1,17 +1,22 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import AccountTable from "@modules/user/account/cash-bank/Table";
+import COALockPeriod from "@modules/user/account/chart-of-account/Action/LockPeriod";
 
-export default function AccountCashBankPage() {
-  const pageTitle = "Kas & Bank";
+export default function COABalanceSetupPage() {
+  const pageTitle = "Kunci Periode";
+
   return (
     <>
       <PageMeta title={pageTitle} />
-      <PageBreadcrumb pageTitle={pageTitle} />
+
+      <PageBreadcrumb
+        pageTitle={pageTitle}
+        breadcrumbs={[{ label: "Daftar Akun", path: ".." }]}
+      />
 
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
-          <AccountTable />
+          <COALockPeriod />
         </div>
       </div>
     </>
