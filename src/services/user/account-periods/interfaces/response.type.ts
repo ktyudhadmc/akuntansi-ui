@@ -1,16 +1,16 @@
 export interface IGetAllResponse {
   status?: string;
   message?: string;
-  data: Account[];
+  data: AccountPeriod[];
 }
 
 export interface IGetResponse {
   status?: string;
   message?: string;
-  data: Account;
+  data: AccountPeriod;
 }
 
-export interface Account {
+export interface AccountPeriod {
   id: number;
   code: string;
   name: string;

@@ -43,11 +43,43 @@ export default [
       { path: "profile", element: <User.ProfilePage /> },
 
       /** ACCOUNT */
-      { path: "accounts", element: <User.AccountPage /> },
-      { path: "accounts/cash-bank", element: <User.AccountCashBankPage /> },
-      { path: "accounts/create", element: <User.CreateAccountPage /> },
-      { path: "accounts/:id/edit", element: <User.EditAccountPage /> },
-      { path: "accounts/:id/import", element: <User.ImportAccountPage /> },
+      {
+        path: "accounts",
+        children: [
+          { index: true, element: <Navigate to="chart-of-account" replace /> },
+
+          /** ACCOUNT - CHART OF ACCOUNT */
+          {
+            path: "chart-of-account",
+            children: [
+              { index: true, element: <User.COAPage /> },
+              { path: "create", element: <User.COACreatePage /> },
+              { path: ":id", element: <User.COAShowPage /> },
+              { path: ":id/edit", element: <User.COAEditPage /> },
+              { path: ":id/import", element: <User.COAImportPage /> },
+              { path: "balance-setup", element: <User.COABalanceSetupPage /> },
+              { path: "locking-periods", element: <User.COALockPeriodPage /> },
+
+              {
+                path: "closing-books",
+                children: [
+                  { index: true, element: <User.COAClosingBookPage /> },
+                  {
+                    path: "create",
+                    element: <User.COAClosingBookCreatePage />,
+                  },
+                ],
+              },
+            ],
+          },
+
+          /** ACCOUNT - CASH & BANK */
+          {
+            path: "cash-bank",
+            children: [{ index: true, element: <User.AccountCashBankPage /> }],
+          },
+        ],
+      },
 
       /** CONTACT */
       { path: "contacts", element: <User.ContactPage /> },
@@ -116,6 +148,31 @@ export default [
               {
                 path: ":id/edit",
                 element: <User.InventoryUsageEditPage />,
+              },
+            ],
+          },
+        ],
+      },
+
+      /** JOURNAL */
+      {
+        path: "journals",
+        children: [
+          /** GENERAL JOURNAL */
+          {
+            path: "general",
+            children: [
+              {
+                index: true,
+                element: <User.GeneralJournalPage />,
+              },
+              {
+                path: "create",
+                element: <User.GeneralJournalCreatePage />,
+              },
+              {
+                path: ":id/edit",
+                element: <User.GeneralJournalEditPage />,
               },
             ],
           },

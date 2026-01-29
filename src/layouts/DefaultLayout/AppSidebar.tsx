@@ -16,7 +16,7 @@ import {
   // TableIcon,
 } from "@assets/icons";
 
-import { HiOutlineCube } from "react-icons/hi";
+import { HiOutlineCube, HiOutlineDocumentText } from "react-icons/hi";
 import { AiOutlineBank, AiOutlineSetting } from "react-icons/ai";
 import {
   MdOutlineSell,
@@ -55,6 +55,11 @@ const navItems: NavItem[] = [
     icon: <UserCircleIcon />,
     name: "Profil",
     path: "/user/profile",
+  },
+  {
+    icon: <HiOutlineDocumentText />,
+    name: "Jurnal Umum",
+    path: "/user/journals/general",
   },
   {
     icon: <MdOutlineShowChart />,
@@ -103,7 +108,7 @@ const navItems: NavItem[] = [
   {
     icon: <MdOutlineReceiptLong />,
     name: "Daftar Akun",
-    path: "/user/accounts",
+    path: "/user/accounts/chart-of-account",
   },
 
   // {
