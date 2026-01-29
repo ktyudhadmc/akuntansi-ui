@@ -3,14 +3,12 @@ import useSWR, { type Fetcher } from "swr";
 import type { IGetAllResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
-import useGlobalStore from "@store/useStore";
 
 export default function useGetAll() {
-  const currentCompany = useGlobalStore((state) => state.currentCompany);
   const [name, setName] = useState("");
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
-   axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
+    axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
       .get(url)
       .then((res) => res.data);
 
@@ -19,10 +17,7 @@ export default function useGetAll() {
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(
-    `/accounts/company/${currentCompany?.id}?${qs}`,
-    fetcher,
-  );
+  const { data, error } = useSWR(`/accounts?${qs}`, fetcher);
 
   const onSetName = useCallback((name: string) => {
     setName(name);

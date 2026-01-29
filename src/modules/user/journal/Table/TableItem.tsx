@@ -1,7 +1,7 @@
-import { formattedCurrency } from "@helpers/currency";
+import { formatIDR } from "@helpers/currency";
 
 import TableItemMenu from "./TableItemMenu";
-import type { GeneralJournal } from "@services/user/journal/general/interfaces/response.type";
+import type { GeneralJournal } from "@services/user/journal/interfaces/response.type";
 
 interface Props {
   item: GeneralJournal;
@@ -20,7 +20,7 @@ export default function TableItem({ item }: Props) {
         {item.reff}
       </td>
       <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap font-semibold">
-        {formattedCurrency(item.amount)}
+        {formatIDR(item.amount)}
       </td>
       <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
         <span className="font-semibold">{item.account.code}</span>

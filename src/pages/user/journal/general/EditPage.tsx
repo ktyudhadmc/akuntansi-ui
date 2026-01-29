@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import GeneralJournalEdit from "@modules/user/journal/general/Action/Edit";
+import GeneralJournalEdit from "@modules/user/journal/Action/Edit";
 
 export default function GeneralJournalEditPage() {
   const pageTitle = "Ubah Jurnal Umum";

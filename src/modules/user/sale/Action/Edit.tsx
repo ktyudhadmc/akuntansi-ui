@@ -16,7 +16,7 @@ import Select from "@components/form/Select";
 import useGetSale from "@services/user/sale/hooks/useGet";
 import useUpdate from "@services/user/sale/hooks/useUpdate";
 import useGetAllUnit from "@services/user/product/unit/hooks/useGetAll";
-import useGetAllAccount from "@services/user/account/hooks/useGetAll";
+import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useGetAllProduct from "@services/user/product/index/hooks/useGetAll";
 import useGetAllCustomer from "@services/user/customer/hooks/useGetAll";
 import useGetAllService from "@services/user/service/hooks/useGetAll";

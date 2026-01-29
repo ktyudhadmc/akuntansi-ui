@@ -9,7 +9,7 @@ import DatePicker from "@components/form/date-picker";
 import Label from "@components/form/Label";
 import useUserStore from "@store/useUserStore";
 import Select from "@components/form/Select";
-import useGetAllAccount from "@services/user/account/hooks/useGetAll";
+import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import Skeleton from "@components/Skeleton/Skeleton";
 
