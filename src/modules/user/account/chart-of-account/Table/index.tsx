@@ -1,7 +1,7 @@
 import TableItem from "./TableItem";
 import TableHeader from "./TableHeader";
 
-import useGetAll from "@services/user/account/hooks/useGetAll";
+import useGetAll from "@services/user/account/index/hooks/useGetAll";
 import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
 
@@ -26,10 +26,10 @@ export default function AccountTable() {
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Nama akun
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                   Saldo bank
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                   Saldo di jurnal
                 </th>
                 <th></th>

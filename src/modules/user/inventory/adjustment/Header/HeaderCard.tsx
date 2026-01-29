@@ -1,4 +1,4 @@
-import { formattedCurrency } from "@helpers/currency";
+import { formatIDR } from "@helpers/index";
 
 interface Props {
   title: string;
@@ -48,7 +48,7 @@ export default function HeaderCard({
         <span className="text-xs dark:text-gray-400">Total</span>
         <br />
         <span className="font-semibold text-xl dark:text-gray-400">
-          {formattedCurrency(amount)}
+          {formatIDR(amount)}
         </span>
       </div>
     </div>

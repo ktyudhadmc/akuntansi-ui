@@ -71,4 +71,4 @@ export { default as GeneralJournalEditPage } from "./journal/general/EditPage";
 export { default as ReportPage } from "./report";
 
 // REPORT BUSINESS
-export { default as ReportBusinessJournalPage } from "./report/business/Journal";
+export { default as ReportBusinessGeneralJournalPage } from "./report/business/ReportBusinessJournalPage";

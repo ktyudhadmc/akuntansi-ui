@@ -181,7 +181,10 @@ export default [
 
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
-      { path: "reports/journal", element: <User.ReportBusinessJournalPage /> },
+      {
+        path: "reports/journal",
+        element: <User.ReportBusinessGeneralJournalPage />,
+      },
 
       /** SETTING */
       {

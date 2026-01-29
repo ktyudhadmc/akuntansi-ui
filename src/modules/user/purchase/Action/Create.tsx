@@ -4,7 +4,7 @@ import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import useGetAllUnit from "@services/user/product/unit/hooks/useGetAll";
-import useGetAllAccount from "@services/user/account/hooks/useGetAll";
+import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useGetAllProduct from "@services/user/product/index/hooks/useGetAll";
 import useGetAllSupplier from "@services/user/supplier/hooks/useGetAll";
 import useCreate from "@services/user/purchase/hooks/useCreate";

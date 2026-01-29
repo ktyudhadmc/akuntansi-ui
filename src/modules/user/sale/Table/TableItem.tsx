@@ -1,6 +1,6 @@
 // import Badge from "@components/ui/badge/Badge";
 import TableItemMenu from "./TableItemMenu";
-import { formattedCurrency } from "@helpers/currency";
+import { formatIDR } from "@helpers/currency";
 import type { Sale } from "@services/user/sale/interfaces/response.type";
 
 interface Props {
@@ -36,10 +36,10 @@ export default function TableItem({ item }: Props) {
         <p className="text-theme-xs">{item.unit.name}</p>
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {formattedCurrency(item.price)}
+        {formatIDR(item.price)}
       </td>
       <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {formattedCurrency(item.total_price)}
+        {formatIDR(item.total_price)}
       </td>
 
       <td className="px-4 py-3  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">

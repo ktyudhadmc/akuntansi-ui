@@ -13,9 +13,9 @@ import {
   transactionalOptions,
 } from "./select-options.constants";
 
-import useUpdate from "@services/user/account/hooks/useUpdate";
-import type { ICreateAccountPayload } from "@services/user/account/interfaces/request.type";
-import useGetAccount from "@services/user/account/hooks/useGet";
+import useUpdate from "@services/user/account/index/hooks/useUpdate";
+import type { ICreateAccountPayload } from "@services/user/account/index/interfaces/request.type";
+import useGetAccount from "@services/user/account/index/hooks/useGet";
 import Skeleton from "@components/Skeleton/Skeleton";
 import SelectTwo from "@components/form/SelectTwo";
 

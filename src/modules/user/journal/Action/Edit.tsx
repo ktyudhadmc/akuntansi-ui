@@ -13,10 +13,10 @@ import DatePicker from "@components/form/date-picker";
 import Skeleton from "@components/Skeleton/Skeleton";
 import SelectTwo from "@components/form/SelectTwo";
 
-import useGetAllAccount from "@services/user/account/hooks/useGetAll";
-import useUpdate from "@services/user/journal/general/hooks/useUpdate";
-import type { ICreateGeneralJournalPayload } from "@services/user/journal/general/interfaces/request.type";
-import useGetGeneralJournal from "@services/user/journal/general/hooks/useGet";
+import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
+import useUpdate from "@services/user/journal/hooks/useUpdate";
+import type { ICreateGeneralJournalPayload } from "@services/user/journal/interfaces/request.type";
+import useGetGeneralJournal from "@services/user/journal/hooks/useGet";
 
 type FormFields = ICreateGeneralJournalPayload;
 
@@ -115,7 +115,7 @@ export default function GeneralJournalEdit() {
             />
           </Skeleton>
 
-          <Skeleton isLoading={accountLoading ?? loading}>
+          <Skeleton isLoading={accountLoading || loading}>
             <SelectTwo
               label="Akun debit"
               name="account_id"
@@ -130,7 +130,8 @@ export default function GeneralJournalEdit() {
               isRequired
             />
           </Skeleton>
-          <Skeleton isLoading={accountLoading ?? loading}>
+
+          <Skeleton isLoading={accountLoading || loading}>
             <SelectTwo
               label="Akun kredit"
               name="counter_account_id"

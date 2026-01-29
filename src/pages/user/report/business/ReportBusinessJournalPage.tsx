@@ -3,14 +3,14 @@ import PageMeta from "@components/common/PageMeta";
 import Journal from "@modules/user/report/business/Journal";
 
 export default function ReportBusinessJournalPage() {
-  const pageTitle = "Jurnal";
+  const pageTitle = "Jurnal Umum";
   return (
     <>
       <PageMeta title={pageTitle} />
       <PageBreadcrumb
         pageTitle={pageTitle}
         breadcrumbs={[
-          { label: "Business", path: "/user/reports?tab=business" },
+          { label: "Sekilas bisnis", path: "/user/reports?tab=business" },
         ]}
       />
 

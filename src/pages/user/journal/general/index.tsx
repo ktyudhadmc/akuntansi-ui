@@ -1,9 +1,9 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import GeneralJournal from "@modules/user/journal/general/Table";
+import GeneralJournal from "@modules/user/journal/Table";
 
 export default function GeneralJournalPage() {
-  const pageTitle = "Jurnal Umum / Memorial";
+  const pageTitle = "Jurnal Umum";
   return (
     <>
       <PageMeta title={pageTitle} />
