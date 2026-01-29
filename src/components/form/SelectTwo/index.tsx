@@ -143,7 +143,7 @@ export default function SelectTwo({
                 ? "var(--color-brand-600)" // hover / active
                 : "transparent",
           }),
-          menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+          menuPortal: (base) => ({ ...base, zIndex: 100001 }),
         }}
         onChange={(e: any) => {
           // Ambil hanya nilai value jika multi-select, jika single-select, ambil langsung value

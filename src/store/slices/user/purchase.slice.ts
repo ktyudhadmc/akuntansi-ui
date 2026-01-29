@@ -6,10 +6,12 @@ export declare interface UserPurchaseState {
   endTransactionDate: DateOption | null;
   startDueDate: DateOption | null;
   endDueDate: DateOption | null;
+  supplier: string | null;
   setStartTransactionDate: (param: DateOption | null) => void;
   setEndTransactionDate: (param: DateOption | null) => void;
   setStartDueDate: (param: DateOption | null) => void;
   setEndDueDate: (param: DateOption | null) => void;
+  setSupplier: (param: string | null) => void;
 }
 
 const createUserPurchaseSlice: StateCreator<UserPurchaseState> = (set) => ({
@@ -18,10 +20,12 @@ const createUserPurchaseSlice: StateCreator<UserPurchaseState> = (set) => ({
   endTransactionDate: null,
   startDueDate: null,
   endDueDate: null,
+  supplier: null,
   setStartTransactionDate: (param) => set({ startTransactionDate: param }),
   setEndTransactionDate: (param) => set({ endTransactionDate: param }),
   setStartDueDate: (param) => set({ startDueDate: param }),
   setEndDueDate: (param) => set({ endDueDate: param }),
+  setSupplier: (param) => set({ supplier: param }),
 });
 
 export default createUserPurchaseSlice;

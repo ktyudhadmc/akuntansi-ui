@@ -34,6 +34,7 @@ export default function Filter({ onClose, onOpen }: Props) {
   const endTransactionDate = useUserStore((state) => state.endTransactionDate);
   const startDueDate = useUserStore((state) => state.startDueDate);
   const endDueDate = useUserStore((state) => state.endDueDate);
+  const supplier = useUserStore((state) => state.supplier);
 
   const setStartTransactionDate = useUserStore(
     (state) => state.setStartTransactionDate,
@@ -43,6 +44,7 @@ export default function Filter({ onClose, onOpen }: Props) {
   );
   const setStartDueDate = useUserStore((state) => state.setStartDueDate);
   const setEndDueDate = useUserStore((state) => state.setEndDueDate);
+  const setSupplier = useUserStore((state) => state.setSupplier);
 
   const { data: suppliers } = useGetAll();
   const supplierOptions = useMapInputOptions(suppliers);
@@ -51,12 +53,13 @@ export default function Filter({ onClose, onOpen }: Props) {
   // console.log(startTransactionDate);
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    console.log(state);
-
     setStartTransactionDate(state.start_date);
     setEndTransactionDate(state.end_date);
     setStartDueDate(state.start_due_date);
     setEndDueDate(state.end_due_date);
+    setSupplier(state.supplier);
+
+    onClose();
   };
 
   const onClear = () => {
@@ -66,6 +69,7 @@ export default function Filter({ onClose, onOpen }: Props) {
     setEndTransactionDate(null);
     setStartDueDate(null);
     setEndDueDate(null);
+    setSupplier(null);
   };
 
   return (
@@ -91,14 +95,12 @@ export default function Filter({ onClose, onOpen }: Props) {
           <DatePicker
             id="start_date"
             name="start_date"
-            defaultDate={startTransactionDate ?? new Date()}
-            required
+            defaultDate={startTransactionDate}
           />
           <DatePicker
             id="end_date"
             name="end_date"
-            defaultDate={endTransactionDate ?? new Date()}
-            required
+            defaultDate={endTransactionDate}
           />
         </div>
 
@@ -107,21 +109,22 @@ export default function Filter({ onClose, onOpen }: Props) {
           <DatePicker
             id="start_due_date"
             name="start_due_date"
-            defaultDate={startDueDate ?? new Date()}
-            required
+            defaultDate={startDueDate}
           />
           <DatePicker
             id="end_due_date"
             name="end_due_date"
-            defaultDate={endDueDate ?? new Date()}
-            required
+            defaultDate={endDueDate}
           />
         </div>
 
         <SelectTwo
           label="Supplier"
-          name="supplier_id"
+          name="supplier"
           selectTwoOptions={supplierOptions}
+          defaultValue={supplierOptions.filter(
+            (item) => item.value == supplier,
+          )}
           isClearable
           isSearchable
         />
