@@ -17,7 +17,7 @@ export default function useGetAllCashBank() {
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/accounts?${qs}`, fetcher);
+  const { data, error } = useSWR(`/bank-cash-account?${qs}`, fetcher);
 
   const onSetName = useCallback((name: string) => {
     setName(name);

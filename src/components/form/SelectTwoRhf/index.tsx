@@ -135,9 +135,9 @@ export default function SelectTwoRhf({
                 option: (base, state) => ({
                   ...base,
                   backgroundColor: state.isSelected
-                    ? "var(--color-brand-600)" // selected
+                    ? "var(--color-brand-400)" // selected
                     : state.isFocused
-                      ? "var(--color-brand-600)" // hover / active
+                      ? "var(--color-brand-100)" // hover / active
                       : "transparent",
                 }),
                 menuPortal: (base) => ({ ...base, zIndex: 100001 }),
