@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 import { ExcelIcon } from "@assets/icons";
@@ -13,27 +13,32 @@ import useFileUpload from "@hooks/useFileUpload";
 import type { IImportPurchasePayload } from "@services/user/purchase/interfaces/request.type";
 import useImport from "@services/user/purchase/hooks/useImport";
 import { toast } from "react-toastify";
+import config from "@constants/config";
+import TabsNav from "@components/ui/tabs";
 
 type FormFields = IImportPurchasePayload;
 
-export default function ImportAccount() {
+export default function CBImport() {
   const navigate = useNavigate();
+
+  /** tabs */
+  const tabs = [
+    { value: "format_dinamika", label: "Dinamika Jurnal" },
+    { value: "format_bank", label: "Format Bank" },
+  ];
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") ?? tabs[0]["value"];
+
+  /** hooks upload file */
   const { file, getRootProps, getInputProps, onRemove, isDragActive, open } =
     useFileUpload({
-      accept: {
-        "text/csv": [".csv"],
-        "application/vnd.ms-excel": [".xls"],
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
-          ".xlsx",
-        ],
-      },
+      acceptTypes: ["csv", "excel"],
     });
 
+  /** download template */
   const handleDownload = () => {
-    window.open(
-      "https://docs.google.com/spreadsheets/d/14ZtlBNBiECiGSgM5N2aatt0S0y2Pj4cu8J0dEIkJNgQ/export?format=csv",
-      "_blank",
-    );
+    window.open(config.TEMPLATE_IMPORT_CASH_BANK, "_blank");
   };
 
   const methods = useForm<FormFields>({ mode: "onChange" });
@@ -65,24 +70,34 @@ export default function ImportAccount() {
 
   return (
     <div>
-      {/* download template */}
-      <div className="flex gap-4 my-4">
-        <div className="w-fit">
-          <AvatarText text="1" size="10" />
-        </div>
-        <div className="my-auto cursor-pointer" onClick={handleDownload}>
-          <Label className="dark:text-white">Download CSV template</Label>
-          <p className="text-theme-xs dark:text-gray-400 mb-2 max-w-2xl">
-            File ini memiliki kolom header sesuai dengan yang diperlukan Jurnal
-            untuk mengimpor data Anda dengan benar
-          </p>
+      {/* TABS */}
+      <TabsNav
+        initialActive={activeTab}
+        tabs={tabs}
+        onChange={(e) => setSearchParams({ tab: e })}
+        className="mb-6"
+      />
 
-          <Button size="xs" className="md:w-auto w-full">
-            <ExcelIcon className="text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 size-6" />
-            Download template
-          </Button>
+      {/* download template */}
+      {activeTab == "format_dinamika" && (
+        <div className="flex gap-4 my-4">
+          <div className="w-fit">
+            <AvatarText text="1" size="10" />
+          </div>
+          <div className="my-auto cursor-pointer" onClick={handleDownload}>
+            <Label className="dark:text-white">Download CSV template</Label>
+            <p className="text-theme-xs dark:text-gray-400 mb-2 max-w-2xl">
+              File ini memiliki kolom header sesuai dengan yang diperlukan
+              Jurnal untuk mengimpor data Anda dengan benar
+            </p>
+
+            <Button size="xs" className="md:w-auto w-full">
+              <ExcelIcon className="text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 size-6" />
+              Download template
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* insert data */}
       <div className="flex gap-4 mb-4">
@@ -131,11 +146,10 @@ export default function ImportAccount() {
       </div>
 
       {/* upload csv */}
-
       <Form {...methods} onSubmit={onSubmit}>
         <div className="flex gap-4 mb-4">
           <div className="w-fit">
-            <AvatarText text="2" size="10" />
+            <AvatarText text="3" size="10" />
           </div>
           <div>
             <Label>
