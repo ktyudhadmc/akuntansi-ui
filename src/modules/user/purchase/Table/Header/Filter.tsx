@@ -5,11 +5,12 @@ import Form from "@components/form/Form";
 import Drawer from "@components/ui/drawer";
 import Button from "@components/ui/button/Button";
 import DatePicker from "@components/form/date-picker";
-import SelectTwo from "@components/form/SelectTwo";
+// import SelectTwo from "@components/form/SelectTwo";
 import useGetAll from "@services/user/supplier/hooks/useGetAll";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import Label from "@components/form/Label";
 import useUserStore from "@store/useUserStore";
+import SelectTwoRhf from "@components/form/SelectTwoRhf";
 // import Select from "@components/form/Select";
 
 interface Props {
@@ -63,13 +64,13 @@ export default function Filter({ onClose, onOpen }: Props) {
   };
 
   const onClear = () => {
-    methods.reset();
-
-    setStartTransactionDate(null);
-    setEndTransactionDate(null);
-    setStartDueDate(null);
-    setEndDueDate(null);
-    setSupplier(null);
+    methods.reset({
+      supplier: null,
+      start_date: null,
+      end_date: null,
+      start_due_date: null,
+      end_due_date: null,
+    });
   };
 
   return (
@@ -95,11 +96,13 @@ export default function Filter({ onClose, onOpen }: Props) {
           <DatePicker
             id="start_date"
             name="start_date"
+            placeholder="Tanggal mulai"
             defaultDate={startTransactionDate}
           />
           <DatePicker
             id="end_date"
             name="end_date"
+            placeholder="Tanggal selesai"
             defaultDate={endTransactionDate}
           />
         </div>
@@ -109,16 +112,27 @@ export default function Filter({ onClose, onOpen }: Props) {
           <DatePicker
             id="start_due_date"
             name="start_due_date"
+            placeholder="Tanggal mulai"
             defaultDate={startDueDate}
           />
           <DatePicker
             id="end_due_date"
             name="end_due_date"
+            placeholder="Tanggal selesai"
             defaultDate={endDueDate}
           />
         </div>
 
-        <SelectTwo
+        <SelectTwoRhf
+          label="Supplier"
+          name="supplier"
+          selectTwoOptions={supplierOptions}
+          defaultValue={supplier}
+          isClearable
+          isSearchable
+        />
+
+        {/* <SelectTwo
           label="Supplier"
           name="supplier"
           selectTwoOptions={supplierOptions}
@@ -127,7 +141,7 @@ export default function Filter({ onClose, onOpen }: Props) {
           )}
           isClearable
           isSearchable
-        />
+        /> */}
 
         {/* <Select
           label="Status"
