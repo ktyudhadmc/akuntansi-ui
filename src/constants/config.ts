@@ -1,14 +1,23 @@
 const DEFAULT_API_URL = "http://127.0.0.1:8000/api/v1";
 
-export const APP_NAME = import.meta.env.VITE_APP_NAME ?? "Dinamika Jurnal";
+const appEnv = import.meta.env;
 
-export const BASE_API_URL =
-  import.meta.env.VITE_BASE_API_URL ?? DEFAULT_API_URL;
+export const APP_NAME = appEnv.VITE_APP_NAME ?? "Dinamika Jurnal";
 
-export const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN;
-export const GA_ID = import.meta.env.VITE_GA_ID;
+export const BASE_API_URL = appEnv.VITE_BASE_API_URL ?? DEFAULT_API_URL;
 
-export const LOCAL_STORAGE_COMPANY_KEY = import.meta.env.VITE_LOCAL_STORAGE_COMPANY_KEY ?? "active-company";
+/** LOGING */
+export const SENTRY_DSN = appEnv.VITE_SENTRY_DSN;
+export const GA_ID = appEnv.VITE_GA_ID;
+
+/** ACTIVE COMPANY */
+export const LOCAL_STORAGE_COMPANY_KEY =
+  appEnv.VITE_LOCAL_STORAGE_COMPANY_KEY ?? "active-company";
+
+/** TEMPLATE */
+export const TEMPLATE_IMPORT_PURCHASE = appEnv.VITE_TEMPLATE_IMPORT_PURCHASE;
+export const TEMPLATE_IMPORT_SALE = appEnv.VITE_TEMPLATE_IMPORT_SALE;
+export const TEMPLATE_IMPORT_CASH_BANK = appEnv.VITE_TEMPLATE_IMPORT_CASH_BANK;
 
 const config = {
   APP_NAME,
@@ -16,6 +25,11 @@ const config = {
   SENTRY_DSN,
   GA_ID,
   LOCAL_STORAGE_COMPANY_KEY,
+
+  /** TEMPLATE */
+  TEMPLATE_IMPORT_SALE,
+  TEMPLATE_IMPORT_PURCHASE,
+  TEMPLATE_IMPORT_CASH_BANK,
 };
 
 export default config;

@@ -41,7 +41,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
       {/* Create */}
       <div className="flex lg:flex-row flex-col justify-between gap-4">
         <div className="flex lg:flex-row flex-col gap-4">
-          <Button size="sm">
+          <Button size="sm" onClick={() => navigate("create")}>
             <HiPlus />
             <span>Buat akun baru</span>
           </Button>
