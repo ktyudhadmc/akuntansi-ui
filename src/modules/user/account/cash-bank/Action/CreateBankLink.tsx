@@ -1,18 +1,20 @@
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { toast } from "react-toastify";
+
 import Form from "@components/form/Form";
 import Checkbox from "@components/form/input/Checkbox";
 import Select from "@components/form/Select";
 import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import { Modal } from "@components/ui/modal";
-import useCreateIntegration from "@services/user/account/cash-bank/hooks/useCreateIntegration";
-import type { ICreateIntegrationBankAccountPayload } from "@services/user/account/cash-bank/interfaces/request.type";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { toast } from "react-toastify";
 
+import useCreateIntegration from "@services/user/account/cash-bank/hooks/useCreateIntegration";
+import useUpdateIntegration from "@services/user/account/cash-bank/hooks/useUpdateIntegration";
+import useDeleteIntegration from "@services/user/account/cash-bank/hooks/useDeleteIntegration";
+import type { Account } from "@services/user/account/cash-bank/interfaces/response.type";
+import type { ICreateIntegrationBankAccountPayload } from "@services/user/account/cash-bank/interfaces/request.type";
 interface Props {
-  id: number;
-  code: string;
-  name: string;
+  item: Account;
   onOpen: boolean;
   onClose: () => void;
 }
@@ -20,9 +22,7 @@ interface Props {
 type FormFields = ICreateIntegrationBankAccountPayload;
 
 export default function AccountBankIntegrationCreate({
-  id,
-  code,
-  name,
+  item,
   onOpen,
   onClose,
 }: Props) {
@@ -36,15 +36,37 @@ export default function AccountBankIntegrationCreate({
   const isValid = methods.formState.isValid;
 
   const { createData } = useCreateIntegration();
+  const { updateData } = useUpdateIntegration(item.id.toString());
+  const { deleteData } = useDeleteIntegration();
 
-  const onSubmit: SubmitHandler<FormFields> = async (state) => {
-    const { error, response } = await createData({ ...state, account_id: id });
+  const isCreate = item.type == null;
+
+  const onDelete = async () => {
+    if (item?.type?.id == null) return;
+
+    const { error, response } = await deleteData(item.type?.id);
     if (error || response) {
       if (error) {
-        toast.error("Gagal membuat integrasi!");
+        toast.error("Gagal menghapus integrasi!");
+      } else {
+        onClose();
+        toast.success("Berhasil menghapus integrasi!");
+      }
+    }
+  };
+
+  const onSubmit: SubmitHandler<FormFields> = async (state) => {
+    const payload = { ...state, account_id: item.id };
+    const { error, response } = isCreate
+      ? await createData(payload)
+      : await updateData(payload);
+
+    if (error || response) {
+      if (error) {
+        toast.error("Gagal menyimpan integrasi!");
       } else {
         methods.reset();
-        toast.success("Berhasil membuat integrasi!");
+        toast.success("Berhasil menyimpan integrasi!");
       }
       onClose();
     }
@@ -58,7 +80,7 @@ export default function AccountBankIntegrationCreate({
             Integrasi akun bank
           </h4>
           <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-            ({code}) - {name} <br />
+            ({item.code}) - {item.name} <br />
             Akun bank / kas perusahaan terintegrasi dengan kode akun
           </p>
         </div>
@@ -69,35 +91,53 @@ export default function AccountBankIntegrationCreate({
               placeholder="--- Pilih Kategori ---"
               name="type"
               options={subTypeOptions}
+              defaultValue={item.type?.type}
               required
             />
 
             <Checkbox
               label="Gunakan akun ini sebagai akun bank terintegrasi"
               name="is_active"
-              value="1"
+              value={item?.type?.is_active ?? "1"}
               required
             />
           </div>
 
-          <div className="flex justify-end mt-4 gap-2">
-            <Button
-              type="button"
-              onClick={onClose}
-              className="uppercase md:w-auto w-full"
-              size="sm"
-              variant="outline"
-            >
-              Batalkan
-            </Button>
-            <Button
-              type="submit"
-              className=" uppercase md:w-auto w-full"
-              size="sm"
-              disabled={!isValid || isSubmitting}
-            >
-              {!isSubmitting ? "Simpan" : <Spinner />}
-            </Button>
+          <div
+            className={`flex ${isCreate ? "justify-end" : "justify-between"} mt-4 gap-2`}
+          >
+            {!isCreate && (
+              <Button
+                type="button"
+                onClick={onDelete}
+                className="uppercase md:w-auto w-full"
+                size="sm"
+                variant="outline"
+              >
+                Hapus integrasi
+              </Button>
+            )}
+
+            <div className="flex justify-end gap-2">
+              <Button
+                type="button"
+                onClick={onClose}
+                className="uppercase md:w-auto w-full"
+                size="sm"
+                variant="outline"
+              >
+                Batalkan
+              </Button>
+
+              <Button
+                type="submit"
+                className=" uppercase md:w-auto w-full"
+                size="sm"
+                disabled={!isValid || isSubmitting}
+              >
+                {!isSubmitting ? "Simpan" : <Spinner />}
+              </Button>
+            </div>
           </div>
         </Form>
       </div>

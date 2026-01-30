@@ -18,11 +18,11 @@ export interface Account {
   is_posting: boolean;
   normal_balance: string;
   report_type: string;
-  type: AccountSubType;
+  type?: AccountSubType;
 }
 
 export interface AccountSubType {
-  id: string;
+  id: number;
   type: string;
   is_active: string;
 }

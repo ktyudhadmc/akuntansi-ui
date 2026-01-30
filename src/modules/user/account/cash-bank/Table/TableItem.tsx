@@ -45,9 +45,7 @@ export default function TableItem({ item }: Props) {
         <AccountBankIntegrationCreate
           onOpen={isOpen}
           onClose={closeModal}
-          id={item.id}
-          code={item.code}
-          name={item.name}
+          item={item}
         />
         <div className="flex md:flex-row flex-col justify-between gap-2">
           <Link
