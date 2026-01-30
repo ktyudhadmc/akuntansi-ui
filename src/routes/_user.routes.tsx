@@ -76,7 +76,10 @@ export default [
           /** ACCOUNT - CASH & BANK */
           {
             path: "cash-bank",
-            children: [{ index: true, element: <User.AccountCashBankPage /> }],
+            children: [
+              { index: true, element: <User.CBPage /> },
+              { path: "import", element: <User.CBImportPage /> },
+            ],
           },
         ],
       },

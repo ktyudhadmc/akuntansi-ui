@@ -21,7 +21,7 @@ interface Props {
   isClearable?: boolean;
 
   value?: SingleValue<OptionValue> | MultiValue<OptionValue>;
-  defaultValue?: SingleValue<OptionValue> | MultiValue<OptionValue>;
+  defaultValue?: any;
 
   textTransform?: string;
   selectTwoOptions: OptionValue[];
@@ -58,6 +58,7 @@ export default function SelectTwoRhf({
         rules={{
           required: isRequired ? "Tidak boleh kosong" : false,
         }}
+        defaultValue={defaultValue}
         render={({ field, fieldState }) => (
           <div>
             <ReactSelect<OptionValue, boolean>
@@ -83,8 +84,8 @@ export default function SelectTwoRhf({
                         ? field.value.includes(o.value)
                         : false,
                     )
-                  : (selectTwoOptions.find((o) => o.value === field.value) ??
-                    null)
+                  : selectTwoOptions.find((o) => o.value === field.value) ||
+                    null
               }
               onChange={(val: OnChangeValue<OptionValue, boolean>) => {
                 field.onChange(
@@ -134,12 +135,12 @@ export default function SelectTwoRhf({
                 option: (base, state) => ({
                   ...base,
                   backgroundColor: state.isSelected
-                    ? "var(--color-brand-600)" // selected
+                    ? "var(--color-brand-400)" // selected
                     : state.isFocused
-                      ? "var(--color-brand-600)" // hover / active
+                      ? "var(--color-brand-100)" // hover / active
                       : "transparent",
                 }),
-                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                menuPortal: (base) => ({ ...base, zIndex: 100001 }),
               }}
             />
 

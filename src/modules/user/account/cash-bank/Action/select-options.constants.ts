@@ -14,6 +14,12 @@ export const transactionalOptions = [
 ];
 
 export const bankOptions = [
-  { label: "BANK BCA", value: "1" },
-  { label: "BANK MANDIRI", value: "0" },
+  { label: "Jurnal", value: "journal" },
+  { label: "PT BANK CENTRAL ASIA TBK.", value: "1" },
+  { label: "BCA Personal", value: "2" },
+  { label: "PT BANK MANDIRI (PERSERO) TBK.", value: "3" },
+  { label: "PT BANK RAKYAT INDONESIA (PERSERO)", value: "4" },
+  { label: "PT BANK NEGARA INDONESIA (PERSERO)", value: "5" },
+  { label: "PT BANK DANAMON INDONESIA TBK.", value: "6" },
+  { label: "PT BANK OCBC NISP TBK.", value: "7" },
 ];

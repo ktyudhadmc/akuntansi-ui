@@ -23,10 +23,10 @@ export default function AccountTable() {
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Nama akun
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                   Saldo bank
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                   Saldo di jurnal
                 </th>
                 <th></th>
@@ -49,11 +49,16 @@ export default function AccountTable() {
                   </td>
                 </tr>
               ) : (
-                data.map((item, index) => {
-                  return (
-                    <TableItem key={`table-account-${index}`} item={item} />
-                  );
-                })
+                <>
+                  <tr>
+                    <td colSpan={5} className="text-start px-5 py-3 font-semibold text-theme-xs">Kas & Bank</td>
+                  </tr>
+                  {data.map((item, index) => {
+                    return (
+                      <TableItem key={`table-account-${index}`} item={item} />
+                    );
+                  })}
+                </>
               )}
             </tbody>
           </table>

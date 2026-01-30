@@ -22,7 +22,8 @@ export { default as COAClosingBookPage } from "./account/chart-of-account/closin
 export { default as COAClosingBookCreatePage } from "./account/chart-of-account/closing-book/CreatePage";
 
 //ACCOUNT CASH BANK
-export { default as AccountCashBankPage } from "./account/cash-bank";
+export { default as CBPage } from "./account/cash-bank";
+export { default as CBImportPage } from "./account/cash-bank/ImportPage";
 
 // CONTACT
 export { default as ContactPage } from "./contact";
