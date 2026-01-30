@@ -189,6 +189,14 @@ export default [
         element: <User.ReportBusinessGeneralJournalPage />,
       },
 
+      /** TAX */
+      { path: "taxes", element: <User.TaxPage /> },
+      { path: "taxes/create", element: <User.TaxCreatePage /> },
+      { path: "taxes/:id/edit", element: <User.TaxEditPage /> },
+
+      /** OTHER */
+      { path: "others", element: <User.OtherPage /> },
+
       /** SETTING */
       {
         path: "settings",

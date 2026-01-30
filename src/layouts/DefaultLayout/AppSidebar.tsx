@@ -133,6 +133,11 @@ const navItems: NavItem[] = [
 
 const othersItems: NavItem[] = [
   {
+    icon: <MdOutlineReceiptLong />,
+    name: "Daftar Lainnya",
+    path: "/user/others",
+  },
+  {
     icon: <AiOutlineSetting />,
     name: "Pengaturan",
     path: "/user/settings",

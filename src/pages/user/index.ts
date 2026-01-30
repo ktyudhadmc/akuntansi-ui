@@ -73,3 +73,11 @@ export { default as ReportPage } from "./report";
 
 // REPORT BUSINESS
 export { default as ReportBusinessGeneralJournalPage } from "./report/business/ReportBusinessJournalPage";
+
+// TAX
+export { default as TaxPage } from "./tax";
+export { default as TaxCreatePage } from "./tax/CreatePage";
+export { default as TaxEditPage } from "./tax/EditPage";
+
+// OTHERS
+export { default as OtherPage } from "./other";
