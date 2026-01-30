@@ -10,7 +10,7 @@ export default function OthersPage() {
   const data = [
     {
       title: "Satuan",
-      path: "../unit",
+      path: "../products",
       description: "Berisi daftar satuan (unit) produk Anda.",
     },
     {
