@@ -14,7 +14,8 @@ export const parseMonthValue = (value: string) => {
 };
 
 export const formatDateYMD = (date: Date) => dayjs(date).format("YYYY-MM-DD");
-export const parseYMDToDate = (ymd: string) => dayjs(ymd, "YYYY-MM-DD").toDate();
+export const parseYMDToDate = (ymd: string) =>
+  dayjs(ymd, "YYYY-MM-DD").toDate();
 
 export function formatDateInput(
   date?: DateOption,
