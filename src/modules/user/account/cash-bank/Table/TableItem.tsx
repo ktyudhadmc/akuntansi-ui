@@ -1,6 +1,6 @@
 import Button from "@components/ui/button/Button";
 
-import type { Account } from "@services/user/account/index/interfaces/response.type";
+import type { Account } from "@services/user/account/cash-bank/interfaces/response.type";
 import { formatIDR } from "@helpers/index";
 
 // import TableItemMenu from "./TableItemMenu";
