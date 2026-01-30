@@ -1,0 +1,33 @@
+import { useCallback, useState } from "react";
+import useSWR, { type Fetcher } from "swr";
+import type { IGetAllResponse } from "../interfaces/response.type";
+import axiosInstance from "@lib/axios-instance";
+import querystring from "query-string";
+
+export default function useGetAll() {
+  const [search, setSearch] = useState("");
+
+  const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
+    axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
+      .get(url)
+      .then((res) => res.data);
+
+  const qs = querystring.stringify(
+    { search },
+    { skipEmptyString: true, skipNull: true },
+  );
+
+  const { data, error } = useSWR(`/tax?${qs}`, fetcher);
+
+  const onSetSearch = useCallback((search: string) => {
+    setSearch(search);
+  }, []);
+
+  return {
+    loading: !data && !error,
+    data: data?.data,
+    error,
+    search,
+    setSearch: onSetSearch,
+  };
+}
