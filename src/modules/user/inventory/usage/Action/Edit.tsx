@@ -73,7 +73,7 @@ export default function UsageEdit() {
               label="Tgl. penyesuaian"
               id="date"
               name="date"
-              defaultDate={data?.date ?? new Date()}
+              defaultValue={data?.date ?? new Date()}
               required
             />
           </Skeleton>

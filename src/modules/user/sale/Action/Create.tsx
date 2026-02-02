@@ -67,9 +67,10 @@ export default function CreateSale() {
           required
         />
         <div className="grid md:grid-cols-2 gap-4">
-          <DatePicker label="Tgl. transaksi" id="date" name="date" required />
+          <DatePicker label="Tgl. transaksi" placeholder="Tanggal" id="date" name="date" required />
           <DatePicker
             label="Tgl. tempo"
+            placeholder="Tanggal"
             id="due_date"
             name="due_date"
             required

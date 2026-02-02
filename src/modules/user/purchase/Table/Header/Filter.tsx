@@ -82,7 +82,7 @@ export default function Filter({ onClose, onOpen }: Props) {
           id="transaction_date"
           placeholder="YYYY-MM-DD"
           mode="single"
-          defaultDate={new Date()}
+          defaultValue={new Date()}
           onChange={(selectedDates) => {
             if (selectedDates.length > 0) {
               // console.log(selectedDates[0].toISOString().split("T")[0]);
@@ -97,13 +97,13 @@ export default function Filter({ onClose, onOpen }: Props) {
             id="start_date"
             name="start_date"
             placeholder="Tanggal mulai"
-            defaultDate={startTransactionDate}
+            defaultValue={startTransactionDate}
           />
           <DatePicker
             id="end_date"
             name="end_date"
             placeholder="Tanggal selesai"
-            defaultDate={endTransactionDate}
+            defaultValue={endTransactionDate}
           />
         </div>
 
@@ -113,13 +113,13 @@ export default function Filter({ onClose, onOpen }: Props) {
             id="start_due_date"
             name="start_due_date"
             placeholder="Tanggal mulai"
-            defaultDate={startDueDate}
+            defaultValue={startDueDate}
           />
           <DatePicker
             id="end_due_date"
             name="end_due_date"
             placeholder="Tanggal selesai"
-            defaultDate={endDueDate}
+            defaultValue={endDueDate}
           />
         </div>
 

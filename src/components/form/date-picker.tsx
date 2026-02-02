@@ -1,64 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.css";
 import Label from "./Label";
 import { CalenderIcon } from "@assets/icons";
-import flatpickr from "flatpickr";
-import { useFormContext } from "react-hook-form";
 
-// type Hook = flatpickr.Options.Hook;
-// type DateOption = flatpickr.Options.DateOption;
+import type { Hook, } from "@def/option";
+import { Controller, useFormContext } from "react-hook-form";
 
-import type { Hook, DateOption } from "@def/option";
-import { formatDateInput } from "@helpers/index";
-
-type PropsType = {
+interface Props {
   id?: string;
-
-  name?: string;
-  mode?: "single" | "multiple" | "range" | "time";
-  onChange?: Hook | Hook[];
-  defaultDate?: DateOption | null;
   label?: string;
   placeholder?: string;
   required?: boolean;
-};
+  name: string;
+  defaultValue?: any;
+  onChange?: (value: string) => void;
+
+  mode?: "single" | "multiple" | "range" | "time";
+  // defaultDate?: DateOption | null;
+  onFlatpickrChange?: Hook | Hook[];
+}
 
 export default function DatePicker({
   id,
-  name,
-  mode,
-  onChange,
   label,
-  defaultDate,
+  name,
   placeholder,
   required = false,
-  ...restProps
-}: PropsType) {
-  const { register, unregister } = useFormContext();
+  defaultValue,
+  mode = "single",
+}: Props) {
+  const { control } = useFormContext();
+  const fpRef = useRef<flatpickr.Instance | null>(null);
 
-  useEffect(() => {
-    const flatPickr = flatpickr(`#${id}`, {
-      mode: mode || "single",
-      static: true,
-      monthSelectorType: "static",
-      dateFormat: "Y-m-d",
-      defaultDate: defaultDate ?? undefined,
-      onChange,
-    });
 
-    return () => {
-      if (!Array.isArray(flatPickr)) {
-        flatPickr.destroy();
-      }
-    };
-  }, [mode, onChange, id, defaultDate]);
-
-  useEffect(
-    () => () => {
-      unregister(name);
-    },
-    [name, unregister],
-  );
   return (
     <div>
       {label && (
@@ -66,26 +41,72 @@ export default function DatePicker({
           {label} {required && <span className="text-error-500">*</span>}
         </Label>
       )}
-      <div className="relative">
-        <input
-          {...restProps}
-          {...(name &&
-            register(name, {
-              required: required && {
-                value: true,
-                message: "Tidak Boleh Kosong",
-              },
-            }))}
-          id={id}
-          defaultValue={defaultDate ? formatDateInput(defaultDate) : undefined}
-          placeholder={placeholder}
-          className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30  bg-transparent text-gray-800 border-gray-300 focus:border-brand-300 focus:ring-brand-500/20 dark:border-gray-700  dark:focus:border-brand-800"
-        />
 
-        <span className="absolute text-gray-500 -translate-y-1/2 pointer-events-none right-3 top-1/2 dark:text-gray-400">
-          <CalenderIcon className="size-6" />
-        </span>
-      </div>
+      <Controller
+        name={name}
+        control={control}
+        rules={{
+          required: required ? "Tidak boleh kosong" : false,
+        }}
+        defaultValue={defaultValue}
+        render={({ field, fieldState }) => {
+          const inputRef = useRef<HTMLInputElement>(null);
+
+          useEffect(() => {
+            if (!inputRef.current) return;
+
+            fpRef.current = flatpickr(inputRef.current, {
+              mode,
+              static: true,
+              dateFormat: "Y-m-d",
+              defaultDate: field.value,
+              onChange: (_, dateStr) => {
+                field.onChange(dateStr);
+              },
+            });
+
+            return () => {
+              fpRef.current?.destroy();
+            };
+          }, []);
+
+          // sync RHF → flatpickr
+          useEffect(() => {
+            if (fpRef.current && field.value) {
+              fpRef.current.setDate(field.value, false);
+            }
+          }, [field.value]);
+          return (
+            <>
+              <div className="relative">
+                <input
+                  ref={inputRef}
+                  id={id}
+                  value={field.value || ""}
+                  readOnly
+                  placeholder={placeholder ?? 'Pilih Tanggal'}
+                  className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs
+          placeholder:text-gray-400 focus:outline-hidden focus:ring-3
+          bg-transparent text-gray-800 border-gray-300
+          focus:border-brand-300 focus:ring-brand-500/20
+          dark:bg-gray-900 dark:text-white/90
+          dark:border-gray-700 dark:placeholder:text-white/30
+          dark:focus:border-brand-800"
+                />
+                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400">
+                  <CalenderIcon className="size-6" />
+                </span>
+              </div>
+
+              {fieldState.error && (
+                <p className="text-xs text-red-500">
+                  {fieldState.error.message}
+                </p>
+              )}
+            </>
+          );
+        }}
+      />
     </div>
   );
 }

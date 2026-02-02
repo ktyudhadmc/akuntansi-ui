@@ -1,12 +1,13 @@
 import TableItem from "./TableItem";
 import TableHeader from "./Header";
 
-import useGetAll from "@services/user/account/index/hooks/useGetAll";
 import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
+import { HiOutlineArchiveBox } from "react-icons/hi2";
+import useGetAllCashBank from "@services/user/account/cash-bank/hooks/useGetAllCashBank";
 
 export default function AccountTable() {
-  const { data, loading, setName } = useGetAll();
+  const { data, loading, setName } = useGetAllCashBank();
 
   return (
     <>
@@ -44,14 +45,20 @@ export default function AccountTable() {
                 </tr>
               ) : isEmpty(data) || !data ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-4">
+                  <td colSpan={5} className="text-center text-gray-500 dark:text-gray-400 py-4">
+                    <HiOutlineArchiveBox className=" mx-auto text-2xl" />
                     Data tidak tersedia
                   </td>
                 </tr>
               ) : (
                 <>
                   <tr>
-                    <td colSpan={5} className="text-start px-5 py-3 font-semibold text-theme-xs">Kas & Bank</td>
+                    <td
+                      colSpan={5}
+                      className="text-start px-5 py-3 font-semibold text-theme-xs"
+                    >
+                      Kas & Bank
+                    </td>
                   </tr>
                   {data.map((item, index) => {
                     return (

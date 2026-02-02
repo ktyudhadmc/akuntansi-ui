@@ -6,7 +6,11 @@ interface CheckboxProps {
   label?: string;
   className?: string;
   id?: string;
+  /** Wajib diisi jika mode = "group" */
   value?: string;
+
+  /** single = boolean, multi = string[] */
+  mode?: "single" | "multi";
   name: string;
   disabled?: boolean;
   required?: boolean;
@@ -18,6 +22,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   id,
   name,
   value,
+  mode = "single",
   className = "",
   disabled = false,
   required = false,
@@ -27,8 +32,14 @@ const Checkbox: React.FC<CheckboxProps> = ({
   const { register, watch } = useFormContext();
   const inputRef = useMask(maskOptions);
 
-  const selectedValues = watch(name) || [];
-  const checked = value ? selectedValues.includes(value) : selectedValues;
+  const watchedValue = watch(name);
+
+  const checked =
+    mode === "multi"
+      ? Array.isArray(watchedValue) && value
+        ? watchedValue.includes(value)
+        : false
+      : Boolean(watchedValue);
 
   return (
     <label
@@ -48,7 +59,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
               },
             }))}
           id={id}
-          value={value}
+          value={mode === "multi" ? value : undefined}
           type="checkbox"
           className={`w-5 h-5 appearance-none cursor-pointer dark:border-gray-700 border border-gray-300 checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60 
           ${className}`}

@@ -31,7 +31,15 @@ export default function AccountBankIntegrationCreate({
     { label: "Bank", value: "bank" },
   ];
 
-  const methods = useForm<FormFields>({ mode: "onChange" });
+  // console.log('accountIntegration');
+  // console.log(item);
+
+  const methods = useForm<FormFields>({
+    mode: "onChange",
+    defaultValues: {
+      is_active: item?.type?.is_active,
+    },
+  });
   const { isSubmitting } = methods.formState;
   const isValid = methods.formState.isValid;
 
@@ -66,6 +74,7 @@ export default function AccountBankIntegrationCreate({
         toast.error("Gagal menyimpan integrasi!");
       } else {
         methods.reset();
+        
         toast.success("Berhasil menyimpan integrasi!");
       }
       onClose();
@@ -91,14 +100,14 @@ export default function AccountBankIntegrationCreate({
               placeholder="--- Pilih Kategori ---"
               name="type"
               options={subTypeOptions}
-              defaultValue={item.type?.type}
+              defaultValue={item.type?.name}
               required
             />
 
             <Checkbox
               label="Gunakan akun ini sebagai akun bank terintegrasi"
               name="is_active"
-              value={item?.type?.is_active ?? "1"}
+              mode="single"
               required
             />
           </div>

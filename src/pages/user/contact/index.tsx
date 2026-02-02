@@ -8,7 +8,7 @@ import SupplierTable from "@modules/user/contact/supplier/Table";
 // import useUserStore from "@store/useUserStore";
 import CustomerTable from "@modules/user/contact/customer/Table";
 import { useNavigate } from "react-router-dom";
-import TabsNav from "@components/ui/tabs";
+import { TabDefault } from "@components/ui/tabs";
 
 export default function ContactPage() {
   const pageTitle = "Kontak";
@@ -66,7 +66,7 @@ export default function ContactPage() {
             </div>
           </div> */}
 
-          <TabsNav
+          <TabDefault
             tabs={tabs}
             initialActive={activeTabContact ?? "customer"}
             onChange={(e) => navigate(`#${e}`)}

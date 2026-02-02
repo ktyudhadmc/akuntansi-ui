@@ -16,7 +16,7 @@ import {
   // TableIcon,
 } from "@assets/icons";
 
-import { HiOutlineCube } from "react-icons/hi";
+import { HiOutlineCube, HiOutlineViewList } from "react-icons/hi";
 import { AiOutlineBank, AiOutlineSetting } from "react-icons/ai";
 import {
   MdOutlineSell,
@@ -133,7 +133,7 @@ const navItems: NavItem[] = [
 
 const othersItems: NavItem[] = [
   {
-    icon: <MdOutlineReceiptLong />,
+    icon: <HiOutlineViewList />,
     name: "Daftar Lainnya",
     path: "/user/others",
   },

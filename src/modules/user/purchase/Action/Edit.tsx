@@ -75,7 +75,7 @@ export default function EditPurchase() {
               label="Tgl. transaksi"
               id="date"
               name="date"
-              defaultDate={data?.date}
+              defaultValue={data?.date}
               required
             />
           </Skeleton>
@@ -84,7 +84,7 @@ export default function EditPurchase() {
               label="Tgl. tempo"
               id="due_date"
               name="due_date"
-              defaultDate={data?.due_date}
+              defaultValue={data?.due_date}
               required
             />
           </Skeleton>

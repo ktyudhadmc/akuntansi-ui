@@ -72,7 +72,7 @@ export default function TableItem({ item }: Props) {
       <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
         {formatIDR(0)}
       </td>
-      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
+      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400 z-[100001]">
         {/* <TableItemMenu id={item.id} name={item.name} code={item.code} /> */}
 
         <div className="relative ">
@@ -90,7 +90,7 @@ export default function TableItem({ item }: Props) {
               <AiFillCaretDown />
             </button>
           </div>
-          <Dropdown isOpen={isOpenDropown} onClose={closeDropdown}>
+          <Dropdown isOpen={isOpenDropown} onClose={closeDropdown} >
             <DropdownItem>Transfer Uang</DropdownItem>
             <DropdownItem>Terima Uang</DropdownItem>
             <DropdownItem>Kirim Uang</DropdownItem>

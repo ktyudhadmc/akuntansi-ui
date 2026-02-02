@@ -23,6 +23,6 @@ export interface Account {
 
 export interface AccountSubType {
   id: number;
-  type: string;
-  is_active: string;
+  name: string;
+  is_active: boolean;
 }

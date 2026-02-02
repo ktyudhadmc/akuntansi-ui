@@ -139,7 +139,7 @@ export default function ProductionEdit() {
             label="Tgl. produksi"
             id="date"
             name="date"
-            defaultDate={new Date()}
+            defaultValue={new Date()}
             required
           />
           <TextArea
