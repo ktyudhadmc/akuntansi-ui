@@ -3,6 +3,7 @@ import TableHeader from "./Header";
 
 import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
+import { HiOutlineArchiveBox } from "react-icons/hi2";
 import useGetAllCashBank from "@services/user/account/cash-bank/hooks/useGetAllCashBank";
 
 export default function AccountTable() {
@@ -44,7 +45,8 @@ export default function AccountTable() {
                 </tr>
               ) : isEmpty(data) || !data ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-4">
+                  <td colSpan={5} className="text-center text-gray-500 dark:text-gray-400 py-4">
+                    <HiOutlineArchiveBox className=" mx-auto text-2xl" />
                     Data tidak tersedia
                   </td>
                 </tr>

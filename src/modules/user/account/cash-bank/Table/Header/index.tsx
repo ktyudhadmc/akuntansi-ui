@@ -1,12 +1,15 @@
 // import { useNavigate } from "react-router-dom";
 import Button from "@components/ui/button/Button";
-import TableHeaderCard from "./HeaderCard";
+// import TableHeaderCard from "./HeaderCard";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 
 import debounce from "lodash/debounce";
-import { AiFillCaretDown } from "react-icons/ai";
+import { AiFillCaretDown, AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineClockCircle, AiOutlineWallet } from "react-icons/ai";
 import { useCallback, useState } from "react";
 import SearchInput from "@components/form/input/SearchInput";
+import CardStatistic from "@components/ui/card/CardStatistic";
+import { formatIDRLocale } from "@helpers/currency";
+
 
 interface Props {
   setSearchCallback: (param: string) => void;
@@ -34,7 +37,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
     <>
       {/* card */}
       <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
-        <TableHeaderCard
+        {/* <TableHeaderCard
           title="Pemasukan 30 hari mendatang"
           count={0}
           amount={0}
@@ -48,7 +51,35 @@ export default function TableHeader({ setSearchCallback }: Props) {
           variant="outcome"
         />
         <TableHeaderCard title="Saldo kas & bank" count={0} amount={0} />
-        <TableHeaderCard title="Saldo kartu kredit" count={0} amount={0} />
+        <TableHeaderCard title="Saldo kartu kredit" count={0} amount={0} /> */}
+
+        <CardStatistic
+          title="Pemasukan"
+          value={formatIDRLocale(0, { withSymbol: true })}
+          variant="success"
+          icon={<AiOutlineArrowUp />}
+        />
+
+        <CardStatistic
+          title="Pengeluaran"
+          value={formatIDRLocale(0, { withSymbol: true })}
+          variant="danger"
+          icon={<AiOutlineArrowDown />}
+        />
+
+        <CardStatistic
+          title="Saldo kas & bank"
+          value={formatIDRLocale(0, { withSymbol: true })}
+          variant="warning"
+          icon={<AiOutlineClockCircle />}
+        />
+
+        <CardStatistic
+          title="Saldo kartu kredit"
+          value={formatIDRLocale(0, { withSymbol: true })}
+          variant="brand"
+          icon={<AiOutlineWallet />}
+        />
       </div>
 
       {/* Create */}
