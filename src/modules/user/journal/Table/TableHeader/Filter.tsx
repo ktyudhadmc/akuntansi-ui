@@ -53,12 +53,12 @@ export default function Filter({ onClose, onOpen }: Props) {
           <DatePicker
             id="start_date"
             name="start_date"
-            defaultDate={startDate ?? new Date()}
+            defaultValue={startDate ?? new Date()}
           />
           <DatePicker
             id="end_date"
             name="end_date"
-            defaultDate={endDate ?? new Date()}
+            defaultValue={endDate ?? new Date()}
           />
         </div>
 

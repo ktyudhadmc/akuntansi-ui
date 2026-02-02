@@ -58,7 +58,7 @@ export default function JournalCreate() {
             label="Tgl. transaksi"
             id="date"
             name="date"
-            defaultDate={new Date()}
+            defaultValue={new Date()}
             required
           />
           <Input

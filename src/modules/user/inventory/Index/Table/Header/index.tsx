@@ -28,7 +28,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
           mode="month"
           id="period_date"
           name="period_date"
-          defaultDate={new Date()}
+          defaultValue={new Date()}
           onChange={(e) => console.log(e)}
           required
         /> */}

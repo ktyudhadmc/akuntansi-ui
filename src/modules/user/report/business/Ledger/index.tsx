@@ -67,7 +67,7 @@ export default function RBLedger() {
             placeholder="Pilih tanggal"
             id="start_date"
             name="start_date"
-            defaultDate={startDate}
+            defaultValue={startDate}
             required
           />
 
@@ -76,7 +76,7 @@ export default function RBLedger() {
             placeholder="Pilih tanggal"
             id="end_date"
             name="end_date"
-            defaultDate={endDate}
+            defaultValue={endDate}
             required
           />
 

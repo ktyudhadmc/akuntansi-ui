@@ -66,7 +66,7 @@ export default function AdjustmentCreate() {
             label="Tgl. penyesuaian"
             id="date"
             name="date"
-            defaultDate={new Date()}
+            defaultValue={new Date()}
             required
           />
 
