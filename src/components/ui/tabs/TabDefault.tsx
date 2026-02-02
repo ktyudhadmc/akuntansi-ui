@@ -8,7 +8,7 @@ interface Props {
   onChange?: (param: string) => void;
 }
 
-export default function TabsNav({
+export default function TabDefault({
   tabs,
   initialActive,
   className,
@@ -23,10 +23,9 @@ export default function TabsNav({
   };
 
   const tabClass = (tab: string) =>
-    `items-center rounded-md px-3 py-2 md:w-fit w-full text-center text-sm  font-medium transition-colors duration-200 ease-in-out ${
-      activeTab === tab
-        ? "bg-white text-gray-900 shadow-theme-xs dark:bg-white/[0.03] dark:text-white"
-        : "bg-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+    `items-center rounded-md px-3 py-2 md:w-fit w-full text-center text-sm  font-medium transition-colors duration-200 ease-in-out ${activeTab === tab
+      ? "bg-white text-gray-900 shadow-theme-xs dark:bg-white/[0.03] dark:text-white"
+      : "bg-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
     }`;
 
   return (

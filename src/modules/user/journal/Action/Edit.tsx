@@ -63,7 +63,7 @@ export default function GeneralJournalEdit() {
               label="Tgl. transaksi"
               id="date"
               name="date"
-              defaultDate={data?.date}
+              defaultValue={data?.date}
               required
             />
           </Skeleton>
