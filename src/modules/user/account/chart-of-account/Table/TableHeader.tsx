@@ -48,7 +48,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
           <Button
             size="sm"
             variant="outline"
-            onClick={() => navigate("/user/journals/general/create")}
+            onClick={() => navigate("/user/journals/create")}
           >
             <HiPlus />
             <span>Buat jurnal umum</span>
