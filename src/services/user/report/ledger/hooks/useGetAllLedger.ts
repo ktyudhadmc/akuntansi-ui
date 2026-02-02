@@ -7,6 +7,7 @@ import useUserStore from "@store/useUserStore";
 
 export default function useGetAllLedger() {
   const [search, setSearch] = useState("");
+  const account = useUserStore((state) => state.account);
   const startDate = useUserStore((state) => state.startDate);
   const endDate = useUserStore((state) => state.endDate);
 
@@ -16,11 +17,11 @@ export default function useGetAllLedger() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search, start_date: startDate, end_date: endDate },
+    { search, account_id: account, start_date: startDate, end_date: endDate },
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/reports/ledgers?${qs}`, fetcher);
+  const { data, error } = useSWR(`/ledger?${qs}`, fetcher);
 
   const onSetSearch = useCallback((search: string) => {
     setSearch(search);

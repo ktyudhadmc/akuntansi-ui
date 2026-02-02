@@ -184,10 +184,8 @@ export default [
 
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
-      {
-        path: "reports/journal",
-        element: <User.ReportBusinessGeneralJournalPage />,
-      },
+      { path: "reports/journal", element: <User.RBJournalPage /> },
+      { path: "reports/ledger", element: <User.RBLedgerPage /> },
 
       /** TAX */
       { path: "taxes", element: <User.TaxPage /> },

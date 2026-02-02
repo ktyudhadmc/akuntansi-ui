@@ -24,7 +24,7 @@ export default function ReportBusinessPage() {
     },
     {
       title: "Buku besar",
-      path: "general-ledger",
+      path: "ledger",
       description:
         "Menampilkan semua transaksi berdasarkan akun dalam periode tertentu, termasuk kronologi pergerakan transaksinya selama periode berlangsung.",
     },

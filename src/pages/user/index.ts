@@ -72,7 +72,8 @@ export { default as GeneralJournalEditPage } from "./journal/general/EditPage";
 export { default as ReportPage } from "./report";
 
 // REPORT BUSINESS
-export { default as ReportBusinessGeneralJournalPage } from "./report/business/ReportBusinessJournalPage";
+export { default as RBJournalPage } from "./report/business/RBJournalPage";
+export { default as RBLedgerPage } from "./report/business/RBLedgerPage";
 
 // TAX
 export { default as TaxPage } from "./tax";

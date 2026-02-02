@@ -16,16 +16,22 @@ import createUserGeneralJournalSlice, {
   type UserGeneralJournalState,
 } from "./slices/user/general-journal.slice";
 
+import createUserLedgerSlice, {
+  type UserLedgerState,
+} from "./slices/user/ledger.slice";
+
 type BoundSliceTypes = { default: null } & UserContactState &
   UserPurchaseState &
   UserSaleState &
-  UserGeneralJournalState;
+  UserGeneralJournalState &
+  UserLedgerState;
 
 const useUserStore = create<BoundSliceTypes>()((...setter) => ({
   default: null,
   ...createUserContactSlice(...setter),
   ...createUserPurchaseSlice(...setter),
   ...createUserGeneralJournalSlice(...setter),
+  ...createUserLedgerSlice(...setter),
   ...createUserSaleSlice(...setter),
 }));
 

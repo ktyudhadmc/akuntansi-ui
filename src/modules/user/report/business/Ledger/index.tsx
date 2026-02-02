@@ -1,76 +1,98 @@
-import useGetAccount from "@services/user/account/index/hooks/useGet";
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-
-import DatePicker from "@components/form/default/DatePicker";
-import Skeleton from "@components/Skeleton/Skeleton";
-import Button from "@components/ui/button/Button";
 import { HiPencil } from "react-icons/hi";
 
-export default function ChartOfAccountShow() {
-  const params = useParams();
+import useMapInputOptions from "@hooks/useMapInputOptions";
+import useUserStore from "@store/useUserStore";
+
+import DatePicker from "@components/form/date-picker";
+import Skeleton from "@components/Skeleton/Skeleton";
+import Button from "@components/ui/button/Button";
+import SelectTwoRhf from "@components/form/SelectTwoRhf";
+
+import useGetAll from "@services/user/account/index/hooks/useGetAll";
+import useGetAllLedger from "@services/user/report/ledger/hooks/useGetAllLedger";
+import Form from "@components/form/Form";
+import { useForm, type SubmitHandler } from "react-hook-form";
+
+export default function RBLedger() {
   const navigate = useNavigate();
 
-  const { data, loading } = useGetAccount(params.id as string);
+  const { data: accounts, loading: accountLoading } = useGetAll();
+  const accountOptions = useMapInputOptions(accounts);
+
+  const account = useUserStore((state) => state.account);
+  const startDate = useUserStore((state) => state.startDate);
+  const endDate = useUserStore((state) => state.endDate);
+
+  const setAccount = useUserStore((state) => state.setAccount);
+  const setStartDate = useUserStore((state) => state.setStartDate);
+  const setEndDate = useUserStore((state) => state.setEndDate);
+
+  const methods = useForm<any>({ mode: "onChange" });
+  const { isSubmitting } = methods.formState;
+
+  const isValid = methods.formState.isValid;
+
+  const { data, loading } = useGetAllLedger();
+
+  console.log(data);
+
+  const onSubmit: SubmitHandler<any> = async (state) => {
+    setAccount(state.account);
+    setStartDate(state.start_date);
+    setEndDate(state.end_date);
+  };
+
+  const onClear = () => {
+    methods.reset({
+      account: null,
+      start_date: null,
+      end_date: null,
+    });
+  };
 
   return (
     <>
-      {/* <TableHeader
-        setStartDate={(e) => console.log(e)}
-        setEndDate={(e) => console.log(e)}
-      /> */}
       {/* TABLE HEADER */}
-      <div className="flex lg:flex-row flex-col justify-between gap-4">
-        <div className="mt-auto md:min-w-xs min-w-full flex lg:flex-col flex-row gap-2 lg:justify-start justify-between">
-          <div className=" w-full">
-            <Skeleton isLoading={loading} height="1.2rem" width="50%">
-              <span className="text-gray-500 text-theme-sm dark:text-gray-400">
-                {data?.code}
-              </span>
-            </Skeleton>
-            <Skeleton isLoading={loading} height="1.7rem">
-              <h5 className="dark:text-white font-semibold text-lg">
-                {data?.name}
-              </h5>
-            </Skeleton>
-          </div>
-
-          <Button
-            onClick={() => navigate(`edit`)}
-            size="xs"
-            variant="outline"
-            className="w-fit h-fit my-auto"
-            disabled={loading}
-          >
-            <HiPencil />
-            <span className="lg:inline-block hidden"> Ubah</span>
-          </Button>
-        </div>
-
-        <div className="flex lg:flex-row flex-col gap-4 mt-auto">
+      <Form {...methods} onSubmit={onSubmit}>
+        <div className="grid lg:grid-cols-4 grid-cols-1 gap-4 items-end">
           <DatePicker
             label="Tgl. mulai"
             id="start_date"
             name="start_date"
-            defaultDate={new Date()}
-            onChange={(e) => console.log(e)}
+            defaultDate={startDate ?? new Date()}
           />
 
           <DatePicker
             label="Tgl. selesai"
             id="end_date"
             name="end_date"
-            defaultDate={new Date()}
-            onChange={(e) => console.log(e)}
+            defaultDate={endDate ?? new Date()}
           />
+
+          <div>
+            <SelectTwoRhf
+              label="Akun"
+              name="account"
+              placeholder="--- Pilih Akun ---"
+              selectTwoOptions={accountOptions}
+              defaultValue={account}
+              isClearable
+              isSearchable
+            />
+          </div>
+
+          <Button size="sm" className="w-fit">
+            Filter
+          </Button>
         </div>
-      </div>
+      </Form>
 
       {/* TABLE */}
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+      {/* <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full">
-            {/* Table Header */}
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
@@ -104,7 +126,7 @@ export default function ChartOfAccountShow() {
                   </td>
                 </tr>
               )}
-              {/* {loading || isLoading ? (
+              {loading || isLoading ? (
                 <tr>
                   <td colSpan={5} className="text-center py-16">
                     <div className="sweet-loading">
@@ -124,11 +146,11 @@ export default function ChartOfAccountShow() {
                     <TableItem key={`table-account-${index}`} item={item} />
                   );
                 })
-              )} */}
+              )}
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
