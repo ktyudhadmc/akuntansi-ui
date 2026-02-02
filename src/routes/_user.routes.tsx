@@ -161,33 +161,16 @@ export default [
       {
         path: "journals",
         children: [
-          /** GENERAL JOURNAL */
-          {
-            path: "general",
-            children: [
-              {
-                index: true,
-                element: <User.GeneralJournalPage />,
-              },
-              {
-                path: "create",
-                element: <User.GeneralJournalCreatePage />,
-              },
-              {
-                path: ":id/edit",
-                element: <User.GeneralJournalEditPage />,
-              },
-            ],
-          },
+          { index: true, element: <User.JournalPage /> },
+          { path: "create", element: <User.JournalCreatePage /> },
+          { path: ":id/edit", element: <User.JournalEditPage /> },
         ],
       },
 
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
-      {
-        path: "reports/journal",
-        element: <User.ReportBusinessGeneralJournalPage />,
-      },
+      { path: "reports/journal", element: <User.RBJournalPage /> },
+      { path: "reports/ledger", element: <User.RBLedgerPage /> },
 
       /** TAX */
       { path: "taxes", element: <User.TaxPage /> },

@@ -59,7 +59,10 @@ export default function SelectTwoRhf({
           required: isRequired ? "Tidak boleh kosong" : false,
         }}
         defaultValue={defaultValue}
-        render={({ field, fieldState }) => (
+        render={({
+          field,
+          // fieldState
+        }) => (
           <div>
             <ReactSelect<OptionValue, boolean>
               {...restProps}
@@ -144,11 +147,11 @@ export default function SelectTwoRhf({
               }}
             />
 
-            {fieldState.error && (
+            {/* {fieldState.error && (
               <p className="mt-1 text-xs text-red-500">
                 {fieldState.error.message}
               </p>
-            )}
+            )} */}
           </div>
         )}
       />
