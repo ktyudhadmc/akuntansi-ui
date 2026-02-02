@@ -2,24 +2,33 @@ import type { StateCreator } from "zustand";
 import type { DateOption } from "@def/option";
 
 export declare interface UserLedgerState {
-  startDate: DateOption | null;
-  endDate: DateOption | null;
-  account: String | null;
+  ledgerStartDate: DateOption | null;
+  ledgerEndDate: DateOption | null;
+  ledgerAccount: String | null;
 
-  setStartDate: (param: DateOption | null) => void;
-  setEndDate: (param: DateOption | null) => void;
-  setAccount: (param: String | null) => void;
+  setLedgerStartDate: (param: DateOption | null) => void;
+  setLedgerEndDate: (param: DateOption | null) => void;
+  setLedgerAccount: (param: String | null) => void;
+
+  resetLedgerFilter: () => void;
 }
 
 const createUserLedgerSlice: StateCreator<UserLedgerState> = (set) => ({
   /** FILTER */
-  startDate: null,
-  endDate: null,
-  account: null,
+  ledgerStartDate: null,
+  ledgerEndDate: null,
+  ledgerAccount: null,
 
-  setStartDate: (param) => set({ startDate: param }),
-  setEndDate: (param) => set({ endDate: param }),
-  setAccount: (param) => set({ account: param }),
+  setLedgerStartDate: (param) => set({ ledgerStartDate: param }),
+  setLedgerEndDate: (param) => set({ ledgerEndDate: param }),
+  setLedgerAccount: (param) => set({ ledgerAccount: param }),
+
+  resetLedgerFilter: () =>
+    set({
+      ledgerStartDate: null,
+      ledgerEndDate: null,
+      ledgerAccount: null,
+    }),
 });
 
 export default createUserLedgerSlice;

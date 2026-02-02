@@ -1,7 +1,7 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
 
-import ChartOfAccountShow from "@modules/user/report/business/Ledger";
+import ChartOfAccountShow from "@modules/user/account/chart-of-account/Action/Show";
 
 export default function COAShowPage() {
   const pageTitle = "Transaksi Akun";

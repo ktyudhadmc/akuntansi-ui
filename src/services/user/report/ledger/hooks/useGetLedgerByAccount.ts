@@ -5,10 +5,10 @@ import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
 
-export default function useGetLedgerByAccount(accountId: string) {
+export default function useGetLedgerByAccount(accountId: string | undefined) {
   const [search, setSearch] = useState("");
-  const startDate = useUserStore((state) => state.startDate);
-  const endDate = useUserStore((state) => state.endDate);
+  const startDate = useUserStore((state) => state.ledgerStartDate);
+  const endDate = useUserStore((state) => state.ledgerEndDate);
 
   const fetcher: Fetcher<IGetLedgerByAccountResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -16,12 +16,13 @@ export default function useGetLedgerByAccount(accountId: string) {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search, start_date: startDate, end_date: endDate },
+    { account_id: accountId, search, start_date: startDate, end_date: endDate },
     { skipEmptyString: true, skipNull: true },
   );
 
   const { data, error } = useSWR(
-    `/reports/account/${accountId}/ledger?${qs}`,
+    // `/reports/account/${accountId}/ledger?${qs}`,
+    `/ledger?${qs}`,
     fetcher,
   );
 

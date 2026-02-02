@@ -64,9 +64,9 @@ export { default as InventoryUsageCreatePage } from "./inventory/usage/create";
 export { default as InventoryUsageEditPage } from "./inventory/usage/edit";
 
 // JOURNAL
-export { default as GeneralJournalPage } from "./journal/general";
-export { default as GeneralJournalCreatePage } from "./journal/general/CreatePage";
-export { default as GeneralJournalEditPage } from "./journal/general/EditPage";
+export { default as JournalPage } from "./journal";
+export { default as JournalCreatePage } from "./journal/CreatePage";
+export { default as JournalEditPage } from "./journal/EditPage";
 
 // REPORT
 export { default as ReportPage } from "./report";

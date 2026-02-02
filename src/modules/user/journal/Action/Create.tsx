@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 
 type FormFields = ICreateGeneralJournalPayload;
 
-export default function GeneralJournalCreate() {
+export default function JournalCreate() {
   const navigate = useNavigate();
 
   const methods = useForm<FormFields>({ mode: "onChange" });
