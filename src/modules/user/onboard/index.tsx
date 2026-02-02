@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import LogoDarmaMultiCipta from "@assets/logos/logo-dinamika-circle.svg";
+import { MdMoreHoriz } from "react-icons/md";
 
 export default function OnBoard() {
   const navigate = useNavigate();
@@ -17,106 +18,106 @@ export default function OnBoard() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-3">
         {loading || !data
           ? Array.from({ length: 4 }).map((_, idx) => (
-              <Skeleton
-                key={`skeleton-onboard-company${idx}`}
-                isLoading={loading}
-                height="5rem"
-              />
-            ))
+            <Skeleton
+              key={`skeleton-onboard-company${idx}`}
+              isLoading={loading}
+              height="5rem"
+            />
+          ))
           : data?.map((item, idx) => (
-              // <div
-              //   key={`onboard-company-${idx}`}
-              //   className={`border border-brand-600 rounded-lg pt-4 cursor-pointer`}
-              //   onClick={() => {
-              //     setCompany(item.id.toString());
-              //     toast.success("Berhasil memilih perusahaan");
-              //     navigate("/user/dashboard");
-              //   }}
-              // >
-              //   <h4 className="px-4 mb-4 text-sm dark:text-white font-semibold ">
-              //     {item.name}
-              //   </h4>
+            // <div
+            //   key={`onboard-company-${idx}`}
+            //   className={`border border-brand-600 rounded-lg pt-4 cursor-pointer`}
+            //   onClick={() => {
+            //     setCompany(item.id.toString());
+            //     toast.success("Berhasil memilih perusahaan");
+            //     navigate("/user/dashboard");
+            //   }}
+            // >
+            //   <h4 className="px-4 mb-4 text-sm dark:text-white font-semibold ">
+            //     {item.name}
+            //   </h4>
 
-              //   <div className="bg-brand-600 w-full rounded-b py-1 text-end flex justify-between">
-              //     <p className="text-xs font-semibold text-white px-4 my-auto">
-              //       {item.code}
-              //     </p>
-              //     <span className="text-sm text-white px-2">
-              //       <HiChevronRight
-              //         className="bg-white rounded-full"
-              //         color={"var(--color-brand-600)"}
-              //       />
-              //     </span>
-              //   </div>
-              // </div>
+            //   <div className="bg-brand-600 w-full rounded-b py-1 text-end flex justify-between">
+            //     <p className="text-xs font-semibold text-white px-4 my-auto">
+            //       {item.code}
+            //     </p>
+            //     <span className="text-sm text-white px-2">
+            //       <HiChevronRight
+            //         className="bg-white rounded-full"
+            //         color={"var(--color-brand-600)"}
+            //       />
+            //     </span>
+            //   </div>
+            // </div>
 
-              // <div
-              //   key={`onboard-company-${idx}`}
-              //   className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6 cursor-pointer"
-              //   onClick={() => {
-              //     setCompany(item.id.toString());
-              //     toast.success("Berhasil memilih perusahaan");
-              //     navigate("/user/dashboard");
-              //   }}
-              // >
-              //   <div className="mb-6 flex h-[52px] w-[52px] items-center justify-center rounded-xl bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400">
-              //     <FaCogs className="text-xl" />
-              //   </div>
+            // <div
+            //   key={`onboard-company-${idx}`}
+            //   className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6 cursor-pointer"
+            //   onClick={() => {
+            //     setCompany(item.id.toString());
+            //     toast.success("Berhasil memilih perusahaan");
+            //     navigate("/user/dashboard");
+            //   }}
+            // >
+            //   <div className="mb-6 flex h-[52px] w-[52px] items-center justify-center rounded-xl bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400">
+            //     <FaCogs className="text-xl" />
+            //   </div>
 
-              //   <p className="text-theme-sm text-gray-500 dark:text-gray-400">
-              //     {item.code}
-              //   </p>
+            //   <p className="text-theme-sm text-gray-500 dark:text-gray-400">
+            //     {item.code}
+            //   </p>
 
-              //   <div className="mt-3 flex items-end justify-between">
-              //     <div>
-              //       <h4 className="text-title-sm font-bold text-gray-800 dark:text-white/90">
-              //         {item.name}
-              //       </h4>
-              //     </div>
-              //   </div>
-              // </div>
+            //   <div className="mt-3 flex items-end justify-between">
+            //     <div>
+            //       <h4 className="text-title-sm font-bold text-gray-800 dark:text-white/90">
+            //         {item.name}
+            //       </h4>
+            //     </div>
+            //   </div>
+            // </div>
 
-              <div
-                key={idx}
-                className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3"
-              >
-                <div className="relative p-5 pb-9">
-                  <div className="mb-5 inline-flex h-10 w-10 items-center justify-center">
-                    <img src={LogoDarmaMultiCipta} alt="" />
-                  </div>
-                  <h3 className="mb-3 text-lg font-semibold text-gray-800 dark:text-white/90">
-                    {item.name}
-                  </h3>
-                  <p className="max-w-xs text-sm text-gray-500 dark:text-gray-400">
-                    Integrate Loom to easily record, share, and manage video
-                    messages
-                  </p>
-                  <div className="absolute top-5 right-5 h-fit">
-                    <button>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                      >
-                        <path
-                          d="M5 10.0044L5 9.99609M15 10.0044V9.99609M10 10.0044V9.99609"
-                          stroke="currentColor"
-                          stroke-width="3.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+            <div
+              key={idx}
+              className="rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3"
+            >
+              <div className="relative p-5 pb-4">
+                <div className="mb-5 inline-flex h-10 w-10 items-center justify-center">
+                  <img src={LogoDarmaMultiCipta} alt="" />
                 </div>
-                <div className="flex items-center justify-between border-t border-gray-200 p-5 dark:border-gray-800">
-                  <div className="flex gap-3">
-                    {/* <button className="shadow-theme-xs inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gray-300 text-gray-700 dark:border-gray-700 dark:text-gray-400">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
+                  {item.name}
+                </h3>
+                <p className="max-w-xs text-sm text-gray-500 dark:text-gray-400">
+                  {item.email}
+                </p>
+                <div className="absolute top-5 right-5 h-fit">
+                  {/* <button> */}
+                  {/* <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M5 10.0044L5 9.99609M15 10.0044V9.99609M10 10.0044V9.99609"
+                        stroke="currentColor"
+                        stroke-width="3.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg> */}
+                  {/* </button> */}
+                  <MdMoreHoriz className="text-xl dark:text-white cursor-pointer" onClick={() => alert(item.name)} />
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-t border-gray-200 p-5 dark:border-gray-800">
+                <div className="flex gap-3">
+                  {/* <button className="shadow-theme-xs inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gray-300 text-gray-700 dark:border-gray-700 dark:text-gray-400">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -140,20 +141,20 @@ export default function OnBoard() {
                         ></path>
                       </svg>
                     </button> */}
-                    <button
-                      onClick={() => {
-                        setCompany(item.id.toString());
-                        toast.success("Berhasil memilih perusahaan");
-                        navigate("/user/dashboard");
-                      }}
-                      className="shadow-theme-xs inline-flex h-11 items-center justify-center rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 dark:border-gray-700 dark:text-gray-400"
-                    >
-                      Buka Jurnal
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => {
+                      setCompany(item.id.toString());
+                      toast.success("Berhasil memilih perusahaan");
+                      navigate("/user/dashboard");
+                    }}
+                    className="shadow-theme-xs inline-flex h-11 items-center justify-center rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 dark:border-gray-700 dark:text-gray-400"
+                  >
+                    Buka Jurnal
+                  </button>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
       </div>
     </div>
   );
