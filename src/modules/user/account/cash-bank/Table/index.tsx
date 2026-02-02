@@ -1,12 +1,12 @@
 import TableItem from "./TableItem";
 import TableHeader from "./Header";
 
-import useGetAll from "@services/user/account/index/hooks/useGetAll";
 import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
+import useGetAllCashBank from "@services/user/account/cash-bank/hooks/useGetAllCashBank";
 
 export default function AccountTable() {
-  const { data, loading, setName } = useGetAll();
+  const { data, loading, setName } = useGetAllCashBank();
 
   return (
     <>
@@ -51,7 +51,12 @@ export default function AccountTable() {
               ) : (
                 <>
                   <tr>
-                    <td colSpan={5} className="text-start px-5 py-3 font-semibold text-theme-xs">Kas & Bank</td>
+                    <td
+                      colSpan={5}
+                      className="text-start px-5 py-3 font-semibold text-theme-xs"
+                    >
+                      Kas & Bank
+                    </td>
                   </tr>
                   {data.map((item, index) => {
                     return (

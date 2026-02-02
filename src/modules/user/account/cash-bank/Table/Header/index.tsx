@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Button from "@components/ui/button/Button";
 import TableHeaderCard from "./HeaderCard";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function TableHeader({ setSearchCallback }: Props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isOpenDropown, setIsOpenDropdown] = useState(false);
   function toggleDropdown() {
     setIsOpenDropdown(!isOpenDropown);
@@ -55,21 +55,21 @@ export default function TableHeader({ setSearchCallback }: Props) {
       <div className="flex md:flex-row flex-col justify-between gap-4">
         <div className="relative">
           <Button size="sm" onClick={toggleDropdown}>
-            <span>Buat akun/transaksi</span>
+            <span>Buat transaksi</span>
             <AiFillCaretDown />
           </Button>
 
           <Dropdown isOpen={isOpenDropown} onClose={closeDropdown}>
-            <div className=" px-2 pt-2 text-sm uppercase text-gray-400 font-light">
+            {/* <div className=" px-2 pt-2 text-sm uppercase text-gray-400 font-light">
               Akun
             </div>
             <DropdownItem onItemClick={() => navigate("create")}>
               Buat akun baru
-            </DropdownItem>
+            </DropdownItem> */}
 
-            <span className=" px-2 pt-2 text-sm uppercase text-gray-400 font-light">
+            {/* <span className=" px-2 pt-2 text-sm uppercase text-gray-400 font-light">
               Transaksi
-            </span>
+            </span> */}
 
             <DropdownItem>Transfer uang</DropdownItem>
             <DropdownItem>Terima uang</DropdownItem>
