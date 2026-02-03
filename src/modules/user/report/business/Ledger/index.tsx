@@ -7,6 +7,7 @@ import TableItem from "./TableItem";
 
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import useUserStore from "@store/useUserStore";
+import { formatDateInput, today } from "@helpers/index";
 
 import DatePicker from "@components/form/date-picker";
 import Skeleton from "@components/Skeleton/Skeleton";
@@ -50,8 +51,8 @@ export default function RBLedger() {
   const onClear = () => {
     methods.reset({
       account: null,
-      start_date: null,
-      end_date: null,
+      start_date: formatDateInput(today),
+      end_date: formatDateInput(today),
     });
 
     resetLedgerFilter();

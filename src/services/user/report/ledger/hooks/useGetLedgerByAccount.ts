@@ -20,9 +20,11 @@ export default function useGetLedgerByAccount(accountId: string | undefined) {
     { skipEmptyString: true, skipNull: true },
   );
 
+  const swrKey = accountId ? `/ledger?${qs}` : null;
+
   const { data, error } = useSWR(
     // `/reports/account/${accountId}/ledger?${qs}`,
-    `/ledger?${qs}`,
+    swrKey,
     fetcher,
   );
 
@@ -31,7 +33,7 @@ export default function useGetLedgerByAccount(accountId: string | undefined) {
   }, []);
 
   return {
-    loading: !data && !error,
+    loading: !!accountId && !data && !error,
     data: data?.data,
     error,
     search,
