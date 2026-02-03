@@ -4,7 +4,7 @@ import useRevalidateMutation from "@/lib/swr/useRevalidateMutation";
 export default function useDelete() {
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const deleteData = async (productUnitId: number) => {
+  const deleteData = async (productUnitId: string) => {
     try {
       const res = await axiosInstance({
         withToken: true,

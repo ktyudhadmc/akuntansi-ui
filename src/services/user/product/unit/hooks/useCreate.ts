@@ -14,10 +14,10 @@ export default function useCreate() {
         tokenType: "user",
       }).post(`/uom`, { code, name });
 
-      if (res.status === 200) {
+      if (res.status === 200 || res.status === 201) {
         revalidateMutationsByKey(/^\/uom/);
       }
-      
+
       return { response: res, error: null };
     } catch (error: any) {
       if (error.status >= 500) {

@@ -6,6 +6,7 @@ import querystring from "query-string";
 
 export default function useGetAll() {
   const [name, setName] = useState("");
+  const [categoryId, setCategoryId] = useState("");
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -13,7 +14,7 @@ export default function useGetAll() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search: name },
+    { search: name, category_id: categoryId },
     { skipEmptyString: true, skipNull: true },
   );
 
@@ -23,11 +24,17 @@ export default function useGetAll() {
     setName(name);
   }, []);
 
+  const onSetCategory = useCallback((categoryId: string) => {
+    setCategoryId(categoryId);
+  }, []);
+
   return {
     loading: !data && !error,
     data: data?.data,
     error,
     name,
     setName: onSetName,
+    categoryId,
+    setCategoryId: onSetCategory,
   };
 }
