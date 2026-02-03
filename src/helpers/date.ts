@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import type { DateOption } from "@def/option";
 
+export const today = new Date();
+
 export const formatMonthValue = (date = new Date()): string => {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
 };

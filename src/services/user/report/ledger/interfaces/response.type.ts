@@ -25,9 +25,7 @@ export interface LedgerResponse {
 /** DOMAIN */
 export interface Ledger {
   date: string;
-  // transaction: Transaction;
-  type: string;
-  document_number: string;
+  transaction: Transaction;
   description: string;
   debit: number;
   credit: number;
@@ -38,7 +36,7 @@ export interface Transaction {
   id: string;
   type: string;
   document_number: string;
-  description: string;
+  // description: string;
 }
 export interface LedgerOld {
   account: Account;
