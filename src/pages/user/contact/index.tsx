@@ -8,7 +8,8 @@ import SupplierTable from "@modules/user/contact/supplier/Table";
 // import useUserStore from "@store/useUserStore";
 import CustomerTable from "@modules/user/contact/customer/Table";
 import { useNavigate } from "react-router-dom";
-import { TabDefault } from "@components/ui/tabs";
+import { TabUnderline } from "@components/ui/tabs";
+import { AiOutlineUser } from "react-icons/ai";
 
 export default function ContactPage() {
   const pageTitle = "Kontak";
@@ -22,8 +23,8 @@ export default function ContactPage() {
         : "customer";
 
   const tabs = [
-    { value: "customer", label: "Pelanggan" },
-    { value: "supplier", label: "Supplier" },
+    { value: "customer", label: "Pelanggan", icon: <AiOutlineUser /> },
+    { value: "supplier", label: "Supplier", icon: <AiOutlineUser /> },
   ];
 
   // const activeTabContact = useUserStore((state) => state.activeTabContact);
@@ -66,7 +67,7 @@ export default function ContactPage() {
             </div>
           </div> */}
 
-          <TabDefault
+          <TabUnderline
             tabs={tabs}
             initialActive={activeTabContact ?? "customer"}
             onChange={(e) => navigate(`#${e}`)}
