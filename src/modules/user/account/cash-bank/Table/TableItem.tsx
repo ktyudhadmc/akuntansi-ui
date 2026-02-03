@@ -78,7 +78,7 @@ export default function TableItem({ item }: Props) {
         <div className="relative ">
           <div className="flex whitespace-nowrap justify-end">
             <button
-              onClick={() => navigate(`import`)}
+              onClick={() => navigate(`${item.id}/import`)}
               className="px-3 py-2.5 text-theme-xs bg-white text-brand-600 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300 font-medium rounded inline-flex items-center justify-center gap-2 rounded-l-lg rounded-r-none transition"
             >
               Impor rekening koran
@@ -90,7 +90,7 @@ export default function TableItem({ item }: Props) {
               <AiFillCaretDown />
             </button>
           </div>
-          <Dropdown isOpen={isOpenDropown} onClose={closeDropdown} >
+          <Dropdown isOpen={isOpenDropown} onClose={closeDropdown}>
             <DropdownItem>Transfer Uang</DropdownItem>
             <DropdownItem>Terima Uang</DropdownItem>
             <DropdownItem>Kirim Uang</DropdownItem>

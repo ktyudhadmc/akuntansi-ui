@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 import config from "@constants/config";
@@ -24,6 +24,7 @@ type FormFields = IImportPurchasePayload;
 
 export default function CBImportFormatBank() {
   const navigate = useNavigate();
+  const params = useParams();
 
   /** hooks upload file */
   const { file, getRootProps, getInputProps, onRemove, isDragActive, open } =
@@ -120,14 +121,17 @@ export default function CBImportFormatBank() {
             </div>
 
             <div className="mb-4">
-              <Select
-                label="3. Pilih Nama Akun"
-                name="account_id"
-                placeholder="--- Pilih Nama Akun ---"
-                options={cashBankOptions}
-                defaultValue={"journal"}
-                required
-              />
+              <Skeleton isLoading={cashBankLoading}>
+                <Select
+                  label="3. Pilih Nama Akun"
+                  name="account_id"
+                  placeholder="--- Pilih Nama Akun ---"
+                  options={cashBankOptions}
+                  defaultValue={params.id}
+                  disabled
+                  required
+                />
+              </Skeleton>
               <small className="text-theme-xs italic text-gray-500 dark:text-gray-400">
                 *Pilih nama akun yang ingin di impor data rekening koran
               </small>

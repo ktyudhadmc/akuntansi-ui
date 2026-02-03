@@ -78,7 +78,7 @@ export default [
             path: "cash-bank",
             children: [
               { index: true, element: <User.CBPage /> },
-              { path: "import", element: <User.CBImportPage /> },
+              { path: ":id/import", element: <User.CBImportPage /> },
             ],
           },
         ],
