@@ -30,6 +30,9 @@ export { default as ContactPage } from "./contact";
 export { default as CreateContactPage } from "./contact/create";
 export { default as EditContactPage } from "./contact/edit";
 
+// PRODUCT UNIT
+export { default as ProductUnitPage } from "./product-unit";
+
 // PRODUCT
 export { default as ProductPage } from "./product";
 export { default as CreateProductPage } from "./product/create";

@@ -13,7 +13,7 @@ export default function OthersPage() {
   const data = [
     {
       title: "Satuan",
-      path: "../products",
+      path: "../product-units",
       description: "Berisi daftar satuan (unit) produk Anda.",
     },
     {
@@ -46,7 +46,11 @@ export default function OthersPage() {
       {/* <div className="grid lg:grid-cols-2 gap-6"> */}
       <AccordionGroup defaultOpen={`accordion-group-item-${data[0].path}`}>
         {data.map((item, index) => (
-          <AccordionGroupItem key={index} id={`accordion-group-item-${item.path}`} title={item.title}>
+          <AccordionGroupItem
+            key={index}
+            id={`accordion-group-item-${item.path}`}
+            title={item.title}
+          >
             <p className="text-theme-sm mb-4 text-gray-500 dark:text-gray-400">
               {item.description}
             </p>
@@ -79,7 +83,7 @@ export default function OthersPage() {
           //   link={{ type: "internal", url: item.path, text: "Buka halaman" }}
           // />
         ))}
-      </AccordionGroup >
+      </AccordionGroup>
       {/* </div> */}
       {/* </div>
       </div> */}

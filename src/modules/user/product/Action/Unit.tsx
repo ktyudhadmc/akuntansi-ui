@@ -121,7 +121,7 @@ function TableItem({ item }: TableItemProps) {
   };
 
   const onDelete = async () => {
-    const { error, response } = await deleteData(Number(item.id));
+    const { error, response } = await deleteData(item.id);
     if (error || response) {
       if (error) {
         toast.error("Gagal menghapus data!");
