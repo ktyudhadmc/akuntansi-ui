@@ -15,7 +15,7 @@ type PropsType = {
   mode?: "single" | "multiple" | "range" | "time" | "month";
   onChange?: Hook | Hook[];
 
-  defaultDate?: DateOption;
+  defaultDate?: any;
 
   minDate?: DateOption;
   maxDate?: DateOption;
@@ -43,19 +43,19 @@ export default function DatePicker({
     const flatPickr = flatpickr(`#${id}`, {
       ...(mode === "month"
         ? {
-          plugins: [
-            monthSelectPlugin({
-              shorthand: true,
-              dateFormat: "Y-m",
-              altFormat: "F Y",
-            }),
-          ],
-        }
+            plugins: [
+              monthSelectPlugin({
+                shorthand: true,
+                dateFormat: "Y-m",
+                altFormat: "F Y",
+              }),
+            ],
+          }
         : {
-          mode: mode || "single",
-          monthSelectorType: "static",
-          dateFormat: "Y-m-d",
-        }),
+            mode: mode || "single",
+            monthSelectorType: "static",
+            dateFormat: "Y-m-d",
+          }),
       static: true,
       defaultDate,
       minDate,

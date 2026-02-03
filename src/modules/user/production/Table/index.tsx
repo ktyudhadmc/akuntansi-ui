@@ -25,9 +25,9 @@ export default function ProductionTable() {
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Produk
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                {/* <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Material
-                </th>
+                </th> */}
                 <th></th>
               </tr>
             </thead>
@@ -35,7 +35,7 @@ export default function ProductionTable() {
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-16">
+                  <td colSpan={4} className="text-center py-16">
                     <div className="sweet-loading">
                       <BeatLoader color="var(--color-brand-600)" />
                     </div>
@@ -43,7 +43,7 @@ export default function ProductionTable() {
                 </tr>
               ) : isEmpty(data) || !data ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-4">
+                  <td colSpan={4} className="text-center py-4">
                     Data tidak tersedia
                   </td>
                 </tr>

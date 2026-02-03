@@ -33,8 +33,8 @@ export default function TableItem({ item }: Props) {
       <td className="text-brand-600 dark:text-white text-start text-theme-xs font-medium ">
         <Link
           to={`${item.id}`}
-          target="_blank"
-          rel="noopener noreferrer"
+          // target="_blank"
+          // rel="noopener noreferrer"
           className={`flex py-1 ${paddingClass}`}
         >
           {item.name}
