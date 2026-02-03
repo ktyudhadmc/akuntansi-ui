@@ -1,7 +1,8 @@
 // import Badge from "@components/ui/badge/Badge";
 import TableItemMenu from "./TableItemMenu";
-import { formatIDR } from "@helpers/currency";
+import { formatIDRLocale } from "@helpers/currency";
 import type { Purchase } from "@services/user/purchase/interfaces/response.type";
+import { Link } from "react-router-dom";
 
 interface Props {
   item: Purchase;
@@ -14,34 +15,29 @@ export default function TableItem({ item }: Props) {
         {item.date}
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {item.document_number}
+        <Link
+          to={`${item.id}/edit`}
+          className={`flex my-auto text-brand-600`}
+        >
+          {item.document_number}
+        </Link>
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        <span className="font-semibold">{item.supplier.name}</span>
+        <Link
+          to={`../contacts/${item.supplier.id}/edit?tab=supplier`}
+          className={`flex my-auto text-brand-600`}
+        >
+          {item.supplier.name}
+        </Link>
       </td>
-      <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        <span className="font-semibold">{item.material.code}</span>
-        <h4 className="uppercase">{item.material.name}</h4>
+      <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400">
+        {item.date}
       </td>
-      <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        <span className="font-semibold">{item.account.code}</span>
-        <p className="text-theme-xs">{item.account.name}</p>
-      </td>
-      <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        <span className="font-semibold">{item.counter_account.code}</span>
-        <p className="text-theme-xs">{item.counter_account.name}</p>
-      </td>
-      <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {item.qty} <p className="text-theme-xs">{item.unit.name}</p>
-      </td>
-      <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {formatIDR(item.price)}
-      </td>
-      <td className="px-4 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        {formatIDR(item.total_price)}
+      <td className="px-4 py-1.5 text-black text-end text-theme-xs dark:text-white font-medium">
+        {formatIDRLocale(item.total_price, { withSymbol: true })}
       </td>
 
-      <td className="px-4 py-3  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
+      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
         <TableItemMenu
           id={item.id}
           name={item.material.name}

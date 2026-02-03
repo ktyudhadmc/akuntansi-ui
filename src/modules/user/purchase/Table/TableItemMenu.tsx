@@ -31,14 +31,14 @@ export default function TableItemMenu({ id, name, sku }: Props) {
         {/* edit */}
         <Button
           onClick={() => navigate(`${id}/edit`)}
-          size="sm"
+          size="xs"
           variant="outline"
         >
           <HiPencil />
         </Button>
 
         {/* delete */}
-        <Button onClick={openModal} size="sm" variant="outline">
+        <Button onClick={openModal} size="xs" variant="outline">
           <HiTrash />
         </Button>
       </div>

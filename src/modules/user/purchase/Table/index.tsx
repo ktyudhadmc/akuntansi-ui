@@ -19,36 +19,24 @@ export default function PurchaseTable() {
                   Tanggal
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Nomor Dokumen
+                  Nomor
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Nama Supplier
+                  Supplier
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Material
+                  Tgl. Tempo
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Akun Debit
-                </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Akun Kredit
-                </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Kuantitas
-                </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Harga satuan
-                </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                   Total Harga
                 </th>
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {loading ? (
                 <tr>
-                  <td colSpan={9} className="text-center py-16">
+                  <td colSpan={6} className="text-center py-16">
                     <div className="sweet-loading">
                       <BeatLoader color="var(--color-brand-600)" />
                     </div>
@@ -56,7 +44,7 @@ export default function PurchaseTable() {
                 </tr>
               ) : isEmpty(data) || !data ? (
                 <tr>
-                  <td colSpan={9} className="text-center py-4">
+                  <td colSpan={6} className="text-center py-4">
                     Data tidak tersedia
                   </td>
                 </tr>
