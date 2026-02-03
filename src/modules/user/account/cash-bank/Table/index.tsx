@@ -45,7 +45,10 @@ export default function AccountTable() {
                 </tr>
               ) : isEmpty(data) || !data ? (
                 <tr>
-                  <td colSpan={5} className="text-center text-gray-500 dark:text-gray-400 py-4">
+                  <td
+                    colSpan={5}
+                    className="text-center text-gray-500 dark:text-gray-400 py-4"
+                  >
                     <HiOutlineArchiveBox className=" mx-auto text-2xl" />
                     Data tidak tersedia
                   </td>

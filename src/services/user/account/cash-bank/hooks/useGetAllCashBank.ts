@@ -6,6 +6,7 @@ import querystring from "query-string";
 
 export default function useGetAllCashBank() {
   const [name, setName] = useState("");
+  const [categoryId, setCategoryId] = useState("3");
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -13,14 +14,18 @@ export default function useGetAllCashBank() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search: name },
+    { search: name, category_id: categoryId },
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/bank-cash-account?${qs}`, fetcher);
+  const { data, error } = useSWR(`/accounts?${qs}`, fetcher);
 
   const onSetName = useCallback((name: string) => {
     setName(name);
+  }, []);
+
+  const onSetCategory = useCallback((categoryId: string) => {
+    setCategoryId(categoryId);
   }, []);
 
   return {
@@ -29,5 +34,7 @@ export default function useGetAllCashBank() {
     error,
     name,
     setName: onSetName,
+    categoryId,
+    setCategoryId: onSetCategory,
   };
 }
