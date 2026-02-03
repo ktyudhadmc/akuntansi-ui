@@ -17,7 +17,7 @@ export default function TableItem({ item }: Props) {
           className="px-5 py-1 text-gray-500 text-start text-sm dark:text-gray-400 "
         >
           <Link
-            to={`/user/journals/general/${item.id}/edit`}
+            to={`/user/journals/${item.id}/edit`}
             className="cursor-pointer font-bold text-brand-600 dark:text-white mr-1"
           >
             Jurnal Umum #{item.document_number}
@@ -28,7 +28,7 @@ export default function TableItem({ item }: Props) {
 
       {/* DEBIT */}
       <tr>
-        <td className="px-8 py-1 text-gray-500 text-start text-sm dark:text-gray-400 ">
+        <td className="px-8 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
           <Link
             to={`/user/accounts/chart-of-account/${item.account.id}`}
             className="cursor-pointer text-brand-400 dark:text-gray-400"
@@ -46,7 +46,7 @@ export default function TableItem({ item }: Props) {
 
       {/* CREDIT */}
       <tr className="border-b border-black dark:border-white">
-        <td className="px-8 py-1 text-start text-sm">
+        <td className="px-8 py-1 text-start text-theme-xs">
           <Link
             to={`/user/accounts/chart-of-account/${item.counter_account.id}`}
             className="cursor-pointer text-brand-400 dark:text-gray-400"
