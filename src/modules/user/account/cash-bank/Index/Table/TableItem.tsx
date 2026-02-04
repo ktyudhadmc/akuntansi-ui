@@ -50,8 +50,8 @@ export default function TableItem({ item }: Props) {
         <div className="flex md:flex-row flex-col justify-between gap-2">
           <Link
             to={`${item.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            // target="_blank"
+            // rel="noopener noreferrer"
             className={`flex my-auto text-brand-600`}
           >
             {item.name}

@@ -10,6 +10,16 @@ interface Props {
 }
 
 export default function TableItem({ item }: Props) {
+  const getAccountUrl = (id: number, categoryId?: number | null) => {
+    const cashBank = categoryId == 3;
+
+    /** redirect cashbank */
+    if (cashBank) return `/user/accounts/cash-bank/${id}`;
+
+    /** redirect coa */
+    return `/user/accounts/chart-of-account/${id}`;
+  };
+
   const indentClasses: Record<number, string> = {
     0: "pl-4 pr-4",
     1: "pl-8 pr-4",
@@ -19,6 +29,7 @@ export default function TableItem({ item }: Props) {
   };
 
   const paddingClass = indentClasses[item.level] || "px-4";
+
   return (
     <tr className="hover:bg-gray-50 hover:dark:bg-gray-800">
       {/* <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
@@ -32,7 +43,7 @@ export default function TableItem({ item }: Props) {
       </td>
       <td className="text-brand-600 dark:text-white text-start text-theme-xs font-medium ">
         <Link
-          to={`${item.id}`}
+          to={getAccountUrl(item.id, item.category?.id)}
           // target="_blank"
           // rel="noopener noreferrer"
           className={`flex py-1 ${paddingClass}`}
