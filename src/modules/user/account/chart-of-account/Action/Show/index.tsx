@@ -6,7 +6,7 @@ import { BeatLoader } from "react-spinners";
 import { isEmpty } from "lodash";
 
 import useUserStore from "@store/useUserStore";
-import { formatDateInput, today } from "@helpers/index";
+import { todayYMDString } from "@helpers/index";
 
 import TableItem from "./TableItem";
 import DatePicker from "@components/form/date-picker";
@@ -45,8 +45,8 @@ export default function ChartOfAccountShow() {
 
   const onClear = () => {
     methods.reset({
-      start_date: formatDateInput(today),
-      end_date: formatDateInput(today),
+      start_date: todayYMDString,
+      end_date: todayYMDString,
     });
 
     resetLedgerFilter();

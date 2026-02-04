@@ -1,27 +1,27 @@
 import { useCallback, useState } from "react";
 import useSWR, { type Fetcher } from "swr";
-import type { IGetAllLedgerResponse } from "../interfaces/response.type";
+import type { IGetAllResponse } from "@services/user/account/index/interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
 
 export default function useGetAllLedger() {
   const [search, setSearch] = useState("");
-  const account = useUserStore((state) => state.account);
-  const startDate = useUserStore((state) => state.startDate);
-  const endDate = useUserStore((state) => state.endDate);
 
-  const fetcher: Fetcher<IGetAllLedgerResponse, string> = (url) =>
+  const startDate = useUserStore((state) => state.ledgerStartDate);
+  const endDate = useUserStore((state) => state.ledgerEndDate);
+
+  const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
       .get(url)
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search, account_id: account, start_date: startDate, end_date: endDate },
+    { search, start_date: startDate, end_date: endDate },
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/ledger?${qs}`, fetcher);
+  const { data, error } = useSWR(`/accounts?${qs}`, fetcher);
 
   const onSetSearch = useCallback((search: string) => {
     setSearch(search);

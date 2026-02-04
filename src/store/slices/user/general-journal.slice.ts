@@ -1,5 +1,6 @@
 import type { StateCreator } from "zustand";
 import type { DateOption } from "@def/option";
+import { todayYMDString } from "@helpers/index";
 
 export declare interface UserGeneralJournalState {
   startDate: DateOption | null;
@@ -15,8 +16,8 @@ const createUserGeneralJournalSlice: StateCreator<UserGeneralJournalState> = (
   set,
 ) => ({
   /** FILTER */
-  startDate: null,
-  endDate: null,
+  startDate: todayYMDString,
+  endDate: todayYMDString,
   account: null,
 
   setStartDate: (param) => set({ startDate: param }),

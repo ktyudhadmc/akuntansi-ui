@@ -2,35 +2,38 @@ import { useCallback } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import debounce from "lodash/debounce";
 import { MdOutlineRefresh } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-// import { formatDateInput, today } from "@helpers/index";
+import { todayYMDString } from "@helpers/index";
 
 import Button from "@components/ui/button/Button";
 import SearchInput from "@components/form/input/SearchInput";
-import useUserStore from "@store/useUserStore";
 import Form from "@components/form/Form";
 import DatePicker from "@components/form/date-picker";
-import { useNavigate } from "react-router-dom";
 
 interface Props {
-  setSearchCallback: (param: string) => void;
+  startDate: string;
+  endDate: string;
+  setSearch: (param: string) => void;
+  setStartDate: (param: string) => void;
+  setEndDate: (param: string) => void;
 }
 
-export default function TableHeader({ setSearchCallback }: Props) {
+export default function TableHeader({
+  startDate,
+  endDate,
+  setSearch,
+  setStartDate,
+  setEndDate,
+}: Props) {
   const navigate = useNavigate();
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
-      setSearchCallback(value);
+      setSearch(value);
     }, 500),
     [], // make sure debounce isn't recreated on every render
   );
-
-  //   const startDate = useUserStore((state) => state.ledgerStartDate);
-  //   const endDate = useUserStore((state) => state.ledgerEndDate);
-  const setStartDate = useUserStore((state) => state.setLedgerStartDate);
-  const setEndDate = useUserStore((state) => state.setLedgerEndDate);
-  //   const resetLedgerFilter = useUserStore((state) => state.resetLedgerFilter);
 
   const methods = useForm<any>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
@@ -43,11 +46,11 @@ export default function TableHeader({ setSearchCallback }: Props) {
 
   const onClear = () => {
     methods.reset({
-      start_date: null,
-      end_date: null,
+      start_date: todayYMDString,
+      end_date: todayYMDString,
     });
-
-    // resetLedgerFilter();
+    setStartDate(todayYMDString);
+    setEndDate(todayYMDString);
   };
 
   return (
@@ -61,7 +64,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
               placeholder="Tanggal mulai"
               id="start_date"
               name="start_date"
-              //   defaultValue={startDate}
+              defaultValue={startDate}
               required
             />
 
@@ -70,7 +73,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
               placeholder="Tanggal selesai"
               id="end_date"
               name="end_date"
-              //   defaultValue={endDate}
+              defaultValue={endDate}
               required
             />
 
