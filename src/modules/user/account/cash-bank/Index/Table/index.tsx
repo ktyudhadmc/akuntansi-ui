@@ -58,7 +58,7 @@ export default function AccountTable() {
                   <tr>
                     <td
                       colSpan={5}
-                      className="text-start px-5 py-3 font-semibold text-theme-xs"
+                      className="text-start px-5 py-3 font-semibold text-theme-xs  dark:text-white"
                     >
                       Kas & Bank
                     </td>

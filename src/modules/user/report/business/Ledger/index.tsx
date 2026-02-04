@@ -11,7 +11,8 @@ import { todayYMDString, formatIDRLocale } from "@helpers/index";
 import DatePicker from "@components/form/date-picker";
 import Button from "@components/ui/button/Button";
 import Form from "@components/form/Form";
-import useGetAllLedger from "@services/user/report/ledger/hooks/useGetAllLedger";
+
+import useGetAllLedgerAccount from "@services/user/report/ledger/hooks/useGetAllLedgerAccount";
 
 export default function RBLedger() {
   const startDate = useUserStore((state) => state.ledgerStartDate);
@@ -26,7 +27,7 @@ export default function RBLedger() {
   const { isSubmitting } = methods.formState;
   const isValid = methods.formState.isValid;
 
-  const { data, loading } = useGetAllLedger();
+  const { data, loading } = useGetAllLedgerAccount();
 
   const onSubmit: SubmitHandler<any> = async (state) => {
     setStartDate(state.start_date);
