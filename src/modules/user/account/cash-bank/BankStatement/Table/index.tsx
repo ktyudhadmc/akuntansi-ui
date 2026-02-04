@@ -5,7 +5,7 @@ import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
 import TableHeader from "./TableHeader";
 
-import useGetLedgerByAccount from "@services/user/report/ledger/hooks/useGetLedgerByAccount";
+import useGetAllBankStatement from "@services/user/account/cash-bank/hooks/useGetAllBankStatement";
 
 export default function CBBankStatementTable() {
   const params = useParams();
@@ -13,13 +13,23 @@ export default function CBBankStatementTable() {
   const {
     data: ledgers,
     loading: ledgerLoading,
+    startDate,
+    endDate,
     setSearch,
-  } = useGetLedgerByAccount(params.id as string);
+    setStartDate,
+    setEndDate,
+  } = useGetAllBankStatement(params.id as string);
 
   return (
     <>
       {/* TABLE HEADER */}
-      <TableHeader setSearchCallback={setSearch} />
+      <TableHeader
+        setSearch={setSearch}
+        startDate={startDate}
+        endDate={endDate}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
+      />
 
       {/* TABLE */}
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">

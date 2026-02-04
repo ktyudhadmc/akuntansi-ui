@@ -1,5 +1,5 @@
 import DatePicker from "@components/form/default/DatePicker";
-import { formatDateYMD } from "@helpers/index";
+import { formatDateAsYMD } from "@helpers/index";
 import useUserStore from "@store/useUserStore";
 
 export default function TableHeader() {
@@ -22,7 +22,7 @@ export default function TableHeader() {
               mode="single"
               maxDate={endDate ?? today}
               defaultDate={startDate ?? today}
-              onChange={(e) => setStartDate(formatDateYMD(e[0]))}
+              onChange={(e) => setStartDate(formatDateAsYMD(e[0]))}
             />
           </div>
 
@@ -35,7 +35,7 @@ export default function TableHeader() {
               minDate={startDate ?? today}
               disabled={!startDate}
               defaultDate={endDate ?? today}
-              onChange={(e) => setEndDate(formatDateYMD(e[0]))}
+              onChange={(e) => setEndDate(formatDateAsYMD(e[0]))}
             />
           </div>
         </div>

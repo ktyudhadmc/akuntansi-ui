@@ -69,19 +69,6 @@ export default function GeneralJournal() {
                 </>
               )}
             </tbody>
-            {/* <tfoot>
-              <tr>
-                <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white font-semibold">
-                  Total Keseluruhan
-                </td>
-                <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                  {formatIDRLocale(grandTotal)}
-                </td>
-                <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                  {formatIDRLocale(grandTotal)}
-                </td>
-              </tr>
-            </tfoot> */}
           </table>
         </div>
       </div>
