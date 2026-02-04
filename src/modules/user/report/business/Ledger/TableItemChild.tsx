@@ -1,63 +1,64 @@
 import { useState } from "react";
 import { HiChevronDown } from "react-icons/hi";
 
-import type { LedgerAccount } from "@services/user/report/ledger/interfaces/response.type";
-import TableItemChild from "./TableItemChild";
 import { formatIDRLocale } from "@helpers/currency";
+import TableItemChildDetail from "./TableItemChildDetail";
+
+import type { AccountWithBalance } from "@services/user/report/ledger/interfaces/response.type";
 
 interface Props {
-  item: LedgerAccount;
+  child: AccountWithBalance;
 }
 
-export default function TableItem({ item }: Props) {
-  const [open, setOpen] = useState(false);
+export default function TableItemChild({ child }: Props) {
+  const [openChildren, setOpenChildren] = useState(false);
 
   return (
     <>
       <tr className="bg-gray-50 dark:bg-gray-800">
         <td
           colSpan={5}
-          className="px-5 py-1 text-gray-500 text-start text-sm dark:text-gray-400"
+          className="pl-10 py-1 text-sm text-gray-500 dark:text-gray-400"
         >
           <div
-            className="flex gap-2 cursor-pointer font-bold text-brand-600 dark:text-white mr-1"
-            onClick={() => setOpen((v) => !v)}
+            className="flex gap-2 cursor-pointer text-black dark:text-white"
+            onClick={() => setOpenChildren((v) => !v)}
           >
             <button
               type="button"
               className={`flex shrink-0 items-center justify-center rounded-full bg-gray-100 transition-transform duration-200 ease-linear
               dark:bg-white/[0.03] text-gray-800 dark:text-white/90
-              ${open ? "rotate-180" : ""}`}
+              ${openChildren ? "rotate-180" : ""}`}
             >
               <HiChevronDown className="size-5" />
             </button>
-            ({item.code}) - {item.name}
+            ({child.code}) - {child.name}
           </div>
         </td>
       </tr>
 
-      {open &&
-        item.children.map((child, index) => {
-          return (
-            <TableItemChild key={`table-item-child-${index}`} child={child} />
-          );
-        })}
+      {openChildren && (
+        <TableItemChildDetail
+          onOpen={openChildren}
+          accountId={Number(child.id)}
+        />
+      )}
 
       <tr>
         <td
-          className="px-5 py-1 text-black text-end text-theme-xs dark:text-white"
+          className="px-5 py-1 font-semibold text-black text-end text-theme-xs dark:text-white"
           colSpan={2}
         >
-          ({item.code}) - {item.name} | Saldo Akhir
+          Total
         </td>
         <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-          {formatIDRLocale(0)}
+          {formatIDRLocale(child.debit)}
         </td>
         <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-          {formatIDRLocale(0)}
+          {formatIDRLocale(child.credit)}
         </td>
         <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-          {formatIDRLocale(0)}
+          {formatIDRLocale(child.balance)}
         </td>
       </tr>
     </>

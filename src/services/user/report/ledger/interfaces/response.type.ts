@@ -10,6 +10,12 @@ export interface IGetLedgerByAccountResponse {
   data: LedgerResponse;
 }
 
+export interface IGetAllLedgerAccountResponse {
+  status?: string;
+  message?: string;
+  data: LedgerAccount[];
+}
+
 export interface IGetLedgerByAccountResponseOld {
   status?: string;
   message?: string;
@@ -20,6 +26,21 @@ export interface IGetLedgerByAccountResponseOld {
 export interface LedgerResponse {
   mutations: Ledger[];
   balance: Balance;
+}
+
+export interface LedgerAccount {
+  id: string;
+  code: string;
+  name: string;
+  children: AccountWithBalance[];
+}
+
+export interface AccountWithBalance extends Account {
+  debit: number;
+  credit: number;
+  balance: number;
+  opening_balance: number;
+  period_date: string;
 }
 
 /** DOMAIN */

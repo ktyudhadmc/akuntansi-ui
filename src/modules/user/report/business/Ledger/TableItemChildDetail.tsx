@@ -8,7 +8,7 @@ interface Props {
   accountId: number;
   onOpen: boolean;
 }
-export default function TableItemDetail({ accountId, onOpen }: Props) {
+export default function TableItemChildDetail({ accountId, onOpen }: Props) {
   if (!onOpen) return;
 
   const { data, loading } = useGetLedgerByAccount(accountId.toString());
@@ -47,7 +47,7 @@ export default function TableItemDetail({ accountId, onOpen }: Props) {
           {data?.mutations.map((item, index) => {
             return (
               <tr key={`table-item-detail-${index}`}>
-                <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                <td className="pl-15 pr-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   {item.date}
                 </td>
                 <td className="px-5 py-1 text-gray-500 text-start text-sm dark:text-gray-400 ">
@@ -56,7 +56,7 @@ export default function TableItemDetail({ accountId, onOpen }: Props) {
                       item.transaction.id,
                       item.transaction.type,
                     )}
-                    className="cursor-pointer text-brand-400 dark:text-gray-400"
+                    className="cursor-pointer text-brand-500 dark:text-gray-400"
                   >
                     ({item.transaction.document_number ?? "-"})
                   </Link>
@@ -76,7 +76,7 @@ export default function TableItemDetail({ accountId, onOpen }: Props) {
             );
           })}
 
-          <tr>
+          {/* <tr>
             <td
               colSpan={2}
               className="px-5 py-1 text-black text-end text-theme-xs dark:text-white font-semibold"
@@ -89,7 +89,7 @@ export default function TableItemDetail({ accountId, onOpen }: Props) {
             <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
               {formatIDRLocale(0)}
             </td>
-          </tr>
+          </tr> */}
         </>
       )}
     </>
