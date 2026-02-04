@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import AccountTable from "@modules/user/account/cash-bank/Table";
+import AccountTable from "@modules/user/account/cash-bank/Index/Table";
 
 export default function CBPage() {
   const pageTitle = "Kas & Bank";

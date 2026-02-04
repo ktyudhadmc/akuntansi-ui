@@ -76,7 +76,7 @@ export default function ImportDropZone({
               {file
                 ? file.name
                 : isDragActive
-                  ? "Drop Files Here"
+                  ? "Lepaskan file di sini"
                   : "Seret & Lepaskan file di sini"}
             </h4>
 
