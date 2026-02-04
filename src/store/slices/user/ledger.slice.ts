@@ -1,6 +1,6 @@
 import type { StateCreator } from "zustand";
 import type { DateOption } from "@def/option";
-import { formatDateInput, today } from "@helpers/index";
+import { todayYMDString } from "@helpers/index";
 
 export declare interface UserLedgerState {
   ledgerStartDate: DateOption | null;
@@ -16,8 +16,8 @@ export declare interface UserLedgerState {
 
 const createUserLedgerSlice: StateCreator<UserLedgerState> = (set) => ({
   /** FILTER */
-  ledgerStartDate: formatDateInput(today),
-  ledgerEndDate: formatDateInput(today),
+  ledgerStartDate: todayYMDString,
+  ledgerEndDate: todayYMDString,
   ledgerAccount: null,
 
   setLedgerStartDate: (param) => set({ ledgerStartDate: param }),
@@ -26,8 +26,8 @@ const createUserLedgerSlice: StateCreator<UserLedgerState> = (set) => ({
 
   resetLedgerFilter: () =>
     set({
-      ledgerStartDate: formatDateInput(today),
-      ledgerEndDate: formatDateInput(today),
+      ledgerStartDate: todayYMDString,
+      ledgerEndDate: todayYMDString,
       ledgerAccount: null,
     }),
 });

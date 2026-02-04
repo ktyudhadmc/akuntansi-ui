@@ -47,7 +47,11 @@ export default function ReportBusinessPage() {
     // <div className="w-full grid md:grid-cols-2 gap-8">
     <AccordionGroup defaultOpen={`accordion-group-item-${data[0].path}`}>
       {data.map((item, index) => (
-        <AccordionGroupItem key={index} id={`accordion-group-item-${item.path}`} title={item.title}>
+        <AccordionGroupItem
+          key={index}
+          id={`accordion-group-item-${item.path}`}
+          title={item.title}
+        >
           <p className="text-theme-sm mb-4 text-gray-500 dark:text-gray-400">
             {item.description}
           </p>

@@ -5,54 +5,39 @@ import { MdOutlineRefresh } from "react-icons/md";
 
 import TableItem from "./TableItem";
 
-import useMapInputOptions from "@hooks/useMapInputOptions";
 import useUserStore from "@store/useUserStore";
-import { formatDateInput, today } from "@helpers/index";
+import { todayYMDString, formatIDRLocale } from "@helpers/index";
 
 import DatePicker from "@components/form/date-picker";
-import Skeleton from "@components/Skeleton/Skeleton";
 import Button from "@components/ui/button/Button";
-import SelectTwoRhf from "@components/form/SelectTwoRhf";
 import Form from "@components/form/Form";
 
-import useGetAll from "@services/user/account/index/hooks/useGetAll";
-import useGetLedgerByAccount from "@services/user/report/ledger/hooks/useGetLedgerByAccount";
+import useGetAllLedgerAccount from "@services/user/report/ledger/hooks/useGetAllLedgerAccount";
 
 export default function RBLedger() {
-  const { data: accounts, loading: accountLoading } = useGetAll();
-  const accountOptions = useMapInputOptions(accounts);
-
-  const account = useUserStore((state) => state.ledgerAccount);
   const startDate = useUserStore((state) => state.ledgerStartDate);
   const endDate = useUserStore((state) => state.ledgerEndDate);
 
-  const setAccount = useUserStore((state) => state.setLedgerAccount);
   const setStartDate = useUserStore((state) => state.setLedgerStartDate);
   const setEndDate = useUserStore((state) => state.setLedgerEndDate);
 
   const resetLedgerFilter = useUserStore((state) => state.resetLedgerFilter);
 
   const methods = useForm<any>({ mode: "onChange" });
-
   const { isSubmitting } = methods.formState;
-
   const isValid = methods.formState.isValid;
 
-  const { data, loading } = useGetLedgerByAccount(
-    account ? (account as string) : undefined,
-  );
+  const { data, loading } = useGetAllLedgerAccount();
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setAccount(state.account);
     setStartDate(state.start_date);
     setEndDate(state.end_date);
   };
 
   const onClear = () => {
     methods.reset({
-      account: null,
-      start_date: formatDateInput(today),
-      end_date: formatDateInput(today),
+      start_date: todayYMDString,
+      end_date: todayYMDString,
     });
 
     resetLedgerFilter();
@@ -69,7 +54,6 @@ export default function RBLedger() {
             id="start_date"
             name="start_date"
             defaultValue={startDate}
-            required
           />
 
           <DatePicker
@@ -78,29 +62,17 @@ export default function RBLedger() {
             id="end_date"
             name="end_date"
             defaultValue={endDate}
-            required
           />
 
-          <div>
-            <Skeleton isLoading={accountLoading}>
-              <SelectTwoRhf
-                label="Akun"
-                name="account"
-                placeholder="--- Pilih Akun ---"
-                selectTwoOptions={accountOptions}
-                defaultValue={account}
-                isClearable
-                isSearchable
-                isRequired
-              />
-            </Skeleton>
-          </div>
           <div className="flex gap-2">
-            {isValid && (
-              <Button size="sm" variant="outline" onClick={onClear}>
-                <MdOutlineRefresh className="text-xl scale-x-[-1]" />
-              </Button>
-            )}
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={onClear}
+              disabled={!isValid}
+            >
+              <MdOutlineRefresh className="text-xl scale-x-[-1]" />
+            </Button>
 
             <Button
               size="sm"
@@ -141,15 +113,6 @@ export default function RBLedger() {
             </thead>
 
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {/* {loading && (
-                <tr>
-                  <td colSpan={6} className="text-center py-16">
-                    <div className="sweet-loading">
-                      <BeatLoader color="var(--color-brand-600)" />
-                    </div>
-                  </td>
-                </tr>
-              )} */}
               {loading ? (
                 <tr>
                   <td colSpan={5} className="text-center py-16">
@@ -158,18 +121,35 @@ export default function RBLedger() {
                     </div>
                   </td>
                 </tr>
-              ) : isEmpty(data?.mutations) || !data ? (
+              ) : isEmpty(data) || !data ? (
                 <tr>
                   <td colSpan={5} className="text-center py-4">
                     Data tidak tersedia
                   </td>
                 </tr>
               ) : (
-                data?.mutations.map((item, index) => {
-                  return (
-                    <TableItem key={`table-account-${index}`} item={item} />
-                  );
-                })
+                <>
+                  {data.map((item, index) => {
+                    return (
+                      <TableItem key={`table-account-${index}`} item={item} />
+                    );
+                  })}
+
+                  <tr>
+                    <td
+                      colSpan={2}
+                      className="px-5 py-1 text-black text-end text-theme-xs dark:text-white font-semibold"
+                    >
+                      Total Keseluruhan
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
+                      {formatIDRLocale(0)}
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
+                      {formatIDRLocale(0)}
+                    </td>
+                  </tr>
+                </>
               )}
             </tbody>
           </table>

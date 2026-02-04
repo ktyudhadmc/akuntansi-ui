@@ -18,4 +18,10 @@ export interface Account {
   is_posting: boolean;
   normal_balance: string;
   report_type: string;
+  category?: AccountSubType;
+}
+
+export interface AccountSubType {
+  id?: number | null;
+  name?: string | null;
 }

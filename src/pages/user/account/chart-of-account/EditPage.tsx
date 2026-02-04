@@ -3,7 +3,7 @@ import PageMeta from "@components/common/PageMeta";
 import EditAccount from "@modules/user/account/chart-of-account/Action/Edit";
 
 export default function COAEditPage() {
-  const pageTitle = "Ubah Kas & Bank";
+  const pageTitle = "Ubah Akun";
   return (
     <>
       <PageMeta title={pageTitle} />

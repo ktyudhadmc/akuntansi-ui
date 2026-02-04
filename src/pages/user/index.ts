@@ -21,9 +21,10 @@ export { default as COALockPeriodPage } from "./account/chart-of-account/LockPer
 export { default as COAClosingBookPage } from "./account/chart-of-account/closing-book";
 export { default as COAClosingBookCreatePage } from "./account/chart-of-account/closing-book/CreatePage";
 
-//ACCOUNT CASH BANK
+//ACCOUNT - CASH BANK
 export { default as CBPage } from "./account/cash-bank";
 export { default as CBImportPage } from "./account/cash-bank/ImportPage";
+export { default as CBShowPage } from "./account/cash-bank/ShowPage";
 
 // CONTACT
 export { default as ContactPage } from "./contact";

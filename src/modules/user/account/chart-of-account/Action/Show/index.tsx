@@ -6,7 +6,7 @@ import { BeatLoader } from "react-spinners";
 import { isEmpty } from "lodash";
 
 import useUserStore from "@store/useUserStore";
-import { formatDateInput, today } from "@helpers/index";
+import { todayYMDString } from "@helpers/index";
 
 import TableItem from "./TableItem";
 import DatePicker from "@components/form/date-picker";
@@ -45,8 +45,8 @@ export default function ChartOfAccountShow() {
 
   const onClear = () => {
     methods.reset({
-      start_date: formatDateInput(today),
-      end_date: formatDateInput(today),
+      start_date: todayYMDString,
+      end_date: todayYMDString,
     });
 
     resetLedgerFilter();
@@ -84,48 +84,49 @@ export default function ChartOfAccountShow() {
             <span className="lg:inline-block hidden"> Ubah</span>
           </Button>
         </div>
-        <div>
-          <Form {...methods} onSubmit={onSubmit}>
-            <div className="flex gap-4 items-end">
-              <DatePicker
-                label="Tgl. mulai"
-                placeholder="Pilih tanggal"
-                id="start_date"
-                name="start_date"
-                defaultValue={startDate}
-                required
-              />
 
-              <DatePicker
-                label="Tgl. selesai"
-                placeholder="Pilih tanggal"
-                id="end_date"
-                name="end_date"
-                defaultValue={endDate}
-                required
-              />
+        <Form
+          {...methods}
+          onSubmit={onSubmit}
+          className="lg:flex-row lg:items-end lg:justify-end"
+        >
+          <DatePicker
+            label="Tgl. mulai"
+            placeholder="Pilih tanggal"
+            id="start_date"
+            name="start_date"
+            defaultValue={startDate}
+            required
+          />
 
-              <div className="flex gap-2 justify-end">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={onClear}
-                  disabled={!isValid}
-                >
-                  <MdOutlineRefresh className="text-xl scale-x-[-1]" />
-                </Button>
+          <DatePicker
+            label="Tgl. selesai"
+            placeholder="Pilih tanggal"
+            id="end_date"
+            name="end_date"
+            defaultValue={endDate}
+            required
+          />
 
-                <Button
-                  size="sm"
-                  className="lg:w-fit w-full"
-                  disabled={!isValid || isSubmitting}
-                >
-                  Filter
-                </Button>
-              </div>
-            </div>
-          </Form>
-        </div>
+          <div className="flex gap-2 justify-end">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={onClear}
+              disabled={!isValid}
+            >
+              <MdOutlineRefresh className="text-xl scale-x-[-1]" />
+            </Button>
+
+            <Button
+              size="sm"
+              className="lg:w-fit w-full"
+              disabled={!isValid || isSubmitting}
+            >
+              Filter
+            </Button>
+          </div>
+        </Form>
       </div>
 
       {/* TABLE */}

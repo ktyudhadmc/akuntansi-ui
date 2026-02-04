@@ -1,18 +1,17 @@
-import useGetAll from "@services/user/report/journal/hooks/useGetAll";
+import TableItem from "./TableItem";
+import TableHeader from "./Header";
+
 import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
-import TableItem from "./TableItem";
-import TableHeader from "./TableHeader";
-import { formatIDRLocale, sumBy } from "@helpers/index";
+import { HiOutlineArchiveBox } from "react-icons/hi2";
+import useGetAllCashBank from "@services/user/account/cash-bank/hooks/useGetAllCashBank";
 
-export default function GeneralJournal() {
-  const { data, loading } = useGetAll();
-
-  const grandTotal = sumBy(data, (i) => i.amount);
+export default function AccountTable() {
+  const { data, loading, setName } = useGetAllCashBank();
 
   return (
     <>
-      <TableHeader />
+      <TableHeader setSearchCallback={(e) => setName(e)} />
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full">
@@ -20,13 +19,16 @@ export default function GeneralJournal() {
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Akun
+                  Kode akun
+                </th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Nama akun
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Debit
+                  Saldo bank
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Kredit
+                  Saldo di jurnal
                 </th>
                 <th></th>
               </tr>
@@ -43,29 +45,29 @@ export default function GeneralJournal() {
                 </tr>
               ) : isEmpty(data) || !data ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-4">
+                  <td
+                    colSpan={5}
+                    className="text-center text-gray-500 dark:text-gray-400 py-4"
+                  >
+                    <HiOutlineArchiveBox className=" mx-auto text-2xl" />
                     Data tidak tersedia
                   </td>
                 </tr>
               ) : (
                 <>
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="text-start px-5 py-3 font-semibold text-theme-xs  dark:text-white"
+                    >
+                      Kas & Bank
+                    </td>
+                  </tr>
                   {data.map((item, index) => {
                     return (
                       <TableItem key={`table-account-${index}`} item={item} />
                     );
                   })}
-
-                  <tr>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white font-semibold">
-                      Total Keseluruhan
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                      {formatIDRLocale(grandTotal)}
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                      {formatIDRLocale(grandTotal)}
-                    </td>
-                  </tr>
                 </>
               )}
             </tbody>

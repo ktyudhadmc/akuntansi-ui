@@ -1,17 +1,27 @@
-import TableItem from "./TableItem";
-import TableHeader from "./Header";
-
-import { isEmpty } from "lodash";
+import { useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { HiOutlineArchiveBox } from "react-icons/hi2";
-import useGetAllCashBank from "@services/user/account/cash-bank/hooks/useGetAllCashBank";
+import { isEmpty } from "lodash";
 
-export default function AccountTable() {
-  const { data, loading, setName } = useGetAllCashBank();
+import TableItem from "./TableItem";
+import TableHeader from "./TableHeader";
+
+import useGetLedgerByAccount from "@services/user/report/ledger/hooks/useGetLedgerByAccount";
+
+export default function CBShowJournalTable() {
+  const params = useParams();
+
+  const {
+    data: ledgers,
+    loading: ledgerLoading,
+    setSearch,
+  } = useGetLedgerByAccount(params.id as string);
 
   return (
     <>
-      <TableHeader setSearchCallback={(e) => setName(e)} />
+      {/* TABLE HEADER */}
+      <TableHeader setSearch={setSearch} />
+
+      {/* TABLE */}
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full">
@@ -19,23 +29,25 @@ export default function AccountTable() {
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Kode akun
+                  Tanggal
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Nama akun
+                  Nomor
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Saldo bank
+                  Debit
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Saldo di jurnal
+                  Kredit
                 </th>
-                <th></th>
+                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
+                  Saldo
+                </th>
               </tr>
             </thead>
 
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {loading ? (
+              {ledgerLoading ? (
                 <tr>
                   <td colSpan={5} className="text-center py-16">
                     <div className="sweet-loading">
@@ -43,32 +55,18 @@ export default function AccountTable() {
                     </div>
                   </td>
                 </tr>
-              ) : isEmpty(data) || !data ? (
+              ) : isEmpty(ledgers?.mutations) || !ledgers?.mutations ? (
                 <tr>
-                  <td
-                    colSpan={5}
-                    className="text-center text-gray-500 dark:text-gray-400 py-4"
-                  >
-                    <HiOutlineArchiveBox className=" mx-auto text-2xl" />
+                  <td colSpan={5} className="text-center py-4">
                     Data tidak tersedia
                   </td>
                 </tr>
               ) : (
-                <>
-                  <tr>
-                    <td
-                      colSpan={5}
-                      className="text-start px-5 py-3 font-semibold text-theme-xs"
-                    >
-                      Kas & Bank
-                    </td>
-                  </tr>
-                  {data.map((item, index) => {
-                    return (
-                      <TableItem key={`table-account-${index}`} item={item} />
-                    );
-                  })}
-                </>
+                ledgers.mutations.map((item, index) => {
+                  return (
+                    <TableItem key={`table-account-${index}`} item={item} />
+                  );
+                })
               )}
             </tbody>
           </table>

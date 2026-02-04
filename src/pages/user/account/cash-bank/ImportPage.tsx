@@ -1,7 +1,7 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
 
-import CBImport from "@modules/user/account/cash-bank/Action/Import";
+import CBImport from "@modules/user/account/cash-bank/Index/Action/Import";
 
 export default function CBImportPage() {
   const pageTitle = "Impor Rekening Koran";
