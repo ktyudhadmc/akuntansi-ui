@@ -1,7 +1,7 @@
 export interface IGetAllLedgerResponse {
   status?: string;
   message?: string;
-  data: LedgerResponse;
+  data: LedgerAllResponse[];
 }
 
 export interface IGetLedgerByAccountResponse {
@@ -23,6 +23,35 @@ export interface IGetLedgerByAccountResponseOld {
 }
 
 /** SPECIAL RESPONSE :) */
+export interface LedgerAllResponse {
+  id: string;
+  code: string;
+  name: string;
+  children: LedgerItemWithBalance[];
+}
+
+export interface LedgerItemWithBalance extends Account {
+  debit: number;
+  credit: number;
+  balance: number;
+  opening_balance: number;
+  period_date: string;
+  transactions: LedgerItemTransaction[];
+}
+
+export interface LedgerItemTransaction {
+  id: string;
+  date: Date;
+  type: string;
+  document_number: string;
+  description: string;
+  debit: number;
+  credit: number;
+  balance: number;
+}
+
+/** transaction */
+
 export interface LedgerResponse {
   mutations: Ledger[];
   balance: Balance;

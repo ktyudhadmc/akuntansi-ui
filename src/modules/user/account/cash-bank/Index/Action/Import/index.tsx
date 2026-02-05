@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 import config from "@constants/config";
@@ -19,11 +19,12 @@ import Select from "@components/form/Select";
 import useGetAllCashBank from "@services/user/account/cash-bank/hooks/useGetAllCashBank";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import Skeleton from "@components/Skeleton/Skeleton";
+import useGoBack from "@hooks/useGoBack";
 
 type FormFields = IImportPurchasePayload;
 
 export default function CBImportFormatBank() {
-  const navigate = useNavigate();
+  const goBack = useGoBack();
   const params = useParams();
 
   /** hooks upload file */
@@ -60,7 +61,7 @@ export default function CBImportFormatBank() {
         );
       } else {
         methods.reset();
-        navigate(-1);
+        goBack();
         toast.success("Berhasil mengimpor data!");
       }
     }
@@ -179,7 +180,7 @@ export default function CBImportFormatBank() {
         <div className="flex justify-end mt-4 gap-2">
           <Button
             type="button"
-            onClick={() => navigate(-1)}
+            onClick={goBack}
             className="uppercase"
             size="sm"
             variant="outline"
