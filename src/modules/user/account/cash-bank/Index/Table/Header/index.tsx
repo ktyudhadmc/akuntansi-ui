@@ -1,22 +1,27 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "@components/ui/button/Button";
 // import TableHeaderCard from "./HeaderCard";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 
 import debounce from "lodash/debounce";
-import { AiFillCaretDown, AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineClockCircle, AiOutlineWallet } from "react-icons/ai";
+import {
+  AiFillCaretDown,
+  AiOutlineArrowDown,
+  AiOutlineArrowUp,
+  AiOutlineClockCircle,
+  AiOutlineWallet,
+} from "react-icons/ai";
 import { useCallback, useState } from "react";
 import SearchInput from "@components/form/input/SearchInput";
 import CardStatistic from "@components/ui/card/CardStatistic";
 import { formatIDRLocale } from "@helpers/currency";
-
 
 interface Props {
   setSearchCallback: (param: string) => void;
 }
 
 export default function TableHeader({ setSearchCallback }: Props) {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isOpenDropown, setIsOpenDropdown] = useState(false);
   function toggleDropdown() {
     setIsOpenDropdown(!isOpenDropown);
@@ -107,12 +112,23 @@ export default function TableHeader({ setSearchCallback }: Props) {
             <DropdownItem>Kirim uang</DropdownItem>
           </Dropdown>
         </div>
+        <div className="flex flex-row flex-col justify-between gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => navigate("import")}
+          >
+            Impor
+          </Button>
 
-        {/* Search */}
-        <SearchInput
-          placeholder="Cari"
-          onChange={(e) => debouncedSearch(e.target.value)}
-        />
+          {/* Search */}
+          <div className="w-full">
+            <SearchInput
+              placeholder="Cari"
+              onChange={(e) => debouncedSearch(e.target.value)}
+            />
+          </div>
+        </div>
       </div>
     </>
   );

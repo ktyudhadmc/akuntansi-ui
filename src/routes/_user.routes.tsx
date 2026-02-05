@@ -79,7 +79,7 @@ export default [
             children: [
               { index: true, element: <User.CBPage /> },
               { path: ":id", element: <User.CBShowPage /> },
-              { path: ":id/import", element: <User.CBImportPage /> },
+              { path: "import", element: <User.CBImportPage /> },
             ],
           },
         ],
