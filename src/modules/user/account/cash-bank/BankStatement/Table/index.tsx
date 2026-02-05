@@ -11,8 +11,8 @@ export default function CBBankStatementTable() {
   const params = useParams();
 
   const {
-    data: ledgers,
-    loading: ledgerLoading,
+    data,
+    loading,
     startDate,
     endDate,
     setSearch,
@@ -60,7 +60,7 @@ export default function CBBankStatementTable() {
             </thead>
 
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {ledgerLoading ? (
+              {loading ? (
                 <tr>
                   <td colSpan={6} className="text-center py-16">
                     <div className="sweet-loading">
@@ -68,14 +68,14 @@ export default function CBBankStatementTable() {
                     </div>
                   </td>
                 </tr>
-              ) : isEmpty(ledgers?.mutations) || !ledgers?.mutations ? (
+              ) : isEmpty(data) || !data ? (
                 <tr>
                   <td colSpan={6} className="text-center py-4">
                     Data tidak tersedia
                   </td>
                 </tr>
               ) : (
-                ledgers.mutations.map((item, index) => {
+                data.map((item, index) => {
                   return (
                     <TableItem key={`table-account-${index}`} item={item} />
                   );
