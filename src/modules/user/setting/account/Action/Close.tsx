@@ -7,7 +7,7 @@ import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import { Modal } from "@components/ui/modal";
 
-import useClose from "@services/user/account-periods/hooks/useClose";
+import useClose from "@services/user/period/hooks/useClose";
 import Checkbox from "@components/form/input/Checkbox";
 
 interface Props {

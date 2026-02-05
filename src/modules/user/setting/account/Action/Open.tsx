@@ -8,7 +8,7 @@ import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import Checkbox from "@components/form/input/Checkbox";
 
-import useOpen from "@services/user/account-periods/hooks/useOpen";
+import useOpen from "@services/user/period/hooks/useOpen";
 
 interface Props {
   onOpen: boolean;
