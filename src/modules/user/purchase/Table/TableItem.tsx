@@ -15,10 +15,7 @@ export default function TableItem({ item }: Props) {
         {item.date}
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        <Link
-          to={`${item.id}/edit`}
-          className={`flex my-auto text-brand-600`}
-        >
+        <Link to={`${item.id}/edit`} className={`flex my-auto text-brand-600`}>
           {item.document_number}
         </Link>
       </td>
@@ -34,15 +31,11 @@ export default function TableItem({ item }: Props) {
         {item.date}
       </td>
       <td className="px-4 py-1.5 text-black text-end text-theme-xs dark:text-white font-medium">
-        {formatIDRLocale(item.total_price, { withSymbol: true })}
+        {formatIDRLocale(item.total_amount, { withSymbol: true })}
       </td>
 
       <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        <TableItemMenu
-          id={item.id}
-          name={item.material.name}
-          sku={item.material.code}
-        />
+        <TableItemMenu id={item.id} name={item.document_number} />
       </td>
     </tr>
   );
