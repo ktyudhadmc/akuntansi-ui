@@ -92,6 +92,8 @@ export default [
 
       /** PERIOD */
       { path: "periods", element: <User.PeriodPage /> },
+      { path: "periods/lock", element: <User.PeriodLockPage /> },
+      { path: "periods/books/close", element: <User.PeriodClosePage /> },
 
       /** PRODUK */
       { path: "product-units", element: <User.ProductUnitPage /> },

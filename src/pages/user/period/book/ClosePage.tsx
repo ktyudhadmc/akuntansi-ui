@@ -1,10 +1,9 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import Period from "@modules/user/period";
-// import PeriodTable from "@modules/user/period/table";
+import Close from "@modules/user/period/actions/book/Close";
 
-export default function PeriodPage() {
-  const pageTitle = "Daftar Kunci Periode & Tutup Buku";
+export default function PeriodClosePage() {
+  const pageTitle = "Tutup Buku";
   return (
     <>
       <PageMeta title={pageTitle} />
@@ -12,8 +11,7 @@ export default function PeriodPage() {
 
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
-          <Period />
-          {/* <PeriodTable /> */}
+          <Close />
         </div>
       </div>
     </>

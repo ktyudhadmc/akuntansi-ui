@@ -46,6 +46,8 @@ export { default as JournalEditPage } from "./journal/EditPage";
 
 // PERIOD
 export { default as PeriodPage } from "./period";
+export { default as PeriodClosePage } from "./period/book/ClosePage";
+export { default as PeriodLockPage } from "./period/period/LockPage";
 
 // PURCHASE
 export { default as PurchasePage } from "./purchase";
