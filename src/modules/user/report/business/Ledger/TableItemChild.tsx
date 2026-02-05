@@ -46,14 +46,37 @@ export default function TableItemChild({ child }: Props) {
         />
       )} */}
 
-      {openChildren &&
-        child.transactions.map((item, index) => (
-          <TableItemChildDetail
-            key={`table-item-detail-${index}`}
-            onOpen={openChildren}
-            item={item}
-          />
-        ))}
+      {openChildren && (
+        <>
+          {/* Opening balance */}
+          {child.opening_balance && child.opening_balance > 0 && (
+            <tr>
+              <td className="pl-15 pr-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
+                {child.period_date}
+              </td>
+              <td
+                colSpan={3}
+                className="px-5 py-1 text-gray-500 text-start text-sm dark:text-gray-400 whitespace-nowrap"
+              >
+                Saldo awal
+              </td>
+
+              <td className="px-5 py-1 text-gray-500 text-end text-theme-xs dark:text-gray-400 whitespace-nowrap font-semibold">
+                {formatIDRLocale(child.opening_balance)}
+              </td>
+            </tr>
+          )}
+
+          {/* transactions */}
+          {child.transactions.map((item, index) => (
+            <TableItemChildDetail
+              key={`table-item-detail-${index}`}
+              onOpen={openChildren}
+              item={item}
+            />
+          ))}
+        </>
+      )}
 
       <tr>
         <td
