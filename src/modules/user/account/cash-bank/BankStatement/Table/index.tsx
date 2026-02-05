@@ -56,6 +56,7 @@ export default function CBBankStatementTable() {
                 <th className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400">
                   Sumber
                 </th>
+                <th></th>
               </tr>
             </thead>
 
