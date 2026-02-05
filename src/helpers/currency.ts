@@ -51,3 +51,14 @@ export function formatIDRLocale(
  */
 export const sumBy = <T>(arr: T[] = [], fn: (item: T) => number) =>
   arr.reduce((a, b) => a + fn(b), 0);
+
+export const sumNested = <T, U>(
+  arr: T[] = [],
+  getChildren: (item: T) => U[],
+  getValue: (child: U) => number,
+) =>
+  arr.reduce(
+    (total, item) =>
+      total + getChildren(item).reduce((s, c) => s + getValue(c), 0),
+    0,
+  );

@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 
+import useGoBack from "@hooks/useGoBack";
+
 import Form from "@components/form/Form";
 import Button from "@components/ui/button/Button";
 import Spinner from "@components/Reusable/Spinner";
@@ -24,6 +26,7 @@ type FormFields = ICreateAccountPayload;
 export default function EditAccount() {
   const navigate = useNavigate();
   const params = useParams();
+  const goBack = useGoBack();
 
   const methods = useForm<FormFields>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
@@ -111,7 +114,7 @@ export default function EditAccount() {
         <div className="flex justify-end mt-4 gap-2">
           <Button
             type="button"
-            onClick={() => navigate(-1)}
+            onClick={goBack}
             className="uppercase"
             size="sm"
             variant="outline"

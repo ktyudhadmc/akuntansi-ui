@@ -21,12 +21,14 @@ import useGetAllProduct from "@services/user/product/index/hooks/useGetAll";
 import useGetAllCustomer from "@services/user/customer/hooks/useGetAll";
 import useGetAllService from "@services/user/service/hooks/useGetAll";
 import type { ICreateSalePayload } from "@services/user/sale/interfaces/request.type";
+import useGoBack from "@hooks/useGoBack";
 
 type FormFields = ICreateSalePayload;
 
 export default function EditSale() {
   const navigate = useNavigate();
   const params = useParams();
+  const goBack = useGoBack();
 
   const methods = useForm<FormFields>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
@@ -209,7 +211,7 @@ export default function EditSale() {
         <div className="flex justify-end mt-4 gap-2">
           <Button
             type="button"
-            onClick={() => navigate(-1)}
+            onClick={goBack}
             className="uppercase"
             size="sm"
             variant="outline"

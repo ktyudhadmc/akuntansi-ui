@@ -4,10 +4,12 @@ import { HiChevronDown } from "react-icons/hi";
 import { formatIDRLocale } from "@helpers/currency";
 import TableItemChildDetail from "./TableItemChildDetail";
 
-import type { AccountWithBalance } from "@services/user/report/ledger/interfaces/response.type";
+// import type { AccountWithBalance } from "@services/user/report/ledger/interfaces/response.type";
+import type { LedgerItemWithBalance } from "@services/user/report/ledger/interfaces/response.type";
 
 interface Props {
-  child: AccountWithBalance;
+  // child: AccountWithBalance;
+  child: LedgerItemWithBalance;
 }
 
 export default function TableItemChild({ child }: Props) {
@@ -37,12 +39,21 @@ export default function TableItemChild({ child }: Props) {
         </td>
       </tr>
 
-      {openChildren && (
+      {/* {openChildren && (
         <TableItemChildDetail
           onOpen={openChildren}
           accountId={Number(child.id)}
         />
-      )}
+      )} */}
+
+      {openChildren &&
+        child.transactions.map((item, index) => (
+          <TableItemChildDetail
+            key={`table-item-detail-${index}`}
+            onOpen={openChildren}
+            item={item}
+          />
+        ))}
 
       <tr>
         <td
