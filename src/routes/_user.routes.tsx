@@ -90,6 +90,9 @@ export default [
       { path: "contacts/create", element: <User.CreateContactPage /> },
       { path: "contacts/:id/edit", element: <User.EditContactPage /> },
 
+      /** PERIOD */
+      { path: "periods", element: <User.PeriodPage /> },
+
       /** PRODUK */
       { path: "product-units", element: <User.ProductUnitPage /> },
 

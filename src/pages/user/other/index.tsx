@@ -24,7 +24,7 @@ export default function OthersPage() {
     },
     {
       title: "Daftar Kunci Periode & Tutup Buku",
-      path: "../accounts/chart-of-account",
+      path: "../periods",
       description:
         "Menampilkan daftar periode yang dikunci dan buku yang sudah ditutup dalam satu tabel.",
     },
