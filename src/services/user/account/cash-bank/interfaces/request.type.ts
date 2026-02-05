@@ -12,3 +12,7 @@ export interface ICreateIntegrationBankAccountPayload {
   type: string;
   is_active: boolean;
 }
+
+export interface IImportBankStatementPayload {
+  file: File;
+}

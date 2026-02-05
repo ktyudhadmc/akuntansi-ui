@@ -1,9 +1,9 @@
 import Badge from "@components/ui/badge/Badge";
 import { formatIDRLocale } from "@helpers/currency";
-import type { Ledger } from "@services/user/report/ledger/interfaces/response.type";
+import type { BankStatement } from "@services/user/account/cash-bank/interfaces/response-bank-statement.type";
 
 interface Props {
-  item: Ledger;
+  item: BankStatement;
 }
 
 export default function TableItem({ item }: Props) {
@@ -16,13 +16,13 @@ export default function TableItem({ item }: Props) {
         {item.description}
       </td>
       <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-        {formatIDRLocale(item.debit)}
+        {item.type == "in" ? formatIDRLocale(item.amount) : 0}
       </td>
       <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-        {formatIDRLocale(item.credit)}
+        {item.type == "out" ? formatIDRLocale(item.amount) : 0}
       </td>
       <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-        {formatIDRLocale(item.balance)}
+        {formatIDRLocale(0)}
       </td>
       <td className="px-5 py-1 text-black text-center text-theme-xs dark:text-white whitespace-nowrap font-semibold">
         <Badge variant="light" color={"primary"} size="sm">
