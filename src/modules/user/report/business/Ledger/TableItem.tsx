@@ -1,16 +1,22 @@
 import { useState } from "react";
 import { HiChevronDown } from "react-icons/hi";
 
-import type { LedgerAccount } from "@services/user/report/ledger/interfaces/response.type";
+// import type { LedgerAccount } from "@services/user/report/ledger/interfaces/response.type";
+import type { LedgerAllResponse } from "@services/user/report/ledger/interfaces/response.type";
 import TableItemChild from "./TableItemChild";
-import { formatIDRLocale } from "@helpers/currency";
+import { formatIDRLocale, sumBy } from "@helpers/currency";
 
 interface Props {
-  item: LedgerAccount;
+  // item: LedgerAccount;
+  item: LedgerAllResponse;
 }
 
 export default function TableItem({ item }: Props) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+
+  const grandTotalBalance = sumBy(item.children, (i) => i.balance);
+  const grandTotalCredit = sumBy(item.children, (i) => i.credit);
+  const grandTotalDebit = sumBy(item.children, (i) => i.debit);
 
   return (
     <>
@@ -45,19 +51,19 @@ export default function TableItem({ item }: Props) {
 
       <tr>
         <td
-          className="px-5 py-1 text-black text-end text-theme-xs dark:text-white"
+          className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap"
           colSpan={2}
         >
           ({item.code}) - {item.name} | Saldo Akhir
         </td>
         <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-          {formatIDRLocale(0)}
+          {formatIDRLocale(grandTotalDebit)}
         </td>
         <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-          {formatIDRLocale(0)}
+          {formatIDRLocale(grandTotalCredit)}
         </td>
         <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-          {formatIDRLocale(0)}
+          {formatIDRLocale(grandTotalBalance)}
         </td>
       </tr>
     </>

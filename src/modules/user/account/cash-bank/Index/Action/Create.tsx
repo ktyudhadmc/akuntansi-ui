@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 
+import useGoBack from "@hooks/useGoBack";
+
 import Form from "@components/form/Form";
 import Button from "@components/ui/button/Button";
 import Spinner from "@components/Reusable/Spinner";
@@ -20,6 +22,8 @@ type FormFields = ICreateAccountPayload;
 
 export default function CreateAccount() {
   const navigate = useNavigate();
+  const goBack = useGoBack();
+
   const methods = useForm<FormFields>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
 
@@ -44,8 +48,18 @@ export default function CreateAccount() {
     <div>
       <Form {...methods} onSubmit={onSubmit}>
         <div className="grid md:grid-cols-2 gap-4">
-          <Input label="Kode akun" placeholder="Kode akun" name="code" required />
-          <Input label="Nama akun" placeholder="Nama akun" name="name" required />
+          <Input
+            label="Kode akun"
+            placeholder="Kode akun"
+            name="code"
+            required
+          />
+          <Input
+            label="Nama akun"
+            placeholder="Nama akun"
+            name="name"
+            required
+          />
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           <Select
@@ -75,7 +89,7 @@ export default function CreateAccount() {
         <div className="flex justify-end mt-4 gap-2">
           <Button
             type="button"
-            onClick={() => navigate(-1)}
+            onClick={goBack}
             className="uppercase"
             size="sm"
             variant="outline"
