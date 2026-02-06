@@ -114,10 +114,10 @@ export default function EditPurchase() {
             name="material_id"
             placeholder="--- Pilih Material ---"
             selectTwoOptions={productOptions}
-            defaultValue={{
-              label: data?.material.name,
-              value: data?.material.id,
-            }}
+            // defaultValue={{
+            //   label: data?.material.name,
+            //   value: data?.material.id,
+            // }}
             isSearchable
             isClearable
             isRequired
@@ -132,7 +132,7 @@ export default function EditPurchase() {
               type="number"
               id="qty"
               name="qty"
-              defaultValue={data?.qty}
+              // defaultValue={data?.qty}
               required
             />
           </Skeleton>
@@ -144,7 +144,7 @@ export default function EditPurchase() {
               id="unit_of_measure_id"
               name="unit_of_measure_id"
               options={unitOptions}
-              defaultValue={data?.unit.id}
+              // defaultValue={data?.unit.id}
               required
             />
           </Skeleton>
@@ -156,7 +156,7 @@ export default function EditPurchase() {
               type="number"
               id="price"
               name="price"
-              defaultValue={data?.price}
+              // defaultValue={data?.price}
               required
             />
           </Skeleton>
@@ -186,10 +186,10 @@ export default function EditPurchase() {
               name="counter_account_id"
               placeholder="--- Pilih Akun Kredit ---"
               selectTwoOptions={accountOptions}
-              defaultValue={{
-                label: data?.counter_account.name,
-                value: data?.counter_account.id,
-              }}
+              // defaultValue={{
+              //   label: data?.counter_account.name,
+              //   value: data?.counter_account.id,
+              // }}
               isSearchable
               isClearable
               isRequired

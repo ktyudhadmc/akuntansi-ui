@@ -79,7 +79,7 @@ export default [
             children: [
               { index: true, element: <User.CBPage /> },
               { path: ":id", element: <User.CBShowPage /> },
-              { path: ":id/import", element: <User.CBImportPage /> },
+              { path: "import", element: <User.CBImportPage /> },
             ],
           },
         ],
@@ -89,6 +89,11 @@ export default [
       { path: "contacts", element: <User.ContactPage /> },
       { path: "contacts/create", element: <User.CreateContactPage /> },
       { path: "contacts/:id/edit", element: <User.EditContactPage /> },
+
+      /** PERIOD */
+      { path: "periods", element: <User.PeriodPage /> },
+      { path: "periods/lock", element: <User.PeriodLockPage /> },
+      { path: "periods/books/close", element: <User.PeriodClosePage /> },
 
       /** PRODUK */
       { path: "product-units", element: <User.ProductUnitPage /> },

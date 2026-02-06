@@ -102,7 +102,7 @@ export default function TableHeader({
           <Button
             size="sm"
             variant="outline"
-            onClick={() => navigate("import")}
+            onClick={() => navigate("../import")}
           >
             Impor
           </Button>

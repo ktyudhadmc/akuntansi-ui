@@ -4,12 +4,12 @@ import type { Account } from "@services/user/account/index/interfaces/response.t
 import { formatIDR } from "@helpers/index";
 
 // import TableItemMenu from "./TableItemMenu";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { AiFillCaretDown } from "react-icons/ai";
+import { Link } from "react-router-dom";
+// import { useState } from "react";
+// import { AiFillCaretDown } from "react-icons/ai";
 
-import { Dropdown } from "@components/ui/dropdown/Dropdown";
-import { DropdownItem } from "@components/ui/dropdown/DropdownItem";
+// import { Dropdown } from "@components/ui/dropdown/Dropdown";
+// import { DropdownItem } from "@components/ui/dropdown/DropdownItem";
 import { useModal } from "@hooks/useModal";
 import AccountBankIntegrationCreate from "../Action/CreateBankLink";
 
@@ -18,16 +18,16 @@ interface Props {
 }
 
 export default function TableItem({ item }: Props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { openModal, isOpen, closeModal } = useModal();
-  const [isOpenDropown, setIsOpenDropdown] = useState(false);
-  function toggleDropdown() {
-    setIsOpenDropdown(!isOpenDropown);
-  }
+  // const [isOpenDropown, setIsOpenDropdown] = useState(false);
+  // function toggleDropdown() {
+  //   setIsOpenDropdown(!isOpenDropown);
+  // }
 
-  function closeDropdown() {
-    setIsOpenDropdown(false);
-  }
+  // function closeDropdown() {
+  //   setIsOpenDropdown(false);
+  // }
 
   return (
     <tr>
@@ -72,8 +72,8 @@ export default function TableItem({ item }: Props) {
       <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
         {formatIDR(0)}
       </td>
-      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400 z-[100001]">
-        {/* <TableItemMenu id={item.id} name={item.name} code={item.code} /> */}
+      {/* <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400 z-[100001]">
+        <TableItemMenu id={item.id} name={item.name} code={item.code} />
 
         <div className="relative ">
           <div className="flex whitespace-nowrap justify-end">
@@ -96,7 +96,7 @@ export default function TableItem({ item }: Props) {
             <DropdownItem>Kirim Uang</DropdownItem>
           </Dropdown>
         </div>
-      </td>
+      </td> */}
     </tr>
   );
 }

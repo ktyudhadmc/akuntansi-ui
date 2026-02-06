@@ -1,37 +1,13 @@
-import { useParams } from "react-router-dom";
+// import TableItem from "./TableItem";
+// import TableHeader from "./Header";
+
+// import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
-import { isEmpty } from "lodash";
 
-import TableItem from "./TableItem";
-import TableHeader from "./TableHeader";
-
-import useGetAllBankStatement from "@services/user/account/cash-bank/hooks/useGetAllBankStatement";
-
-export default function CBBankStatementTable() {
-  const params = useParams();
-
-  const {
-    data,
-    loading,
-    startDate,
-    endDate,
-    setSearch,
-    setStartDate,
-    setEndDate,
-  } = useGetAllBankStatement(params.id as string);
-
+export default function PeriodTable() {
   return (
     <>
-      {/* TABLE HEADER */}
-      <TableHeader
-        setSearch={setSearch}
-        startDate={startDate}
-        endDate={endDate}
-        setStartDate={setStartDate}
-        setEndDate={setEndDate}
-      />
-
-      {/* TABLE */}
+      {/* <TableHeader setSearchCallback={(e) => setName(e)} /> */}
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full">
@@ -39,29 +15,30 @@ export default function CBBankStatementTable() {
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Tanggal
+                  Periode
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Deskripsi
+                  Jenis
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Debit
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Catatan
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Kredit
-                </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Saldo
-                </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400">
-                  Sumber
+                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                  Keuntungan Bersih/(Rugi)
                 </th>
                 <th></th>
               </tr>
             </thead>
 
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {loading ? (
+              <tr>
+                <td colSpan={5} className="text-center py-16">
+                  <div className="sweet-loading">
+                    <BeatLoader color="var(--color-brand-600)" />
+                  </div>
+                </td>
+              </tr>
+              {/* {loading ? (
                 <tr>
                   <td colSpan={6} className="text-center py-16">
                     <div className="sweet-loading">
@@ -81,7 +58,7 @@ export default function CBBankStatementTable() {
                     <TableItem key={`table-account-${index}`} item={item} />
                   );
                 })
-              )}
+              )} */}
             </tbody>
           </table>
         </div>

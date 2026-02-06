@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import useSWR, { type Fetcher } from "swr";
-import type { IGetLedgerByAccountResponse } from "../interfaces/respone-ledger.type";
+import type { IGetAllBankStatementResponse } from "../interfaces/response-bank-statement.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import { todayYMDString } from "@helpers/index";
@@ -10,7 +10,7 @@ export default function useGetAllBankStatement(accountId: string) {
   const [startDate, setStartDate] = useState(todayYMDString);
   const [endDate, setEndDate] = useState(todayYMDString);
 
-  const fetcher: Fetcher<IGetLedgerByAccountResponse, string> = (url) =>
+  const fetcher: Fetcher<IGetAllBankStatementResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
       .get(url)
       .then((res) => res.data);
@@ -20,7 +20,7 @@ export default function useGetAllBankStatement(accountId: string) {
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/ledger?${qs}`, fetcher);
+  const { data, error } = useSWR(`/bank-cash-transaction?${qs}`, fetcher);
 
   const onSetSearch = useCallback((search: string) => {
     setSearch(search);

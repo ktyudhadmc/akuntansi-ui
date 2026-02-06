@@ -4,7 +4,7 @@ import "flatpickr/dist/flatpickr.css";
 import Label from "./Label";
 import { CalenderIcon } from "@assets/icons";
 
-import type { Hook, } from "@def/option";
+import type { Hook } from "@def/option";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface Props {
@@ -19,6 +19,7 @@ interface Props {
   mode?: "single" | "multiple" | "range" | "time";
   // defaultDate?: DateOption | null;
   onFlatpickrChange?: Hook | Hook[];
+  disabled?: boolean;
 }
 
 export default function DatePicker({
@@ -27,12 +28,12 @@ export default function DatePicker({
   name,
   placeholder,
   required = false,
+  disabled = false,
   defaultValue,
   mode = "single",
 }: Props) {
   const { control } = useFormContext();
   const fpRef = useRef<flatpickr.Instance | null>(null);
-
 
   return (
     <div>
@@ -83,15 +84,16 @@ export default function DatePicker({
                   ref={inputRef}
                   id={id}
                   value={field.value || ""}
+                  disabled={disabled}
                   readOnly
-                  placeholder={placeholder ?? 'Pilih Tanggal'}
-                  className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs
+                  placeholder={placeholder ?? "Pilih Tanggal"}
+                  className={`h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs
           placeholder:text-gray-400 focus:outline-hidden focus:ring-3
           bg-transparent text-gray-800 border-gray-300
           focus:border-brand-300 focus:ring-brand-500/20
-          dark:bg-gray-900 dark:text-white/90
+          dark:text-white/90 dark:bg-gray-900
           dark:border-gray-700 dark:placeholder:text-white/30
-          dark:focus:border-brand-800"
+          dark:focus:border-brand-800`}
                 />
                 <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400">
                   <CalenderIcon className="size-6" />

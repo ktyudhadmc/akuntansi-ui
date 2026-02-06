@@ -5,9 +5,6 @@ export { default as OnBoardPage } from "./onboard";
 export { default as SendOtp } from "./auth/SendOtp";
 export { default as VerifyOtp } from "./auth/VerifyOtp";
 
-// PROFILE
-export { default as ProfilePage } from "./profile";
-
 // ACCOUNT
 export { default as COAPage } from "./account/chart-of-account";
 export { default as COACreatePage } from "./account/chart-of-account/CreatePage";
@@ -31,31 +28,6 @@ export { default as ContactPage } from "./contact";
 export { default as CreateContactPage } from "./contact/create";
 export { default as EditContactPage } from "./contact/edit";
 
-// PRODUCT UNIT
-export { default as ProductUnitPage } from "./product-unit";
-
-// PRODUCT
-export { default as ProductPage } from "./product";
-export { default as CreateProductPage } from "./product/create";
-export { default as EditProductPage } from "./product/edit";
-
-// PRODUCTION
-export { default as ProductionPage } from "./production";
-export { default as ProductionCreatePage } from "./production/create";
-export { default as ProductionEditPage } from "./production/edit";
-
-// PURCHASE
-export { default as PurchasePage } from "./purchase";
-export { default as CreatePurchasePage } from "./purchase/create";
-export { default as EditPurchasePage } from "./purchase/edit";
-export { default as ImportPurchasePage } from "./purchase/import";
-
-// SALE
-export { default as SalePage } from "./sale";
-export { default as CreateSalePage } from "./sale/create";
-export { default as EditSalePage } from "./sale/edit";
-export { default as ImportSalePage } from "./sale/import";
-
 // INVENTORY
 export { default as InventoryPage } from "./inventory";
 
@@ -72,12 +44,45 @@ export { default as JournalPage } from "./journal";
 export { default as JournalCreatePage } from "./journal/CreatePage";
 export { default as JournalEditPage } from "./journal/EditPage";
 
+// PERIOD
+export { default as PeriodPage } from "./period";
+export { default as PeriodClosePage } from "./period/book/ClosePage";
+export { default as PeriodLockPage } from "./period/period/LockPage";
+
+// PURCHASE
+export { default as PurchasePage } from "./purchase";
+export { default as CreatePurchasePage } from "./purchase/create";
+export { default as EditPurchasePage } from "./purchase/edit";
+export { default as ImportPurchasePage } from "./purchase/import";
+
+// PRODUCT UNIT
+export { default as ProductUnitPage } from "./product-unit";
+
+// PRODUCT
+export { default as ProductPage } from "./product";
+export { default as CreateProductPage } from "./product/create";
+export { default as EditProductPage } from "./product/edit";
+
+// PRODUCTION
+export { default as ProductionPage } from "./production";
+export { default as ProductionCreatePage } from "./production/create";
+export { default as ProductionEditPage } from "./production/edit";
+
+// PROFILE
+export { default as ProfilePage } from "./profile";
+
 // REPORT
 export { default as ReportPage } from "./report";
 
 // REPORT BUSINESS
 export { default as RBJournalPage } from "./report/business/RBJournalPage";
 export { default as RBLedgerPage } from "./report/business/RBLedgerPage";
+
+// SALE
+export { default as SalePage } from "./sale";
+export { default as CreateSalePage } from "./sale/create";
+export { default as EditSalePage } from "./sale/edit";
+export { default as ImportSalePage } from "./sale/import";
 
 // TAX
 export { default as TaxPage } from "./tax";

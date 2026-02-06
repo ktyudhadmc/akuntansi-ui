@@ -5,12 +5,12 @@ import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useGlobalStore from "@store/useStore";
 
-export default function useGetAll() {
+export default function useGetAllPeriod() {
   const currentCompany = useGlobalStore((state) => state.currentCompany);
   const [name, setName] = useState("");
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
-   axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
+    axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
       .get(url)
       .then((res) => res.data);
 
