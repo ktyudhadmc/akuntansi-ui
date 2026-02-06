@@ -9,11 +9,11 @@ export interface ICreatePurchasePayload {
 }
 
 export interface PurchaseItem {
-  material_id: string;
-  unit_of_measure_id: string;
-  counter_account_id: string;
-  qty: number | null;
-  price: number | null;
+  material_id: string | undefined;
+  unit_of_measure_id: string | undefined;
+  counter_account_id: string | undefined;
+  qty: number | undefined;
+  price: number | undefined;
 }
 
 export interface IImportPurchasePayload {

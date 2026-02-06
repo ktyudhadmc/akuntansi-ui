@@ -44,11 +44,11 @@ export default function EditPurchase() {
 
   /** initial purchase */
   const emptyPurchaseItem: PurchaseItem = {
-    material_id: "",
-    unit_of_measure_id: "",
-    counter_account_id: "",
-    qty: null,
-    price: null,
+    material_id: undefined,
+    unit_of_measure_id: undefined,
+    counter_account_id: undefined,
+    qty: undefined,
+    price: undefined,
   };
 
   const methods = useForm<FormFields>({
@@ -59,7 +59,7 @@ export default function EditPurchase() {
   });
 
   const { control, reset } = methods;
-  const { isSubmitting } = methods.formState;
+  const { isSubmitting, isDirty } = methods.formState;
   const isValid = methods.formState.isValid;
 
   const { data, loading } = useGetPurchase(params.id as string);
@@ -96,6 +96,17 @@ export default function EditPurchase() {
     reset(responseToRequest(data));
   }, [data, reset]);
 
+  const removeItems = (index: any) => {
+    fieldPurchaseItems.remove(index);
+
+    const current = methods.getValues("items").filter(Boolean);
+
+    methods.setValue("items", current, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+  };
+
   /** calculate sub-total */
   const calculateSubtotal = (
     qty: number | null | undefined,
@@ -108,19 +119,24 @@ export default function EditPurchase() {
   };
 
   /** calculate grand-total */
-  const hasEditableItems = watchedPurchaseItems?.some(
-    (item) => item.qty != null && item.price != null,
-  );
-
   const grandTotal = useMemo(() => {
-    if (!hasEditableItems) return data?.total_amount ?? 0;
+    // belum ada perubahan → pakai data server
+    if (!isDirty) return data?.total_amount ?? 0;
 
-    return (
-      watchedPurchaseItems?.reduce((total, item) => {
-        return total + calculateSubtotal(item.qty, item.price);
-      }, 0) ?? 0
-    );
-  }, [watchedPurchaseItems, data?.total_amount]);
+    return fieldPurchaseItems.fields.reduce((total, field, index) => {
+      const item = watchedPurchaseItems?.[index];
+
+      const qty = item?.qty ?? field.qty ?? 0;
+      const price = item?.price ?? field.price ?? 0;
+
+      return total + qty * price;
+    }, 0);
+  }, [
+    isDirty,
+    fieldPurchaseItems.fields,
+    watchedPurchaseItems,
+    data?.total_amount,
+  ]);
 
   return (
     <div>
@@ -331,7 +347,7 @@ export default function EditPurchase() {
                             type="button"
                             size="xs"
                             variant="outline"
-                            onClick={() => fieldPurchaseItems.remove(index)}
+                            onClick={() => removeItems(index)}
                           >
                             <HiTrash />
                           </Button>
@@ -355,8 +371,10 @@ export default function EditPurchase() {
           </div>
 
           <div className="lg:w-1/4 w-full grid grid-cols-2">
-            <h4 className="text-start font-medium text-lg">Total</h4>
-            <p className="text-end font-medium text-lg">
+            <h4 className="text-start font-medium text-lg dark:text-white">
+              Total
+            </h4>
+            <p className="text-end font-medium text-lg dark:text-white">
               {formatIDRLocale(grandTotal, {
                 withSymbol: true,
               })}

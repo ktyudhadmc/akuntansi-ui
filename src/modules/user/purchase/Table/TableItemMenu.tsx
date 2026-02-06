@@ -1,6 +1,6 @@
 import Button from "@components/ui/button/Button";
 // import DeleteAccount from "../Action/Delete";
-import { HiTrash, HiPencil } from "react-icons/hi";
+import { HiTrash, HiPencil, HiEye } from "react-icons/hi";
 import { useModal } from "@hooks/useModal";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +25,12 @@ export default function TableItemMenu({ id, name }: Props) {
         onClose={closeModal}
       />
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 justify-end">
+        {/* show */}
+        <Button onClick={() => navigate(`${id}`)} size="xs" variant="outline">
+          <HiEye />
+        </Button>
+
         {/* edit */}
         <Button
           onClick={() => navigate(`${id}/edit`)}
