@@ -10,13 +10,12 @@ export default function useUpdate(purchaseId: string) {
       document_number,
       account_id,
       supplier_id,
-      material_id,
       date,
       due_date,
       description,
       items,
     } = payload;
-    
+
     try {
       const res = await axiosInstance({
         withToken: true,
@@ -26,7 +25,6 @@ export default function useUpdate(purchaseId: string) {
         document_number,
         account_id,
         supplier_id,
-        material_id,
         date,
         due_date,
         description,

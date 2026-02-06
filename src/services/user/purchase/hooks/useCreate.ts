@@ -10,7 +10,6 @@ export default function useCreate() {
       document_number,
       account_id,
       supplier_id,
-      material_id,
       date,
       due_date,
       description,
@@ -25,7 +24,6 @@ export default function useCreate() {
       }).post(`/purchase`, {
         account_id,
         supplier_id,
-        material_id,
         document_number,
         date,
         due_date,

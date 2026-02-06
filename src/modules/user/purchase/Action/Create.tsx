@@ -35,11 +35,11 @@ export default function CreatePurchase() {
 
   /** initial purchase */
   const emptyPurchaseItem: PurchaseItem = {
-    material_id: "",
-    unit_of_measure_id: "",
-    counter_account_id: "",
-    qty: null,
-    price: null,
+    material_id: undefined,
+    unit_of_measure_id: undefined,
+    counter_account_id: undefined,
+    qty: undefined,
+    price: undefined,
   };
 
   const methods = useForm<FormFields>({
