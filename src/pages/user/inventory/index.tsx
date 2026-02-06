@@ -24,21 +24,23 @@ export default function InventoryPage() {
       <PageMeta title={pageTitle} />
       <PageBreadcrumb pageTitle={pageTitle} />
 
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
-        <div className="space-y-6">
-          {/* card */}
-          <InventoryHeader />
+      <div className="space-y-6">
+        {/* header */}
+        <InventoryHeader />
 
-          {/* tabs */}
-          <TabUnderline
-            tabs={tabs}
-            initialActive={activeTab}
-            onChange={(e) => setSearchParams({ tab: e })}
-          />
+        <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
+          <div className="space-y-6">
+            {/* tabs */}
+            <TabUnderline
+              tabs={tabs}
+              initialActive={activeTab}
+              onChange={(e) => setSearchParams({ tab: e })}
+            />
 
-          {activeTab == "stock" && <InventoryTable />}
-          {activeTab == "adjustment" && <AdjustmentTable />}
-          {activeTab == "usage" && <UsageTable />}
+            {activeTab == "stock" && <InventoryTable />}
+            {activeTab == "adjustment" && <AdjustmentTable />}
+            {activeTab == "usage" && <UsageTable />}
+          </div>
         </div>
       </div>
     </>

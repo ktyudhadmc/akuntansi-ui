@@ -6,8 +6,10 @@ import { MdOutlineInventory } from "react-icons/md";
 
 export default function InventoryHeader() {
   return (
-    <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
-      {/* <HeaderCard
+    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
+      <div className="space-y-6">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
+          {/* <HeaderCard
         title="Total saldo awal"
         count={0}
         amount={0}
@@ -27,30 +29,32 @@ export default function InventoryHeader() {
         variant="outcome"
       />
       <HeaderCard title="Total stok opname" count={0} amount={0} /> */}
-      <CardStatistic
-        title="Total saldo awal"
-        value={formatIDRLocale(0, { withSymbol: true })}
-        variant="success"
-        icon={<AiOutlineArrowUp />}
-      />
+          <CardStatistic
+            title="Total saldo awal"
+            value={formatIDRLocale(0, { withSymbol: true })}
+            variant="success"
+            icon={<AiOutlineArrowUp />}
+          />
 
-      <CardStatistic
-        title="Total pembelian"
-        value={formatIDRLocale(0, { withSymbol: true })}
-        variant="success"
-        icon={<AiOutlineArrowUp />}
-      />
-      <CardStatistic
-        title="Total pemakaian"
-        value={formatIDRLocale(0, { withSymbol: true })}
-        variant="danger"
-        icon={<AiOutlineArrowDown />}
-      />
-      <CardStatistic
-        title="Total stok opname"
-        value={formatIDRLocale(0, { withSymbol: true })}
-        icon={<MdOutlineInventory />}
-      />
+          <CardStatistic
+            title="Total pembelian"
+            value={formatIDRLocale(0, { withSymbol: true })}
+            variant="success"
+            icon={<AiOutlineArrowUp />}
+          />
+          <CardStatistic
+            title="Total pemakaian"
+            value={formatIDRLocale(0, { withSymbol: true })}
+            variant="danger"
+            icon={<AiOutlineArrowDown />}
+          />
+          <CardStatistic
+            title="Total stok opname"
+            value={formatIDRLocale(0, { withSymbol: true })}
+            icon={<MdOutlineInventory />}
+          />
+        </div>
+      </div>
     </div>
   );
 }

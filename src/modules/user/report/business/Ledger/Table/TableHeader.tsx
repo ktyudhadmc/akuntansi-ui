@@ -2,37 +2,21 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { MdOutlineRefresh } from "react-icons/md";
 
 import useUserStore from "@store/useUserStore";
-import { formatIDRLocale, todayYMDString } from "@helpers/index";
+import { todayYMDString } from "@helpers/index";
 
 import DatePicker from "@components/form/date-picker";
 import Button from "@components/ui/button/Button";
 import Form from "@components/form/Form";
-import CardStatistic from "@components/ui/card/CardStatistic";
-import {
-  AiOutlineArrowDown,
-  AiOutlineArrowUp,
-  AiOutlineClockCircle,
-  AiOutlineWallet,
-} from "react-icons/ai";
+
 import SearchInput from "@components/form/input/SearchInput";
 import { useCallback } from "react";
 import { debounce } from "lodash";
 
 interface Props {
-  startBalance: number;
-  endBalance: number;
-  credit: number;
-  debit: number;
   setSearch: (params: string) => void;
 }
 
-export default function TableHeader({
-  startBalance,
-  endBalance,
-  credit,
-  debit,
-  setSearch,
-}: Props) {
+export default function TableHeader({ setSearch }: Props) {
   const startDate = useUserStore((state) => state.ledgerStartDate);
   const endDate = useUserStore((state) => state.ledgerEndDate);
 
@@ -68,32 +52,6 @@ export default function TableHeader({
 
   return (
     <div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 mb-4">
-        <CardStatistic
-          title="Saldo awal"
-          value={formatIDRLocale(startBalance, { withSymbol: true })}
-          variant="success"
-          icon={<AiOutlineClockCircle />}
-        />
-        <CardStatistic
-          title="Debit"
-          value={formatIDRLocale(debit, { withSymbol: true })}
-          variant="success"
-          icon={<AiOutlineArrowUp />}
-        />
-        <CardStatistic
-          title="Kredit"
-          value={formatIDRLocale(credit, { withSymbol: true })}
-          variant="danger"
-          icon={<AiOutlineArrowDown />}
-        />
-        <CardStatistic
-          title="Saldo akhir"
-          value={formatIDRLocale(endBalance, { withSymbol: true })}
-          icon={<AiOutlineWallet />}
-        />
-      </div>
-
       <div className="lg:flex items-end">
         {/* TABLE HEADER */}
         <Form {...methods} onSubmit={onSubmit}>

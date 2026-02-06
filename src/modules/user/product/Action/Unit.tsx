@@ -147,7 +147,7 @@ function TableItem({ item }: TableItemProps) {
             reference={buttonRef.current}
           >
             <div className="max-w-[390px]">
-              <div className="relative z-20 rounded-t-lg px-5 py-3 dark:border-white/[0.03] bg-gray-100">
+              <div className="relative z-20 rounded-t-md px-5 py-3 dark:border-white/[0.03] bg-gray-100 dark:bg-gray-700">
                 <h4 className="text-sm font-medium text-gray-800 dark:text-white/90">
                   {item.name}
                 </h4>
