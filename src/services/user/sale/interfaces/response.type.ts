@@ -12,20 +12,31 @@ export interface IGetResponse {
 
 export interface Sale {
   id: string;
+  document_number: string;
   date: string;
   due_date: string;
-  document_number: string;
+  customer: Customer;
+  account: Account;
+  total_gross: number;
+  total_tax: number;
+  total_net: number;
+  description: string;
+  items: SaleItem[];
+}
+
+export interface SaleItem {
+  id: string;
   qty: number;
   price: number;
-  total_price: number;
-  account: Account;
-  counter_account: Account;
-  customer: Customer;
+  gross_amount: number;
+  tax_amount: number;
+  net_amount: number;
   material: Product;
   unit: Unit;
   service_type: ProductKind;
+  counter_account: Account;
+  tax: Tax;
 }
-
 export interface SaleOld {
   id: string;
   contact: Contact;
@@ -38,9 +49,14 @@ export interface SaleOld {
   paid_at: Date;
   status: string;
   amount: number;
-  sale_items: SaleItem[];
+  sale_items: SaleItemOld[];
 }
 
+export interface Tax {
+  id: string;
+  name: string;
+  rate: number;
+}
 interface Contact {
   id: string;
   name: string;
@@ -57,7 +73,7 @@ interface Account {
   name: string;
 }
 
-interface SaleItem {
+interface SaleItemOld {
   id: string;
   product: Product;
   quantity: string;
