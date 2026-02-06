@@ -15,7 +15,7 @@ export default function TableItem({ item }: Props) {
         {item.date}
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        <Link to={`${item.id}/edit`} className={`flex my-auto text-brand-600`}>
+        <Link to={`${item.id}`} className={`flex my-auto text-brand-600`}>
           {item.document_number}
         </Link>
       </td>
