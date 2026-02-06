@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import debounce from "lodash/debounce";
 import { MdOutlineRefresh } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import { todayYMDString } from "@helpers/index";
 
@@ -26,7 +26,7 @@ export default function TableHeader({
   setStartDate,
   setEndDate,
 }: Props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -98,7 +98,7 @@ export default function TableHeader({
           </div>
         </Form>
 
-        <div className="flex flex-row flex-col justify-between gap-2">
+        {/* <div className="flex flex-row flex-col justify-between gap-2">
           <Button
             size="sm"
             variant="outline"
@@ -106,13 +106,13 @@ export default function TableHeader({
           >
             Impor
           </Button>
-          <div className="w-full">
-            <SearchInput
-              placeholder="Cari"
-              onChange={(e) => debouncedSearch(e.target.value)}
-            />
-          </div>
-        </div>
+          <div className="w-full"> */}
+        <SearchInput
+          placeholder="Cari"
+          onChange={(e) => debouncedSearch(e.target.value)}
+        />
+        {/* </div>
+        </div> */}
       </div>
     </>
   );

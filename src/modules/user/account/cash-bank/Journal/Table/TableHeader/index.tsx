@@ -53,7 +53,7 @@ export default function TableHeader({ setSearch }: Props) {
       {/* Create */}
       <div className="flex lg:flex-row flex-col justify-between gap-4">
         <Form {...methods} onSubmit={onSubmit}>
-          <div className="flex gap-4 items-end">
+          <div className="flex lg:flex-row flex-col gap-4 lg:items-end">
             <DatePicker
               //   label="Tgl. mulai"
               placeholder="Tanggal mulai"

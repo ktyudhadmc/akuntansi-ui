@@ -4,6 +4,7 @@ import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 import { useDropdown } from "@hooks/useDropdown";
 import useGetAccount from "@services/user/account/index/hooks/useGet";
 import { AiFillCaretDown } from "react-icons/ai";
+import { HiUpload } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function CBShow() {
@@ -30,7 +31,7 @@ export default function CBShow() {
         </Skeleton>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex lg:flex-row flex-col gap-4">
         <Button
           size="sm"
           variant="outline"
@@ -40,21 +41,35 @@ export default function CBShow() {
           Ubah Akun
         </Button>
 
-        <div className="relative lg:w-auto w-full">
+        <div className="flex gap-4">
           <Button
             size="sm"
-            onClick={toggleDropdown}
+            variant="outline"
             className="lg:w-auto w-full"
+            onClick={() =>
+              navigate(`../import`)
+            }
           >
-            <span>Buat transaksi</span>
-            <AiFillCaretDown />
+            <HiUpload />
+            Impor
           </Button>
 
-          <Dropdown isOpen={isOpen} onClose={closeDropdown}>
-            <DropdownItem>Transfer uang</DropdownItem>
-            <DropdownItem>Terima uang</DropdownItem>
-            <DropdownItem>Kirim uang</DropdownItem>
-          </Dropdown>
+          <div className="relative lg:w-auto w-full">
+            <Button
+              size="sm"
+              onClick={toggleDropdown}
+              className="lg:w-auto w-full"
+            >
+              <span>Buat transaksi</span>
+              <AiFillCaretDown />
+            </Button>
+
+            <Dropdown isOpen={isOpen} onClose={closeDropdown}>
+              <DropdownItem>Transfer uang</DropdownItem>
+              <DropdownItem>Terima uang</DropdownItem>
+              <DropdownItem>Kirim uang</DropdownItem>
+            </Dropdown>
+          </div>
         </div>
       </div>
     </div>
