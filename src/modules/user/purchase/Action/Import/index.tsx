@@ -7,33 +7,28 @@ import AvatarText from "@components/ui/avatar/AvatarText";
 import Button from "@components/ui/button/Button";
 import Spinner from "@components/Reusable/Spinner";
 import Form from "@components/form/Form";
-import ImportDropZonePurchase from "./DropZone";
+import ImportDropZone from "@components/form/file/DropZone";
 
 import useFileUpload from "@hooks/useFileUpload";
 import type { IImportPurchasePayload } from "@services/user/purchase/interfaces/request.type";
 import useImport from "@services/user/purchase/hooks/useImport";
 import { toast } from "react-toastify";
+import config from "@constants/config";
 
 type FormFields = IImportPurchasePayload;
 
 export default function ImportAccount() {
   const navigate = useNavigate();
+
+  /** hooks upload file */
   const { file, getRootProps, getInputProps, onRemove, isDragActive, open } =
     useFileUpload({
-      accept: {
-        "text/csv": [".csv"],
-        "application/vnd.ms-excel": [".xls"],
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
-          ".xlsx",
-        ],
-      },
+      acceptTypes: ["csv", "excel"],
     });
 
+  /** download template */
   const handleDownload = () => {
-    window.open(
-      "https://docs.google.com/spreadsheets/d/14ZtlBNBiECiGSgM5N2aatt0S0y2Pj4cu8J0dEIkJNgQ/export?format=csv",
-      "_blank",
-    );
+    window.open(config.TEMPLATE_IMPORT_PURCHASE, "_blank");
   };
 
   const methods = useForm<FormFields>({ mode: "onChange" });
@@ -149,7 +144,7 @@ export default function ImportAccount() {
               .xls
             </p>
 
-            <ImportDropZonePurchase
+            <ImportDropZone
               file={file}
               getRootProps={getRootProps}
               getInputProps={getInputProps}

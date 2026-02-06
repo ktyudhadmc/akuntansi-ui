@@ -31,7 +31,6 @@ export default function SaleTable() {
                   Total Harga
                 </th>
                 <th></th>
-                <th></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">

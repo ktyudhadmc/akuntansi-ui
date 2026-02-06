@@ -13,7 +13,7 @@ export default function useImport() {
         withCompany: true,
         tokenType: "user",
       }).post(
-        `/sale/import`,
+        `/sales/import`,
         jsonToFormData(payload as unknown as { [key: string]: JSONValue }),
         {
           headers: {
@@ -23,7 +23,7 @@ export default function useImport() {
       );
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/sale/);
+        revalidateMutationsByKey(/^\/sales/);
       }
 
       return { response: res, error: null };

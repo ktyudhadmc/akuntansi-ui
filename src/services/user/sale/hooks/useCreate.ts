@@ -8,16 +8,12 @@ export default function useCreate() {
   const createData = async (payload: ICreateSalePayload) => {
     const {
       account_id,
-      counter_account_id,
       customer_id,
-      material_id,
-      unit_of_measure_id,
       document_number,
-      service_type_id,
       date,
       due_date,
-      qty,
-      price,
+      description,
+      items,
     } = payload;
 
     try {
@@ -27,16 +23,12 @@ export default function useCreate() {
         tokenType: "user",
       }).post(`/sales`, {
         account_id,
-        counter_account_id,
         customer_id,
-        material_id,
-        unit_of_measure_id,
         document_number,
-        service_type_id,
         date,
         due_date,
-        qty,
-        price,
+        description,
+        items,
       });
 
       if (res.status === 200) {

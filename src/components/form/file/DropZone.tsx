@@ -1,5 +1,5 @@
-import { MdUploadFile, MdNearMe } from "react-icons/md";
-import { HiTrash } from "react-icons/hi";
+import { MdNearMe } from "react-icons/md";
+import { HiTrash, HiUpload } from "react-icons/hi";
 import { type FileState } from "@hooks/useFileUpload";
 import { useEffect, useState } from "react";
 import Button from "@components/ui/button/Button";
@@ -67,7 +67,7 @@ export default function ImportDropZone({
             {/* Icon Container */}
             <div className="mb-[22px] flex justify-center">
               <div className="flex h-[68px] w-[68px]  items-center justify-center rounded-full bg-gray-200 text-gray-700 dark:bg-gray-800 dark:text-gray-400">
-                <MdUploadFile className="text-3xl" />
+                <HiUpload className="text-3xl" />
               </div>
             </div>
 
