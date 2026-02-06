@@ -13,7 +13,7 @@ export interface IGetResponse {
 export interface Tax {
   id: string;
   name: string;
-  rate: string;
+  rate: number;
   is_active: boolean;
   purchase_account: Account;
   sales_account: Account;

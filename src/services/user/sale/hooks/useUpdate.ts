@@ -2,40 +2,32 @@ import axiosInstance from "@/lib/axios-instance";
 import useRevalidateMutation from "@/lib/swr/useRevalidateMutation";
 import type { ICreateSalePayload } from "../interfaces/request.type";
 
-export default function useUpdate(purchaseId: string) {
+export default function useUpdate(saleId: string) {
   const revalidateMutationsByKey = useRevalidateMutation();
 
   const updateData = async (payload: ICreateSalePayload) => {
     const {
       account_id,
-      counter_account_id,
       customer_id,
-      material_id,
-      unit_of_measure_id,
       document_number,
-      service_type_id,
       date,
       due_date,
-      qty,
-      price,
+      description,
+      items,
     } = payload;
     try {
       const res = await axiosInstance({
         withToken: true,
         withCompany: true,
         tokenType: "user",
-      }).post(`/sales/${purchaseId}`, {
+      }).post(`/sales/${saleId}`, {
         account_id,
-        counter_account_id,
         customer_id,
-        material_id,
-        unit_of_measure_id,
         document_number,
-        service_type_id,
         date,
         due_date,
-        qty,
-        price,
+        description,
+        items,
         _method: "PUT",
       });
 
