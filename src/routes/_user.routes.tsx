@@ -111,6 +111,7 @@ export default [
       /** PURCHASE */
       { path: "purchases", element: <User.PurchasePage /> },
       { path: "purchases/create", element: <User.CreatePurchasePage /> },
+      { path: "purchases/:id", element: <User.PurchaseShowPage /> },
       { path: "purchases/:id/edit", element: <User.EditPurchasePage /> },
       { path: "purchases/import", element: <User.ImportPurchasePage /> },
 
