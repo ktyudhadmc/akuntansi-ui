@@ -53,6 +53,7 @@ export { default as PeriodLockPage } from "./period/period/LockPage";
 export { default as PurchasePage } from "./purchase";
 export { default as CreatePurchasePage } from "./purchase/create";
 export { default as EditPurchasePage } from "./purchase/edit";
+export { default as PurchaseShowPage } from "./purchase/ShowPage";
 export { default as ImportPurchasePage } from "./purchase/import";
 
 // PRODUCT UNIT

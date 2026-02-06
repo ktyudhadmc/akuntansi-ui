@@ -7,33 +7,28 @@ export default function useUpdate(purchaseId: string) {
 
   const updateData = async (payload: ICreatePurchasePayload) => {
     const {
-      account_id,
-      counter_account_id,
-      supplier_id,
-      material_id,
-      unit_of_measure_id,
       document_number,
+      account_id,
+      supplier_id,
       date,
       due_date,
-      qty,
-      price,
+      description,
+      items,
     } = payload;
+
     try {
       const res = await axiosInstance({
         withToken: true,
         withCompany: true,
         tokenType: "user",
       }).post(`/purchase/${purchaseId}`, {
-        account_id,
-        counter_account_id,
-        supplier_id,
-        material_id,
-        unit_of_measure_id,
         document_number,
+        account_id,
+        supplier_id,
         date,
         due_date,
-        qty,
-        price,
+        description,
+        items,
         _method: "PUT",
       });
 
