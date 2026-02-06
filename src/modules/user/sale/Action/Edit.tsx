@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { toast } from "react-toastify";
 import {
   useFieldArray,
@@ -36,6 +36,8 @@ import { HiPlus, HiTrash } from "react-icons/hi";
 import SelectTwoRhf from "@components/form/SelectTwoRhf";
 import SearchInput from "@components/form/default/SearchInput";
 import { formatIDRLocale } from "@helpers/currency";
+import { responseToRequest } from "@services/user/sale/interfaces/request.mapper";
+import TextArea from "@components/form/input/TextArea";
 
 type FormFields = ICreateSalePayload;
 
@@ -71,8 +73,8 @@ export default function EditSale() {
     },
   });
 
-  const { control } = methods;
-  const { isSubmitting } = methods.formState;
+  const { control, reset } = methods;
+  const { isSubmitting, isDirty } = methods.formState;
   const isValid = methods.formState.isValid;
 
   const { data, loading } = useGetSale(params.id as string);
@@ -107,6 +109,11 @@ export default function EditSale() {
       }
     }
   };
+
+  useEffect(() => {
+    if (!data) return;
+    reset(responseToRequest(data));
+  }, [data, reset]);
 
   /** calculate sub-total */
   const calculateSubtotal = (
@@ -153,13 +160,20 @@ export default function EditSale() {
 
   /** calculate sub-total */
   const subTotal = useMemo(() => {
-    return (
-      watchedSaleItems?.reduce(
-        (sum, item) => sum + calculateSubtotal(item.qty, item.price),
-        0,
-      ) ?? 0
-    );
-  }, [watchedSaleItems]);
+
+    if (!isDirty) return data?.total_gross ?? 0;
+    return fieldSaleItems.fields.reduce((total, field, index) => {
+      const item = watchedSaleItems?.[index];
+
+      const qty = item?.qty ?? field.qty ?? 0;
+      const price = item?.price ?? field.price ?? 0;
+
+      return total + qty * price;
+    }, 0);
+  }, [isDirty,
+    fieldSaleItems.fields,
+    watchedSaleItems,
+    data?.total_gross]);
 
   const totalTax = useMemo(() => {
     return taxSummaries.reduce((sum, tax) => sum + tax.tax_amount, 0);
@@ -236,85 +250,6 @@ export default function EditSale() {
             />
           </Skeleton>
         </div>
-        {/* <Skeleton isLoading={accountLoading || loading}>
-          <SelectTwo
-            label="Akun kredit"
-            name="counter_account_id"
-            placeholder="--- Pilih Akun Kredit ---"
-            selectTwoOptions={accountOptions}
-            defaultValue={{
-              label: data?.counter_account.name,
-              value: data?.counter_account.id,
-            }}
-            isSearchable
-            isClearable
-            isRequired
-          />
-        </Skeleton>
-
-        <div className="grid md:grid-cols-2 gap-4">
-          <Skeleton isLoading={serviceLoading || loading}>
-            <Select
-              label="Layanan"
-              placeholder="--- Pilih Layanan ---"
-              name="service_type_id"
-              options={serviceOptions}
-              defaultValue={data?.service_type.id}
-              required
-            />
-          </Skeleton>
-
-          <Skeleton isLoading={productLoading || loading}>
-            <SelectTwo
-              label="Material"
-              name="material_id"
-              placeholder="--- Pilih Material ---"
-              selectTwoOptions={productOptions}
-              defaultValue={{
-                label: data?.material.name,
-                value: data?.material.id,
-              }}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-4">
-          <Skeleton isLoading={loading}>
-            <Input
-              label="Kuantitas"
-              placeholder="Kuantitas"
-              type="number"
-              name="qty"
-              defaultValue={data?.qty}
-              required
-            />
-          </Skeleton>
-
-          <Skeleton isLoading={unitLoading || loading}>
-            <Select
-              label="Satuan"
-              placeholder="--- Pilih Satuan ---"
-              name="unit_of_measure_id"
-              options={unitOptions}
-              defaultValue={data?.unit.id}
-              required
-            />
-          </Skeleton>
-
-          <Skeleton isLoading={loading}>
-            <Input
-              label="Harga satuan"
-              placeholder="Harga satuan"
-              type="number"
-              name="price"
-              defaultValue={data?.price}
-              required
-            />
-          </Skeleton>
-        </div> */}
 
         {/* Produk / Material */}
         <div className="my-4">
@@ -456,7 +391,6 @@ export default function EditSale() {
                               name={`items[${index}][tax_id]`}
                               options={taxOptions}
                               className="w-full"
-                              required
                             />
                           </Skeleton>
                         </div>
@@ -471,8 +405,8 @@ export default function EditSale() {
                             }
                             value={formatIDRLocale(
                               calculateSubtotal(
-                                watchedSaleItems?.[index]?.qty,
-                                watchedSaleItems?.[index]?.price,
+                                watchedSaleItems?.[index]?.qty ?? field.qty,
+                                watchedSaleItems?.[index]?.price ?? field.price,
                               ),
                             )}
                           />
@@ -494,6 +428,49 @@ export default function EditSale() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-between">
+          <div className="lg:w-1/4 w-full">
+            <Skeleton isLoading={loading}>
+              <TextArea
+                label="Catatan"
+                name="description"
+                placeholder="Catatan pembelian"
+                defaultValue={data?.description}
+              /></Skeleton>
+          </div>
+
+          <div className="lg:w-1/4 w-full">
+            <div className=" grid grid-cols-2 mb-2">
+              <h4 className="text-start font-medium text-sm dark:text-white">
+                Sub Total
+              </h4>
+              <p className="text-end font-medium text-sm dark:text-white">
+                {formatIDRLocale(subTotal, { withSymbol: true })}
+              </p>
+            </div>
+
+            {taxSummaries.map((tax) => (
+              <div key={tax.tax_id} className="grid grid-cols-2">
+                <h4 className="text-start text-sm">
+                  {tax.tax_name} ({tax.rate}%)
+                </h4>
+                <p className="text-end text-sm">
+                  {formatIDRLocale(tax.tax_amount, { withSymbol: true })}
+                </p>
+              </div>
+            ))}
+
+            <div className="grid grid-cols-2 mt-6">
+              <h4 className="text-start font-medium text-lg dark:text-white">
+                Total
+              </h4>
+              <p className="text-end font-medium text-lg dark:text-white">
+                {formatIDRLocale(grandTotal ?? data?.total_net, { withSymbol: true })}
+              </p>
             </div>
           </div>
         </div>

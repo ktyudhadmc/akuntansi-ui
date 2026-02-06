@@ -335,7 +335,7 @@ export default function EditPurchase() {
                               calculateSubtotal(
                                 watchedPurchaseItems?.[index]?.qty ?? field.qty,
                                 watchedPurchaseItems?.[index]?.price ??
-                                  field.price,
+                                field.price,
                               ),
                             )}
                           />

@@ -14,7 +14,7 @@ export interface CreateSaleItem {
   counter_account_id: string | undefined;
   service_type_id: string | undefined;
   qty: number | undefined;
-  tax_id: string | undefined;
+  tax_id?: string | undefined;
   tax_amount: number | undefined;
   price: number | undefined;
 }

@@ -23,7 +23,7 @@ export const responseToRequest = (sale: Sale): ICreateSalePayload => ({
       unit_of_measure_id: unit.id,
       counter_account_id: counter_account.id,
       service_type_id: service_type.id,
-      tax_id: tax.id,
+      tax_id: tax?.id,
       qty,
       price,
       tax_amount,
