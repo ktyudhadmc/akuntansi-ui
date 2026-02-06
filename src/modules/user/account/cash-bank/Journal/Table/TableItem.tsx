@@ -22,10 +22,10 @@ export default function TableItem({ item }: Props) {
 
   return (
     <tr>
-      <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400">
+      <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
         {item.date}
       </td>
-      <td className="px-5 py-1 text-gray-500 text-start text-sm dark:text-gray-400 ">
+      <td className="px-5 py-1 text-gray-500 text-start text-sm dark:text-gray-400 whitespace-nowrap">
         <Link
           to={getTransactionUrl(item.transaction.id, item.transaction.type)}
           className="cursor-pointer text-brand-400 dark:text-gray-400"
