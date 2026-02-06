@@ -8,11 +8,10 @@ import DeleteProduct from "../Action/Delete";
 
 interface Props {
   id: string;
-  sku: string;
   name: string;
 }
 
-export default function TableItemMenu({ id, name, sku }: Props) {
+export default function TableItemMenu({ id, name }: Props) {
   const navigate = useNavigate();
   const { openModal, isOpen, closeModal } = useModal();
 
@@ -20,7 +19,6 @@ export default function TableItemMenu({ id, name, sku }: Props) {
     <>
       <DeleteProduct
         id={id}
-        sku={sku}
         name={name}
         key={`modal-delete-${name}`}
         onOpen={isOpen}
