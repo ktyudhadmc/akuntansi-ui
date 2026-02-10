@@ -78,11 +78,13 @@ export { default as ReportPage } from "./report";
 // REPORT BUSINESS
 export { default as RBJournalPage } from "./report/business/RBJournalPage";
 export { default as RBLedgerPage } from "./report/business/RBLedgerPage";
+export { default as RBTrialBalancePage } from "./report/business/RBTrialBalancePage";
 
 // SALE
 export { default as SalePage } from "./sale";
 export { default as CreateSalePage } from "./sale/create";
 export { default as EditSalePage } from "./sale/edit";
+export { default as SaleShowPage } from "./sale/ShowPage";
 export { default as ImportSalePage } from "./sale/import";
 
 // TAX

@@ -118,6 +118,7 @@ export default [
       /** SALE */
       { path: "sales", element: <User.SalePage /> },
       { path: "sales/create", element: <User.CreateSalePage /> },
+      { path: "sales/:id", element: <User.SaleShowPage /> },
       { path: "sales/:id/edit", element: <User.EditSalePage /> },
       { path: "sales/import", element: <User.ImportSalePage /> },
 
@@ -181,6 +182,7 @@ export default [
       { path: "reports", element: <User.ReportPage /> },
       { path: "reports/journal", element: <User.RBJournalPage /> },
       { path: "reports/ledger", element: <User.RBLedgerPage /> },
+      { path: "reports/trial-balance", element: <User.RBTrialBalancePage /> },
 
       /** TAX */
       { path: "taxes", element: <User.TaxPage /> },

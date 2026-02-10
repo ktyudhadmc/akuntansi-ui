@@ -9,13 +9,13 @@ import Skeleton from "@components/Skeleton/Skeleton";
 import Badge from "@components/ui/badge/Badge";
 import Button from "@components/ui/button/Button";
 
-import useGetPurchase from "@services/user/purchase/hooks/useGet";
+import useGetSale from "@services/user/sale/hooks/useGet";
 
-export default function PurchaseShow() {
+export default function SaleShow() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { data, loading } = useGetPurchase(params.id as string);
+  const { data, loading } = useGetSale(params.id as string);
 
   return (
     <div className="space-y-6">
@@ -69,7 +69,7 @@ export default function PurchaseShow() {
         <div className="lg:col-span-8 2xl:col-span-9">
           <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/3">
             <h2 className="mb-5 text-lg font-semibold text-gray-800 dark:text-white/90">
-             Rincian
+              Rincian
             </h2>
             <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800">
               <div className="custom-scrollbar overflow-x-auto">
@@ -167,7 +167,7 @@ export default function PurchaseShow() {
                     </span>
                     <Skeleton isLoading={loading} height="2rem">
                       <span className="text-md font-semibold text-gray-800 dark:text-white/90">
-                        {formatIDRLocale(data?.total_amount ?? 0, {
+                        {formatIDRLocale(data?.total_gross ?? 0, {
                           withSymbol: true,
                         })}
                       </span>
@@ -191,7 +191,7 @@ export default function PurchaseShow() {
                 </span>
                 <Skeleton isLoading={loading} height="2rem">
                   <span className="w-1/2 text-sm text-gray-700 sm:w-2/3 dark:text-gray-400">
-                    {data?.supplier.name}
+                    {data?.customer.name}
                   </span>
                 </Skeleton>
               </li>
