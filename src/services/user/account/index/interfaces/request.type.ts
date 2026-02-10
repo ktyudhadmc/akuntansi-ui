@@ -6,3 +6,7 @@ export interface ICreateAccountPayload {
   normal_balance: string;
   report_type: string;
 }
+
+export interface IBulkDeleteAccountPayload {
+  ids: string[];
+}

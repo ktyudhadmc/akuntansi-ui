@@ -1,8 +1,8 @@
 import Button from "@components/ui/button/Button";
 import DeleteAccount from "../Action/Delete";
-import { HiTrash, HiPencil } from "react-icons/hi";
+import { HiTrash } from "react-icons/hi";
 import { useModal } from "@hooks/useModal";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 interface Props {
   id: number;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function TableItemMenu({ id, code, name, isLock }: Props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { openModal, isOpen, closeModal } = useModal();
 
   return (
@@ -28,13 +28,13 @@ export default function TableItemMenu({ id, code, name, isLock }: Props) {
 
       <div className="flex gap-2">
         {/* edit */}
-        <Button
+        {/* <Button
           onClick={() => navigate(`${id}/edit`)}
           size="xs"
           variant="outline"
         >
           <HiPencil />
-        </Button>
+        </Button> */}
 
         {/* delete */}
         {!isLock && (

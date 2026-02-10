@@ -59,7 +59,7 @@ export default function ChartOfAccountShow() {
       /> */}
       {/* TABLE HEADER */}
       <div className="flex lg:flex-row flex-col justify-between gap-4 items-end">
-        <div className="mt-auto md:min-w-xs min-w-full flex lg:flex-col flex-row gap-2 lg:justify-start justify-between">
+        <div className="mt-auto md:min-w-sm min-w-full flex lg:flex-col flex-row gap-2 lg:justify-start justify-between">
           <div className=" w-full">
             <Skeleton isLoading={accountLoading} height="1.2rem" width="50%">
               <span className="text-gray-500 text-theme-sm dark:text-gray-400">

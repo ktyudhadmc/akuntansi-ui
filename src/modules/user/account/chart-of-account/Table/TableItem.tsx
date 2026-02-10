@@ -4,12 +4,15 @@ import { formatIDR } from "@helpers/currency";
 import TableItemMenu from "./TableItemMenu";
 import { AiOutlineDash, AiOutlineLock } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Checkbox from "@components/form/default/Checkbox";
 
 interface Props {
   item: Account;
+  checked: boolean;
+  onToggle: () => void;
 }
 
-export default function TableItem({ item }: Props) {
+export default function TableItem({ item, checked, onToggle }: Props) {
   const getAccountUrl = (id: number, categoryId?: number | null) => {
     const cashBank = categoryId == 3;
 
@@ -35,8 +38,17 @@ export default function TableItem({ item }: Props) {
       {/* <td className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
         {nomor}
       </td> */}
+      <td className="px-5 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+        {item.is_posting && (
+          <Checkbox
+            className="cursor-pointer"
+            checked={checked}
+            onChange={onToggle}
+          />
+        )}
+      </td>
       <td className="px-5 py-1 text-gray-500 text-center text-base dark:text-gray-400 whitespace-nowrap">
-        {item.is_posting ? <AiOutlineLock /> : <AiOutlineDash />}
+        {item.is_posting ? <AiOutlineDash /> : <AiOutlineLock />}
       </td>
       <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
         {item.code}
