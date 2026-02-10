@@ -35,7 +35,7 @@ export default function TableItem({ item }: Props) {
         {formatIDRLocale(item.total_gross, { withSymbol: true })}
       </td>
 
-      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-start text-theme-xs dark:text-gray-400">
+      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
         <TableItemMenu id={item.id} invoice={item.document_number} />
       </td>
     </tr>

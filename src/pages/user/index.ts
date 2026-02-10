@@ -84,6 +84,7 @@ export { default as RBTrialBalancePage } from "./report/business/RBTrialBalanceP
 export { default as SalePage } from "./sale";
 export { default as CreateSalePage } from "./sale/create";
 export { default as EditSalePage } from "./sale/edit";
+export { default as SaleShowPage } from "./sale/ShowPage";
 export { default as ImportSalePage } from "./sale/import";
 
 // TAX
