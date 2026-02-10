@@ -183,6 +183,7 @@ export default [
       { path: "reports/journal", element: <User.RBJournalPage /> },
       { path: "reports/ledger", element: <User.RBLedgerPage /> },
       { path: "reports/trial-balance", element: <User.RBTrialBalancePage /> },
+      { path: "reports/profit-loss", element: <User.RBProfitLossPage /> },
 
       /** TAX */
       { path: "taxes", element: <User.TaxPage /> },
