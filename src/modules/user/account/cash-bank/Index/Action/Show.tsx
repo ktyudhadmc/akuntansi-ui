@@ -3,6 +3,7 @@ import Button from "@components/ui/button/Button";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 import { useDropdown } from "@hooks/useDropdown";
 import useGetAccount from "@services/user/account/index/hooks/useGet";
+import { useEffect } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { HiUpload } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,6 +16,16 @@ export default function CBShow() {
   const { data: account, loading: accountLoading } = useGetAccount(
     params.id as string,
   );
+
+  useEffect(() => {
+    if (accountLoading) return;
+
+    if (account && account.category?.id !== 3) {
+      navigate(`/user/accounts/chart-of-account/${params.id}`, {
+        replace: true,
+      });
+    }
+  }, [account, accountLoading, navigate, params.id]);
 
   return (
     <div className="flex lg:flex-row flex-col gap-2 lg:justify-between lg:items-center">
@@ -46,9 +57,7 @@ export default function CBShow() {
             size="sm"
             variant="outline"
             className="lg:w-auto w-full"
-            onClick={() =>
-              navigate(`../import`)
-            }
+            onClick={() => navigate(`../import`)}
           >
             <HiUpload />
             Impor
