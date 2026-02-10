@@ -17,13 +17,13 @@ interface Props {
 }
 
 export default function TableHeader({ setSearch }: Props) {
-  const startDate = useUserStore((state) => state.ledgerStartDate);
-  const endDate = useUserStore((state) => state.ledgerEndDate);
+  const startDate = useUserStore((state) => state.trialBalanceStartDate);
+  const endDate = useUserStore((state) => state.trialBalanceEndDate);
 
-  const setStartDate = useUserStore((state) => state.setLedgerStartDate);
-  const setEndDate = useUserStore((state) => state.setLedgerEndDate);
+  const setStartDate = useUserStore((state) => state.setTrialBalanceStartDate);
+  const setEndDate = useUserStore((state) => state.setTrialBalanceEndDate);
 
-  const resetLedgerFilter = useUserStore((state) => state.resetLedgerFilter);
+  const resetFilter = useUserStore((state) => state.resetTrialBalanceFilter);
 
   const methods = useForm<any>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
@@ -40,7 +40,7 @@ export default function TableHeader({ setSearch }: Props) {
       end_date: todayYMDString,
     });
 
-    resetLedgerFilter();
+    resetFilter();
   };
 
   const debouncedSearch = useCallback(
