@@ -8,8 +8,8 @@ import useUserStore from "@store/useUserStore";
 export default function useGetAllTrialBalance() {
   const [search, setSearch] = useState("");
 
-  const startDate = useUserStore((state) => state.ledgerStartDate);
-  const endDate = useUserStore((state) => state.ledgerEndDate);
+  const startDate = useUserStore((state) => state.trialBalanceStartDate);
+  const endDate = useUserStore((state) => state.trialBalanceEndDate);
 
   const fetcher: Fetcher<IGetAllTrialBalanceResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
