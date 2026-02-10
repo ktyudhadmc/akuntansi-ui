@@ -4,10 +4,20 @@ import TableHeader from "./TableHeader";
 import useGetAll from "@services/user/account/index/hooks/useGetAll";
 import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
+import Checkbox from "@components/form/default/Checkbox";
+import { useBulkSelect } from "@hooks/useBulkSelect";
+import Button from "@components/ui/button/Button";
+import { HiTrash } from "react-icons/hi";
 
 export default function AccountTable() {
   const { data, loading, setName } = useGetAll();
 
+  const { selectedIds, isSelected, toggleOne, toggleAll, isAllSelected } =
+    useBulkSelect<number>();
+  const allIds =
+    data?.filter((item) => item.is_posting).map((item) => item.id) ?? [];
+
+  console.log(selectedIds);
   return (
     <>
       <TableHeader setSearchCallback={(e) => setName(e)} />
@@ -17,6 +27,18 @@ export default function AccountTable() {
             {/* Table Header */}
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
+                <th className="pl-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 flex gap-4">
+                  <Checkbox
+                    className="cursor-pointer"
+                    checked={isAllSelected(allIds)}
+                    onChange={() => toggleAll(allIds)}
+                  />
+                  {isAllSelected(allIds) && (
+                    <Button size="xs" variant="outline">
+                      <HiTrash />
+                    </Button>
+                  )}
+                </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Kunci
                 </th>
@@ -54,7 +76,12 @@ export default function AccountTable() {
               ) : (
                 data.map((item, index) => {
                   return (
-                    <TableItem key={`table-account-${index}`} item={item} />
+                    <TableItem
+                      key={`table-account-${index}`}
+                      item={item}
+                      checked={isSelected(item.id)}
+                      onToggle={() => toggleOne(item.id)}
+                    />
                   );
                 })
               )}

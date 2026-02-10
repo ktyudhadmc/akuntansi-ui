@@ -85,7 +85,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
               <hr className="my-1 mx-2" />
               <DropdownItem
                 className="flex gap-2 w-full whitespace-nowrap items-center dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-                onClick={() => navigate("closing-books")}
+                onClick={() => navigate("../../periods")}
               >
                 <AiOutlineBook className="text-base" /> Tutup buku & kunci
                 periode
