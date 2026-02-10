@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { toast } from "react-toastify";
+import { HiPlus, HiTrash } from "react-icons/hi";
 import {
   useFieldArray,
   useForm,
@@ -9,6 +10,8 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 
 import useMapInputOptions from "@hooks/useMapInputOptions";
+import useGoBack from "@hooks/useGoBack";
+import { formatIDRLocale } from "@helpers/currency";
 
 import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
@@ -17,7 +20,10 @@ import Skeleton from "@components/Skeleton/Skeleton";
 import Button from "@components/ui/button/Button";
 import DatePicker from "@components/form/date-picker";
 import SelectTwo from "@components/form/SelectTwo";
-import Select from "@components/form/Select";
+import TextArea from "@components/form/input/TextArea";
+import SelectTwoRhf from "@components/form/SelectTwoRhf";
+import SearchInput from "@components/form/default/SearchInput";
+// import Select from "@components/form/Select";
 
 import useGetSale from "@services/user/sale/hooks/useGet";
 import useUpdate from "@services/user/sale/hooks/useUpdate";
@@ -25,29 +31,23 @@ import useGetAllUnit from "@services/user/product/unit/hooks/useGetAll";
 import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useGetAllProduct from "@services/user/product/index/hooks/useGetAll";
 import useGetAllCustomer from "@services/user/customer/hooks/useGetAll";
-import useGetAllService from "@services/user/service/hooks/useGetAll";
-import useGetAllTax from "@services/user/tax/hooks/useGetAll";
+import { responseToRequest } from "@services/user/sale/interfaces/request.mapper";
+// import useGetAllService from "@services/user/service/hooks/useGetAll";
+// import useGetAllTax from "@services/user/tax/hooks/useGetAll";
 import type {
   CreateSaleItem,
   ICreateSalePayload,
 } from "@services/user/sale/interfaces/request.type";
-import useGoBack from "@hooks/useGoBack";
-import { HiPlus, HiTrash } from "react-icons/hi";
-import SelectTwoRhf from "@components/form/SelectTwoRhf";
-import SearchInput from "@components/form/default/SearchInput";
-import { formatIDRLocale } from "@helpers/currency";
-import { responseToRequest } from "@services/user/sale/interfaces/request.mapper";
-import TextArea from "@components/form/input/TextArea";
 
 type FormFields = ICreateSalePayload;
 
-type TaxSummary = {
-  tax_id: string;
-  tax_name: string;
-  rate: number;
-  taxable_amount: number;
-  tax_amount: number;
-};
+// type TaxSummary = {
+//   tax_id: string;
+//   tax_name: string;
+//   rate: number;
+//   taxable_amount: number;
+//   tax_amount: number;
+// };
 
 export default function EditSale() {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ export default function EditSale() {
     material_id: undefined,
     unit_of_measure_id: undefined,
     counter_account_id: undefined,
-    service_type_id: undefined,
+    service_type_id: "2",
     qty: undefined,
     price: undefined,
     tax_id: undefined,
@@ -84,15 +84,15 @@ export default function EditSale() {
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
   const { data: products, loading: productLoading } = useGetAllProduct();
   const { data: customers, loading: customerLoading } = useGetAllCustomer();
-  const { data: services, loading: serviceLoading } = useGetAllService();
-  const { data: taxes, loading: taxLoading } = useGetAllTax();
+  // const { data: services, loading: serviceLoading } = useGetAllService();
+  // const { data: taxes, loading: taxLoading } = useGetAllTax();
 
   const unitOptions = useMapInputOptions(units);
   const accountOptions = useMapInputOptions(accounts);
   const productOptions = useMapInputOptions(products);
   const customerOptions = useMapInputOptions(customers);
-  const serviceOptions = useMapInputOptions(services);
-  const taxOptions = useMapInputOptions(taxes);
+  // const serviceOptions = useMapInputOptions(services);
+  // const taxOptions = useMapInputOptions(taxes);
 
   const fieldSaleItems = useFieldArray({ control, name: "items" });
   const watchedSaleItems = useWatch({ control, name: "items" });
@@ -126,41 +126,40 @@ export default function EditSale() {
     return safeQty * safePrice;
   };
 
-  const taxSummaries: TaxSummary[] = useMemo(() => {
-    if (!watchedSaleItems) return [];
+  // const taxSummaries: TaxSummary[] = useMemo(() => {
+  //   if (!watchedSaleItems) return [];
 
-    const map = new Map<string, TaxSummary>();
+  //   const map = new Map<string, TaxSummary>();
 
-    for (const item of watchedSaleItems) {
-      if (!item.tax_id) continue;
+  //   for (const item of watchedSaleItems) {
+  //     if (!item.tax_id) continue;
 
-      const subtotal = calculateSubtotal(item.qty, item.price);
-      if (subtotal === 0) continue;
+  //     const subtotal = calculateSubtotal(item.qty, item.price);
+  //     if (subtotal === 0) continue;
 
-      const tax = taxes?.find((t) => t.id == item.tax_id);
-      if (!tax) continue;
+  //     const tax = taxes?.find((t) => t.id == item.tax_id);
+  //     if (!tax) continue;
 
-      if (!map.has(item.tax_id)) {
-        map.set(item.tax_id, {
-          tax_id: tax.id,
-          tax_name: tax.name,
-          rate: tax.rate,
-          taxable_amount: 0,
-          tax_amount: 0,
-        });
-      }
+  //     if (!map.has(item.tax_id)) {
+  //       map.set(item.tax_id, {
+  //         tax_id: tax.id,
+  //         tax_name: tax.name,
+  //         rate: tax.rate,
+  //         taxable_amount: 0,
+  //         tax_amount: 0,
+  //       });
+  //     }
 
-      const row = map.get(item.tax_id)!;
-      row.taxable_amount += subtotal;
-      row.tax_amount = (row.taxable_amount * row.rate) / 100;
-    }
+  //     const row = map.get(item.tax_id)!;
+  //     row.taxable_amount += subtotal;
+  //     row.tax_amount = (row.taxable_amount * row.rate) / 100;
+  //   }
 
-    return Array.from(map.values());
-  }, [watchedSaleItems, taxes]);
+  //   return Array.from(map.values());
+  // }, [watchedSaleItems, taxes]);
 
   /** calculate sub-total */
   const subTotal = useMemo(() => {
-
     if (!isDirty) return data?.total_gross ?? 0;
     return fieldSaleItems.fields.reduce((total, field, index) => {
       const item = watchedSaleItems?.[index];
@@ -170,17 +169,14 @@ export default function EditSale() {
 
       return total + qty * price;
     }, 0);
-  }, [isDirty,
-    fieldSaleItems.fields,
-    watchedSaleItems,
-    data?.total_gross]);
+  }, [isDirty, fieldSaleItems.fields, watchedSaleItems, data?.total_gross]);
 
-  const totalTax = useMemo(() => {
-    return taxSummaries.reduce((sum, tax) => sum + tax.tax_amount, 0);
-  }, [taxSummaries]);
+  // const totalTax = useMemo(() => {
+  //   return taxSummaries.reduce((sum, tax) => sum + tax.tax_amount, 0);
+  // }, [taxSummaries]);
 
-  /** calculate grand-total */
-  const grandTotal = subTotal + totalTax;
+  // /** calculate grand-total */
+  // const grandTotal = subTotal + totalTax;
   return (
     <div>
       <Form {...methods} onSubmit={onSubmit}>
@@ -270,9 +266,9 @@ export default function EditSale() {
               <table className="w-full">
                 <thead className="border-b border-gray-100 dark:border-white/[0.05]">
                   <tr>
-                    <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                    {/* <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                       Layanan
-                    </th>
+                    </th> */}
                     <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                       Produk
                     </th>
@@ -288,9 +284,9 @@ export default function EditSale() {
                     <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                       Harga Satuan
                     </th>
-                    <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
+                    {/* <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                       Pajak
-                    </th>
+                    </th> */}
                     <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                       Jumlah
                     </th>
@@ -300,7 +296,7 @@ export default function EditSale() {
                 <tbody>
                   {fieldSaleItems.fields.map((field, index) => (
                     <tr key={field.id}>
-                      <td className="px-2 py-3">
+                      {/* <td className="px-2 py-3">
                         <div className="md:w-48 w-xs whitespace-nowrap">
                           <Skeleton isLoading={serviceLoading}>
                             <Select
@@ -312,7 +308,7 @@ export default function EditSale() {
                             />
                           </Skeleton>
                         </div>
-                      </td>
+                      </td> */}
                       <td className="px-2 py-3">
                         <div className="md:w-96 w-xs whitespace-nowrap">
                           <Skeleton isLoading={productLoading}>
@@ -355,7 +351,7 @@ export default function EditSale() {
                       </td>
                       <td className="px-2 py-3">
                         <div className="md:w-52 w-48 whitespace-nowrap">
-                          <Skeleton isLoading={accountLoading}>
+                          <Skeleton isLoading={accountLoading || loading}>
                             <SelectTwoRhf
                               name={`items[${index}][counter_account_id]`}
                               placeholder="--- Pilih Akun ---"
@@ -383,7 +379,7 @@ export default function EditSale() {
                           />
                         </div>
                       </td>
-                      <td className="px-2 py-3">
+                      {/* <td className="px-2 py-3">
                         <div className="w-48 whitespace-nowrap">
                           <Skeleton isLoading={taxLoading}>
                             <Select
@@ -394,7 +390,7 @@ export default function EditSale() {
                             />
                           </Skeleton>
                         </div>
-                      </td>
+                      </td> */}
                       <td className="px-2 py-3 text-end">
                         <div className="w-48 whitespace-nowrap">
                           <SearchInput
@@ -440,20 +436,21 @@ export default function EditSale() {
                 name="description"
                 placeholder="Catatan pembelian"
                 defaultValue={data?.description}
-              /></Skeleton>
+              />
+            </Skeleton>
           </div>
 
           <div className="lg:w-1/4 w-full">
-            <div className=" grid grid-cols-2 mb-2">
+            {/* <div className=" grid grid-cols-2 mb-2">
               <h4 className="text-start font-medium text-sm dark:text-white">
                 Sub Total
               </h4>
               <p className="text-end font-medium text-sm dark:text-white">
                 {formatIDRLocale(subTotal, { withSymbol: true })}
               </p>
-            </div>
+            </div> */}
 
-            {taxSummaries.map((tax) => (
+            {/* {taxSummaries.map((tax) => (
               <div key={tax.tax_id} className="grid grid-cols-2">
                 <h4 className="text-start text-sm">
                   {tax.tax_name} ({tax.rate}%)
@@ -462,14 +459,16 @@ export default function EditSale() {
                   {formatIDRLocale(tax.tax_amount, { withSymbol: true })}
                 </p>
               </div>
-            ))}
+            ))} */}
 
             <div className="grid grid-cols-2 mt-6">
               <h4 className="text-start font-medium text-lg dark:text-white">
                 Total
               </h4>
               <p className="text-end font-medium text-lg dark:text-white">
-                {formatIDRLocale(grandTotal ?? data?.total_net, { withSymbol: true })}
+                {formatIDRLocale(subTotal ?? data?.total_net, {
+                  withSymbol: true,
+                })}
               </p>
             </div>
           </div>

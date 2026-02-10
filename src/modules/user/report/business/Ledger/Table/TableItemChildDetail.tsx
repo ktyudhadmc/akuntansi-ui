@@ -23,9 +23,9 @@ export default function TableItemChildDetail({
   const getTransactionUrl = (id: string, type: string) => {
     switch (type) {
       case "sales":
-        return `/user/sales/${id}/edit`;
+        return `/user/sales/${id}`;
       case "purchase":
-        return `/user/purchases/${id}/edit`;
+        return `/user/purchases/${id}`;
       case "journal":
         return `/user/journals/${id}/edit`;
       default:
