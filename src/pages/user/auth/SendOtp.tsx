@@ -73,7 +73,7 @@ export default function SendOtp() {
                 <Input
                   label="WhatsApp"
                   name="phone"
-                  type="text"
+                  type="tel"
                   required={true}
                 />
 
