@@ -310,7 +310,7 @@ export default function EditSale() {
                         </div>
                       </td> */}
                       <td className="px-2 py-3">
-                        <div className="md:w-96 w-xs whitespace-nowrap">
+                        <div className="min-w-32 max-w-xs whitespace-nowrap">
                           <Skeleton isLoading={productLoading}>
                             <SelectTwoRhf
                               placeholder="--- Pilih Produk ---"
@@ -324,7 +324,7 @@ export default function EditSale() {
                         </div>
                       </td>
                       <td className="px-2 py-3 ">
-                        <div className="md:w-32 w-24 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Input
                             type="number"
                             placeholder="0"
@@ -336,7 +336,7 @@ export default function EditSale() {
                         </div>
                       </td>
                       <td className="px-2 py-3">
-                        <div className="md:w-52 w-48 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Skeleton isLoading={unitLoading}>
                             <SelectTwoRhf
                               placeholder="--- Pilih Satuan ---"
@@ -350,7 +350,7 @@ export default function EditSale() {
                         </div>
                       </td>
                       <td className="px-2 py-3">
-                        <div className="md:w-52 w-48 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Skeleton isLoading={accountLoading || loading}>
                             <SelectTwoRhf
                               name={`items[${index}][counter_account_id]`}
@@ -364,7 +364,7 @@ export default function EditSale() {
                         </div>
                       </td>
                       <td className="px-2 py-3">
-                        <div className="w-48 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Input
                             type="number"
                             name={`items[${index}][price]`}
@@ -392,7 +392,7 @@ export default function EditSale() {
                         </div>
                       </td> */}
                       <td className="px-2 py-3 text-end">
-                        <div className="w-48 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <SearchInput
                             className="text-end"
                             readOnly
