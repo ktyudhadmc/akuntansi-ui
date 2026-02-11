@@ -1,39 +1,36 @@
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
+import config from "@constants/config";
+import Alert from "@components/ui/alert";
+import useFileUpload from "@hooks/useFileUpload";
 import { ExcelIcon } from "@assets/icons";
+
 import Label from "@components/form/Label";
 import AvatarText from "@components/ui/avatar/AvatarText";
 import Button from "@components/ui/button/Button";
 import Spinner from "@components/Reusable/Spinner";
 import Form from "@components/form/Form";
-import ImportDropZonePurchase from "./DropZone";
+import ImportDropZone from "@components/form/file/DropZone";
 
-import useFileUpload from "@hooks/useFileUpload";
-import type { IImportPurchasePayload } from "@services/user/purchase/interfaces/request.type";
-import useImport from "@services/user/purchase/hooks/useImport";
-import { toast } from "react-toastify";
+import useImport from "@services/user/journal/hooks/useImport";
+import type { IImportJournalPayload } from "@services/user/journal/interfaces/request.type";
 
-type FormFields = IImportPurchasePayload;
+type FormFields = IImportJournalPayload;
 
-export default function ImportAccount() {
+export default function JournalImport() {
   const navigate = useNavigate();
+
+  /** hooks upload file */
   const { file, getRootProps, getInputProps, onRemove, isDragActive, open } =
     useFileUpload({
-      accept: {
-        "text/csv": [".csv"],
-        "application/vnd.ms-excel": [".xls"],
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
-          ".xlsx",
-        ],
-      },
+      acceptTypes: ["csv", "excel"],
     });
 
+  /** download template */
   const handleDownload = () => {
-    window.open(
-      "https://docs.google.com/spreadsheets/d/14ZtlBNBiECiGSgM5N2aatt0S0y2Pj4cu8J0dEIkJNgQ/export?format=csv",
-      "_blank",
-    );
+    window.open(config.TEMPLATE_IMPORT_JOURNAL, "_blank");
   };
 
   const methods = useForm<FormFields>({ mode: "onChange" });
@@ -116,17 +113,18 @@ export default function ImportAccount() {
             </li>
           </ol>
 
-          <div className="bg-green-100 p-2 rounded-lg mt-4">
-            <span className="text-theme-xs font-semibold text-green-900">
-              Tips
-            </span>
-            <p className="text-theme-xs max-w-2xl">
-              Jika menggunakan Microsoft Excel, gunakan tanda (') didepan pada
-              setiap pengisian data yang menggunakan angka
-              <br />
-              Contoh : '6-6003, '11-02-2026
-            </p>
-          </div>
+          <Alert
+            title="Tips"
+            className="mt-4"
+            message={
+              <p className="text-theme-xs max-w-2xl">
+                Jika menggunakan Microsoft Excel, gunakan tanda (') didepan pada
+                setiap pengisian data yang menggunakan angka
+                <br />
+                Contoh : '6-6003, '11-02-2026
+              </p>
+            }
+          />
         </div>
       </div>
 
@@ -149,7 +147,7 @@ export default function ImportAccount() {
               .xls
             </p>
 
-            <ImportDropZonePurchase
+            <ImportDropZone
               file={file}
               getRootProps={getRootProps}
               getInputProps={getInputProps}
