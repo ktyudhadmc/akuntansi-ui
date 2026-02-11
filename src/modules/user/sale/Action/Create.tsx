@@ -17,7 +17,6 @@ import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 // import Select from "@components/form/Select";
-import SelectTwo from "@components/form/SelectTwo";
 import Skeleton from "@components/Skeleton/Skeleton";
 import DatePicker from "@components/form/date-picker";
 import TextArea from "@components/form/input/TextArea";
@@ -77,7 +76,11 @@ export default function CreateSale() {
   const { data: units, loading: unitLoading } = useGetAllUnit();
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
   const { data: products, loading: productLoading } = useGetAllProduct();
-  const { data: customers, loading: customerLoading } = useGetAllCustomer();
+  const {
+    data: customers,
+    // loading: customerLoading,
+    setName: setSearchCustomer,
+  } = useGetAllCustomer();
   // const { data: services, loading: serviceLoading } = useGetAllService();
   // const { data: taxes, loading: taxLoading } = useGetAllTax();
 
@@ -195,28 +198,29 @@ export default function CreateSale() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
-          <Skeleton isLoading={accountLoading}>
-            <SelectTwoRhf
-              label="Akun debit"
-              name="account_id"
-              placeholder="--- Pilih Akun Debit ---"
-              selectTwoOptions={accountOptions}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
-          <Skeleton isLoading={customerLoading}>
-            <SelectTwo
-              label="Pelanggan"
-              name="customer_id"
-              placeholder="--- Pilih Pelanggan ---"
-              selectTwoOptions={cutomerOptions}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
+          {/* <Skeleton isLoading={accountLoading}> */}
+          <SelectTwoRhf
+            label="Akun debit"
+            name="account_id"
+            placeholder="--- Pilih Akun Debit ---"
+            selectTwoOptions={accountOptions}
+            isSearchable
+            isClearable
+            isRequired
+          />
+          {/* </Skeleton> */}
+          {/* <Skeleton isLoading={customerLoading}> */}
+          <SelectTwoRhf
+            label="Pelanggan"
+            name="customer_id"
+            placeholder="--- Pilih Pelanggan ---"
+            selectTwoOptions={cutomerOptions}
+            onInputChange={setSearchCustomer}
+            isSearchable
+            isClearable
+            isRequired
+          />
+          {/* </Skeleton> */}
         </div>
 
         {/* Produk / Material */}

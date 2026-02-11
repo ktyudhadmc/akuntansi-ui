@@ -50,7 +50,7 @@ export default function SupplierTable() {
               ) : isEmpty(data) || !data ? (
                 <TableNotFound colSpan={3} />
               ) : (
-                data?.slice(0, 50).map((item, index) => {
+                data.map((item, index) => {
                   return (
                     <TableItem key={`table-contact-${index}`} item={item} />
                   );
