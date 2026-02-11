@@ -8,3 +8,6 @@ export interface ICreateGeneralJournalPayload {
   account_id: number;
   counter_account_id: number;
 }
+export interface IImportJournalPayload {
+  file: File;
+}

@@ -18,6 +18,7 @@ import useGetAllProduct from "@services/user/product/index/hooks/useGetAll";
 import type { ICreateAdjustmentPayload } from "@services/user/inventory/adjustment/interfaces/request.type";
 import { transactionType } from "@modules/user/inventory/options.constants";
 import Input from "@components/form/input/InputField";
+import { todayYMDString } from "@helpers/date";
 
 type FormFields = ICreateAdjustmentPayload;
 
@@ -66,7 +67,7 @@ export default function AdjustmentCreate() {
             label="Tgl. penyesuaian"
             id="date"
             name="date"
-            defaultValue={new Date()}
+            defaultValue={todayYMDString}
             required
           />
 

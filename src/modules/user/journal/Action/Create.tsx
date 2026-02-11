@@ -16,6 +16,7 @@ import useCreate from "@services/user/journal/hooks/useCreate";
 import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import { toast } from "react-toastify";
+import { todayYMDString } from "@helpers/date";
 
 type FormFields = ICreateGeneralJournalPayload;
 
@@ -58,7 +59,7 @@ export default function JournalCreate() {
             label="Tgl. transaksi"
             id="date"
             name="date"
-            defaultValue={new Date()}
+            defaultValue={todayYMDString}
             required
           />
           <Input

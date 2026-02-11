@@ -174,6 +174,7 @@ export default [
         children: [
           { index: true, element: <User.JournalPage /> },
           { path: "create", element: <User.JournalCreatePage /> },
+          { path: "import", element: <User.JournalImportPage /> },
           { path: ":id/edit", element: <User.JournalEditPage /> },
         ],
       },

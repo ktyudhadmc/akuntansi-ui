@@ -17,6 +17,7 @@ import type { ICreateUsagePayload } from "@services/user/inventory/usage/interfa
 import Input from "@components/form/input/InputField";
 import useUpdate from "@services/user/inventory/usage/hooks/useUpdate";
 import useGetUsage from "@services/user/inventory/usage/hooks/useGet";
+import { todayYMDString } from "@helpers/date";
 
 type FormFields = ICreateUsagePayload;
 
@@ -73,7 +74,7 @@ export default function UsageEdit() {
               label="Tgl. penyesuaian"
               id="date"
               name="date"
-              defaultValue={data?.date ?? new Date()}
+              defaultValue={data?.date ?? todayYMDString}
               required
             />
           </Skeleton>

@@ -16,6 +16,7 @@ import Input from "@components/form/input/InputField";
 import useCreate from "@services/user/inventory/usage/hooks/useCreate";
 import useGetAllProduct from "@services/user/product/index/hooks/useGetAll";
 import type { ICreateUsagePayload } from "@services/user/inventory/usage/interfaces/request.type";
+import { todayYMDString } from "@helpers/date";
 
 type FormFields = ICreateUsagePayload;
 
@@ -64,7 +65,7 @@ export default function UsageCreate() {
             label="Tgl. penyesuaian"
             id="date"
             name="date"
-            defaultValue={new Date()}
+            defaultValue={todayYMDString}
             required
           />
 

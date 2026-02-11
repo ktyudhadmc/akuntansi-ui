@@ -22,6 +22,7 @@ import useMapInputOptions from "@hooks/useMapInputOptions";
 import SelectTwo from "@components/form/SelectTwo";
 
 import Skeleton from "@components/Skeleton/Skeleton";
+import { todayYMDString } from "@helpers/date";
 
 interface ProductionFormValues {
   date: string;
@@ -103,7 +104,7 @@ export default function ProductionCreate() {
             label="Tgl. produksi"
             id="date"
             name="date"
-            defaultValue={new Date()}
+            defaultValue={todayYMDString}
             required
           />
           <TextArea

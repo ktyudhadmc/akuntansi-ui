@@ -43,6 +43,7 @@ export { default as InventoryUsageEditPage } from "./inventory/usage/edit";
 export { default as JournalPage } from "./journal";
 export { default as JournalCreatePage } from "./journal/CreatePage";
 export { default as JournalEditPage } from "./journal/EditPage";
+export { default as JournalImportPage } from "./journal/ImportPage";
 
 // PERIOD
 export { default as PeriodPage } from "./period";
