@@ -67,19 +67,20 @@ export default function CustomerTable() {
               )}
             </TableBody>
           </Table>
-          <TablePagination
-            goNextPage={goNextPage}
-            goPrevPage={goPrevPage}
-            setPageNum={onSetPageNum}
-            total={100}
-            perPage={10}
-            pageLimit={pageLimit}
-            setPageLimit={(limit) => setPageLimit(limit)}
-            currentPage={currentPage}
-            lastPage={lastPage}
-          />
         </div>
       </div>
+      
+      <TablePagination
+        goNextPage={goNextPage}
+        goPrevPage={goPrevPage}
+        setPageNum={onSetPageNum}
+        total={100}
+        perPage={10}
+        pageLimit={pageLimit}
+        setPageLimit={(limit) => setPageLimit(limit)}
+        currentPage={currentPage}
+        lastPage={lastPage}
+      />
     </>
   );
 }

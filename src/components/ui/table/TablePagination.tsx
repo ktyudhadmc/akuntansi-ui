@@ -1,6 +1,7 @@
 import { HiArrowLeft, HiArrowRight, HiChevronDown } from "react-icons/hi";
 import type { Option } from "@def/option";
 import Select from "@components/form/default/Select";
+import Button from "../button/Button";
 
 export interface Props {
   goNextPage: () => void;
@@ -62,13 +63,15 @@ export default function TablePagination({
     { label: "15", value: "15" },
     { label: "25", value: "25" },
     { label: "50", value: "50" },
+    { label: "100", value: "100" },
   ];
+
   return (
-    <div className="flex flex-wrap items-center justify-between w-full gap-2 md:gap-0 mt-4">
-      <div className="flex items-center gap-2 dark:text-gray-400">
-        <h3 className="text-sm font-medium leading-4 md:text-base">
+    <div className="flex md:flex-row flex-col items-center md:justify-between w-full gap-2 md:gap-0 mt-4">
+      <div className="flex items-center gap-2 md:justify-normal justify-between w-full px-6 ">
+        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-400">
           Menampilkan {perPage} dari {total} data
-        </h3>
+        </h4>
 
         <div className="relative z-20 bg-transparent">
           <Select
@@ -76,24 +79,27 @@ export default function TablePagination({
             options={pageLimitOptions}
             defaultValue={pageLimit?.toString()}
             onChange={(e) => setPageLimit && setPageLimit(Number(e))}
+            className="md:!h-11 !h-10 md:!py-2.5 !py-2 md:!px-4 md:!pr-11 !px-3"
           />
-          
+
           <HiChevronDown
-            className="absolute top-1/2 right-2 z-30 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+            className="lg:block hidden absolute top-1/2 right-2 z-30 -translate-y-1/2 text-gray-500 dark:text-gray-400"
             size={18}
           />
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-2 px-6 py-4 sm:justify-normal">
-        <button
+      <div className="flex items-center justify-between gap-2 px-6 py-4 md:w-fit w-full">
+        <Button
           type="button"
+          size="xs"
+          variant="outline"
+          className={`text-gray-700 ${currentPage === 1 && "cursor-not-allowed"}`}
           onClick={goPrevPage}
           disabled={currentPage === 1}
-          className={`flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-2 sm:p-2.5 text-gray-700 shadow-theme-xs dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 ${currentPage === 1 ? "cursor-not-allowed" : " dark:hover:bg-white/[0.03] hover:bg-gray-50 hover:text-gray-800 dark:hover:text-gray-200"}`}
         >
           <HiArrowLeft size={20} />
-        </button>
+        </Button>
 
         <span className="block text-sm font-medium text-gray-700 dark:text-gray-400 sm:hidden">
           Halaman {currentPage} dari {lastPage}
@@ -127,13 +133,16 @@ export default function TablePagination({
           })}
         </ul>
 
-        <button
+        <Button
+          type="button"
+          size="xs"
+          variant="outline"
+          className={`text-gray-700 ${currentPage === lastPage && "cursor-not-allowed"}`}
           onClick={goNextPage}
           disabled={currentPage === lastPage}
-          className={`flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-2 sm:p-2.5 text-gray-700 shadow-theme-xs dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 ${currentPage === lastPage ? "cursor-not-allowed" : " dark:hover:bg-white/[0.03] hover:bg-gray-50 hover:text-gray-800 dark:hover:text-gray-200"}`}
         >
           <HiArrowRight size={20} />
-        </button>
+        </Button>
       </div>
     </div>
   );
