@@ -8,14 +8,16 @@ import querystring from "query-string";
 export default function useGetAll() {
   // const currentCompany = useGlobalStore((state) => state.currentCompany);
   const [name, setName] = useState("");
+  const [pageNum, setPageNum] = useState(1);
+  const [pageLimit, setPageLimit] = useState(10);
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
-   axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
+    axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
       .get(url)
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search: name },
+    { search: name, page_limit: pageLimit, page: pageNum },
     { skipEmptyString: true, skipNull: true },
   );
 
@@ -33,6 +35,11 @@ export default function useGetAll() {
     loading: !data && !error,
     data: data?.data,
     error,
+    // pagination: data?.pagination,
+    pageNum,
+    setPageNum,
+    pageLimit,
+    setPageLimit,
     name,
     setName: onSetName,
   };

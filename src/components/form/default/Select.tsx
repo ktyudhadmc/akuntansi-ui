@@ -26,7 +26,7 @@ const Select: React.FC<SelectProps> = ({
   required,
   disabled,
   options,
-  placeholder = "Pilih Opsi",
+  placeholder,
   onChange,
   className = "",
   value,
@@ -63,12 +63,14 @@ const Select: React.FC<SelectProps> = ({
         onChange={handleChange}
       >
         {/* Placeholder option */}
-        <option
-          value=""
-          className="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
-        >
-          {placeholder}
-        </option>
+        {placeholder && (
+          <option
+            value=""
+            className="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
+          >
+            {placeholder}
+          </option>
+        )}
         {/* Map over options */}
         {options.map((option) => (
           <option

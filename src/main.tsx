@@ -18,8 +18,6 @@ import "swiper/swiper-bundle.css";
 import "flatpickr/dist/flatpickr.css";
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 initAnalytics();
 
 const sentryCreateBrowserRouter =
@@ -30,19 +28,23 @@ const router = sentryCreateBrowserRouter(GetBrowserRoutes());
 subscribeGA(router);
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement,
 );
 
 root.render(
   <StrictMode>
-    <ToastContainer position="top-center" style={{ zIndex: 100001 }} autoClose={500}/>
+    <ToastContainer
+      position="top-center"
+      style={{ zIndex: 100001 }}
+      autoClose={500}
+    />
 
-    <Suspense fallback={<Loader />} >
-      <ThemeProvider>
-        <AppWrapper>
+    <ThemeProvider>
+      <AppWrapper>
+        <Suspense fallback={<Loader />}>
           <RouterProvider router={router} />
-        </AppWrapper>
-      </ThemeProvider>
-    </Suspense>
-  </StrictMode>
+        </Suspense>
+      </AppWrapper>
+    </ThemeProvider>
+  </StrictMode>,
 );
