@@ -13,14 +13,14 @@ export default function useCreate() {
         withToken: true,
         withCompany: true,
         tokenType: "user",
-      }).post(`/product-category`, {
+      }).post(`/customer`, {
         name,
         code,
         parent_unit,
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/product-category/);
+        revalidateMutationsByKey(/^\/customer/);
       }
 
       return { response: res, error: null };

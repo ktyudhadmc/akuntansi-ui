@@ -1,9 +1,9 @@
 import Button from "@components/ui/button/Button";
 import { useModal } from "@hooks/useModal";
 import { HiPencil, HiTrash } from "react-icons/hi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DeleteContact from "../Action/Delete";
-import { navigateKeepHash } from "@helpers/index";
+// import { navigateKeepHash } from "@helpers/index";
 
 interface Props {
   id: number;
@@ -13,8 +13,8 @@ interface Props {
 
 export default function TableItemMenu({ id, code, name }: Props) {
   const navigate = useNavigate();
-  const location = useLocation();
-  
+  // const location = useLocation();
+
   const { openModal, isOpen, closeModal } = useModal();
 
   return (
@@ -30,7 +30,7 @@ export default function TableItemMenu({ id, code, name }: Props) {
       <div className="flex gap-2">
         {/* edit */}
         <Button
-          onClick={() => navigateKeepHash(navigate, location, `${id}/edit`)}
+          onClick={() => navigate(`${id}/edit?tab=supplier`)}
           size="xs"
           variant="outline"
         >

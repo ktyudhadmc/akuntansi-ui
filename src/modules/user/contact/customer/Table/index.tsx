@@ -42,7 +42,7 @@ export default function CustomerTable() {
                   </td>
                 </tr>
               ) : (
-                data?.map((item, index) => {
+                data?.slice(0, 50).map((item, index) => {
                   return (
                     <TableItem key={`table-customer-${index}`} item={item} />
                   );
