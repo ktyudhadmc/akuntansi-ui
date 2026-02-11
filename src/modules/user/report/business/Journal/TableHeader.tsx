@@ -1,5 +1,5 @@
 import DatePicker from "@components/form/default/DatePicker";
-import { formatDateAsYMD } from "@helpers/index";
+import { formatDateAsYMD, todayYMDString } from "@helpers/index";
 import useUserStore from "@store/useUserStore";
 
 export default function TableHeader() {
@@ -9,7 +9,6 @@ export default function TableHeader() {
   const setStartDate = useUserStore((state) => state.setStartDate);
   const setEndDate = useUserStore((state) => state.setEndDate);
 
-  const today = new Date();
   return (
     <>
       <div className="flex lg:flex-row flex-col justify-between gap-4">
@@ -20,8 +19,8 @@ export default function TableHeader() {
               id="start_date"
               name="start_date"
               mode="single"
-              maxDate={endDate ?? today}
-              defaultDate={startDate ?? today}
+              maxDate={endDate ?? todayYMDString}
+              defaultDate={startDate ?? todayYMDString}
               onChange={(e) => setStartDate(formatDateAsYMD(e[0]))}
             />
           </div>
@@ -32,9 +31,9 @@ export default function TableHeader() {
               id="end_date"
               name="end_date"
               mode="single"
-              minDate={startDate ?? today}
+              minDate={startDate ?? todayYMDString}
               disabled={!startDate}
-              defaultDate={endDate ?? today}
+              defaultDate={endDate ?? todayYMDString}
               onChange={(e) => setEndDate(formatDateAsYMD(e[0]))}
             />
           </div>

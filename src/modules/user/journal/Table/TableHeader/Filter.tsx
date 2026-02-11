@@ -12,6 +12,7 @@ import Select from "@components/form/Select";
 import useGetAllAccount from "@services/user/account/index/hooks/useGetAll";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 import Skeleton from "@components/Skeleton/Skeleton";
+import { todayYMDString } from "@helpers/date";
 
 interface Props {
   onOpen: boolean;
@@ -53,12 +54,12 @@ export default function Filter({ onClose, onOpen }: Props) {
           <DatePicker
             id="start_date"
             name="start_date"
-            defaultValue={startDate ?? new Date()}
+            defaultValue={startDate ?? todayYMDString}
           />
           <DatePicker
             id="end_date"
             name="end_date"
-            defaultValue={endDate ?? new Date()}
+            defaultValue={endDate ?? todayYMDString}
           />
         </div>
 
