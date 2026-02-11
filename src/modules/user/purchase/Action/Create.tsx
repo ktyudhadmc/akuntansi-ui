@@ -133,6 +133,7 @@ export default function CreatePurchase() {
               name="supplier_id"
               placeholder="--- Pilih Supplier ---"
               selectTwoOptions={supplierOptions}
+              onInputChange={(e) => console.log(e)}
               isSearchable
               isClearable
             />
@@ -194,8 +195,8 @@ export default function CreatePurchase() {
                 <tbody>
                   {fieldPurchaseItems.fields.map((field, index) => (
                     <tr key={field.id}>
-                      <td className="px-5 py-3 md:w-3/12">
-                        <div className="md:w-auto w-xs whitespace-nowrap">
+                      <td className="pl-5 pr-1 py-3">
+                        <div className="w-xs whitespace-nowrap">
                           <Skeleton isLoading={productLoading}>
                             <SelectTwoRhf
                               placeholder="--- Pilih Komponen Produk ---"
@@ -208,8 +209,8 @@ export default function CreatePurchase() {
                           </Skeleton>
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-1/12">
-                        <div className="md:w-auto w-[100px] whitespace-nowrap">
+                      <td className="px-1 py-3">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Input
                             type="number"
                             placeholder="0"
@@ -220,8 +221,8 @@ export default function CreatePurchase() {
                           />
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-2/12">
-                        <div className="md:w-auto w-[200px] whitespace-nowrap">
+                      <td className="px-1 py-3">
+                        <div className="min-w-48 whitespace-nowrap">
                           <Skeleton isLoading={unitLoading}>
                             <SelectTwoRhf
                               placeholder="--- Pilih Satuan ---"
@@ -234,8 +235,8 @@ export default function CreatePurchase() {
                           </Skeleton>
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-2/12">
-                        <div className="md:w-auto w-[100px] whitespace-nowrap">
+                      <td className="px-1 py-3">
+                        <div className="min-w-48 whitespace-nowrap">
                           <Skeleton isLoading={accountLoading}>
                             <SelectTwoRhf
                               name={`items[${index}][counter_account_id]`}
@@ -248,8 +249,8 @@ export default function CreatePurchase() {
                           </Skeleton>
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-2/12">
-                        <div className="md:w-auto w-[100px] whitespace-nowrap">
+                      <td className="px-1 py-3">
+                        <div className="min-w-48 whitespace-nowrap">
                           <Input
                             type="number"
                             name={`items[${index}][price]`}
@@ -264,8 +265,8 @@ export default function CreatePurchase() {
                           />
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-2/12 text-end">
-                        <div className="md:w-auto w-[100px] whitespace-nowrap">
+                      <td className="pr-5 pl-1 py-3 text-end">
+                        <div className="min-w-48 whitespace-nowrap">
                           <SearchInput
                             className="text-end"
                             readOnly
@@ -281,8 +282,8 @@ export default function CreatePurchase() {
                           />
                         </div>
                       </td>
-                      <td className="px-5 py-3 w-1/12">
-                        {fieldPurchaseItems.fields.length > 1 && (
+                      {fieldPurchaseItems.fields.length > 1 && (
+                        <td className="pl-1 pr-5 py-3">
                           <Button
                             type="button"
                             size="xs"
@@ -291,8 +292,8 @@ export default function CreatePurchase() {
                           >
                             <HiTrash />
                           </Button>
-                        )}
-                      </td>
+                        </td>
+                      )}
                     </tr>
                   ))}
                 </tbody>
@@ -311,8 +312,10 @@ export default function CreatePurchase() {
           </div>
 
           <div className="lg:w-1/4 w-full grid grid-cols-2">
-            <h4 className="text-start font-medium text-lg">Total</h4>
-            <p className="text-end font-medium text-lg">
+            <h4 className="text-start font-medium text-lg dark:text-white">
+              Total
+            </h4>
+            <p className="text-end font-medium text-lg dark:text-white">
               {formatIDRLocale(grandTotal, { withSymbol: true })}
             </p>
           </div>
