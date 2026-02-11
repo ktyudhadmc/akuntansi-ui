@@ -35,7 +35,7 @@ export default function useGetAll() {
     loading: !data && !error,
     data: data?.data,
     error,
-    // pagination: data?.pagination,
+    pagination: data?.meta,
     pageNum,
     setPageNum,
     pageLimit,
