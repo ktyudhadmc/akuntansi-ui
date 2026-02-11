@@ -77,6 +77,7 @@ export default function DatePicker({
               fpRef.current.setDate(field.value, false);
             }
           }, [field.value]);
+
           return (
             <>
               <div className="relative">
