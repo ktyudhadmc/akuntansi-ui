@@ -19,16 +19,22 @@ import usePagination from "@hooks/usePagination";
 import { useEffect } from "react";
 
 export default function CustomerTable() {
-  const lastPage = 10;
-  const { data, loading, pageLimit, setPageLimit, setName, setPageNum } =
-    useGetAll();
+  const {
+    data,
+    loading,
+    pageLimit,
+    setPageLimit,
+    setName,
+    setPageNum,
+    pagination,
+  } = useGetAll();
 
   const {
     currentPage,
     goNextPage,
     goPrevPage,
     setPageNum: onSetPageNum,
-  } = usePagination(lastPage);
+  } = usePagination(pagination?.last_page || 1);
 
   useEffect(() => {
     setPageNum(currentPage);
@@ -55,7 +61,7 @@ export default function CustomerTable() {
               ) : isEmpty(data) || !data ? (
                 <TableNotFound colSpan={3} />
               ) : (
-                data?.slice(0, 50).map((item, index) => {
+                data?.map((item, index) => {
                   return (
                     <TableItem key={`table-customer-${index}`} item={item} />
                   );
@@ -70,12 +76,12 @@ export default function CustomerTable() {
         goNextPage={goNextPage}
         goPrevPage={goPrevPage}
         setPageNum={onSetPageNum}
-        total={100}
-        perPage={10}
+        total={pagination?.total}
+        perPage={pagination?.per_page}
         pageLimit={pageLimit}
         setPageLimit={(limit) => setPageLimit(limit)}
         currentPage={currentPage}
-        lastPage={lastPage}
+        lastPage={pagination?.last_page}
       />
     </>
   );

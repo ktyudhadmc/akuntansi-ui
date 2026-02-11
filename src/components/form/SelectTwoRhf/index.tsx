@@ -4,6 +4,8 @@ import { Controller, useFormContext } from "react-hook-form";
 import Label from "@components/form/Label";
 import clsx from "clsx";
 import "./index.css";
+import { useEffect, useMemo } from "react";
+import { debounce } from "lodash";
 
 export interface OptionValue {
   label: string;
@@ -45,6 +47,19 @@ export default function SelectTwoRhf({
 }: Props) {
   const { control } = useFormContext();
 
+  const debouncedInputChange = useMemo(() => {
+    if (!restProps.onInputChange) return undefined;
+
+    return debounce((value: string) => {
+      restProps.onInputChange?.(value);
+    }, 500);
+  }, [restProps.onInputChange]);
+
+  useEffect(() => {
+    return () => {
+      debouncedInputChange?.cancel();
+    };
+  }, [debouncedInputChange]);
   return (
     <div className="flex flex-col">
       {label && (
@@ -91,6 +106,9 @@ export default function SelectTwoRhf({
                     null
               }
               onChange={(val: OnChangeValue<OptionValue, boolean>) => {
+                /** reset search */
+                if (!val) debouncedInputChange?.("");
+
                 field.onChange(
                   isMulti
                     ? ((val as MultiValue<OptionValue>)?.map((v) => v.value) ??
@@ -100,8 +118,8 @@ export default function SelectTwoRhf({
               }}
               onBlur={field.onBlur}
               onInputChange={(inputValue, { action }) => {
-                if (action === "input-change" && restProps.onInputChange) {
-                  restProps.onInputChange(inputValue);
+                if (action === "input-change") {
+                  debouncedInputChange?.(inputValue);
                 }
               }}
               classNames={{
