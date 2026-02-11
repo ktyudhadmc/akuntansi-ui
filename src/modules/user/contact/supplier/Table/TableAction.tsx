@@ -1,5 +1,6 @@
 import SearchInput from "@components/form/input/SearchInput";
 import Button from "@components/ui/button/Button";
+
 import { debounce } from "lodash";
 import { useCallback } from "react";
 import { HiPlus } from "react-icons/hi";
@@ -9,7 +10,7 @@ interface Props {
   setSearchCallback: (param: string) => void;
 }
 
-export default function TableHeader({ setSearchCallback }: Props) {
+export default function TableAction({ setSearchCallback }: Props) {
   const navigate = useNavigate();
 
   const debouncedSearch = useCallback(
@@ -23,15 +24,18 @@ export default function TableHeader({ setSearchCallback }: Props) {
       <Button
         size="sm"
         variant="primary"
-        onClick={() => navigate("create?tab=customer")}
+        onClick={() => navigate("create?tab=supplier")}
       >
         <HiPlus />
-        Buat kontak pelanggan
+        Buat kontak supplier
       </Button>
       <div className="flex lg:flex-row flex-col gap-2">
         <Button size="sm" variant="outline">
           Impor
         </Button>
+        {/* <Button size="sm" variant="outline">
+          Ekspor
+        </Button> */}
 
         <div className="w-full">
           <SearchInput
