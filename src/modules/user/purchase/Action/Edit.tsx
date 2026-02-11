@@ -254,7 +254,7 @@ export default function EditPurchase() {
                   {fieldPurchaseItems.fields.map((field, index) => (
                     <tr key={field.id}>
                       <td className="pl-5 pr-1 py-3">
-                        <div className="w-xs whitespace-nowrap">
+                        <div className="min-w-32 max-w-xs whitespace-nowrap">
                           <Skeleton isLoading={productLoading || loading}>
                             <SelectTwoRhf
                               placeholder="--- Pilih Komponen Produk ---"
@@ -280,7 +280,7 @@ export default function EditPurchase() {
                         </div>
                       </td>
                       <td className="px-1 py-3">
-                        <div className="min-w-48 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Skeleton isLoading={unitLoading}>
                             <SelectTwoRhf
                               placeholder="--- Pilih Satuan ---"
@@ -294,7 +294,7 @@ export default function EditPurchase() {
                         </div>
                       </td>
                       <td className="px-1 py-3">
-                        <div className="min-w-48 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Skeleton isLoading={accountLoading}>
                             <SelectTwoRhf
                               name={`items[${index}][counter_account_id]`}
@@ -308,7 +308,7 @@ export default function EditPurchase() {
                         </div>
                       </td>
                       <td className="px-1 py-3">
-                        <div className="min-w-48 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Input
                             type="number"
                             name={`items[${index}][price]`}
@@ -324,7 +324,7 @@ export default function EditPurchase() {
                         </div>
                       </td>
                       <td className="pl-1 pr-5 py-3 text-end">
-                        <div className="min-w-48 whitespace-nowrap">
+                        <div className="min-w-24 whitespace-nowrap">
                           <SearchInput
                             className="text-end"
                             readOnly
