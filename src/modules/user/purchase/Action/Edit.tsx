@@ -253,8 +253,8 @@ export default function EditPurchase() {
                 <tbody>
                   {fieldPurchaseItems.fields.map((field, index) => (
                     <tr key={field.id}>
-                      <td className="px-5 py-3 md:w-3/12">
-                        <div className="md:w-auto w-xs whitespace-nowrap">
+                      <td className="pl-5 pr-1 py-3">
+                        <div className="min-w-32 max-w-xs whitespace-nowrap">
                           <Skeleton isLoading={productLoading || loading}>
                             <SelectTwoRhf
                               placeholder="--- Pilih Komponen Produk ---"
@@ -267,8 +267,8 @@ export default function EditPurchase() {
                           </Skeleton>
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-1/12">
-                        <div className="md:w-auto w-[100px] whitespace-nowrap">
+                      <td className="px-1 py-3">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Input
                             type="number"
                             placeholder="0"
@@ -279,8 +279,8 @@ export default function EditPurchase() {
                           />
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-2/12">
-                        <div className="md:w-auto w-[200px] whitespace-nowrap">
+                      <td className="px-1 py-3">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Skeleton isLoading={unitLoading}>
                             <SelectTwoRhf
                               placeholder="--- Pilih Satuan ---"
@@ -293,8 +293,8 @@ export default function EditPurchase() {
                           </Skeleton>
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-2/12">
-                        <div className="md:w-auto w-[100px] whitespace-nowrap">
+                      <td className="px-1 py-3">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Skeleton isLoading={accountLoading}>
                             <SelectTwoRhf
                               name={`items[${index}][counter_account_id]`}
@@ -307,8 +307,8 @@ export default function EditPurchase() {
                           </Skeleton>
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-2/12">
-                        <div className="md:w-auto w-[100px] whitespace-nowrap">
+                      <td className="px-1 py-3">
+                        <div className="min-w-24 whitespace-nowrap">
                           <Input
                             type="number"
                             name={`items[${index}][price]`}
@@ -323,8 +323,8 @@ export default function EditPurchase() {
                           />
                         </div>
                       </td>
-                      <td className="px-5 py-3 md:w-2/12 text-end">
-                        <div className="md:w-auto w-[100px] whitespace-nowrap">
+                      <td className="pl-1 pr-5 py-3 text-end">
+                        <div className="min-w-24 whitespace-nowrap">
                           <SearchInput
                             className="text-end"
                             readOnly
@@ -335,14 +335,14 @@ export default function EditPurchase() {
                               calculateSubtotal(
                                 watchedPurchaseItems?.[index]?.qty ?? field.qty,
                                 watchedPurchaseItems?.[index]?.price ??
-                                field.price,
+                                  field.price,
                               ),
                             )}
                           />
                         </div>
                       </td>
-                      <td className="px-5 py-3 w-1/12">
-                        {fieldPurchaseItems.fields.length > 1 && (
+                      {fieldPurchaseItems.fields.length > 1 && (
+                        <td className="pl-1 pr-5 py-3">
                           <Button
                             type="button"
                             size="xs"
@@ -351,8 +351,8 @@ export default function EditPurchase() {
                           >
                             <HiTrash />
                           </Button>
-                        )}
-                      </td>
+                        </td>
+                      )}
                     </tr>
                   ))}
                 </tbody>

@@ -38,7 +38,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
     <>
       <Filter onOpen={isExpanded} onClose={closeDrawer} />
       {/* Create */}
-      <div className="flex md:flex-row flex-col justify-between gap-4">
+      <div className="flex lg:flex-row flex-col justify-between gap-4">
         {/* Button create with detail */}
         {/* <div className="relative">
           <Button size="sm" onClick={toggleDropdown}>
