@@ -1,11 +1,11 @@
 import useRevalidateMutation from "@lib/swr/useRevalidateMutation";
-import type { ICreateAccountPeriodsPayload } from "../interfaces/request.type";
+import type { ICloseAccountPeriodsPayload } from "../interfaces/request.type";
 import axiosInstance from "@lib/axios-instance";
 
 export default function useClose() {
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const closeData = async (payload: ICreateAccountPeriodsPayload) => {
+  const closeData = async (payload: ICloseAccountPeriodsPayload) => {
     const { year, month } = payload;
 
     try {
@@ -13,13 +13,13 @@ export default function useClose() {
         withToken: true,
         withCompany: true,
         tokenType: "user",
-      }).post("/inventory/closing", {
+      }).post("/closing/close", {
         year,
         month,
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/inventory\/balances/);
+        revalidateMutationsByKey(/^\/closing/);
       }
 
       return { response: res, error: null };
@@ -28,7 +28,7 @@ export default function useClose() {
         return { response: null, error: "Server error" };
       }
 
-      return { response: null, error: error.data.message };
+      return { response: null, error: error.response.data.message };
     }
   };
 

@@ -3,6 +3,8 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.css";
 import Label from "./Label";
 import { CalenderIcon } from "@assets/icons";
+import monthSelectPlugin from "flatpickr/dist/plugins/monthSelect";
+import "flatpickr/dist/plugins/monthSelect/style.css";
 
 import type { Hook } from "@def/option";
 import { Controller, useFormContext } from "react-hook-form";
@@ -16,7 +18,7 @@ interface Props {
   defaultValue?: any;
   onChange?: (value: string) => void;
 
-  mode?: "single" | "multiple" | "range" | "time";
+  mode?: "single" | "multiple" | "range" | "time" | "month";
   // defaultDate?: DateOption | null;
   onFlatpickrChange?: Hook | Hook[];
   disabled?: boolean;
@@ -53,25 +55,83 @@ export default function DatePicker({
         render={({ field, fieldState }) => {
           const inputRef = useRef<HTMLInputElement>(null);
 
+          // useEffect(() => {
+          //   if (!inputRef.current) return;
+
+          //   fpRef.current = flatpickr(inputRef.current, {
+          //     mode,
+          //     static: true,
+          //     dateFormat: "Y-m-d",
+          //     defaultDate: field.value,
+          //     onChange: (_, dateStr) => {
+          //       field.onChange(dateStr);
+          //     },
+          //   });
+
+          //   return () => {
+          //     fpRef.current?.destroy();
+          //   };
+          // }, []);
+
+          // // sync RHF → flatpickr
+          // useEffect(() => {
+          //   if (fpRef.current && field.value) {
+          //     fpRef.current.setDate(field.value, false);
+          //   }
+          // }, [field.value]);
+
           useEffect(() => {
             if (!inputRef.current) return;
 
-            fpRef.current = flatpickr(inputRef.current, {
-              mode,
+            const config: flatpickr.Options.Options = {
               static: true,
-              dateFormat: "Y-m-d",
               defaultDate: field.value,
               onChange: (_, dateStr) => {
                 field.onChange(dateStr);
               },
-            });
+            };
+
+            // === MODE CONFIGURATION ===
+            if (mode === "month") {
+              config.plugins = [
+                monthSelectPlugin({
+                  shorthand: true,
+                  dateFormat: "Y-m",
+                  altFormat: "F Y",
+                }),
+              ];
+              config.dateFormat = "Y-m";
+            }
+
+            if (mode === "time") {
+              config.enableTime = true;
+              config.noCalendar = true;
+              config.dateFormat = "H:i";
+            }
+
+            if (mode === "range") {
+              config.mode = "range";
+              config.dateFormat = "Y-m-d";
+            }
+
+            if (mode === "multiple") {
+              config.mode = "multiple";
+              config.dateFormat = "Y-m-d";
+            }
+
+            if (mode === "single") {
+              config.mode = "single";
+              config.dateFormat = "Y-m-d";
+            }
+
+            fpRef.current = flatpickr(inputRef.current, config);
 
             return () => {
               fpRef.current?.destroy();
             };
-          }, []);
+          }, [mode]);
 
-          // sync RHF → flatpickr
+          // Sync RHF → Flatpickr
           useEffect(() => {
             if (fpRef.current && field.value) {
               fpRef.current.setDate(field.value, false);
