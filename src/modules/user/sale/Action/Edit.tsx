@@ -81,7 +81,12 @@ export default function EditSale() {
 
   const { data: units, loading: unitLoading } = useGetAllUnit();
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
-  const { data: products, loading: productLoading } = useGetAllProduct();
+  const {
+    data: products,
+    loading: productLoading,
+    setName: setSearchProduct,
+  } = useGetAllProduct();
+
   const {
     data: customers,
     loading: customerLoading,
@@ -316,16 +321,27 @@ export default function EditSale() {
                       </td> */}
                       <td className="px-2 py-3">
                         <div className="min-w-32 max-w-xs whitespace-nowrap">
-                          <Skeleton isLoading={productLoading}>
-                            <SelectTwoRhf
-                              placeholder="--- Pilih Produk ---"
-                              name={`items[${index}][material_id]`}
-                              selectTwoOptions={productOptions}
-                              isSearchable
-                              isClearable
-                              isRequired
-                            />
-                          </Skeleton>
+                          <SelectTwoRhf
+                            placeholder="--- Pilih Produk ---"
+                            name={`items[${index}][material_id]`}
+                            selectTwoOptions={
+                              data?.items?.[index]?.material
+                                ? [
+                                    {
+                                      label:
+                                        data?.items?.[index]?.material.name,
+                                      value: data?.items?.[index]?.material.id,
+                                    },
+                                    ...productOptions,
+                                  ]
+                                : productOptions
+                            }
+                            onInputChange={setSearchProduct}
+                            isLoading={productLoading || loading}
+                            isSearchable
+                            isClearable
+                            isRequired
+                          />
                         </div>
                       </td>
                       <td className="px-2 py-3 ">
@@ -342,30 +358,28 @@ export default function EditSale() {
                       </td>
                       <td className="px-2 py-3">
                         <div className="min-w-24 whitespace-nowrap">
-                          <Skeleton isLoading={unitLoading}>
-                            <SelectTwoRhf
-                              placeholder="--- Pilih Satuan ---"
-                              name={`items[${index}][unit_of_measure_id]`}
-                              selectTwoOptions={unitOptions}
-                              isSearchable
-                              isClearable
-                              isRequired
-                            />
-                          </Skeleton>
+                          <SelectTwoRhf
+                            placeholder="--- Pilih Satuan ---"
+                            name={`items[${index}][unit_of_measure_id]`}
+                            selectTwoOptions={unitOptions}
+                            isLoading={unitLoading}
+                            isSearchable
+                            isClearable
+                            isRequired
+                          />
                         </div>
                       </td>
                       <td className="px-2 py-3">
                         <div className="min-w-24 whitespace-nowrap">
-                          <Skeleton isLoading={accountLoading || loading}>
-                            <SelectTwoRhf
-                              name={`items[${index}][counter_account_id]`}
-                              placeholder="--- Pilih Akun ---"
-                              selectTwoOptions={accountOptions}
-                              isSearchable
-                              isClearable
-                              isRequired
-                            />
-                          </Skeleton>
+                          <SelectTwoRhf
+                            name={`items[${index}][counter_account_id]`}
+                            placeholder="--- Pilih Akun ---"
+                            selectTwoOptions={accountOptions}
+                            isLoading={accountLoading || loading}
+                            isSearchable
+                            isClearable
+                            isRequired
+                          />
                         </div>
                       </td>
                       <td className="px-2 py-3">
