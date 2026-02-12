@@ -9,6 +9,7 @@ export interface Props {
   setPageLimit?: (limit: number) => void;
   setPageNum?: (limit: number) => void;
   perPage?: number;
+  to?: number;
   total?: number;
   pageLimit?: number;
   currentPage?: number;
@@ -20,6 +21,7 @@ export default function TablePagination({
   goPrevPage,
   perPage,
   total,
+  to,
   pageLimit,
   setPageLimit,
   setPageNum,
@@ -70,7 +72,7 @@ export default function TablePagination({
     <div className="flex md:flex-row flex-col items-center md:justify-between w-full gap-2 md:gap-0 mt-4">
       <div className="flex items-center gap-2 md:justify-normal justify-between w-full px-6 ">
         <h4 className="text-sm font-medium text-gray-700 dark:text-gray-400">
-          Menampilkan {perPage} dari {total} data
+          Menampilkan {to || perPage} dari {total} data
         </h4>
 
         <div className="relative z-20 bg-transparent">

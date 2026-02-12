@@ -1,7 +1,10 @@
+import type { Pagination } from "@services/global/pagination/interfaces/pagination.type";
+
 export interface IGetAllResponse {
   status?: string;
   message?: string;
   data: Contact[];
+  meta: Pagination;
 }
 
 export interface IGetResponse {

@@ -18,6 +18,7 @@ interface Props {
   isRequired?: boolean;
   isSearchable?: boolean;
   isClearable?: boolean;
+  isLoading?: boolean;
   value?: any;
   defaultValue?: any;
   textTransform?: string;
@@ -37,6 +38,7 @@ export default function SelectTwo({
   isRequired,
   isSearchable = false,
   isClearable,
+  isLoading = false,
   value,
   defaultValue,
   selectTwoOptions,
@@ -102,6 +104,7 @@ export default function SelectTwo({
         isSearchable={isSearchable}
         isClearable={isClearable}
         isMulti={isMulti}
+        isLoading={isLoading}
         defaultValue={selectedValue ?? defaultValue}
         required={isRequired}
         classNames={{

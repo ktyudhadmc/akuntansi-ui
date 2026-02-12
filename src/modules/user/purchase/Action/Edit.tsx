@@ -19,7 +19,6 @@ import Skeleton from "@components/Skeleton/Skeleton";
 import Button from "@components/ui/button/Button";
 
 import DatePicker from "@components/form/date-picker";
-import SelectTwo from "@components/form/SelectTwo";
 import TextArea from "@components/form/input/TextArea";
 import SelectTwoRhf from "@components/form/SelectTwoRhf";
 import SearchInput from "@components/form/default/SearchInput";
@@ -68,7 +67,11 @@ export default function EditPurchase() {
   const { data: units, loading: unitLoading } = useGetAllUnit();
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
   const { data: products, loading: productLoading } = useGetAllProduct();
-  const { data: suppliers, loading: supplierLoading } = useGetAllSupplier();
+  const {
+    data: suppliers,
+    loading: supplierLoading,
+    setName: setSearchSupplier,
+  } = useGetAllSupplier();
 
   const unitOptions = useMapInputOptions(units);
   const accountOptions = useMapInputOptions(accounts);
@@ -175,39 +178,41 @@ export default function EditPurchase() {
           </Skeleton>
         </div>
         <div className="grid md:grid-cols-2 gap-4">
-          <Skeleton isLoading={supplierLoading || loading}>
-            <SelectTwo
-              label="Supplier"
-              id="supplier_id"
-              name="supplier_id"
-              placeholder="--- Pilih Supplier ---"
-              selectTwoOptions={supplierOptions}
-              defaultValue={{
-                label: data?.supplier.name,
-                value: data?.supplier.id,
-              }}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
+          <SelectTwoRhf
+            label="Supplier"
+            id="supplier_id"
+            name="supplier_id"
+            placeholder="--- Pilih Supplier ---"
+            selectTwoOptions={[
+              { label: data?.supplier.name, value: data?.supplier.id },
+              ...supplierOptions,
+            ]}
+            defaultValue={{
+              label: data?.supplier.name,
+              value: data?.supplier.id,
+            }}
+            isLoading={supplierLoading || loading}
+            onInputChange={setSearchSupplier}
+            isSearchable
+            isClearable
+            isRequired
+          />
 
-          <Skeleton isLoading={accountLoading || loading}>
-            <SelectTwo
-              label="Akun debit"
-              id="account_id"
-              name="account_id"
-              placeholder="--- Pilih Akun Debit ---"
-              selectTwoOptions={accountOptions}
-              defaultValue={{
-                label: data?.account.name,
-                value: data?.account.id,
-              }}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
+          <SelectTwoRhf
+            label="Akun debit"
+            id="account_id"
+            name="account_id"
+            placeholder="--- Pilih Akun Debit ---"
+            selectTwoOptions={accountOptions}
+            defaultValue={{
+              label: data?.account.name,
+              value: data?.account.id,
+            }}
+            isLoading={accountLoading || loading}
+            isSearchable
+            isClearable
+            isRequired
+          />
         </div>
 
         {/* Produk / Material */}
