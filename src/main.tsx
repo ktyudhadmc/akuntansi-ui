@@ -13,11 +13,9 @@ import { initAnalytics, subscribeGA } from "@constants/analytics";
 import GetBrowserRoutes from "./routes/index.routes";
 
 import "./styles/index.css";
-import "./styles/flatpickr-theme.css";
 
 import "swiper/swiper-bundle.css";
 import "flatpickr/dist/flatpickr.css";
-import "flatpickr/dist/plugins/monthSelect/style.css";
 import "react-toastify/dist/ReactToastify.css";
 
 initAnalytics();
