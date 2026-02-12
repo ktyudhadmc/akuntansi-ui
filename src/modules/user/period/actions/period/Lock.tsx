@@ -4,13 +4,14 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { todayYMString } from "@helpers/date";
 import useGoBack from "@hooks/useGoBack";
 
-import DatePicker from "@components/form/date-picker";
+// import DatePicker from "@components/form/date-picker";
 import Form from "@components/form/Form";
 import Checkbox from "@components/form/input/Checkbox";
 import Spinner from "@components/Reusable/Spinner";
 import Alert from "@components/ui/alert";
 import Button from "@components/ui/button/Button";
 import useClose from "@services/user/period/hooks/useClose";
+import Input from "@components/form/input/InputField";
 
 // type FormFields = { start_date: string; end_date: string; accept: boolean };
 type FormFields = { period_date: string; accept: boolean };
@@ -65,11 +66,11 @@ export default function Lock() {
             mode="month"
             required
           /> */}
-          <DatePicker
+          <Input
             label="Tgl. Kunci Periode"
             name="period_date"
             defaultValue={todayYMString}
-            mode="month"
+            type="month"
             required
           />
 
