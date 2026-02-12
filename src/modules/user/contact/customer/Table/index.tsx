@@ -78,6 +78,7 @@ export default function CustomerTable() {
         setPageNum={onSetPageNum}
         total={pagination?.total}
         perPage={pagination?.per_page}
+        to={pagination?.to}
         pageLimit={pageLimit}
         setPageLimit={(limit) => setPageLimit(limit)}
         currentPage={currentPage}

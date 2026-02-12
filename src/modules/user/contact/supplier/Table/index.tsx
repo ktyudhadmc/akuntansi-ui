@@ -15,15 +15,22 @@ import usePagination from "@hooks/usePagination";
 import { useEffect } from "react";
 
 export default function SupplierTable() {
-  const lastPage = 10;
-  const { data, loading, pageLimit, setName, setPageNum, setPageLimit } =
-    useGetAll();
+  const {
+    data,
+    loading,
+    pagination,
+    pageLimit,
+    setName,
+    setPageNum,
+    setPageLimit,
+  } = useGetAll();
+
   const {
     currentPage,
     goNextPage,
     goPrevPage,
     setPageNum: onSetPageNum,
-  } = usePagination(lastPage);
+  } = usePagination(pagination?.last_page || 1);
 
   useEffect(() => {
     setPageNum(currentPage);
@@ -65,12 +72,13 @@ export default function SupplierTable() {
         goNextPage={goNextPage}
         goPrevPage={goPrevPage}
         setPageNum={onSetPageNum}
-        total={100}
-        perPage={10}
+        total={pagination?.total}
+        perPage={pagination?.per_page}
+        to={pagination?.to}
         pageLimit={pageLimit}
         setPageLimit={(limit) => setPageLimit(limit)}
         currentPage={currentPage}
-        lastPage={lastPage}
+        lastPage={pagination?.last_page}
       />
     </>
   );

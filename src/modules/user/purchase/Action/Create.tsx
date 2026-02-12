@@ -62,7 +62,11 @@ export default function CreatePurchase() {
   const { data: units, loading: unitLoading } = useGetAllUnit();
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
   const { data: products, loading: productLoading } = useGetAllProduct();
-  const { data: suppliers, loading: supplierLoading } = useGetAllSupplier();
+  const {
+    data: suppliers,
+    loading: supplierLoading,
+    setName: setSearchSupplier,
+  } = useGetAllSupplier();
 
   const unitOptions = useMapInputOptions(units);
   const accountOptions = useMapInputOptions(accounts);
@@ -127,29 +131,27 @@ export default function CreatePurchase() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
-          <Skeleton isLoading={supplierLoading}>
-            <SelectTwoRhf
-              label="Supplier"
-              name="supplier_id"
-              placeholder="--- Pilih Supplier ---"
-              selectTwoOptions={supplierOptions}
-              onInputChange={(e) => console.log(e)}
-              isSearchable
-              isClearable
-            />
-          </Skeleton>
+          <SelectTwoRhf
+            label="Supplier"
+            name="supplier_id"
+            placeholder="--- Pilih Supplier ---"
+            selectTwoOptions={supplierOptions}
+            onInputChange={setSearchSupplier}
+            isLoading={supplierLoading}
+            isSearchable
+            isClearable
+          />
 
-          <Skeleton isLoading={accountLoading}>
-            <SelectTwoRhf
-              label="Akun debit"
-              name="account_id"
-              placeholder="--- Pilih Akun Debit ---"
-              selectTwoOptions={accountOptions}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
+          <SelectTwoRhf
+            label="Akun debit"
+            name="account_id"
+            placeholder="--- Pilih Akun Debit ---"
+            selectTwoOptions={accountOptions}
+            isLoading={accountLoading}
+            isSearchable
+            isClearable
+            isRequired
+          />
         </div>
 
         {/* Produk / Material */}
