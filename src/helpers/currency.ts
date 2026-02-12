@@ -32,15 +32,21 @@ export function formatIDRLocale(
   });
 }
 
-// export function formattedCurrency(value: number) {
-//   return value
-//     .toLocaleString("id-ID", {
-//       style: "currency",
-//       currency: "IDR",
-//       maximumFractionDigits: 0,
-//     })
-//     .replace(/\u00A0/, "");
-// }
+export function formatCompactNumber(
+  value: number,
+  options?: {
+    locale?: string;
+    maximumFractionDigits?: number;
+  },
+) {
+  const { locale = "id-ID", maximumFractionDigits = 1 } = options || {};
+
+  return new Intl.NumberFormat(locale, {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits,
+  }).format(value);
+}
 
 /**
  *
