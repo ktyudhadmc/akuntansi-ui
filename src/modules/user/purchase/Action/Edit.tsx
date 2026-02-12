@@ -66,7 +66,11 @@ export default function EditPurchase() {
 
   const { data: units, loading: unitLoading } = useGetAllUnit();
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
-  const { data: products, loading: productLoading } = useGetAllProduct();
+  const {
+    data: products,
+    loading: productLoading,
+    setName: setSearchProduct,
+  } = useGetAllProduct();
   const {
     data: suppliers,
     loading: supplierLoading,
@@ -256,110 +260,125 @@ export default function EditPurchase() {
                   </tr>
                 </thead>
                 <tbody>
-                  {fieldPurchaseItems.fields.map((field, index) => (
-                    <tr key={field.id}>
-                      <td className="pl-5 pr-1 py-3">
-                        <div className="min-w-32 max-w-xs whitespace-nowrap">
-                          <Skeleton isLoading={productLoading || loading}>
+                  {fieldPurchaseItems.fields.map((field, index) => {
+                    const defaultProduct = data?.items?.[index]?.material;
+
+                    return (
+                      <tr key={field.id}>
+                        <td className="pl-5 pr-1 py-3">
+                          <div className="min-w-32 max-w-xs whitespace-nowrap">
                             <SelectTwoRhf
                               placeholder="--- Pilih Komponen Produk ---"
                               name={`items[${index}][material_id]`}
-                              selectTwoOptions={productOptions}
+                              selectTwoOptions={
+                                defaultProduct
+                                  ? [
+                                      {
+                                        label: defaultProduct.name,
+                                        value: defaultProduct.id,
+                                      },
+                                      ...productOptions,
+                                    ]
+                                  : productOptions
+                              }
+                              onInputChange={setSearchProduct}
+                              isLoading={productLoading || loading}
                               isSearchable
                               isClearable
                               isRequired
                             />
-                          </Skeleton>
-                        </div>
-                      </td>
-                      <td className="px-1 py-3">
-                        <div className="min-w-24 whitespace-nowrap">
-                          <Input
-                            type="number"
-                            placeholder="0"
-                            name={`items[${index}][qty]`}
-                            min="0"
-                            step={1}
-                            required
-                          />
-                        </div>
-                      </td>
-                      <td className="px-1 py-3">
-                        <div className="min-w-24 whitespace-nowrap">
-                          <Skeleton isLoading={unitLoading}>
-                            <SelectTwoRhf
-                              placeholder="--- Pilih Satuan ---"
-                              name={`items[${index}][unit_of_measure_id]`}
-                              selectTwoOptions={unitOptions}
-                              isSearchable
-                              isClearable
-                              isRequired
-                            />
-                          </Skeleton>
-                        </div>
-                      </td>
-                      <td className="px-1 py-3">
-                        <div className="min-w-24 whitespace-nowrap">
-                          <Skeleton isLoading={accountLoading}>
-                            <SelectTwoRhf
-                              name={`items[${index}][counter_account_id]`}
-                              placeholder="--- Pilih Akun ---"
-                              selectTwoOptions={accountOptions}
-                              isSearchable
-                              isClearable
-                              isRequired
-                            />
-                          </Skeleton>
-                        </div>
-                      </td>
-                      <td className="px-1 py-3">
-                        <div className="min-w-24 whitespace-nowrap">
-                          <Input
-                            type="number"
-                            name={`items[${index}][price]`}
-                            placeholder="0"
-                            min="0"
-                            step={1}
-                            required
-                            className="text-end"
-                            leftIcon={
-                              <span className="font-medium text-sm">Rp</span>
-                            }
-                          />
-                        </div>
-                      </td>
-                      <td className="pl-1 pr-5 py-3 text-end">
-                        <div className="min-w-24 whitespace-nowrap">
-                          <SearchInput
-                            className="text-end"
-                            readOnly
-                            leftIcon={
-                              <span className="font-medium text-sm">Rp</span>
-                            }
-                            value={formatIDRLocale(
-                              calculateSubtotal(
-                                watchedPurchaseItems?.[index]?.qty ?? field.qty,
-                                watchedPurchaseItems?.[index]?.price ??
-                                  field.price,
-                              ),
-                            )}
-                          />
-                        </div>
-                      </td>
-                      {fieldPurchaseItems.fields.length > 1 && (
-                        <td className="pl-1 pr-5 py-3">
-                          <Button
-                            type="button"
-                            size="xs"
-                            variant="outline"
-                            onClick={() => removeItems(index)}
-                          >
-                            <HiTrash />
-                          </Button>
+                          </div>
                         </td>
-                      )}
-                    </tr>
-                  ))}
+                        <td className="px-1 py-3">
+                          <div className="min-w-24 whitespace-nowrap">
+                            <Input
+                              type="number"
+                              placeholder="0"
+                              name={`items[${index}][qty]`}
+                              min="0"
+                              step={1}
+                              required
+                            />
+                          </div>
+                        </td>
+                        <td className="px-1 py-3">
+                          <div className="min-w-24 whitespace-nowrap">
+                            <Skeleton isLoading={unitLoading}>
+                              <SelectTwoRhf
+                                placeholder="--- Pilih Satuan ---"
+                                name={`items[${index}][unit_of_measure_id]`}
+                                selectTwoOptions={unitOptions}
+                                isSearchable
+                                isClearable
+                                isRequired
+                              />
+                            </Skeleton>
+                          </div>
+                        </td>
+                        <td className="px-1 py-3">
+                          <div className="min-w-24 whitespace-nowrap">
+                            <Skeleton isLoading={accountLoading}>
+                              <SelectTwoRhf
+                                name={`items[${index}][counter_account_id]`}
+                                placeholder="--- Pilih Akun ---"
+                                selectTwoOptions={accountOptions}
+                                isSearchable
+                                isClearable
+                                isRequired
+                              />
+                            </Skeleton>
+                          </div>
+                        </td>
+                        <td className="px-1 py-3">
+                          <div className="min-w-24 whitespace-nowrap">
+                            <Input
+                              type="number"
+                              name={`items[${index}][price]`}
+                              placeholder="0"
+                              min="0"
+                              step={1}
+                              required
+                              className="text-end"
+                              leftIcon={
+                                <span className="font-medium text-sm">Rp</span>
+                              }
+                            />
+                          </div>
+                        </td>
+                        <td className="pl-1 pr-5 py-3 text-end">
+                          <div className="min-w-24 whitespace-nowrap">
+                            <SearchInput
+                              className="text-end"
+                              readOnly
+                              leftIcon={
+                                <span className="font-medium text-sm">Rp</span>
+                              }
+                              value={formatIDRLocale(
+                                calculateSubtotal(
+                                  watchedPurchaseItems?.[index]?.qty ??
+                                    field.qty,
+                                  watchedPurchaseItems?.[index]?.price ??
+                                    field.price,
+                                ),
+                              )}
+                            />
+                          </div>
+                        </td>
+                        {fieldPurchaseItems.fields.length > 1 && (
+                          <td className="pl-1 pr-5 py-3">
+                            <Button
+                              type="button"
+                              size="xs"
+                              variant="outline"
+                              onClick={() => removeItems(index)}
+                            >
+                              <HiTrash />
+                            </Button>
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

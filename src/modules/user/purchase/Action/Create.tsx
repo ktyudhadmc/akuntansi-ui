@@ -61,7 +61,11 @@ export default function CreatePurchase() {
 
   const { data: units, loading: unitLoading } = useGetAllUnit();
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
-  const { data: products, loading: productLoading } = useGetAllProduct();
+  const {
+    data: products,
+    loading: productLoading,
+    setName: setSearchProduct,
+  } = useGetAllProduct();
   const {
     data: suppliers,
     loading: supplierLoading,
@@ -199,16 +203,16 @@ export default function CreatePurchase() {
                     <tr key={field.id}>
                       <td className="pl-5 pr-1 py-3">
                         <div className="min-w-32 max-w-xs whitespace-nowrap">
-                          <Skeleton isLoading={productLoading}>
-                            <SelectTwoRhf
-                              placeholder="--- Pilih Komponen Produk ---"
-                              name={`items[${index}][material_id]`}
-                              selectTwoOptions={productOptions}
-                              isSearchable
-                              isClearable
-                              isRequired
-                            />
-                          </Skeleton>
+                          <SelectTwoRhf
+                            placeholder="--- Pilih Komponen Produk ---"
+                            name={`items[${index}][material_id]`}
+                            selectTwoOptions={productOptions}
+                            onInputChange={setSearchProduct}
+                            isLoading={productLoading}
+                            isSearchable
+                            isClearable
+                            isRequired
+                          />
                         </div>
                       </td>
                       <td className="px-1 py-3">
