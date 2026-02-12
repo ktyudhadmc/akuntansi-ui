@@ -13,8 +13,10 @@ export const parseMonthValue = (value: string) => {
 };
 
 export const formatDateAsYMD = (date: Date) => dayjs(date).format("YYYY-MM-DD");
+export const formatDateAsYM = (date: Date) => dayjs(date).format("YYYY-MM");
 export const parseYMDToDate = (ymd: string) =>
   dayjs(ymd, "YYYY-MM-DD").toDate();
 
 export const today = new Date();
 export const todayYMDString = formatDateAsYMD(today);
+export const todayYMString = formatDateAsYM(today);

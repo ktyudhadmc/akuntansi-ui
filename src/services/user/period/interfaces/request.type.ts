@@ -1,4 +1,4 @@
-export interface ICreateAccountPeriodsPayload {
+export interface ICloseAccountPeriodsPayload {
   year: number;
   month: number;
 }
