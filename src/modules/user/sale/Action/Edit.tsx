@@ -83,7 +83,11 @@ export default function EditSale() {
   const { data: units, loading: unitLoading } = useGetAllUnit();
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
   const { data: products, loading: productLoading } = useGetAllProduct();
-  const { data: customers, loading: customerLoading } = useGetAllCustomer();
+  const {
+    data: customers,
+    // loading: customerLoading,
+    setName: setSearchCustomer,
+  } = useGetAllCustomer();
   // const { data: services, loading: serviceLoading } = useGetAllService();
   // const { data: taxes, loading: taxLoading } = useGetAllTax();
 
@@ -230,12 +234,16 @@ export default function EditSale() {
             />
           </Skeleton>
 
-          <Skeleton isLoading={customerLoading || loading}>
-            <SelectTwo
+          <Skeleton isLoading={loading}>
+            <SelectTwoRhf
               label="Pelanggan"
               name="customer_id"
               placeholder="--- Pilih Pelanggan ---"
-              selectTwoOptions={customerOptions}
+              selectTwoOptions={[
+                ...customerOptions,
+                { label: data?.customer.name, value: data?.customer.id },
+              ]}
+              onInputChange={setSearchCustomer}
               defaultValue={{
                 label: data?.customer.name,
                 value: data?.customer.id,
