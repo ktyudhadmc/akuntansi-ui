@@ -4,7 +4,6 @@ import "flatpickr/dist/flatpickr.css";
 import Label from "./Label";
 import { CalenderIcon } from "@assets/icons";
 import monthSelectPlugin from "flatpickr/dist/plugins/monthSelect";
-import "flatpickr/dist/plugins/monthSelect/style.css";
 
 import type { Hook } from "@def/option";
 import { Controller, useFormContext } from "react-hook-form";
