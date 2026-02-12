@@ -84,6 +84,7 @@ export default function DatePicker({
 
             const config: flatpickr.Options.Options = {
               static: true,
+              disableMobile: true,
               defaultDate: field.value,
               onChange: (_, dateStr) => {
                 field.onChange(dateStr);
