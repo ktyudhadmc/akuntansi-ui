@@ -303,30 +303,28 @@ export default function EditPurchase() {
                         </td>
                         <td className="px-1 py-3">
                           <div className="min-w-24 whitespace-nowrap">
-                            <Skeleton isLoading={unitLoading}>
-                              <SelectTwoRhf
-                                placeholder="--- Pilih Satuan ---"
-                                name={`items[${index}][unit_of_measure_id]`}
-                                selectTwoOptions={unitOptions}
-                                isSearchable
-                                isClearable
-                                isRequired
-                              />
-                            </Skeleton>
+                            <SelectTwoRhf
+                              placeholder="--- Pilih Satuan ---"
+                              name={`items[${index}][unit_of_measure_id]`}
+                              selectTwoOptions={unitOptions}
+                              isLoading={unitLoading}
+                              isSearchable
+                              isClearable
+                              isRequired
+                            />
                           </div>
                         </td>
                         <td className="px-1 py-3">
                           <div className="min-w-24 whitespace-nowrap">
-                            <Skeleton isLoading={accountLoading}>
-                              <SelectTwoRhf
-                                name={`items[${index}][counter_account_id]`}
-                                placeholder="--- Pilih Akun ---"
-                                selectTwoOptions={accountOptions}
-                                isSearchable
-                                isClearable
-                                isRequired
-                              />
-                            </Skeleton>
+                            <SelectTwoRhf
+                              name={`items[${index}][counter_account_id]`}
+                              placeholder="--- Pilih Akun ---"
+                              selectTwoOptions={accountOptions}
+                              isLoading={accountLoading}
+                              isSearchable
+                              isClearable
+                              isRequired
+                            />
                           </div>
                         </td>
                         <td className="px-1 py-3">

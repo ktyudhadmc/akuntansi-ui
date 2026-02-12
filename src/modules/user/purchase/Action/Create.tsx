@@ -14,7 +14,6 @@ import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
 import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
-import Skeleton from "@components/Skeleton/Skeleton";
 import DatePicker from "@components/form/date-picker";
 
 import TextArea from "@components/form/input/TextArea";
@@ -229,30 +228,28 @@ export default function CreatePurchase() {
                       </td>
                       <td className="px-1 py-3">
                         <div className="min-w-24 whitespace-nowrap">
-                          <Skeleton isLoading={unitLoading}>
-                            <SelectTwoRhf
-                              placeholder="--- Pilih Satuan ---"
-                              name={`items[${index}][unit_of_measure_id]`}
-                              selectTwoOptions={unitOptions}
-                              isSearchable
-                              isClearable
-                              isRequired
-                            />
-                          </Skeleton>
+                          <SelectTwoRhf
+                            placeholder="--- Pilih Satuan ---"
+                            name={`items[${index}][unit_of_measure_id]`}
+                            selectTwoOptions={unitOptions}
+                            isLoading={unitLoading}
+                            isSearchable
+                            isClearable
+                            isRequired
+                          />
                         </div>
                       </td>
                       <td className="px-1 py-3">
                         <div className="min-w-24 whitespace-nowrap">
-                          <Skeleton isLoading={accountLoading}>
-                            <SelectTwoRhf
-                              name={`items[${index}][counter_account_id]`}
-                              placeholder="--- Pilih Akun ---"
-                              selectTwoOptions={accountOptions}
-                              isSearchable
-                              isClearable
-                              isRequired
-                            />
-                          </Skeleton>
+                          <SelectTwoRhf
+                            name={`items[${index}][counter_account_id]`}
+                            placeholder="--- Pilih Akun ---"
+                            selectTwoOptions={accountOptions}
+                            isLoading={accountLoading}
+                            isSearchable
+                            isClearable
+                            isRequired
+                          />
                         </div>
                       </td>
                       <td className="px-1 py-3">
