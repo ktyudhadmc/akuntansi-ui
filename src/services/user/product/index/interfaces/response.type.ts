@@ -1,9 +1,12 @@
 // import type { ProductCategory } from "../../category/interfaces/response.type";
 
+import type { Pagination } from "@services/global/pagination/interfaces/pagination.type";
+
 export interface IGetAllResponse {
   status?: string;
   message?: string;
   data: Product[];
+  meta: Pagination;
 }
 
 export interface IGetResponse {
