@@ -19,7 +19,6 @@ import Spinner from "@components/Reusable/Spinner";
 import Skeleton from "@components/Skeleton/Skeleton";
 import Button from "@components/ui/button/Button";
 import DatePicker from "@components/form/date-picker";
-import SelectTwo from "@components/form/SelectTwo";
 import TextArea from "@components/form/input/TextArea";
 import SelectTwoRhf from "@components/form/SelectTwoRhf";
 import SearchInput from "@components/form/default/SearchInput";
@@ -85,7 +84,7 @@ export default function EditSale() {
   const { data: products, loading: productLoading } = useGetAllProduct();
   const {
     data: customers,
-    // loading: customerLoading,
+    loading: customerLoading,
     setName: setSearchCustomer,
   } = useGetAllCustomer();
   // const { data: services, loading: serviceLoading } = useGetAllService();
@@ -218,41 +217,39 @@ export default function EditSale() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
-          <Skeleton isLoading={accountLoading || loading}>
-            <SelectTwo
-              label="Akun debit"
-              name="account_id"
-              placeholder="--- Pilih Akun Debit ---"
-              selectTwoOptions={accountOptions}
-              defaultValue={{
-                label: data?.account.name,
-                value: data?.account.id,
-              }}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
+          <SelectTwoRhf
+            label="Akun debit"
+            name="account_id"
+            placeholder="--- Pilih Akun Debit ---"
+            selectTwoOptions={accountOptions}
+            defaultValue={{
+              label: data?.account.name,
+              value: data?.account.id,
+            }}
+            isLoading={accountLoading || loading}
+            isSearchable
+            isClearable
+            isRequired
+          />
 
-          <Skeleton isLoading={loading}>
-            <SelectTwoRhf
-              label="Pelanggan"
-              name="customer_id"
-              placeholder="--- Pilih Pelanggan ---"
-              selectTwoOptions={[
-                ...customerOptions,
-                { label: data?.customer.name, value: data?.customer.id },
-              ]}
-              onInputChange={setSearchCustomer}
-              defaultValue={{
-                label: data?.customer.name,
-                value: data?.customer.id,
-              }}
-              isSearchable
-              isClearable
-              isRequired
-            />
-          </Skeleton>
+          <SelectTwoRhf
+            label="Pelanggan"
+            name="customer_id"
+            placeholder="--- Pilih Pelanggan ---"
+            selectTwoOptions={[
+              { label: data?.customer.name, value: data?.customer.id },
+              ...customerOptions,
+            ]}
+            onInputChange={setSearchCustomer}
+            defaultValue={{
+              label: data?.customer.name,
+              value: data?.customer.id,
+            }}
+            isLoading={customerLoading || loading}
+            isSearchable
+            isClearable
+            isRequired
+          />
         </div>
 
         {/* Produk / Material */}

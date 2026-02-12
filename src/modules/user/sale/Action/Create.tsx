@@ -78,7 +78,7 @@ export default function CreateSale() {
   const { data: products, loading: productLoading } = useGetAllProduct();
   const {
     data: customers,
-    // loading: customerLoading,
+    loading: customerLoading,
     setName: setSearchCustomer,
   } = useGetAllCustomer();
   // const { data: services, loading: serviceLoading } = useGetAllService();
@@ -204,6 +204,7 @@ export default function CreateSale() {
             name="account_id"
             placeholder="--- Pilih Akun Debit ---"
             selectTwoOptions={accountOptions}
+            isLoading={accountLoading}
             isSearchable
             isClearable
             isRequired
@@ -216,6 +217,7 @@ export default function CreateSale() {
             placeholder="--- Pilih Pelanggan ---"
             selectTwoOptions={cutomerOptions}
             onInputChange={setSearchCustomer}
+            isLoading={customerLoading}
             isSearchable
             isClearable
             isRequired

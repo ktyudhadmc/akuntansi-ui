@@ -21,6 +21,7 @@ interface Props {
   isRequired?: boolean;
   isSearchable?: boolean;
   isClearable?: boolean;
+  isLoading?: boolean;
 
   value?: SingleValue<OptionValue> | MultiValue<OptionValue>;
   defaultValue?: any;
@@ -38,6 +39,7 @@ export default function SelectTwoRhf({
   isMulti,
   isRequired,
   isSearchable = false,
+  isLoading = false,
   isClearable,
   value,
   defaultValue,
@@ -95,6 +97,7 @@ export default function SelectTwoRhf({
               isSearchable={isSearchable}
               isClearable={isClearable}
               isMulti={isMulti}
+              isLoading={isLoading}
               value={
                 isMulti
                   ? selectTwoOptions.filter((o) =>
