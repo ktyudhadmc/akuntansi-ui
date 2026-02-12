@@ -35,6 +35,9 @@ export default function DatePicker({
 }: Props) {
   const { control } = useFormContext();
   const fpRef = useRef<flatpickr.Instance | null>(null);
+  const isIOS =
+    typeof window !== "undefined" &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   return (
     <div>
@@ -82,9 +85,10 @@ export default function DatePicker({
           useEffect(() => {
             if (!inputRef.current) return;
 
+            if (isIOS && mode === "month") return;
+
             const config: flatpickr.Options.Options = {
               static: true,
-              disableMobile: true,
               defaultDate: field.value,
               onChange: (_, dateStr) => {
                 field.onChange(dateStr);
