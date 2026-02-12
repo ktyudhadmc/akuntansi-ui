@@ -4,10 +4,32 @@ import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
 import TableHeader from "./Header";
 import useGetAll from "@services/user/product/index/hooks/useGetAll";
+import { useEffect } from "react";
+import usePagination from "@hooks/usePagination";
+import TablePagination from "@components/ui/table/TablePagination";
 
 export default function ProductTable() {
-  const { data, loading, setName, setCategory } = useGetAll();
+  const {
+    data,
+    loading,
+    pagination,
+    pageLimit,
+    setName,
+    setCategory,
+    setPageLimit,
+    setPageNum,
+  } = useGetAll();
 
+  const {
+    currentPage,
+    goNextPage,
+    goPrevPage,
+    setPageNum: onSetPageNum,
+  } = usePagination(pagination?.last_page || 1);
+
+  useEffect(() => {
+    setPageNum(currentPage);
+  }, [currentPage]);
   return (
     <>
       <TableHeader
@@ -61,6 +83,19 @@ export default function ProductTable() {
           </table>
         </div>
       </div>
+
+      <TablePagination
+        goNextPage={goNextPage}
+        goPrevPage={goPrevPage}
+        setPageNum={onSetPageNum}
+        total={pagination?.total}
+        perPage={pagination?.per_page}
+        to={pagination?.to}
+        pageLimit={pageLimit}
+        setPageLimit={(limit) => setPageLimit(limit)}
+        currentPage={currentPage}
+        lastPage={pagination?.last_page}
+      />
     </>
   );
 }
