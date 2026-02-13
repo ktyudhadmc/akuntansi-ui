@@ -21,7 +21,7 @@ export default function useGetAllTrialBalance() {
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/trial-balance?${qs}`, fetcher);
+  const { data, error } = useSWR(`/reports/trial-balance?${qs}`, fetcher);
 
   const onSetSearch = useCallback((search: string) => {
     setSearch(search);

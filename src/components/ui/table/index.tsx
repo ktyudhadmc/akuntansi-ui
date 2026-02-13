@@ -31,6 +31,8 @@ interface TableCellProps {
   children: ReactNode; // Cell content
   isHeader?: boolean; // If true, renders as <th>, otherwise <td>
   className?: string; // Optional className for styling
+  colSpan?: number;
+  rowSpan?: number;
 }
 
 // Props for TableNotFound
@@ -81,13 +83,21 @@ const TableCell: React.FC<TableCellProps> = ({
   children,
   isHeader = false,
   className,
+  colSpan,
+  rowSpan,
 }) => {
   const CellTag = isHeader ? "th" : "td";
   const classNameDefault = isHeader
-    ? "px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-    : "px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap";
+    ? "px-5 py-3 font-medium text-gray-500 text-theme-xs dark:text-gray-400"
+    : "px-5 py-1 text-gray-500 text-theme-xs dark:text-gray-400 whitespace-nowrap";
   return (
-    <CellTag className={clsx(classNameDefault, className)}>{children}</CellTag>
+    <CellTag
+      colSpan={colSpan}
+      rowSpan={rowSpan}
+      className={clsx(classNameDefault, className)}
+    >
+      {children}
+    </CellTag>
   );
 };
 
@@ -98,7 +108,10 @@ function TableNotFound({
 }: TableNotFoundProps) {
   return (
     <tr>
-      <td colSpan={colSpan} className="text-center py-4">
+      <td
+        colSpan={colSpan}
+        className="text-center py-16 text-gray-700 dark:text-gray-400"
+      >
         {message}
       </td>
     </tr>
