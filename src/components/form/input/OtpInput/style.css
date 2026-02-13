@@ -1,10 +1,17 @@
-.rok__cta__container{
-    padding-top:16px !important;
-}
+/* .rok__cta__container {
+  padding-top: 16px !important;
+} */
 
 .rok__input__group .rok__input--defaultStyles {
   width: 40px;
   height: 40px;
+  font-weight: 600;
+  font-size: 20px !important;
+  color: var(--color-gray-700);
+}
+
+.dark .rok__input--defaultStyles {
+  color: white;
 }
 
 /* tablet & desktop */
@@ -13,4 +20,8 @@
     width: 56px;
     height: 56px;
   }
+}
+
+.rok__cta__container {
+  display: none !important;
 }
