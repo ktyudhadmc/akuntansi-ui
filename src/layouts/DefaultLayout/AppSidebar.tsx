@@ -17,7 +17,7 @@ import {
 } from "@assets/icons";
 
 import { HiOutlineCube, HiOutlineViewList } from "react-icons/hi";
-import { AiOutlineBank, AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineBank } from "react-icons/ai";
 import {
   MdOutlineSell,
   MdOutlineShoppingCart,
@@ -31,6 +31,7 @@ import {
 import { useSidebar } from "@context/SidebarContext";
 import AvatarText from "@components/ui/avatar/AvatarText";
 import useGlobalStore from "@store/useStore";
+import SidebarWidget from "./SidebarWidget";
 // import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
@@ -137,16 +138,16 @@ const othersItems: NavItem[] = [
     name: "Daftar Lainnya",
     path: "/user/others",
   },
-  {
-    icon: <AiOutlineSetting />,
-    name: "Pengaturan",
-    path: "/user/settings",
-    subItems: [
-      { name: "Akuntansi", path: "/user/settings/accounts" },
-      { name: "Pengguna", path: "/user/settings/users" },
-      { name: "Perusahaan", path: "/user/settings/companies" },
-    ],
-  },
+  // {
+  //   icon: <AiOutlineSetting />,
+  //   name: "Pengaturan",
+  //   path: "/user/settings",
+  //   subItems: [
+  //     { name: "Akuntansi", path: "/user/settings/accounts" },
+  //     { name: "Pengguna", path: "/user/settings/users" },
+  //     { name: "Perusahaan", path: "/user/settings/companies" },
+  //   ],
+  // },
 ];
 
 const AppSidebar: React.FC = () => {
@@ -378,45 +379,51 @@ const AppSidebar: React.FC = () => {
           )}
         </Link>
       </div>
-      <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
-        <nav className="mb-6">
-          <div className="flex flex-col gap-4">
-            <div>
-              <h2
-                className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
-                  !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
-                }`}
-              >
-                {isExpanded || isHovered || isMobileOpen ? (
-                  "Menu"
-                ) : (
-                  <HorizontaLDots className="size-6" />
-                )}
-              </h2>
-              {isSelectCompany && renderMenuItems(navItems, "main")}
+      {isSelectCompany ? (
+        <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
+          <nav className="mb-6">
+            <div className="flex flex-col gap-4">
+              <div>
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
+                    !isExpanded && !isHovered
+                      ? "lg:justify-center"
+                      : "justify-start"
+                  }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "Menu"
+                  ) : (
+                    <HorizontaLDots className="size-6" />
+                  )}
+                </h2>
+                {renderMenuItems(navItems, "main")}
+              </div>
+              <div className="">
+                <h2
+                  className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
+                    !isExpanded && !isHovered
+                      ? "lg:justify-center"
+                      : "justify-start"
+                  }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    "Others"
+                  ) : (
+                    <HorizontaLDots />
+                  )}
+                </h2>
+                {renderMenuItems(othersItems, "others")}
+              </div>
             </div>
-            <div className="">
-              <h2
-                className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
-                  !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
-                }`}
-              >
-                {isExpanded || isHovered || isMobileOpen ? (
-                  "Others"
-                ) : (
-                  <HorizontaLDots />
-                )}
-              </h2>
-              {renderMenuItems(othersItems, "others")}
-            </div>
-          </div>
-        </nav>
-        {/* {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null} */}
-      </div>
+          </nav>
+          {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null}
+        </div>
+      ) : (
+        <>
+          {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null}
+        </>
+      )}
     </aside>
   );
 };
