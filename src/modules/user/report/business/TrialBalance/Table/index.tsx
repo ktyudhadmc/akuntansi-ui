@@ -1,6 +1,7 @@
 // import { BeatLoader } from "react-spinners";
 import TableHeader from "./TableHeader";
 import { formatIDRLocale } from "@helpers/currency";
+import TableItem from "./TableItem";
 
 export default function RBTrialBalance() {
   return (
@@ -12,51 +13,51 @@ export default function RBTrialBalance() {
           <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
             <div className="max-w-full overflow-x-auto">
               <table className="w-full">
-                <thead className="border-b border-gray-100 dark:border-white/[0.05]">
+                <thead className="px-6 py-3.5 border-t border-gray-100 border-y bg-gray-50 dark:border-white/[0.05] dark:bg-white/[0.05]">
                   <tr>
                     <th
                       colSpan={2}
                       rowSpan={2}
-                      className="pl-5 pt-2 pb-1 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 border-r align-middle"
+                      className="pl-5 pt-2 pb-1 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 border-r align-middle dark:border-white/[0.10]"
                     >
                       Daftar Akun
                     </th>
                     <th
                       colSpan={2}
-                      className="px-5 pt-2 pb-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r border-b"
+                      className="px-5 pt-2 pb-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r border-b dark:border-white/[0.10]"
                     >
                       Saldo Awal
                     </th>
                     <th
                       colSpan={2}
-                      className="px-5 pt-2 pb-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r border-b"
+                      className="px-5 pt-2 pb-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r border-b dark:border-white/[0.10]"
                     >
                       Pergerakan
                     </th>
                     <th
                       colSpan={2}
-                      className="px-5 pt-2 pb-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r border-b"
+                      className="px-5 pt-2 pb-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r border-b dark:border-white/[0.10]"
                     >
                       Saldo Akhir
                     </th>
                   </tr>
                   <tr>
-                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r">
+                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r dark:border-white/[0.10]">
                       Debit
                     </th>
-                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r">
+                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400 border-r dark:border-white/[0.10]">
                       Kredit
                     </th>
-                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400  border-r">
+                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400  border-r dark:border-white/[0.10]">
                       Debit
                     </th>
-                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400  border-r">
+                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400  border-r dark:border-white/[0.10]">
                       Kredit
                     </th>
-                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400  border-r">
+                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400  border-r dark:border-white/[0.10]">
                       Debit
                     </th>
-                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400  border-r">
+                    <th className="px-5 pb-2 pt-1 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400  border-r dark:border-white/[0.10]">
                       Kredit
                     </th>
                   </tr>
@@ -71,33 +72,12 @@ export default function RBTrialBalance() {
                     </td>
                   </tr> */}
                   {Array.from({ length: 6 }).map((_, index) => {
+                    const number = ++index;
                     return (
-                      <tr>
-                        <td className="pl-5 py-1 text-black text-start text-theme-xs dark:text-white whitespace-nowrap">
-                          1-1000{++index}
-                        </td>
-                        <td className="px-5 py-1 text-black text-start text-theme-xs dark:text-white whitespace-nowrap border-r">
-                          Kas
-                        </td>
-                        <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r">
-                          {formatIDRLocale(100)}
-                        </td>
-                        <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r">
-                          {formatIDRLocale(100)}
-                        </td>
-                        <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r">
-                          {formatIDRLocale(100)}
-                        </td>
-                        <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r">
-                          {formatIDRLocale(100)}
-                        </td>
-                        <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r">
-                          {formatIDRLocale(100)}
-                        </td>
-                        <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r">
-                          {formatIDRLocale(100)}
-                        </td>
-                      </tr>
+                      <TableItem
+                        key={`table-item-trial-balance-${index}`}
+                        nomor={number}
+                      />
                     );
                   })}
 
@@ -143,7 +123,7 @@ export default function RBTrialBalance() {
                     </>
                   )} */}
                 </tbody>
-                <tfoot className="border-t">
+                <tfoot className="border-t dark:border-white/[0.10]">
                   <tr>
                     <td
                       colSpan={2}
