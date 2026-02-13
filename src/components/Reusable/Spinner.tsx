@@ -1,4 +1,8 @@
-export default function Spinner() {
+interface Props {
+  withText?: boolean;
+}
+
+export default function Spinner({ withText = true }: Props) {
   return (
     <div className="inline-flex items-center">
       <svg
@@ -18,7 +22,7 @@ export default function Spinner() {
           fill="currentColor"
         />
       </svg>
-      Loading...
+      {withText && "Loading..."}
     </div>
   );
 }

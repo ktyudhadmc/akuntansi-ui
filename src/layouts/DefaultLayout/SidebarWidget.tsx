@@ -15,7 +15,7 @@ export default function SidebarWidget() {
         Dinamika <span className="italic text-[10px] font-light">Jurnal</span>
       </h3>
       <p className="mb-4 text-gray-500 text-theme-sm dark:text-gray-400">
-        Jurnal — Biar Laporan Nggak Pakai Perasaan.
+        Dinamika — Biar Laporan Nggak Pakai Perasaan.
       </p>
 
       <NavLink
