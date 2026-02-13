@@ -6,10 +6,10 @@ export default function ReportBusinessPage() {
   const navigate = useNavigate();
   const data = [
     {
-      title: "Jurnal",
-      path: "journal",
+      title: "Neraca",
+      path: "balance-sheet",
       description:
-        "Menampilkan semua journal entry per transaksi dalam periode tertentu. Anda dapat melacak transaksi yang masuk ke masing-masing akun.",
+        "Menampilkan apa yang dimiliki (aset), apa saja utangnya (liabilitas), dan apa yang sudah diinvestasikan ke perusahaan ini (ekuitas) padatanggal tertentu",
     },
     {
       title: "Buku besar",
@@ -18,16 +18,16 @@ export default function ReportBusinessPage() {
         "Menampilkan semua transaksi berdasarkan akun dalam periode tertentu, termasuk kronologi pergerakan transaksinya selama periode berlangsung.",
     },
     {
-      title: "Neraca",
-      path: "balance-sheet",
-      description:
-        "Menampilkan apa yang dimiliki (aset), apa saja utangnya (liabilitas), dan apa yang sudah diinvestasikan ke perusahaan ini (ekuitas) padatanggal tertentu",
-    },
-    {
       title: "Laba rugi",
       path: "profit-loss",
       description:
         "Menampilkan semua pendapatan yang diperoleh dan biaya yang dikeluarkan dalam periode tertentu. Template laporan versi terkini bisa Anda custom sesuai kebutuhan.",
+    },
+    {
+      title: "Jurnal",
+      path: "journal",
+      description:
+        "Menampilkan semua journal entry per transaksi dalam periode tertentu. Anda dapat melacak transaksi yang masuk ke masing-masing akun.",
     },
     {
       title: "Arus kas",
