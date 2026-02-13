@@ -34,7 +34,7 @@ export default function UserDropdown() {
     useShallow((state) => ({
       role: state.role,
       me: state.me,
-    }))
+    })),
   );
 
   const { handleLogout } = useLogout();
@@ -168,7 +168,7 @@ export default function UserDropdown() {
               onItemClick={closeDropdown}
               tag="a"
               to="/user/onboard"
-              className="bg-brand-100 gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+              className="group bg-brand-100 gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-white/5 dark:hover:text-gray-300"
             >
               {currentCompany && (
                 <>
@@ -176,7 +176,9 @@ export default function UserDropdown() {
                   <p className="text-xs">CODE: {currentCompany.code}</p>
                 </>
               )}
-              <span className="text-brand-600 ">Lihat daftar perusahaan</span>
+              <span className="text-brand-600 group-hover:underline">
+                Lihat daftar perusahaan
+              </span>
             </DropdownItem>
           </li>
         </ul>
@@ -202,13 +204,41 @@ export default function UserDropdown() {
           Keluar
         </DropdownItem>
       </Dropdown>
-
+      {/* 
       <Modal isOpen={isOpen} onClose={closeModal} className="max-w-sm m-4">
         <div className="no-scrollbar relative w-full max-w-sm overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
           <div className="px-2 pr-14">
             <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
               Keluar
             </h4>
+            <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
+              Apakah Anda yakin keluar akun?
+            </p>
+
+            <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">
+              <Button size="sm" className="w-full" onClick={closeModal}>
+                Tidak
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-full"
+                onClick={onHandleLogout}
+              >
+                Ya
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal> */}
+
+      <Modal isOpen={isOpen} onClose={closeModal} className="max-w-md m-4">
+        <div className="relative w-full max-w-md rounded-3xl bg-white p-6 dark:bg-gray-900 lg:p-10">
+          <div className="text-center">
+            <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90 sm:text-title-sm">
+              Keluar
+            </h4>
+
             <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
               Apakah Anda yakin keluar akun?
             </p>
