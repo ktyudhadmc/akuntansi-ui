@@ -16,7 +16,7 @@ interface Props {
   setSearch: (params: string) => void;
 }
 
-export default function TableHeader({ setSearch }: Props) {
+export default function TableAction({ setSearch }: Props) {
   const startDate = useUserStore((state) => state.trialBalanceStartDate);
   const endDate = useUserStore((state) => state.trialBalanceEndDate);
 

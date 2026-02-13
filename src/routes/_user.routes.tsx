@@ -185,6 +185,8 @@ export default [
       { path: "reports/ledger", element: <User.RBLedgerPage /> },
       { path: "reports/trial-balance", element: <User.RBTrialBalancePage /> },
       { path: "reports/profit-loss", element: <User.RBProfitLossPage /> },
+      { path: "reports/cash-flow", element: <User.RBCashFlowPage /> },
+      { path: "reports/balance-sheet", element: <User.RBBalanceSheetPage /> },
 
       /** TAX */
       { path: "taxes", element: <User.TaxPage /> },
