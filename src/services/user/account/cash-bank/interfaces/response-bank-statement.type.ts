@@ -6,7 +6,7 @@ export interface IGetAllBankStatementResponse {
 
 export interface BankStatement {
   id: string;
-  date: string;
+  date: Date;
   reference: string | null;
   type: string;
   amount: number;
