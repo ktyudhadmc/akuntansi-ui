@@ -33,9 +33,12 @@ export default function SendOtp() {
       setPhone(state.phone);
 
       /** redirect */
-      navigate(`/verify?phone=${state.phone}`);
-
-      toast.success("Kode OTP berhasil dikirim!");
+      toast.success("Kode OTP berhasil dikirim!", {
+        onClose: () => {
+          navigate(`/verify?phone=${state.phone}`);
+        },
+      });
+      
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.response?.data?.message);
