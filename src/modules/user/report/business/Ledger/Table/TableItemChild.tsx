@@ -49,7 +49,7 @@ export default function TableItemChild({ child }: Props) {
       {openChildren && (
         <>
           {/* Opening balance */}
-          {child.opening_balance && child.opening_balance > 0 && (
+          {child.opening_balance > 0 && child.opening_balance ? (
             <tr>
               <td className="pl-15 pr-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
                 {child.period_date}
@@ -65,7 +65,7 @@ export default function TableItemChild({ child }: Props) {
                 {formatIDRLocale(child.opening_balance)}
               </td>
             </tr>
-          )}
+          ) : null}
 
           {/* transactions */}
           {child.transactions.map((item, index) => (
