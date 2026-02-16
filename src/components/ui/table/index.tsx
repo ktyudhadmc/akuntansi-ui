@@ -20,6 +20,12 @@ interface TableBodyProps {
   className?: string; // Optional className for styling
 }
 
+// Props for TableBody
+interface TableFootProps {
+  children: ReactNode; // Body row(s)
+  className?: string; // Optional className for styling
+}
+
 // Props for TableRow
 interface TableRowProps {
   children: ReactNode; // Cells (th or td)
@@ -66,7 +72,24 @@ const TableHeader: React.FC<TableHeaderProps> = ({ children, className }) => {
 const TableBody: React.FC<TableBodyProps> = ({ children, className }) => {
   return (
     <tbody
-      className={`divide-y divide-gray-100 dark:divide-white/[0.05] ${className}`}
+      className={clsx(
+        "divide-y divide-gray-100 dark:divide-white/[0.05]",
+        className,
+      )}
+    >
+      {children}
+    </tbody>
+  );
+};
+
+// TableFoot Component
+const TableFoot: React.FC<TableFootProps> = ({ children, className }) => {
+  return (
+    <tbody
+      className={clsx(
+        "divide-y divide-gray-100 dark:divide-white/[0.05]",
+        className,
+      )}
     >
       {children}
     </tbody>
@@ -134,6 +157,7 @@ export {
   Table,
   TableHeader,
   TableBody,
+  TableFoot,
   TableRow,
   TableCell,
   TableNotFound,

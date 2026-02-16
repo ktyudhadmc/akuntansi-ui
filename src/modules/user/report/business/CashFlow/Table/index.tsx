@@ -2,15 +2,28 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFoot,
   TableHeader,
   TableRow,
 } from "@components/ui/table";
 import { formatIDRLocale } from "@helpers/currency";
 import { todayYMDString } from "@helpers/date";
 import TableAction from "./TableAction";
+import TableItem from "./TableItem";
+
+export type CashFlow = {
+  parent: string;
+  amount: number;
+  child: CashflowItem[];
+};
+
+export type CashflowItem = {
+  name: string;
+  amount: number;
+};
 
 export default function RBCashFlow() {
-  const data = [
+  const data: CashFlow[] = [
     {
       parent: "Arus Kas dari Aktivitas Operasional",
       amount: 100000,
@@ -65,38 +78,17 @@ export default function RBCashFlow() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data.map((item) => {
+                {data.map((item, index) => {
                   return (
-                    <>
-                      <TableRow className="bg-gray-50 dark:bg-gray-800">
-                        <TableCell className="!text-sm !text-black dark:!text-white whitespace-nowrap font-medium">
-                          {item.parent}
-                        </TableCell>
-                      </TableRow>
-                      {item?.child?.map((child) => {
-                        return (
-                          <TableRow>
-                            <TableCell className="pl-10 !text-sm whitespace-nowrap">
-                              {child.name}
-                            </TableCell>
-                            <TableCell className="whitespace-nowrap !text-sm !text-black dark:!text-white text-end">
-                              {formatIDRLocale(child.amount)}
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-
-                      <TableRow className="">
-                        <TableCell className="whitespace-nowrap !text-sm !text-black dark:!text-white">
-                          Kas Bersih yang diperoleh dari {item.parent}
-                        </TableCell>
-                        <TableCell className="whitespace-nowrap !text-sm !text-black dark:!text-white text-end">
-                          {formatIDRLocale(item.amount)}
-                        </TableCell>
-                      </TableRow>
-                    </>
+                    <TableItem
+                      key={`cashflow-table-item-${index}`}
+                      item={item}
+                    />
                   );
                 })}
+              </TableBody>
+
+              <TableFoot>
                 <TableRow>
                   <TableCell
                     colSpan={2}
@@ -105,6 +97,7 @@ export default function RBCashFlow() {
                     <div className="py-3"></div>
                   </TableCell>
                 </TableRow>
+                
                 <TableRow>
                   <TableCell className="!text-sm !text-black dark:!text-white font-medium">
                     Kenaikan (Penurunan) Kas
@@ -113,14 +106,14 @@ export default function RBCashFlow() {
                     {formatIDRLocale(0)}
                   </TableCell>
                 </TableRow>
-                <TableRow>
+                {/* <TableRow>
                   <TableCell className="!text-sm !text-black dark:!text-white font-medium">
                     Total revaluasi bank
                   </TableCell>
                   <TableCell className="!text-sm !text-black dark:!text-white text-end">
                     {formatIDRLocale(0)}
                   </TableCell>
-                </TableRow>
+                </TableRow> */}
                 <TableRow>
                   <TableCell className="!text-sm !text-black dark:!text-white font-medium">
                     Saldo kas awal
@@ -137,7 +130,7 @@ export default function RBCashFlow() {
                     {formatIDRLocale(0)}
                   </TableCell>
                 </TableRow>
-              </TableBody>
+              </TableFoot>
             </Table>
           </div>
         </div>
