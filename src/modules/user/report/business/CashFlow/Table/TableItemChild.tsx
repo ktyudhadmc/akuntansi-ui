@@ -1,4 +1,4 @@
-import type { CashflowItem } from ".";
+import type { CashflowItem } from "@services/user/report/cash-flow/interfaces/response.type";
 import { formatIDRLocale } from "@helpers/currency";
 import { TableCell, TableRow } from "@components/ui/table";
 

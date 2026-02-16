@@ -10,21 +10,21 @@ export interface TrialBalance {
 }
 
 export interface TrialBalanceTotal {
-  opening_balance: CashFlow;
-  movement_balance: CashFlow;
-  closing_balance: CashFlow;
+  opening_balance: Balance;
+  movement_balance: Balance;
+  closing_balance: Balance;
 }
 
 export interface TrialBalanceAccount {
   id: string;
   name: string;
   code: string;
-  opening_balance: CashFlow;
-  movement_balance: CashFlow;
-  closing_balance: CashFlow;
+  opening_balance: Balance;
+  movement_balance: Balance;
+  closing_balance: Balance;
 }
 
-interface CashFlow {
+interface Balance {
   debit: number;
   credit: number;
 }

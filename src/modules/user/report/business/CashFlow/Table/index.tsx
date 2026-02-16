@@ -1,49 +1,41 @@
+// import { isEmpty } from "lodash";
+
+import { formatIDRLocale } from "@helpers/currency";
+import { todayYMDString } from "@helpers/date";
+
+import TableAction from "./TableAction";
+import TableItem from "./TableItem";
 import {
   Table,
   TableBody,
   TableCell,
   TableFoot,
   TableHeader,
+  // TableLoading,
+  // TableNotFound,
   TableRow,
 } from "@components/ui/table";
-import { formatIDRLocale } from "@helpers/currency";
-import { todayYMDString } from "@helpers/date";
-import TableAction from "./TableAction";
-import TableItem from "./TableItem";
 
-export type CashFlow = {
-  parent: string;
-  amount: number;
-  child: CashflowItem[];
-};
-
-export type CashflowItem = {
-  name: string;
-  amount: number;
-};
+// import useGetAllCashFlow from "@services/user/report/cash-flow/hooks/useGetAllCashFlow";
+import type { CashFlow } from "@services/user/report/cash-flow/interfaces/response.type";
 
 export default function RBCashFlow() {
+  // const { data, loading } = useGetAllCashFlow();
   const data: CashFlow[] = [
     {
-      parent: "Arus Kas dari Aktivitas Operasional",
+      type: "operating",
+      // parent: "Arus Kas dari Aktivitas Operasional",
       amount: 100000,
       child: [
         { name: "Pelunasan Piutang Usaha", amount: 25000 },
         { name: "Pelunasan Piutang Usaha", amount: 25000 },
         { name: "Pelunasan Hutang Usaha", amount: 25000 },
         { name: "Pembelian Tunai", amount: 25000 },
-        // {
-        //   name: "Arus Kas Masuk",
-        //   transactions: [],
-        // },
-        // {
-        //   name: "Arus Kas Keluar",
-        //   transactions: [],
-        // },
       ],
     },
     {
-      parent: "Arus Kas dari Aktivitas Investasi",
+      type: "investing",
+      // parent: "Arus Kas dari Aktivitas Investasi",
       amount: 50000,
       child: [
         { name: "Perolehan Aset Tetap", amount: 25000 },
@@ -51,7 +43,8 @@ export default function RBCashFlow() {
       ],
     },
     {
-      parent: "Arus Kas dari Aktivitas Pembiayaan",
+      type: "financing",
+      // parent: "Arus Kas dari Aktivitas Pembiayaan",
       amount: 50000,
       child: [
         { name: "Hutang Bank", amount: 25000 },
@@ -59,6 +52,7 @@ export default function RBCashFlow() {
       ],
     },
   ];
+
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
       <div className="space-y-6">
@@ -78,35 +72,45 @@ export default function RBCashFlow() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data.map((item, index) => {
-                  return (
+                {/* {loading ? (
+                  <TableLoading colSpan={8} />
+                ) : isEmpty(data) || !data ? (
+                  <TableNotFound colSpan={8} />
+                ) : (
+                  data?.cashflows?.map((item, index) => (
                     <TableItem
                       key={`cashflow-table-item-${index}`}
                       item={item}
                     />
-                  );
-                })}
+                  ))
+                )} */}
+
+                {/* for testing */}
+                {data?.map((item, index) => (
+                  <TableItem key={`cashflow-table-item-${index}`} item={item} />
+                ))}
               </TableBody>
 
-              <TableFoot>
-                <TableRow>
-                  <TableCell
-                    colSpan={2}
-                    className="!text-sm !text-black dark:!text-white font-medium"
-                  >
-                    <div className="py-3"></div>
-                  </TableCell>
-                </TableRow>
-                
-                <TableRow>
-                  <TableCell className="!text-sm !text-black dark:!text-white font-medium">
-                    Kenaikan (Penurunan) Kas
-                  </TableCell>
-                  <TableCell className="!text-sm !text-black dark:!text-white text-end">
-                    {formatIDRLocale(0)}
-                  </TableCell>
-                </TableRow>
-                {/* <TableRow>
+              {data && (
+                <TableFoot>
+                  <TableRow>
+                    <TableCell
+                      colSpan={2}
+                      className="!text-sm !text-black dark:!text-white font-medium"
+                    >
+                      <div className="py-3"></div>
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell className="!text-sm !text-black dark:!text-white font-medium">
+                      Kenaikan (Penurunan) Kas
+                    </TableCell>
+                    <TableCell className="!text-sm !text-black dark:!text-white text-end">
+                      {formatIDRLocale(0)}
+                    </TableCell>
+                  </TableRow>
+                  {/* <TableRow>
                   <TableCell className="!text-sm !text-black dark:!text-white font-medium">
                     Total revaluasi bank
                   </TableCell>
@@ -114,23 +118,24 @@ export default function RBCashFlow() {
                     {formatIDRLocale(0)}
                   </TableCell>
                 </TableRow> */}
-                <TableRow>
-                  <TableCell className="!text-sm !text-black dark:!text-white font-medium">
-                    Saldo kas awal
-                  </TableCell>
-                  <TableCell className="!text-sm !text-black dark:!text-white text-end">
-                    {formatIDRLocale(0)}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="!text-sm !text-black dark:!text-white font-medium">
-                    Saldo kas akhir
-                  </TableCell>
-                  <TableCell className="!text-sm !text-black dark:!text-white text-end">
-                    {formatIDRLocale(0)}
-                  </TableCell>
-                </TableRow>
-              </TableFoot>
+                  <TableRow>
+                    <TableCell className="!text-sm !text-black dark:!text-white font-medium">
+                      Saldo kas awal
+                    </TableCell>
+                    <TableCell className="!text-sm !text-black dark:!text-white text-end">
+                      {formatIDRLocale(0)}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="!text-sm !text-black dark:!text-white font-medium">
+                      Saldo kas akhir
+                    </TableCell>
+                    <TableCell className="!text-sm !text-black dark:!text-white text-end">
+                      {formatIDRLocale(0)}
+                    </TableCell>
+                  </TableRow>
+                </TableFoot>
+              )}
             </Table>
           </div>
         </div>
