@@ -42,8 +42,9 @@ export default function VerifyOtp() {
       setSubmitLoading(true);
       await handleVerifyOtp(phone, otp);
 
-      navigate("/user/onboard");
-      toast.success("Verifikasi akun berhasil!");
+      toast.success("Verifikasi akun berhasil!", {
+        onClose: () => navigate("/user/onboard"),
+      });
 
       setSubmitLoading(false);
     } catch (error) {
@@ -55,10 +56,15 @@ export default function VerifyOtp() {
   const onResend = async () => {
     try {
       setResendLoading(true);
+
       await handleSendOtp(phone);
-      toast.success("Kode OTP berhasil dikirim!");
-      reset();
-      setResendLoading(false);
+
+      toast.success("Kode OTP berhasil dikirim!", {
+        onClose: () => {
+          reset();
+          setResendLoading(false);
+        },
+      });
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error.response?.data?.message);
