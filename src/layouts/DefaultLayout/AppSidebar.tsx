@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router";
 import {
   ChevronDownIcon,
   GridIcon,
-  UserCircleIcon,
+  // UserCircleIcon,
   // BoxCubeIcon,
   // CalenderIcon,
   HorizontaLDots,
@@ -52,11 +52,11 @@ const navItems: NavItem[] = [
     name: "Beranda",
     path: "/user/dashboard",
   },
-  {
-    icon: <UserCircleIcon />,
-    name: "Profil",
-    path: "/user/profile",
-  },
+  // {
+  //   icon: <UserCircleIcon />,
+  //   name: "Profil",
+  //   path: "/user/profile",
+  // },
   // {
   //   icon: <HiOutlineDocumentText />,
   //   name: "Jurnal Umum",

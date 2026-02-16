@@ -34,9 +34,16 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <ToastContainer
-      position="top-center"
-      style={{ zIndex: 100001 }}
+      position={"top-center"}
+      style={{
+        zIndex: 100001,
+        paddingTop: "16px",
+        paddingLeft: "16px",
+        paddingRight: "16px",
+      }}
       autoClose={500}
+      pauseOnHover={false}
+      pauseOnFocusLoss={false}
     />
 
     <ThemeProvider>

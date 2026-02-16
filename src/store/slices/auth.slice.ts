@@ -11,6 +11,8 @@ export declare interface AuthState {
   setMe: (user: User) => void;
   currentCompany?: Company | null;
   setCurrentCompany: (company: Company | null) => void;
+  currentCompanyLoading: boolean;
+  setCurrentCompanyLoading: (isLoggedIn: boolean) => void;
   isLoggedIn: boolean;
   setIsLoggedIn: (isLoggedIn: boolean) => void;
   isSelectCompany: boolean;
@@ -23,10 +25,14 @@ const createAuthSlice: StateCreator<AuthState> = (set) => ({
   me: undefined,
   isLoggedIn: false,
   isSelectCompany: false,
+  currentCompany: null,
+  currentCompanyLoading: true,
   setPhone: (param) => set({ phone: param }),
   setRole: (role) => set({ role }),
   setMe: (user) => set({ me: user }),
   setCurrentCompany: (param) => set({ currentCompany: param }),
+  setCurrentCompanyLoading: (currentCompanyLoading: boolean) =>
+    set({ currentCompanyLoading }),
   setIsLoggedIn: (isLoggedIn: boolean) => set({ isLoggedIn }),
   setIsSelectCompany: (isSelectCompany: boolean) => set({ isSelectCompany }),
 });

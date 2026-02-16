@@ -7,6 +7,7 @@ export default function RBProfitLoss() {
     { id: "1", name: "Jasa Perawatan,Perbaikan & Lainnya", code: "41-111" },
     { id: "1", name: "Jasa Perawatan,Perbaikan & Lainnya", code: "41-111" },
   ];
+
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
       <div className="space-y-6">

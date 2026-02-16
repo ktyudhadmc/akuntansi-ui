@@ -4,10 +4,14 @@ import useGlobalStore from "@store/useStore";
 import { useEffect } from "react";
 
 export default function useCurrentCompany(companyId: string) {
-
   const setCurrentCompany = useGlobalStore((state) => state.setCurrentCompany);
+  const setCurrentCompanyLoading = useGlobalStore(
+    (state) => state.setCurrentCompanyLoading,
+  );
 
   const { data, loading, error } = useGetCompany(companyId);
+
+  setCurrentCompanyLoading(loading);
 
   useEffect(() => {
     if (!data) return;
@@ -15,9 +19,7 @@ export default function useCurrentCompany(companyId: string) {
 
     /** simpan company */
     localStorage.setItem(config.LOCAL_STORAGE_COMPANY_KEY, data.id.toString());
-
   }, [data, setCurrentCompany]);
-
 
   return { data, loading, error };
 }
