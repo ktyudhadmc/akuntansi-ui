@@ -5,6 +5,7 @@ import { useModal } from "@hooks/useModal";
 import type { BankStatement } from "@services/user/account/cash-bank/interfaces/response-bank-statement.type";
 import { HiTrash } from "react-icons/hi";
 import BankStatementDelete from "../Action/Delete";
+import { formatDateAsYMD } from "@helpers/date";
 
 interface Props {
   item: BankStatement;
@@ -22,7 +23,7 @@ export default function TableItem({ item }: Props) {
       />
       <tr>
         <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-          {item.date}
+          {formatDateAsYMD(item.date)}
         </td>
         <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
           {item.description}
