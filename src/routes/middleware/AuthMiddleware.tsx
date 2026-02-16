@@ -24,10 +24,14 @@ export default function AuthMiddleware({
   const setMe = useGlobalStore((state) => state.setMe);
   const currentCompany = useGlobalStore((state) => state.currentCompany);
   const setCurrentCompany = useGlobalStore((state) => state.setCurrentCompany);
+  const setCurrentCompanyLoading = useGlobalStore(
+    (state) => state.setCurrentCompanyLoading,
+  );
+
   const setRole = useGlobalStore((state) => state.setRole);
   const setIsLoggedIn = useGlobalStore((state) => state.setIsLoggedIn);
   const setIsSelectCompany = useGlobalStore(
-    (state) => state.setIsSelectCompany
+    (state) => state.setIsSelectCompany,
   );
 
   const navigate = useNavigate();
@@ -39,6 +43,7 @@ export default function AuthMiddleware({
     Cookies.get("token");
 
   const storageCompany = localStorage.getItem(config.LOCAL_STORAGE_COMPANY_KEY);
+  console.log(storageCompany);
 
   /** set is loggedIn */
   const isLoggedIn = !!token;
@@ -53,8 +58,12 @@ export default function AuthMiddleware({
   const role = Cookies.get("token")
     ? "admin"
     : Cookies.get("token-company")
-    ? "company"
-    : "user";
+      ? "company"
+      : "user";
+
+  useEffect(() => {
+    setCurrentCompanyLoading(!storageCompany);
+  }, [storageCompany, setCurrentCompanyLoading]);
 
   useEffect(() => {
     setIsLoggedIn(isLoggedIn);

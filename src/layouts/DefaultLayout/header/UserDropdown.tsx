@@ -1,22 +1,29 @@
 import { useState } from "react";
-import { DropdownItem } from "../../../components/ui/dropdown/DropdownItem";
-import { Dropdown } from "../../../components/ui/dropdown/Dropdown";
-
-import useLogout from "@services/auth/hooks/useLogout";
-import useGlobalStore from "@store/useStore";
+import { HiChevronDown } from "react-icons/hi";
 import { useShallow } from "zustand/shallow";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
+import { DropdownItem } from "../../../components/ui/dropdown/DropdownItem";
+import { Dropdown } from "../../../components/ui/dropdown/Dropdown";
+
+import useLogout from "@services/auth/hooks/useLogout";
+import useGlobalStore from "@store/useStore";
+
 import { useModal } from "@hooks/useModal";
 import { Modal } from "@components/ui/modal";
 import Button from "@components/ui/button/Button";
 import AvatarText from "@components/ui/avatar/AvatarText";
+import Badge from "@components/ui/badge/Badge";
+import Skeleton from "@components/Skeleton/Skeleton";
 
 export default function UserDropdown() {
   /** select company */
   const currentCompany = useGlobalStore((state) => state.currentCompany);
+  const currentCompanyLoading = useGlobalStore(
+    (state) => state.currentCompanyLoading,
+  );
 
   const navigate = useNavigate();
   const { isOpen, openModal, closeModal } = useModal();
@@ -74,28 +81,37 @@ export default function UserDropdown() {
         onClick={toggleDropdown}
         className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
       >
-        <AvatarText text={me?.name ?? "unknown"} size="11" />
-        <span className="block ml-3 mr-1 font-medium text-theme-sm">
-          {me?.name ?? "Nama tidak diketahui"}
-        </span>
-        <svg
-          className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-          width="18"
-          height="20"
-          viewBox="0 0 18 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <Skeleton
+          isLoading={me == null}
+          width="2.75rem"
+          height="2.75rem"
+          borderRadius="100%"
         >
-          <path
-            d="M4.3125 8.65625L9 13.3437L13.6875 8.65625"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+          <AvatarText text={me?.name ?? "unknown"} size="11" />
+        </Skeleton>
+
+        <div className="text-start ml-3 mr-1">
+          <div className="flex items-center gap-2">
+            <Skeleton isLoading={me == null} height="1rem" width="6rem">
+              <span className="block font-medium text-theme-sm">
+                {me?.name ?? "Nama"}
+              </span>
+              <HiChevronDown
+                className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
+                  isOpenDropown ? "rotate-180" : ""
+                }`}
+              />
+            </Skeleton>
+          </div>
+
+          <Skeleton
+            isLoading={currentCompanyLoading}
+            height="1rem"
+            width="4rem"
+          >
+            <Badge size="sm">{currentCompany?.name ?? "-"}</Badge>
+          </Skeleton>
+        </div>
       </button>
 
       <Dropdown
