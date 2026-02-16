@@ -83,16 +83,6 @@ const AppHeader: React.FC = () => {
           </button>
 
           <Link to="/user/dashboard" className="lg:hidden">
-            {/* <img
-              className="dark:hidden"
-              src="./images/logo/logo.svg"
-              alt="Logo"
-            />
-            <img
-              className="hidden dark:block"
-              src="./images/logo/logo-dark.svg"
-              alt="Logo"
-            /> */}
             <h3 className="dark:text-white text-brand-600 font-semibold text-lg tracking-wide">
               Dinamika
               <span className="text-xs font-normal italic tracking-normal">

@@ -17,6 +17,7 @@ import Button from "@components/ui/button/Button";
 import AvatarText from "@components/ui/avatar/AvatarText";
 import Badge from "@components/ui/badge/Badge";
 import Skeleton from "@components/Skeleton/Skeleton";
+import { useMediaQuery } from "@hooks/useMediaQuery";
 
 export default function UserDropdown() {
   /** select company */
@@ -28,6 +29,11 @@ export default function UserDropdown() {
   const navigate = useNavigate();
   const { isOpen, openModal, closeModal } = useModal();
   const [isOpenDropown, setIsOpenDropdown] = useState(false);
+
+  const isMd = useMediaQuery("md");
+
+  console.log("isMd");
+  console.log(isMd);
 
   function toggleDropdown() {
     setIsOpenDropdown(!isOpenDropown);
@@ -90,28 +96,42 @@ export default function UserDropdown() {
           <AvatarText text={me?.name ?? "unknown"} size="11" />
         </Skeleton>
 
-        <div className="text-start ml-3 mr-1">
-          <div className="flex items-center gap-2">
-            <Skeleton isLoading={me == null} height="1rem" width="6rem">
-              <span className="block font-medium text-theme-sm">
-                {me?.name ?? "Nama"}
-              </span>
-              <HiChevronDown
-                className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
-                  isOpenDropown ? "rotate-180" : ""
-                }`}
-              />
+        {isMd ? (
+          <div className="text-start ml-3 mr-1">
+            <div className="flex items-center gap-2">
+              <Skeleton isLoading={me == null} height="1rem" width="6rem">
+                <span className="block font-medium text-theme-sm">
+                  {me?.name ?? "Nama"}
+                </span>
+                <HiChevronDown
+                  className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
+                    isOpenDropown ? "rotate-180" : ""
+                  }`}
+                />
+              </Skeleton>
+            </div>
+
+            <Skeleton
+              isLoading={currentCompanyLoading}
+              height="1rem"
+              width="4rem"
+            >
+              <Badge size="sm">{currentCompany?.name ?? "-"}</Badge>
             </Skeleton>
           </div>
-
-          <Skeleton
-            isLoading={currentCompanyLoading}
-            height="1rem"
-            width="4rem"
-          >
-            <Badge size="sm">{currentCompany?.name ?? "-"}</Badge>
-          </Skeleton>
-        </div>
+        ) : (
+          <>
+            <span className="block ml-3 mr-1 font-medium text-theme-sm">
+              {me?.name ?? "Nama"}
+            </span>
+            <HiChevronDown
+              className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
+                isOpenDropown ? "rotate-180" : ""
+              }`}
+            />
+          </>
+        )}
+        
       </button>
 
       <Dropdown
