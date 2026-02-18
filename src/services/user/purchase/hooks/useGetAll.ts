@@ -4,10 +4,11 @@ import type { IGetAllResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
-// import useGlobalStore from "@store/useStore";
+import { parseMonthValue } from "@helpers/index";
+
 
 export default function useGetAll() {
-  // const currentCompany = useGlobalStore((state) => state.currentCompany);
+
   const [name, setName] = useState("");
   const startTransactionDate = useUserStore(
     (state) => state.startTransactionDate,
@@ -16,6 +17,9 @@ export default function useGetAll() {
   const startDueDate = useUserStore((state) => state.startDueDate);
   const endDueDate = useUserStore((state) => state.endDueDate);
   const supplier = useUserStore((state) => state.supplier);
+  const purchaseDate = useUserStore((state) => state.purchaseDate);
+
+  const { year, month } = parseMonthValue(purchaseDate);
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
@@ -25,6 +29,7 @@ export default function useGetAll() {
   const qs = querystring.stringify(
     {
       search: name,
+      year, month,
       start_transaction_date: startTransactionDate,
       end_transaction_date: endTransactionDate,
       start_due_date: startDueDate,
@@ -35,7 +40,6 @@ export default function useGetAll() {
   );
 
   const { data, error } = useSWR(
-    // `/company/${currentCompany?.id}/contacts?${qs}`,
     `/purchase?${qs}`,
     fetcher,
   );

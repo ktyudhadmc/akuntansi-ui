@@ -2,14 +2,14 @@ import { MdOutlineRefresh } from "react-icons/md";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 import useUserStore from "@store/useUserStore";
+import { todayYMString } from "@helpers/index";
+import useMapInputOptions from "@hooks/useMapInputOptions";
 
 import Form from "@components/form/Form";
 import Drawer from "@components/ui/drawer";
 import Button from "@components/ui/button/Button";
 // import DatePicker from "@components/form/date-picker";
-
-import useMapInputOptions from "@hooks/useMapInputOptions";
-import Label from "@components/form/Label";
+// import Label from "@components/form/Label";
 
 import useGetAll from "@services/user/customer/hooks/useGetAll";
 import SelectTwoRhf from "@components/form/SelectTwoRhf";
@@ -44,6 +44,7 @@ export default function Filter({ onClose, onOpen }: Props) {
 
   const setSaleDate = useUserStore((state) => state.setSaleDate);
   const setCustomer = useUserStore((state) => state.setCustomer);
+  const resetSaleFilter = useUserStore((state) => state.resetSaleFilter);
 
   // const setStartTransactionDate = useUserStore(
   //   (state) => state.setStartTransactionDate,
@@ -74,11 +75,14 @@ export default function Filter({ onClose, onOpen }: Props) {
   const onClear = () => {
     methods.reset({
       customer: null,
+      date: todayYMString,
       start_date: null,
       end_date: null,
       start_due_date: null,
       end_due_date: null,
     });
+
+    resetSaleFilter();
   };
 
   return (
@@ -131,8 +135,8 @@ export default function Filter({ onClose, onOpen }: Props) {
           />
         </div> */}
 
-        <Label>Tgl. transaksi</Label>
-        <Input type="month" name="date" defaultValue={saleDate ?? ''} />
+
+        <Input label="Tanggal" type="month" name="date" defaultValue={saleDate ?? ''} />
 
         <SelectTwoRhf
           label="Pelanggan"
