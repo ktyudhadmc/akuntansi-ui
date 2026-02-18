@@ -7,11 +7,13 @@ export declare interface UserSaleState {
   saleStartDueDate: DateOption | null;
   saleEndDueDate: DateOption | null;
   customer: string | null;
+  saleDate: string | null;
   setSaleStartTransactionDate: (param: DateOption | null) => void;
   setSaleEndTransactionDate: (param: DateOption | null) => void;
   setSaleStartDueDate: (param: DateOption | null) => void;
   setSaleEndDueDate: (param: DateOption | null) => void;
   setCustomer: (param: string | null) => void;
+  setSaleDate: (param: string | null) => void;
 }
 
 const createUserSaleSlice: StateCreator<UserSaleState> = (set) => ({
@@ -21,12 +23,14 @@ const createUserSaleSlice: StateCreator<UserSaleState> = (set) => ({
   saleStartDueDate: null,
   saleEndDueDate: null,
   customer: null,
+  saleDate: null,
   setSaleStartTransactionDate: (param) =>
     set({ saleStartTransactionDate: param }),
   setSaleEndTransactionDate: (param) => set({ saleEndTransactionDate: param }),
   setSaleStartDueDate: (param) => set({ saleStartDueDate: param }),
   setSaleEndDueDate: (param) => set({ saleEndDueDate: param }),
   setCustomer: (param) => set({ customer: param }),
+  setSaleDate: (param) => set({ saleDate: param }),
 });
 
 export default createUserSaleSlice;
