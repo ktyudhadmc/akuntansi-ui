@@ -1,14 +1,22 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { capitalize } from "lodash";
 
 import { useSidebar } from "@context/SidebarContext";
 import { ThemeToggleButton } from "@components/common/ThemeToggleButton";
 import NotificationDropdown from "@layouts/DefaultLayout/header/NotificationDropdown";
 import UserDropdown from "@layouts/DefaultLayout/header/UserDropdown";
-import { Link } from "react-router-dom";
+import useGlobalStore from "@store/useStore";
+import Skeleton from "@components/Skeleton/Skeleton";
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
+
+  const currentCompany = useGlobalStore((state) => state.currentCompany);
+  const currentCompanyLoading = useGlobalStore(
+    (state) => state.currentCompanyLoading,
+  );
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
@@ -85,9 +93,12 @@ const AppHeader: React.FC = () => {
           <Link to="/user/dashboard" className="lg:hidden">
             <h3 className="dark:text-white text-brand-600 font-semibold text-lg tracking-wide">
               Dinamika
-              <span className="text-xs font-normal italic tracking-normal">
-                Jurnal
-              </span>
+
+              <Skeleton isLoading={currentCompanyLoading} height="0.6rem" width="3rem" borderRadius="1px" className="ml-1">
+                <span className="text-xs font-normal italic tracking-normal capitaliZe">
+                  {capitalize(currentCompany?.name)}
+                </span>
+              </Skeleton>
             </h3>
           </Link>
 
