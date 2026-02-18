@@ -40,6 +40,10 @@ export default function Filter({ onClose, onOpen }: Props) {
   // const startDueDate = useUserStore((state) => state.saleStartDueDate);
   // const endDueDate = useUserStore((state) => state.saleEndDueDate);
   const customer = useUserStore((state) => state.customer);
+  const saleDate = useUserStore((state) => state.saleDate);
+
+  const setSaleDate = useUserStore((state) => state.setSaleDate);
+  const setCustomer = useUserStore((state) => state.setCustomer);
 
   // const setStartTransactionDate = useUserStore(
   //   (state) => state.setStartTransactionDate,
@@ -49,9 +53,8 @@ export default function Filter({ onClose, onOpen }: Props) {
   // );
   // const setStartDueDate = useUserStore((state) => state.setStartDueDate);
   // const setEndDueDate = useUserStore((state) => state.setEndDueDate);
-  // const setCustomer = useUserStore((state) => state.setCustomer);
 
-  const { data: customers, loading: customerLoading } = useGetAll();
+  const { data: customers, loading: customerLoading, setName: setSearchCustomer } = useGetAll();
   const customerOptions = useMapInputOptions(customers);
 
   const methods = useForm({ mode: "onChange" });
@@ -61,11 +64,11 @@ export default function Filter({ onClose, onOpen }: Props) {
     // setEndTransactionDate(state.end_date);
     // setStartDueDate(state.start_due_date);
     // setEndDueDate(state.end_due_date);
-    // setCustomer(state.customer);
+    setSaleDate(state.date)
+    setCustomer(state.customer);
 
-    // onClose();
+    onClose();
 
-    console.log(state);
   };
 
   const onClear = () => {
@@ -129,7 +132,7 @@ export default function Filter({ onClose, onOpen }: Props) {
         </div> */}
 
         <Label>Tgl. transaksi</Label>
-        <Input type="month" name="date" />
+        <Input type="month" name="date" defaultValue={saleDate ?? ''} />
 
         <SelectTwoRhf
           label="Pelanggan"
@@ -137,6 +140,7 @@ export default function Filter({ onClose, onOpen }: Props) {
           selectTwoOptions={customerOptions}
           defaultValue={customer}
           isLoading={customerLoading}
+          onInputChange={setSearchCustomer}
           isClearable
           isSearchable
         />
