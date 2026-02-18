@@ -1,4 +1,4 @@
-import Button from "@components/ui/button/Button";
+// import Button from "@components/ui/button/Button";
 
 import type { Account } from "@services/user/account/index/interfaces/response.type";
 import { formatIDR } from "@helpers/index";
@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 
 // import { Dropdown } from "@components/ui/dropdown/Dropdown";
 // import { DropdownItem } from "@components/ui/dropdown/DropdownItem";
-import { useModal } from "@hooks/useModal";
-import AccountBankIntegrationCreate from "../Action/CreateBankLink";
+// import { useModal } from "@hooks/useModal";
+// import AccountBankIntegrationCreate from "../Action/CreateBankLink";
 
 interface Props {
   item: Account;
@@ -19,7 +19,7 @@ interface Props {
 
 export default function TableItem({ item }: Props) {
   // const navigate = useNavigate();
-  const { openModal, isOpen, closeModal } = useModal();
+  // const { openModal, isOpen, closeModal } = useModal();
   // const [isOpenDropown, setIsOpenDropdown] = useState(false);
   // function toggleDropdown() {
   //   setIsOpenDropdown(!isOpenDropown);
@@ -42,12 +42,12 @@ export default function TableItem({ item }: Props) {
         </Link>
       </td>
       <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
-        <AccountBankIntegrationCreate
+        {/* <AccountBankIntegrationCreate
           onOpen={isOpen}
           onClose={closeModal}
           item={item}
-        />
-        <div className="flex md:flex-row flex-col justify-between gap-2">
+        /> */}
+        <div className="flex justify-between gap-6 whitespace-nowrap">
           <Link
             to={`${item.id}`}
             // target="_blank"
@@ -56,14 +56,14 @@ export default function TableItem({ item }: Props) {
           >
             {item.name}
           </Link>
-          <Button
+          {/* <Button
             variant="outline"
             size="xs"
             className="whitespace-nowrap"
             onClick={openModal}
           >
             Hubungkan ke bank
-          </Button>
+          </Button> */}
         </div>
       </td>
       <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
