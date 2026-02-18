@@ -5,7 +5,7 @@ import debounce from "lodash/debounce";
 
 import { formatMonthValue, parseMonthValue } from "@helpers/index";
 
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Button from "@components/ui/button/Button";
 
 interface Props {
@@ -34,7 +34,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
           Buat pemakaian
         </Button>
         <div className="flex gap-4">
-          <SearchInput
+          <FilterInput
             type="month"
             defaultValue={formatMonthValue()}
             onChange={(e) => {
@@ -42,7 +42,8 @@ export default function TableHeader({ setSearchCallback }: Props) {
             }}
           />
           {/* Search */}
-          <SearchInput
+          <FilterInput
+            withPrefixIcon
             placeholder="Cari"
             onChange={(e) => debouncedSearch(e.target.value)}
           />

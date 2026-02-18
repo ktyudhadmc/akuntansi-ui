@@ -4,7 +4,7 @@ import { HiPlus } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
 
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Button from "@components/ui/button/Button";
 
 
@@ -40,7 +40,8 @@ export default function TableHeader({ setSearchCallback }: Props) {
             Impor
           </Button>
 
-          <SearchInput
+          <FilterInput
+            withPrefixIcon
             placeholder="Cari"
             onChange={(e) => debouncedSearch(e.target.value)}
           />

@@ -1,4 +1,4 @@
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Button from "@components/ui/button/Button";
 
 import { debounce } from "lodash";
@@ -31,7 +31,8 @@ export default function TableHeader({ setSearchCallback }: Props) {
           <HiPlus /> Tambah satuan
         </Button>
         <div className="flex lg:flex-row flex-col gap-2">
-          <SearchInput
+          <FilterInput
+            withPrefixIcon
             placeholder="Cari"
             onChange={(e) => debouncedSearch(e.target.value)}
           />

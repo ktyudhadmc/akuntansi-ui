@@ -8,7 +8,7 @@ import DatePicker from "@components/form/date-picker";
 import Button from "@components/ui/button/Button";
 import Form from "@components/form/Form";
 
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import { useCallback } from "react";
 import { debounce } from "lodash";
 
@@ -94,7 +94,8 @@ export default function TableAction({ setSearch }: Props) {
         </Form>
 
         <div className="lg:mt-auto mt-4">
-          <SearchInput
+          <FilterInput
+            withPrefixIcon
             placeholder="Cari"
             onChange={(e) => debouncedSearch(e.target.value)}
           />
