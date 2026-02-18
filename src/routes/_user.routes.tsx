@@ -58,18 +58,6 @@ export default [
               { path: ":id/edit", element: <User.COAEditPage /> },
               { path: ":id/import", element: <User.COAImportPage /> },
               { path: "balance-setup", element: <User.COABalanceSetupPage /> },
-              { path: "locking-periods", element: <User.COALockPeriodPage /> },
-
-              {
-                path: "closing-books",
-                children: [
-                  { index: true, element: <User.COAClosingBookPage /> },
-                  {
-                    path: "create",
-                    element: <User.COAClosingBookCreatePage />,
-                  },
-                ],
-              },
             ],
           },
 
@@ -93,6 +81,8 @@ export default [
       /** PERIOD */
       { path: "periods", element: <User.PeriodPage /> },
       { path: "periods/lock", element: <User.PeriodLockPage /> },
+      { path: "periods/:id/lock-preview", element: <User.PeriodLockShowPage /> },
+
       { path: "periods/books/close", element: <User.PeriodClosePage /> },
 
       /** PRODUK */
