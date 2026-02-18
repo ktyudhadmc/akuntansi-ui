@@ -48,7 +48,6 @@ export default function AuthMiddleware({
     Cookies.get("token");
 
   const storageCompany = localStorage.getItem(config.LOCAL_STORAGE_COMPANY_KEY);
-  console.log(storageCompany);
 
   /** set is loggedIn */
   const isLoggedIn = !!token;
@@ -117,7 +116,7 @@ export default function AuthMiddleware({
 
     setCurrentPeriod(current);
     // setOpenPeriods(data.data.opens);
-  }, [setMe, setCurrentPeriod]);
+  }, [setCurrentPeriod]);
 
   const redirectToDashboard = () => {
     switch (role) {
