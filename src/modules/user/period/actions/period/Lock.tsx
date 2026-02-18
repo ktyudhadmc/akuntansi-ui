@@ -12,16 +12,19 @@ import Alert from "@components/ui/alert";
 import Button from "@components/ui/button/Button";
 import useClose from "@services/user/period/hooks/useClose";
 import Input from "@components/form/input/InputField";
+import { useNavigate } from "react-router-dom";
 
 // type FormFields = { start_date: string; end_date: string; accept: boolean };
 type FormFields = { period_date: string; accept: boolean };
 
 export default function Lock() {
+  const navigate = useNavigate();
   const goBack = useGoBack();
 
   const methods = useForm<FormFields>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
-  const isValid = methods.formState.isValid;
+  const acceptValue = methods.watch("accept");
+  const isValid = methods.formState.isValid && acceptValue;
 
   const { closeData } = useClose();
 
@@ -37,9 +40,12 @@ export default function Lock() {
       if (error) {
         toast.error("Gagal menutup periode!");
       } else {
-        methods.reset();
-        goBack();
-        toast.success("Berhasil menutup periode!");
+        toast.success("Berhasil menutup periode!", {
+          onClose() {
+            methods.reset();
+            navigate("../periods/1/lock-preview");
+          },
+        });
       }
     }
   };
