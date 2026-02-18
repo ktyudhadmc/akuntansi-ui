@@ -22,6 +22,7 @@ interface Props {
   isSearchable?: boolean;
   isClearable?: boolean;
   isLoading?: boolean;
+  isDisabled?: boolean;
 
   value?: SingleValue<OptionValue> | MultiValue<OptionValue>;
   defaultValue?: any;
@@ -41,6 +42,7 @@ export default function SelectTwoRhf({
   isSearchable = false,
   isLoading = false,
   isClearable,
+  isDisabled,
   value,
   defaultValue,
   selectTwoOptions,
@@ -98,6 +100,7 @@ export default function SelectTwoRhf({
               isClearable={isClearable}
               isMulti={isMulti}
               isLoading={isLoading}
+              isDisabled={isDisabled}
               value={
                 isMulti
                   ? selectTwoOptions.filter((o) =>
@@ -143,13 +146,21 @@ export default function SelectTwoRhf({
                 placeholder: () => "dark:!text-gray-400 text-sm",
               }}
               styles={{
-                control: (base) => ({
+                control: (base, state) => ({
                   ...base,
                   borderRadius: "8px",
-                  borderColor: "var(--color-gray-300)",
-                  boxShadow: "var(--color-brand-600)",
+                  borderColor: state.isDisabled
+                    ? "var(--color-gray-200)"
+                    : "var(--color-gray-300)",
+                  backgroundColor: state.isDisabled
+                    ? "var(--color-gray-100)"
+                    : base.backgroundColor,
+                  boxShadow: "none",
+                  cursor: state.isDisabled ? "not-allowed" : "pointer",
                   "&:hover": {
-                    borderColor: "var(--color-brand-600)",
+                    borderColor: state.isDisabled
+                      ? "var(--color-gray-200)"
+                      : "var(--color-brand-600)",
                   },
                 }),
                 valueContainer: (base) => ({

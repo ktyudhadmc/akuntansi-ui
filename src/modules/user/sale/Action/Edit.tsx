@@ -192,7 +192,7 @@ export default function EditSale() {
           <Skeleton isLoading={loading}>
             <Input
               label="Nomor dokumen"
-              placeholder="Nomor dokumen pembelian"
+              placeholder="Nomor dokumen"
               name="document_number"
               defaultValue={data?.document_number}
               required

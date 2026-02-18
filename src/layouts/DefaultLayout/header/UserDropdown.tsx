@@ -32,9 +32,6 @@ export default function UserDropdown() {
 
   const isMd = useMediaQuery("md");
 
-  console.log("isMd");
-  console.log(isMd);
-
   function toggleDropdown() {
     setIsOpenDropdown(!isOpenDropown);
   }
@@ -104,15 +101,14 @@ export default function UserDropdown() {
                   {me?.name ?? "Nama"}
                 </span>
                 <HiChevronDown
-                  className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
-                    isOpenDropown ? "rotate-180" : ""
-                  }`}
+                  className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${isOpenDropown ? "rotate-180" : ""
+                    }`}
                 />
               </Skeleton>
             </div>
 
             <Skeleton
-              isLoading={currentCompanyLoading}
+              isLoading={currentCompanyLoading || !currentCompany?.name}
               height="1rem"
               width="4rem"
             >
@@ -125,13 +121,11 @@ export default function UserDropdown() {
               {me?.name ?? "Nama"}
             </span>
             <HiChevronDown
-              className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
-                isOpenDropown ? "rotate-180" : ""
-              }`}
+              className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${isOpenDropown ? "rotate-180" : ""
+                }`}
             />
           </>
         )}
-        
       </button>
 
       <Dropdown

@@ -3,46 +3,22 @@ import { BeatLoader } from "react-spinners";
 
 import TableItem from "./TableItem";
 
-import { formatIDRLocale, sumNested } from "@helpers/index";
+import { formatIDRLocale } from "@helpers/index";
 
-// import useGetAllLedgerAccount from "@services/user/report/ledger/hooks/useGetAllLedgerAccount";
 import useGetAllLedger from "@services/user/report/ledger/hooks/useGetAllLedger";
 import TableHeader from "./TableHeader";
 import RBLedgerHeader from "../Header";
 
 export default function RBLedger() {
-  // const { data, loading } = useGetAllLedgerAccount();
   const { data, loading, setSearch } = useGetAllLedger();
-
-  const grandTotalCredit = sumNested(
-    data,
-    (i) => i.children,
-    (c) => c.credit,
-  );
-
-  const grandTotalDebit = sumNested(
-    data,
-    (i) => i.children,
-    (c) => c.debit,
-  );
-  const grandTotalBalance = sumNested(
-    data,
-    (i) => i.children,
-    (c) => c.balance,
-  );
-  const grandTotalOpenBalance = sumNested(
-    data,
-    (i) => i.children,
-    (c) => c.opening_balance,
-  );
 
   return (
     <>
       <RBLedgerHeader
-        credit={grandTotalCredit}
-        debit={grandTotalDebit}
-        startBalance={grandTotalBalance}
-        endBalance={grandTotalOpenBalance}
+        credit={0}
+        debit={0}
+        startBalance={0}
+        endBalance={0}
       />
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
@@ -108,10 +84,10 @@ export default function RBLedger() {
                           Total Keseluruhan
                         </td>
                         <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                          {formatIDRLocale(grandTotalDebit)}
+                          {formatIDRLocale(0)}
                         </td>
                         <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                          {formatIDRLocale(grandTotalCredit)}
+                          {formatIDRLocale(0)}
                         </td>
                       </tr>
                     </>

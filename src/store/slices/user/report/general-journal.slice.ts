@@ -1,15 +1,20 @@
 import type { StateCreator } from "zustand";
 import type { DateOption } from "@def/option";
-import { todayYMDString } from "@helpers/index";
+import { todayYMDString, todayYMString } from "@helpers/index";
 
 export declare interface UserGeneralJournalState {
   startDate: DateOption | null;
   endDate: DateOption | null;
-  account: String | null;
+  journalAccount: String | null;
+
+  journalDate: string;
 
   setStartDate: (param: DateOption | null) => void;
   setEndDate: (param: DateOption | null) => void;
-  setAccount: (param: String | null) => void;
+  setJournalAccount: (param: String | null) => void;
+  setJournalDate: (param: string) => void;
+
+  resetJournalFilter: () => void;
 }
 
 const createUserGeneralJournalSlice: StateCreator<UserGeneralJournalState> = (
@@ -18,11 +23,19 @@ const createUserGeneralJournalSlice: StateCreator<UserGeneralJournalState> = (
   /** FILTER */
   startDate: todayYMDString,
   endDate: todayYMDString,
-  account: null,
+  journalAccount: null,
+  journalDate: todayYMString,
 
   setStartDate: (param) => set({ startDate: param }),
   setEndDate: (param) => set({ endDate: param }),
-  setAccount: (param) => set({ account: param }),
+  setJournalAccount: (param) => set({ journalAccount: param }),
+  setJournalDate: (param) => set({ journalDate: param }),
+
+  resetJournalFilter: () =>
+    set({
+      journalAccount: null,
+      journalDate: todayYMString
+    }),
 });
 
 export default createUserGeneralJournalSlice;

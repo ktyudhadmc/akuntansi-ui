@@ -4,7 +4,7 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { useCallback, useState } from "react";
 
 import Button from "@components/ui/button/Button";
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 
 interface Props {
@@ -67,7 +67,8 @@ export default function TableHeader({ setSearchCallback }: Props) {
 
           {/* Search */}
           <div className="w-full">
-            <SearchInput
+            <FilterInput
+              withPrefixIcon
               placeholder="Cari"
               onChange={(e) => debouncedSearch(e.target.value)}
             />

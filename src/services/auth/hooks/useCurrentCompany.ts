@@ -5,13 +5,8 @@ import { useEffect } from "react";
 
 export default function useCurrentCompany(companyId: string) {
   const setCurrentCompany = useGlobalStore((state) => state.setCurrentCompany);
-  const setCurrentCompanyLoading = useGlobalStore(
-    (state) => state.setCurrentCompanyLoading,
-  );
 
   const { data, loading, error } = useGetCompany(companyId);
-
-  setCurrentCompanyLoading(loading);
 
   useEffect(() => {
     if (!data) return;

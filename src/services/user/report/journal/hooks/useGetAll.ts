@@ -4,11 +4,16 @@ import type { IGetAllResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
+import { parseMonthValue } from "@helpers/date";
 
 export default function useGetAll() {
   const [search, setSearch] = useState("");
+
+  const journalDate = useUserStore((state) => state.journalDate);
   const startDate = useUserStore((state) => state.startDate);
   const endDate = useUserStore((state) => state.endDate);
+
+  const { year, month } = parseMonthValue(journalDate);
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -16,7 +21,7 @@ export default function useGetAll() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search, start_date: startDate, end_date: endDate },
+    { search, year, month, start_date: startDate, end_date: endDate },
     { skipEmptyString: true, skipNull: true },
   );
 
