@@ -25,7 +25,7 @@ export default function SaleTable() {
                   Pelanggan
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-                  Tgl. Tempo
+                  Jenis layanan
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400 whitespace-nowrap">
                   Total Harga

@@ -1,8 +1,10 @@
-// import Badge from "@components/ui/badge/Badge";
 import { Link } from "react-router-dom";
 
-import TableItemMenu from "./TableItemMenu";
 import { formatIDRLocale } from "@helpers/currency";
+
+import TableItemMenu from "./TableItemMenu";
+import Badge from "@components/ui/badge/Badge";
+
 import type { Sale } from "@services/user/sale/interfaces/response.type";
 
 interface Props {
@@ -10,6 +12,7 @@ interface Props {
 }
 
 export default function TableItem({ item }: Props) {
+  const isService = item.items[0]?.service_type.id == "1";
   return (
     <tr>
       <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
@@ -22,14 +25,16 @@ export default function TableItem({ item }: Props) {
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
         <Link
-          to={`../contacts/${item.customer.id}/edit?tab=supplier`}
+          to={`../contacts/${item.customer.id}/edit?tab=customer`}
           className={`flex my-auto text-brand-600`}
         >
           {item.customer.name}
         </Link>
       </td>
       <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-        {item.date}
+        <Badge size="sm" color={isService ? "info" : "success"}>
+          {item.items[0]?.service_type.name}
+        </Badge>
       </td>
       <td className="px-4 py-1.5 text-black text-end text-theme-xs dark:text-white font-medium">
         {formatIDRLocale(item.total_gross, { withSymbol: true })}
