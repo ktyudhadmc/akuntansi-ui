@@ -4,22 +4,24 @@ import { HiTrash, HiPencil, HiEye } from "react-icons/hi";
 import { useModal } from "@hooks/useModal";
 import { useNavigate } from "react-router-dom";
 
-import DeleteProduct from "../Action/Delete";
+import DeletePurchase from "../Action/Delete";
 
 interface Props {
   id: string;
   name: string;
+  date: Date;
 }
 
-export default function TableItemMenu({ id, name }: Props) {
+export default function TableItemMenu({ id, name, date }: Props) {
   const navigate = useNavigate();
   const { openModal, isOpen, closeModal } = useModal();
 
   return (
     <>
-      <DeleteProduct
+      <DeletePurchase
         id={id}
         name={name}
+        date={date}
         key={`modal-delete-${name}`}
         onOpen={isOpen}
         onClose={closeModal}

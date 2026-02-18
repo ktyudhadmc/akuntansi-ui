@@ -32,9 +32,6 @@ export default function UserDropdown() {
 
   const isMd = useMediaQuery("md");
 
-  console.log("isMd");
-  console.log(isMd);
-
   function toggleDropdown() {
     setIsOpenDropdown(!isOpenDropown);
   }
@@ -131,7 +128,6 @@ export default function UserDropdown() {
             />
           </>
         )}
-        
       </button>
 
       <Dropdown

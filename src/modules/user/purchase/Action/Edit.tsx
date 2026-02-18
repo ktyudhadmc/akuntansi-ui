@@ -34,6 +34,9 @@ import type {
   PurchaseItem,
 } from "@services/user/purchase/interfaces/request.type";
 import { responseToRequest } from "@services/user/purchase/interfaces/request.mapper";
+import { usePeriodPermissions } from "@hooks/usePeriodPermissions";
+import { parseYMDToDate } from "@helpers/date";
+import AlertPeriod from "@components/Reusable/AlertPeriod";
 
 type FormFields = ICreatePurchasePayload;
 
@@ -71,6 +74,7 @@ export default function EditPurchase() {
     loading: productLoading,
     setName: setSearchProduct,
   } = useGetAllProduct();
+
   const {
     data: suppliers,
     loading: supplierLoading,
@@ -85,7 +89,15 @@ export default function EditPurchase() {
   const fieldPurchaseItems = useFieldArray({ control, name: "items" });
   const watchedPurchaseItems = useWatch({ control, name: "items" });
 
+  /** hooks check period */
+  const { canEdit, isLocked, isClosed } = usePeriodPermissions(
+    parseYMDToDate(data?.date as string),
+  );
+
   const onSubmit: SubmitHandler<FormFields> = async (state) => {
+    /** can't force update */
+    if (!canEdit) return;
+
     const { error, response } = await updateData(state);
     if (error || response) {
       if (error) {
@@ -104,6 +116,9 @@ export default function EditPurchase() {
   }, [data, reset]);
 
   const removeItems = (index: any) => {
+    /** can't force update */
+    if (!canEdit) return;
+
     fieldPurchaseItems.remove(index);
 
     const current = methods.getValues("items").filter(Boolean);
@@ -147,6 +162,12 @@ export default function EditPurchase() {
 
   return (
     <div>
+      <AlertPeriod
+        isLoading={loading}
+        isClosed={isClosed}
+        isLocked={isLocked}
+      />
+
       <Form {...methods} onSubmit={onSubmit}>
         <div className="lg:w-1/2 w-full pr-2">
           <Skeleton isLoading={loading}>
@@ -156,6 +177,7 @@ export default function EditPurchase() {
               id="document_number"
               name="document_number"
               defaultValue={data?.document_number}
+              disabled={!canEdit}
               required
             />
           </Skeleton>
@@ -168,6 +190,7 @@ export default function EditPurchase() {
               id="date"
               name="date"
               defaultValue={data?.date}
+              disabled={!canEdit}
               required
             />
           </Skeleton>
@@ -177,6 +200,7 @@ export default function EditPurchase() {
               id="due_date"
               name="due_date"
               defaultValue={data?.due_date}
+              disabled={!canEdit}
               required
             />
           </Skeleton>
@@ -197,6 +221,7 @@ export default function EditPurchase() {
             }}
             isLoading={supplierLoading || loading}
             onInputChange={setSearchSupplier}
+            isDisabled={!canEdit}
             isSearchable
             isClearable
             isRequired
@@ -213,6 +238,7 @@ export default function EditPurchase() {
               value: data?.account.id,
             }}
             isLoading={accountLoading || loading}
+            isDisabled={!canEdit}
             isSearchable
             isClearable
             isRequired
@@ -283,6 +309,7 @@ export default function EditPurchase() {
                               }
                               onInputChange={setSearchProduct}
                               isLoading={productLoading || loading}
+                              isDisabled={!canEdit}
                               isSearchable
                               isClearable
                               isRequired
@@ -298,6 +325,7 @@ export default function EditPurchase() {
                               min="0"
                               step={1}
                               required
+                              disabled={!canEdit}
                             />
                           </div>
                         </td>
@@ -308,6 +336,7 @@ export default function EditPurchase() {
                               name={`items[${index}][unit_of_measure_id]`}
                               selectTwoOptions={unitOptions}
                               isLoading={unitLoading}
+                              isDisabled={!canEdit}
                               isSearchable
                               isClearable
                               isRequired
@@ -324,6 +353,7 @@ export default function EditPurchase() {
                               isSearchable
                               isClearable
                               isRequired
+                              isDisabled={!canEdit}
                             />
                           </div>
                         </td>
@@ -337,6 +367,7 @@ export default function EditPurchase() {
                               step={1}
                               required
                               className="text-end"
+                              disabled={!canEdit}
                               leftIcon={
                                 <span className="font-medium text-sm">Rp</span>
                               }
@@ -362,7 +393,7 @@ export default function EditPurchase() {
                             />
                           </div>
                         </td>
-                        {fieldPurchaseItems.fields.length > 1 && (
+                        {fieldPurchaseItems.fields.length > 1 && canEdit && (
                           <td className="pl-1 pr-5 py-3">
                             <Button
                               type="button"
@@ -383,20 +414,21 @@ export default function EditPurchase() {
           </div>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex lg:flex-row flex-col gap-6 justify-between">
           <div className="lg:w-1/4 w-full">
             <TextArea
               label="Catatan"
               name="description"
               placeholder="Catatan pembelian"
+              disabled={!canEdit}
             />
           </div>
 
           <div className="lg:w-1/4 w-full grid grid-cols-2">
-            <h4 className="text-start font-medium text-lg dark:text-white">
+            <h4 className="text-start font-medium lg:text-lg text-md dark:text-white">
               Total
             </h4>
-            <p className="text-end font-medium text-lg dark:text-white">
+            <p className="text-end font-medium lg:text-lg text-md dark:text-white">
               {formatIDRLocale(grandTotal, {
                 withSymbol: true,
               })}
@@ -418,9 +450,9 @@ export default function EditPurchase() {
             type="submit"
             className=" uppercase"
             size="sm"
-            disabled={!isValid || isSubmitting}
+            disabled={!isValid || !canEdit || isSubmitting}
           >
-            {!isSubmitting ? "Kirim" : <Spinner />}
+            {!isSubmitting ? "Simpan" : <Spinner />}
           </Button>
         </div>
       </Form>
