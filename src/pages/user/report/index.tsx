@@ -5,6 +5,9 @@ import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import { TabUnderline } from "@components/ui/tabs";
 
 import ReportBusinessPage from "./business";
+import ReportSalePage from "./sale";
+import ReportPurchasePage from "./purchase";
+import ReportBankPage from "./bank";
 
 
 export default function ReportPage() {
@@ -36,9 +39,12 @@ export default function ReportPage() {
           />
 
 
-          {activeTab != "business" && <h4>Halaman {activeTab}, It Works!</h4>}
+          {/* {activeTab != "business" && <h4>Halaman {activeTab}, It Works!</h4>} */}
 
           {activeTab == "business" && <ReportBusinessPage />}
+          {activeTab == "sales" && <ReportSalePage />}
+          {activeTab == "purchases" && <ReportPurchasePage />}
+          {activeTab == "bank" && <ReportBankPage />}
         </div>
       </div>
     </>

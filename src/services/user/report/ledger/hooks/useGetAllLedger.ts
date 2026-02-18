@@ -4,12 +4,16 @@ import type { IGetAllLedgerResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
+import { parseMonthValue } from "@helpers/date";
 
 export default function useGetAllLedger() {
   const [search, setSearch] = useState("");
 
   const startDate = useUserStore((state) => state.ledgerStartDate);
   const endDate = useUserStore((state) => state.ledgerEndDate);
+  const ledgerDate = useUserStore((state) => state.ledgerDate);
+
+  const { year, month } = parseMonthValue(ledgerDate);
 
   const fetcher: Fetcher<IGetAllLedgerResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -17,7 +21,7 @@ export default function useGetAllLedger() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search, start_date: startDate, end_date: endDate },
+    { search, year, month, start_date: startDate, end_date: endDate },
     { skipEmptyString: true, skipNull: true },
   );
 

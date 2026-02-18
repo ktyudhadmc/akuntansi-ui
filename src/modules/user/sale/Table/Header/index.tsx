@@ -6,7 +6,7 @@ import Button from "@components/ui/button/Button";
 import debounce from "lodash/debounce";
 // import { AiFillCaretDown } from "react-icons/ai";
 import { useCallback } from "react";
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Filter from "./Filter";
 import { useDrawer } from "@hooks/useDrawer";
 import { HiOutlineFilter, HiPlus } from "react-icons/hi";
@@ -72,7 +72,8 @@ export default function TableHeader({ setSearchCallback }: Props) {
           </Button>
           <div className="flex gap-2">
             <div className="w-full">
-              <SearchInput
+              <FilterInput
+                withPrefixIcon
                 placeholder="Cari"
                 onChange={(e) => debouncedSearch(e.target.value)}
               />

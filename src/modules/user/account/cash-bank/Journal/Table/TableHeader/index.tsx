@@ -6,7 +6,7 @@ import { MdOutlineRefresh } from "react-icons/md";
 import { todayYMDString } from "@helpers/index";
 
 import Button from "@components/ui/button/Button";
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Form from "@components/form/Form";
 import DatePicker from "@components/form/date-picker";
 import useUserStore from "@store/useUserStore";
@@ -92,7 +92,8 @@ export default function TableHeader({ setSearch }: Props) {
             </div>
           </div>
         </Form>
-        <SearchInput
+        <FilterInput
+          withPrefixIcon
           placeholder="Cari"
           onChange={(e) => debouncedSearch(e.target.value)}
         />

@@ -9,7 +9,8 @@ import { getMe } from "@services/auth/hooks/useGetMe";
 // import useGetCompany from "@services/global/company/hooks/useGet";
 import config from "@constants/config";
 import useCurrentCompany from "@services/auth/hooks/useCurrentCompany";
-import { getActivePeriod } from "@services/auth/hooks/useGetActivePeriod";
+// import { getActivePeriod } from "@services/auth/hooks/useGetActivePeriod";
+import type { Period } from "@services/auth/interfaces/period.type";
 
 type Props = {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ export default function AuthMiddleware({
 
   const setMe = useGlobalStore((state) => state.setMe);
   const setCurrentPeriod = useGlobalStore((state) => state.setCurrentPeriod);
-  const setOpenPeriods = useGlobalStore((state) => state.setOpenPeriods);
+  // const setOpenPeriods = useGlobalStore((state) => state.setOpenPeriods);
 
   const currentCompany = useGlobalStore((state) => state.currentCompany);
   const setCurrentCompany = useGlobalStore((state) => state.setCurrentCompany);
@@ -47,7 +48,6 @@ export default function AuthMiddleware({
     Cookies.get("token");
 
   const storageCompany = localStorage.getItem(config.LOCAL_STORAGE_COMPANY_KEY);
-  console.log(storageCompany);
 
   /** set is loggedIn */
   const isLoggedIn = !!token;
@@ -92,30 +92,31 @@ export default function AuthMiddleware({
   }, [role, setMe, setRole]);
 
   useEffect(() => {
-    getActivePeriod().then(({ data }) => {
-      setCurrentPeriod(data.data.current);
-      setOpenPeriods(data.data.opens);
-    });
+    // getActivePeriod().then(({ data }) => {
+    //   setCurrentPeriod(data.data.current);
+    //   setOpenPeriods(data.data.opens);
+    // });
 
-    // const current: Period = {
-    //   id: "1",
-    //   company: {
-    //     id: "1",
-    //     code: "1",
-    //     name: "pt",
-    //   },
-    //   start_date: new Date(),
-    //   end_date: null,
-    //   is_current: true,
-    //   is_locked: false,
-    //   is_closed: false,
-    //   closed_at: null,
-    //   locked_at: null,
-    // };
+    /** TODO: hit api */
+    const current: Period = {
+      id: "1",
+      company: {
+        id: "1",
+        code: "1",
+        name: "pt",
+      },
+      start_date: new Date("2025-01-01"),
+      end_date: null,
+      is_current: true,
+      is_locked: false,
+      is_closed: false,
+      closed_at: null,
+      locked_at: null,
+    };
 
-    // setCurrentPeriod(current);
+    setCurrentPeriod(current);
     // setOpenPeriods(data.data.opens);
-  }, [setMe, setCurrentPeriod]);
+  }, [setCurrentPeriod]);
 
   const redirectToDashboard = () => {
     switch (role) {

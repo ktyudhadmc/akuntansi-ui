@@ -177,7 +177,7 @@ export default function CreateSale() {
         <div className="lg:w-1/2 w-full pr-2">
           <Input
             label="Nomor dokumen"
-            placeholder="Nomor dokumen pembelian"
+            placeholder="Nomor dokumen"
             name="document_number"
             required
           />

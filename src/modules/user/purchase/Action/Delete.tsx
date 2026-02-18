@@ -1,5 +1,6 @@
 import Button from "@components/ui/button/Button";
 import { Modal } from "@components/ui/modal";
+import { usePeriodPermissions } from "@hooks/usePeriodPermissions";
 import useDelete from "@services/user/purchase/hooks/useDelete";
 
 import { toast } from "react-toastify";
@@ -7,14 +8,26 @@ import { toast } from "react-toastify";
 interface Props {
   id: string;
   name: string;
+  date: Date;
   onOpen: boolean;
   onClose: () => void;
 }
 
-export default function DeletePurchase({ id, name, onOpen, onClose }: Props) {
+export default function DeletePurchase({
+  id,
+  name,
+  date,
+  onOpen,
+  onClose,
+}: Props) {
   const { deleteData } = useDelete();
 
+  const { canDelete } = usePeriodPermissions(date);
+
   const onDelete = async () => {
+    /** hooks can't delete */
+    if (!canDelete) return;
+
     const { error, response } = await deleteData(Number(id));
     if (error || response) {
       if (error) {

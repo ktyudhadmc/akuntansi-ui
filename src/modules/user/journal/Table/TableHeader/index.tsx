@@ -1,4 +1,4 @@
-import SearchInput from "@components/form/default/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Button from "@components/ui/button/Button";
 import { useDrawer } from "@hooks/useDrawer";
 import { debounce } from "lodash";
@@ -33,7 +33,8 @@ export default function TableHeader({ setSearchCallback }: Props) {
         </Button>
         <div className="flex gap-2">
           <div className="w-full">
-            <SearchInput
+            <FilterInput
+              withPrefixIcon
               placeholder="Cari"
               onChange={(e) => debouncedSearch(e.target.value)}
             />

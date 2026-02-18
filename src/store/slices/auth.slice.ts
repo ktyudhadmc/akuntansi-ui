@@ -53,6 +53,7 @@ const createAuthSlice: StateCreator<AuthState> = (set) => ({
   setCurrentCompany: (param) => set({ currentCompany: param }),
   setCurrentCompanyLoading: (currentCompanyLoading: boolean) =>
     set({ currentCompanyLoading }),
+
   setIsLoggedIn: (isLoggedIn: boolean) => set({ isLoggedIn }),
   setIsSelectCompany: (isSelectCompany: boolean) => set({ isSelectCompany }),
 });

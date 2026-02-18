@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import debounce from "lodash/debounce";
 
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Button from "@components/ui/button/Button";
 
 interface Props {
@@ -30,7 +30,8 @@ export default function TableHeader({ setSearchCallback }: Props) {
         </Button>
 
         {/* Search */}
-        <SearchInput
+        <FilterInput
+          withPrefixIcon
           placeholder="Cari"
           onChange={(e) => debouncedSearch(e.target.value)}
         />

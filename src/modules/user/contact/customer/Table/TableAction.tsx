@@ -1,4 +1,4 @@
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Button from "@components/ui/button/Button";
 import { debounce } from "lodash";
 import { useCallback } from "react";
@@ -34,7 +34,8 @@ export default function TableAction({ setSearchCallback }: Props) {
         </Button>
 
         <div className="w-full">
-          <SearchInput
+          <FilterInput
+            withPrefixIcon
             placeholder="Cari"
             onChange={(e) => debouncedSearch(e.target.value)}
           />

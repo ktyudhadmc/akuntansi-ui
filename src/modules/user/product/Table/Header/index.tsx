@@ -1,4 +1,4 @@
-import SearchInput from "@components/form/input/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Select from "@components/form/default/Select";
 import Button from "@components/ui/button/Button";
 
@@ -73,7 +73,8 @@ export default function TableHeader({
 
           <div className="flex gap-2">
             <div className="w-full">
-              <SearchInput
+              <FilterInput
+                withPrefixIcon
                 placeholder="Cari"
                 onChange={(e) => debouncedSearch(e.target.value)}
               />

@@ -6,13 +6,13 @@ import TableHeader from "./TableHeader";
 import { formatIDRLocale, sumBy } from "@helpers/index";
 
 export default function GeneralJournal() {
-  const { data, loading } = useGetAll();
+  const { data, loading, setSearch } = useGetAll();
 
   const grandTotal = sumBy(data, (i) => i.amount);
 
   return (
     <>
-      <TableHeader />
+      <TableHeader setSearch={setSearch} />
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full">

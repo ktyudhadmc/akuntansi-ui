@@ -22,11 +22,11 @@ interface Props {
 export default function Filter({ onClose, onOpen }: Props) {
   const startDate = useUserStore((state) => state.startDate);
   const endDate = useUserStore((state) => state.endDate);
-  const account = useUserStore((state) => state.account);
+  const account = useUserStore((state) => state.journalAccount);
 
   const setStartDate = useUserStore((state) => state.setStartDate);
   const setEndDate = useUserStore((state) => state.setEndDate);
-  const setAccount = useUserStore((state) => state.setAccount);
+  const setAccount = useUserStore((state) => state.setJournalAccount);
 
   const { data: accounts, loading: accountLoading } = useGetAllAccount();
   const accountFiltered = accounts?.filter((item) => item.is_posting == true);

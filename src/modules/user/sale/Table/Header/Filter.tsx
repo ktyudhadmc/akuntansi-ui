@@ -2,18 +2,18 @@ import { MdOutlineRefresh } from "react-icons/md";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 import useUserStore from "@store/useUserStore";
+import { todayYMString } from "@helpers/index";
+import useMapInputOptions from "@hooks/useMapInputOptions";
 
 import Form from "@components/form/Form";
 import Drawer from "@components/ui/drawer";
 import Button from "@components/ui/button/Button";
-import DatePicker from "@components/form/date-picker";
-// import SelectTwo from "@components/form/SelectTwo";
-import useMapInputOptions from "@hooks/useMapInputOptions";
-import Label from "@components/form/Label";
+// import DatePicker from "@components/form/date-picker";
+// import Label from "@components/form/Label";
 
 import useGetAll from "@services/user/customer/hooks/useGetAll";
-import Skeleton from "@components/Skeleton/Skeleton";
 import SelectTwoRhf from "@components/form/SelectTwoRhf";
+import Input from "@components/form/input/InputField";
 
 interface Props {
   onOpen: boolean;
@@ -31,49 +31,58 @@ export default function Filter({ onClose, onOpen }: Props) {
   //   { label: "CLOSED", value: "closed" },
   // ];
 
-  const startTransactionDate = useUserStore(
-    (state) => state.saleStartTransactionDate,
-  );
-  const endTransactionDate = useUserStore(
-    (state) => state.saleEndTransactionDate,
-  );
-  const startDueDate = useUserStore((state) => state.saleStartDueDate);
-  const endDueDate = useUserStore((state) => state.saleEndDueDate);
+  // const startTransactionDate = useUserStore(
+  //   (state) => state.saleStartTransactionDate,
+  // );
+  // const endTransactionDate = useUserStore(
+  //   (state) => state.saleEndTransactionDate,
+  // );
+  // const startDueDate = useUserStore((state) => state.saleStartDueDate);
+  // const endDueDate = useUserStore((state) => state.saleEndDueDate);
   const customer = useUserStore((state) => state.customer);
+  const saleDate = useUserStore((state) => state.saleDate);
 
-  const setStartTransactionDate = useUserStore(
-    (state) => state.setStartTransactionDate,
-  );
-  const setEndTransactionDate = useUserStore(
-    (state) => state.setEndTransactionDate,
-  );
-  const setStartDueDate = useUserStore((state) => state.setStartDueDate);
-  const setEndDueDate = useUserStore((state) => state.setEndDueDate);
+  const setSaleDate = useUserStore((state) => state.setSaleDate);
   const setCustomer = useUserStore((state) => state.setCustomer);
+  const resetSaleFilter = useUserStore((state) => state.resetSaleFilter);
 
-  const { data: customers, loading: customerLoading } = useGetAll();
+  // const setStartTransactionDate = useUserStore(
+  //   (state) => state.setStartTransactionDate,
+  // );
+  // const setEndTransactionDate = useUserStore(
+  //   (state) => state.setEndTransactionDate,
+  // );
+  // const setStartDueDate = useUserStore((state) => state.setStartDueDate);
+  // const setEndDueDate = useUserStore((state) => state.setEndDueDate);
+
+  const { data: customers, loading: customerLoading, setName: setSearchCustomer } = useGetAll();
   const customerOptions = useMapInputOptions(customers);
 
   const methods = useForm({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setStartTransactionDate(state.start_date);
-    setEndTransactionDate(state.end_date);
-    setStartDueDate(state.start_due_date);
-    setEndDueDate(state.end_due_date);
+    // setStartTransactionDate(state.start_date);
+    // setEndTransactionDate(state.end_date);
+    // setStartDueDate(state.start_due_date);
+    // setEndDueDate(state.end_due_date);
+    setSaleDate(state.date)
     setCustomer(state.customer);
 
     onClose();
+
   };
 
   const onClear = () => {
     methods.reset({
       customer: null,
+      date: todayYMString,
       start_date: null,
       end_date: null,
       start_due_date: null,
       end_due_date: null,
     });
+
+    resetSaleFilter();
   };
 
   return (
@@ -94,7 +103,7 @@ export default function Filter({ onClose, onOpen }: Props) {
           }}
         /> */}
 
-        <Label>Tgl. transaksi</Label>
+        {/* <Label>Tgl. transaksi</Label>
         <div className="grid grid-cols-2 gap-4">
           <DatePicker
             id="start_date"
@@ -108,9 +117,9 @@ export default function Filter({ onClose, onOpen }: Props) {
             placeholder="Tanggal selesai"
             defaultValue={endTransactionDate}
           />
-        </div>
+        </div> */}
 
-        <Label>Tgl. tempo</Label>
+        {/* <Label>Tgl. tempo</Label>
         <div className="grid grid-cols-2 gap-4">
           <DatePicker
             id="start_due_date"
@@ -124,17 +133,21 @@ export default function Filter({ onClose, onOpen }: Props) {
             placeholder="Tanggal selesai"
             defaultValue={endDueDate}
           />
-        </div>
-        <Skeleton isLoading={customerLoading}>
-          <SelectTwoRhf
-            label="Pelanggan"
-            name="customer"
-            selectTwoOptions={customerOptions}
-            defaultValue={customer}
-            isClearable
-            isSearchable
-          />
-        </Skeleton>
+        </div> */}
+
+
+        <Input label="Tanggal" type="month" name="date" defaultValue={saleDate ?? ''} />
+
+        <SelectTwoRhf
+          label="Pelanggan"
+          name="customer"
+          selectTwoOptions={customerOptions}
+          defaultValue={customer}
+          isLoading={customerLoading}
+          onInputChange={setSearchCustomer}
+          isClearable
+          isSearchable
+        />
 
         {/* <Select
           label="Status"

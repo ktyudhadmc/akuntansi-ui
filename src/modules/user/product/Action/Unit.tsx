@@ -8,7 +8,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useModal } from "@hooks/useModal";
 import { slugify } from "@helpers/index";
 
-import SearchInput from "@components/form/default/SearchInput";
+import FilterInput from "@components/form/input/FilterInput";
 import Button from "@components/ui/button/Button";
 import Drawer from "@components/ui/drawer";
 import Form from "@components/form/Form";
@@ -57,7 +57,8 @@ export default function ProductUnit({ onOpen, onClose }: Props) {
   return (
     <Drawer onOpen={onOpen} onClose={onClose} label="Filter" size="md">
       <div className="flex gap-2 justify-between mb-4">
-        <SearchInput
+        <FilterInput
+          withPrefixIcon
           placeholder="Cari"
           onChange={(e) => debouncedSearch(e.target.value)}
         />

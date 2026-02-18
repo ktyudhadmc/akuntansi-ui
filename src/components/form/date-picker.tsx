@@ -94,7 +94,7 @@ export default function DatePicker({
           focus:border-brand-300 focus:ring-brand-500/20
           dark:text-white/90 dark:bg-gray-900
           dark:border-gray-700 dark:placeholder:text-white/30
-          dark:focus:border-brand-800`}
+          dark:focus:border-brand-800 ${disabled && "!bg-gray-100 !border-gray-200 dark:!bg-gray-900 dark:!border-gray-600"}`}
                 />
                 <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400">
                   <CalenderIcon className="size-6" />
