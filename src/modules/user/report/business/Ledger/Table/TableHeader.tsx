@@ -2,26 +2,29 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { MdOutlineRefresh } from "react-icons/md";
 
 import useUserStore from "@store/useUserStore";
-import { todayYMDString } from "@helpers/index";
+import { todayYMDString, todayYMString } from "@helpers/index";
 
-import DatePicker from "@components/form/date-picker";
+// import DatePicker from "@components/form/date-picker";
 import Button from "@components/ui/button/Button";
 import Form from "@components/form/Form";
 
 import FilterInput from "@components/form/input/FilterInput";
 import { useCallback } from "react";
 import { debounce } from "lodash";
+import Input from "@components/form/input/InputField";
 
 interface Props {
   setSearch: (params: string) => void;
 }
 
 export default function TableHeader({ setSearch }: Props) {
-  const startDate = useUserStore((state) => state.ledgerStartDate);
-  const endDate = useUserStore((state) => state.ledgerEndDate);
+  // const startDate = useUserStore((state) => state.ledgerStartDate);
+  // const endDate = useUserStore((state) => state.ledgerEndDate);
+  const ledgerDate = useUserStore((state) => state.ledgerDate);
 
-  const setStartDate = useUserStore((state) => state.setLedgerStartDate);
-  const setEndDate = useUserStore((state) => state.setLedgerEndDate);
+  // const setStartDate = useUserStore((state) => state.setLedgerStartDate);
+  // const setEndDate = useUserStore((state) => state.setLedgerEndDate);
+  const setLedgerDate = useUserStore((state) => state.setLedgerDate);
 
   const resetLedgerFilter = useUserStore((state) => state.resetLedgerFilter);
 
@@ -30,14 +33,17 @@ export default function TableHeader({ setSearch }: Props) {
   const isValid = methods.formState.isValid;
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setStartDate(state.start_date);
-    setEndDate(state.end_date);
+    // setStartDate(state.start_date);
+    // setEndDate(state.end_date);
+
+    setLedgerDate(state.date);
   };
 
   const onClear = () => {
     methods.reset({
       start_date: todayYMDString,
       end_date: todayYMDString,
+      date: todayYMString,
     });
 
     resetLedgerFilter();
@@ -56,7 +62,7 @@ export default function TableHeader({ setSearch }: Props) {
         {/* TABLE HEADER */}
         <Form {...methods} onSubmit={onSubmit}>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
-            <DatePicker
+            {/* <DatePicker
               label="Tgl. mulai"
               placeholder="Pilih tanggal"
               id="start_date"
@@ -70,8 +76,9 @@ export default function TableHeader({ setSearch }: Props) {
               id="end_date"
               name="end_date"
               defaultValue={endDate}
-            />
+            /> */}
 
+            <Input label="Periode" name="date" type="month" defaultValue={ledgerDate} />
             <div className="flex gap-2 md:col-span-2">
               <Button
                 size="sm"
