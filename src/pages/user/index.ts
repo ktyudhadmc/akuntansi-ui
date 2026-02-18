@@ -14,9 +14,6 @@ export { default as COAImportPage } from "./account/chart-of-account/ImportPage"
 // ACCOUNT - CHART OF ACCOUNT
 export { default as COAShowPage } from "./account/chart-of-account/ShowPage";
 export { default as COABalanceSetupPage } from "./account/chart-of-account/BalanceSetupPage";
-export { default as COALockPeriodPage } from "./account/chart-of-account/LockPeriodPage";
-export { default as COAClosingBookPage } from "./account/chart-of-account/closing-book";
-export { default as COAClosingBookCreatePage } from "./account/chart-of-account/closing-book/CreatePage";
 
 //ACCOUNT - CASH BANK
 export { default as CBPage } from "./account/cash-bank";
@@ -49,6 +46,7 @@ export { default as JournalImportPage } from "./journal/ImportPage";
 export { default as PeriodPage } from "./period";
 export { default as PeriodClosePage } from "./period/book/ClosePage";
 export { default as PeriodLockPage } from "./period/period/LockPage";
+export { default as PeriodLockShowPage } from "./period/period/LockPreviewPage";
 
 // PURCHASE
 export { default as PurchasePage } from "./purchase";
