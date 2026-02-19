@@ -1,4 +1,4 @@
-export interface IGetAllCashFlowResponse {
+export interface IGetReportProfitLossResponse {
   status?: string;
   message?: string;
   data: ProfitLoss[];
