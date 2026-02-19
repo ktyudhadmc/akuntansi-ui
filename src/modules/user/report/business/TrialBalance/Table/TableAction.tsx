@@ -9,7 +9,6 @@ import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
 
 export default function TableAction() {
-
   const trialBalanceDate = useUserStore((state) => state.trialBalanceDate);
   const setTrialBalanceDate = useUserStore(
     (state) => state.setTrialBalanceDate,
@@ -22,21 +21,16 @@ export default function TableAction() {
   const isValid = methods.formState.isValid;
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-   
-
     setTrialBalanceDate(state.date);
   };
 
   const onClear = () => {
     methods.reset({
-     
       trialBalanceDate: todayYMString,
     });
 
     resetFilter();
   };
-
-  
 
   return (
     <div>
@@ -44,13 +38,7 @@ export default function TableAction() {
         {/* TABLE HEADER */}
         <Form {...methods} onSubmit={onSubmit}>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
-         
-            <Input
-              label="Periode"
-              name="date"
-              type="month"
-              defaultValue={trialBalanceDate}
-            />
+            <Input name="date" type="month" defaultValue={trialBalanceDate} />
             <div className="flex gap-2 md:col-span-2">
               <Button
                 size="sm"

@@ -78,7 +78,7 @@ export default function TableHeader({ setSearch }: Props) {
               defaultValue={endDate}
             /> */}
 
-            <Input label="Periode" name="date" type="month" defaultValue={ledgerDate} />
+            <Input name="date" type="month" defaultValue={ledgerDate} />
             <div className="flex gap-2 md:col-span-2">
               <Button
                 size="sm"

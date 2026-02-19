@@ -35,12 +35,7 @@ export default function TableAction() {
         {/* TABLE HEADER */}
         <Form {...methods} onSubmit={onSubmit}>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
-            <Input
-              label="Periode"
-              type="month"
-              name="date"
-              defaultValue={profitLossDate}
-            />
+            <Input type="month" name="date" defaultValue={profitLossDate} />
 
             <div className="flex gap-2 md:col-span-2">
               <Button
