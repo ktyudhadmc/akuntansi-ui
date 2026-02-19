@@ -10,26 +10,14 @@ import useGetAllBankStatement from "@services/user/account/cash-bank/hooks/useGe
 export default function CBBankStatementTable() {
   const params = useParams();
 
-  const {
-    data,
-    loading,
-    startDate,
-    endDate,
-    setSearch,
-    setStartDate,
-    setEndDate,
-  } = useGetAllBankStatement(params.id as string);
+  const { data, loading, date, setSearch, setDate } = useGetAllBankStatement(
+    params.id as string,
+  );
 
   return (
     <>
       {/* TABLE HEADER */}
-      <TableHeader
-        setSearch={setSearch}
-        startDate={startDate}
-        endDate={endDate}
-        setStartDate={setStartDate}
-        setEndDate={setEndDate}
-      />
+      <TableHeader setSearch={setSearch} date={date} setDate={setDate} />
 
       {/* TABLE */}
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
