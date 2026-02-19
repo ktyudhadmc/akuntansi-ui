@@ -1,3 +1,5 @@
+import { isEmpty } from "lodash";
+
 import TableAction from "./TableAction";
 import TableItem from "./TableItem";
 
@@ -13,15 +15,14 @@ import {
   TableRow,
 } from "@components/ui/table";
 import useGetAllTrialBalance from "@services/user/report/trial-balance/hooks/useGetAllTrialBalance";
-import { isEmpty } from "lodash";
 
 export default function RBTrialBalance() {
-  const { data, loading, setSearch } = useGetAllTrialBalance();
+  const { data, loading } = useGetAllTrialBalance();
   return (
     <>
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
-          <TableAction setSearch={(e) => setSearch(e)} />
+          <TableAction />
 
           <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
             <div className="max-w-full overflow-x-auto">

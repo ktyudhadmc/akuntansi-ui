@@ -11,7 +11,7 @@ export default function RBProfitLoss() {
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
       <div className="space-y-6">
-        <TableAction setSearch={(e) => console.log(e)} />
+        <TableAction />
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
           <div className="max-w-full overflow-x-auto">
             <table className="w-full">
