@@ -53,14 +53,14 @@ export default function GeneralJournal() {
                     </div>
                   </td>
                 </tr>
-              ) : isEmpty(data) || !data ? (
+              ) : isEmpty(data) || !data.list ? (
                 <tr>
                   <td colSpan={5} className="text-center py-4">
                     Data tidak tersedia
                   </td>
                 </tr>
               ) : (
-                data.map((item, index) => {
+                data?.list.map((item, index) => {
                   return (
                     <TableItem key={`table-account-${index}`} item={item} />
                   );

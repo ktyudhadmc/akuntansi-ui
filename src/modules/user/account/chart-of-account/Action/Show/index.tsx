@@ -6,25 +6,23 @@ import { BeatLoader } from "react-spinners";
 import { isEmpty } from "lodash";
 
 import useUserStore from "@store/useUserStore";
-import { todayYMDString } from "@helpers/index";
+import { todayYMString } from "@helpers/index";
 
 import TableItem from "./TableItem";
-import DatePicker from "@components/form/date-picker";
+import Form from "@components/form/Form";
+import Input from "@components/form/input/InputField";
 import Skeleton from "@components/Skeleton/Skeleton";
 import Button from "@components/ui/button/Button";
 
 import useGetAccount from "@services/user/account/index/hooks/useGet";
 import useGetLedgerByAccount from "@services/user/report/ledger/hooks/useGetLedgerByAccount";
-import Form from "@components/form/Form";
 
 export default function ChartOfAccountShow() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const startDate = useUserStore((state) => state.ledgerStartDate);
-  const endDate = useUserStore((state) => state.ledgerEndDate);
-  const setStartDate = useUserStore((state) => state.setLedgerStartDate);
-  const setEndDate = useUserStore((state) => state.setLedgerEndDate);
+  const ledgerDate = useUserStore((state) => state.ledgerDate);
+  const setLedgerDate = useUserStore((state) => state.setLedgerDate);
   const resetLedgerFilter = useUserStore((state) => state.resetLedgerFilter);
 
   const { data: account, loading: accountLoading } = useGetAccount(
@@ -39,14 +37,12 @@ export default function ChartOfAccountShow() {
   const isValid = methods.formState.isValid;
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setStartDate(state.start_date);
-    setEndDate(state.end_date);
+    setLedgerDate(state.date);
   };
 
   const onClear = () => {
     methods.reset({
-      start_date: todayYMDString,
-      end_date: todayYMDString,
+      date: todayYMString,
     });
 
     resetLedgerFilter();
@@ -90,23 +86,7 @@ export default function ChartOfAccountShow() {
           onSubmit={onSubmit}
           className="lg:flex-row lg:items-end lg:justify-end"
         >
-          <DatePicker
-            label="Tgl. mulai"
-            placeholder="Pilih tanggal"
-            id="start_date"
-            name="start_date"
-            defaultValue={startDate}
-            required
-          />
-
-          <DatePicker
-            label="Tgl. selesai"
-            placeholder="Pilih tanggal"
-            id="end_date"
-            name="end_date"
-            defaultValue={endDate}
-            required
-          />
+          <Input name="date" type="month" defaultValue={ledgerDate} />
 
           <div className="flex gap-2 justify-end">
             <Button

@@ -4,12 +4,15 @@ import type { IGetAllCashFlowResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
+import { parseMonthAndRange } from "@helpers/date";
 
 export default function useGetAllCashFlow() {
   const [search, setSearch] = useState("");
 
-  const startDate = useUserStore((state) => state.trialBalanceStartDate);
-  const endDate = useUserStore((state) => state.trialBalanceEndDate);
+  // const startDate = useUserStore((state) => state.trialBalanceStartDate);
+  // const endDate = useUserStore((state) => state.trialBalanceEndDate);
+  const cashFlowDate = useUserStore((state) => state.cashFlowDate);
+  const { start_date, end_date } = parseMonthAndRange(cashFlowDate);
 
   const fetcher: Fetcher<IGetAllCashFlowResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -17,7 +20,12 @@ export default function useGetAllCashFlow() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search, start_date: startDate, end_date: endDate },
+    {
+      search,
+      start_date,
+      end_date,
+      //  start_date: startDate, end_date: endDate
+    },
     { skipEmptyString: true, skipNull: true },
   );
 

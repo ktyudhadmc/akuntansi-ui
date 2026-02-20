@@ -4,22 +4,20 @@ import type { IGetAllResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
-import { parseMonthValue } from "@helpers/index";
-
+import { parseMonthAndRange } from "@helpers/index";
 
 export default function useGetAll() {
-
   const [name, setName] = useState("");
-  const startTransactionDate = useUserStore(
-    (state) => state.startTransactionDate,
-  );
-  const endTransactionDate = useUserStore((state) => state.endTransactionDate);
-  const startDueDate = useUserStore((state) => state.startDueDate);
-  const endDueDate = useUserStore((state) => state.endDueDate);
+  // const startTransactionDate = useUserStore(
+  //   (state) => state.startTransactionDate,
+  // );
+  // const endTransactionDate = useUserStore((state) => state.endTransactionDate);
+  // const startDueDate = useUserStore((state) => state.startDueDate);
+  // const endDueDate = useUserStore((state) => state.endDueDate);
   const supplier = useUserStore((state) => state.supplier);
   const purchaseDate = useUserStore((state) => state.purchaseDate);
 
-  const { year, month } = parseMonthValue(purchaseDate);
+  const { start_date, end_date } = parseMonthAndRange(purchaseDate);
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, tokenType: "user", withCompany: true })
@@ -29,20 +27,18 @@ export default function useGetAll() {
   const qs = querystring.stringify(
     {
       search: name,
-      year, month,
-      start_transaction_date: startTransactionDate,
-      end_transaction_date: endTransactionDate,
-      start_due_date: startDueDate,
-      end_due_date: endDueDate,
+      start_date,
+      end_date,
+      // start_transaction_date: startTransactionDate,
+      // end_transaction_date: endTransactionDate,
+      // start_due_date: startDueDate,
+      // end_due_date: endDueDate,
       supplier_id: supplier,
     },
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(
-    `/purchase?${qs}`,
-    fetcher,
-  );
+  const { data, error } = useSWR(`/purchase?${qs}`, fetcher);
 
   const onSetName = useCallback((name: string) => {
     setName(name);

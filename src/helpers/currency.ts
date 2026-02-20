@@ -24,12 +24,17 @@ export function formatIDRLocale(
   value: number,
   { withSymbol = false, decimals = 2 }: CurrencyOptions = {},
 ) {
-  return value.toLocaleString("id-ID", {
+  const isNegative = value < 0;
+  const absoluteValue = Math.abs(value);
+
+  const formatted = absoluteValue.toLocaleString("id-ID", {
     style: withSymbol ? "currency" : "decimal",
     currency: "IDR",
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   });
+
+  return isNegative ? `(${formatted})` : formatted;
 }
 
 export function formatCompactNumber(
