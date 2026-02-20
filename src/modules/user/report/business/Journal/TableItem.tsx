@@ -1,11 +1,11 @@
 import { formatIDRLocale } from "@helpers/index";
 
 // import TableItemMenu from "./TableItemMenu";
-import type { GeneralJournal } from "@services/user/journal/interfaces/response.type";
+import type { Journal } from "@services/user/report/journal/interfaces/response.type";
 import { Link } from "react-router-dom";
 
 interface Props {
-  item: GeneralJournal;
+  item: Journal;
 }
 
 export default function TableItem({ item }: Props) {

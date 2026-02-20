@@ -3,12 +3,10 @@ import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
 import TableItem from "./TableItem";
 import TableHeader from "./TableHeader";
-import { formatIDRLocale, sumBy } from "@helpers/index";
+import { formatIDRLocale } from "@helpers/index";
 
 export default function GeneralJournal() {
   const { data, loading, setSearch } = useGetAll();
-
-  const grandTotal = sumBy(data, (i) => i.amount);
 
   return (
     <>
@@ -41,7 +39,7 @@ export default function GeneralJournal() {
                     </div>
                   </td>
                 </tr>
-              ) : isEmpty(data) || !data ? (
+              ) : isEmpty(data) || !data.list ? (
                 <tr>
                   <td colSpan={5} className="text-center py-4">
                     Data tidak tersedia
@@ -49,7 +47,7 @@ export default function GeneralJournal() {
                 </tr>
               ) : (
                 <>
-                  {data.map((item, index) => {
+                  {data?.list.map((item, index) => {
                     return (
                       <TableItem key={`table-account-${index}`} item={item} />
                     );
@@ -60,10 +58,10 @@ export default function GeneralJournal() {
                       Total Keseluruhan
                     </td>
                     <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                      {formatIDRLocale(grandTotal)}
+                      {formatIDRLocale(data.summary.total_debit)}
                     </td>
                     <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                      {formatIDRLocale(grandTotal)}
+                      {formatIDRLocale(data.summary.total_credit)}
                     </td>
                   </tr>
                 </>

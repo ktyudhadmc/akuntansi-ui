@@ -4,13 +4,13 @@ import type { IGetReportProfitLossResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
-import { parseMonthValue } from "@helpers/date";
+import { parseMonthAndRange } from "@helpers/date";
 
 export default function useGetAllTrialBalance() {
   const [search, setSearch] = useState("");
   const profitLossDate = useUserStore((state) => state.profitLossDate);
 
-  const { year, month } = parseMonthValue(profitLossDate);
+  const { start_date, end_date } = parseMonthAndRange(profitLossDate);
 
   const fetcher: Fetcher<IGetReportProfitLossResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -20,8 +20,8 @@ export default function useGetAllTrialBalance() {
   const qs = querystring.stringify(
     {
       search,
-      year,
-      month,
+      start_date,
+      end_date,
     },
     { skipEmptyString: true, skipNull: true },
   );

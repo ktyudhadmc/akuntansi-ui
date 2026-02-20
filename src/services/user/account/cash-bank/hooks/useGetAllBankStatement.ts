@@ -3,15 +3,15 @@ import useSWR, { type Fetcher } from "swr";
 import type { IGetAllBankStatementResponse } from "../interfaces/response-bank-statement.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
-import { parseMonthValue, todayYMDString, todayYMString } from "@helpers/index";
+import { parseMonthAndRange, todayYMString } from "@helpers/index";
 
 export default function useGetAllBankStatement(accountId: string) {
   const [search, setSearch] = useState("");
   const [date, setDate] = useState(todayYMString);
-  const [startDate, setStartDate] = useState(todayYMDString);
-  const [endDate, setEndDate] = useState(todayYMDString);
+  // const [startDate, setStartDate] = useState(todayYMDString);
+  // const [endDate, setEndDate] = useState(todayYMDString);
 
-  const { year, month } = parseMonthValue(date ?? todayYMString);
+  const { start_date, end_date } = parseMonthAndRange(date ?? todayYMString);
 
   const fetcher: Fetcher<IGetAllBankStatementResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -21,11 +21,11 @@ export default function useGetAllBankStatement(accountId: string) {
   const qs = querystring.stringify(
     {
       search,
-      year,
-      month,
+      start_date,
+      end_date,
       account_id: accountId,
-      start_date: startDate,
-      end_date: endDate,
+      // start_date: startDate,
+      // end_date: endDate,
     },
     { skipEmptyString: true, skipNull: true },
   );
@@ -36,13 +36,13 @@ export default function useGetAllBankStatement(accountId: string) {
     setSearch(search);
   }, []);
 
-  const onSetStartDate = useCallback((startDate: string) => {
-    setStartDate(startDate);
-  }, []);
+  // const onSetStartDate = useCallback((startDate: string) => {
+  //   setStartDate(startDate);
+  // }, []);
 
-  const onSetEndDate = useCallback((endDate: string) => {
-    setEndDate(endDate);
-  }, []);
+  // const onSetEndDate = useCallback((endDate: string) => {
+  //   setEndDate(endDate);
+  // }, []);
 
   const onSetDate = useCallback((date: string) => {
     setDate(date);
@@ -54,10 +54,10 @@ export default function useGetAllBankStatement(accountId: string) {
     error,
     search,
     setSearch: onSetSearch,
-    startDate,
-    setStartDate: onSetStartDate,
-    endDate,
-    setEndDate: onSetEndDate,
+    // startDate,
+    // setStartDate: onSetStartDate,
+    // endDate,
+    // setEndDate: onSetEndDate,
     date,
     setDate: onSetDate,
   };
