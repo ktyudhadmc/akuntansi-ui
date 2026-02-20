@@ -4,10 +4,19 @@ export interface IGetAllResponse {
   data: JournalResponse;
 }
 
+export interface IGetResponse {
+  status?: string;
+  message?: string;
+  data: Journal;
+}
+
 export interface JournalResponse {
   list: Journal[];
   summary: JournalSummary;
 }
+
+// END OF RESPONSE
+
 export interface Journal {
   id: number;
   date: string;

@@ -17,7 +17,7 @@ export default function TableItem({ item }: Props) {
           className="px-5 py-1 text-gray-500 text-start text-sm dark:text-gray-400 "
         >
           <Link
-            to={`/user/journals/${item.id}/edit`}
+            to={`${item.id}`}
             className="cursor-pointer font-bold text-brand-600 dark:text-white mr-1"
           >
             Jurnal Umum #{item.document_number}

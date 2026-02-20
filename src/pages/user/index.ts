@@ -75,7 +75,8 @@ export { default as ProfilePage } from "./profile";
 export { default as ReportPage } from "./report";
 
 // REPORT BUSINESS
-export { default as RBJournalPage } from "./report/business/RBJournalPage";
+export { default as RBJournalPage } from "./report/business/Journal/RBJournalPage";
+export { default as RBJournalShowPage } from "./report/business/Journal/RBJournalShowPage";
 export { default as RBLedgerPage } from "./report/business/RBLedgerPage";
 export { default as RBTrialBalancePage } from "./report/business/RBTrialBalancePage";
 export { default as RBProfitLossPage } from "./report/business/RBProfitLossPage";

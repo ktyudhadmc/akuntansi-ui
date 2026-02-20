@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import Journal from "@modules/user/report/business/Journal";
+import Journal from "@modules/user/report/business/Journal/Table";
 
 export default function ReportBusinessJournalPage() {
   const pageTitle = "Jurnal Umum";
