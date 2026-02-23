@@ -3,11 +3,16 @@ import Badge from "@components/ui/badge/Badge";
 import Button from "@components/ui/button/Button";
 import {
   Table,
+  TableCell,
   TableHeader,
+  TableLoading,
+  TableNotFound,
   TableRow,
   TableWrapper,
 } from "@components/ui/table";
+import { formatIDRLocale } from "@helpers/currency";
 import useGetJournal from "@services/user/report/journal/hooks/useGetJournal";
+import { isEmpty } from "lodash";
 import { HiOutlinePrinter } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -76,64 +81,49 @@ export default function RBJournalShow() {
               <Table className="text-left text-sm text-gray-700 dark:border-gray-800">
                 <TableHeader className="bg-gray-50 dark:bg-gray-700">
                   <TableRow className="border-b border-gray-100 whitespace-nowrap dark:border-gray-800">
-                    <Table className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-700 dark:text-gray-400">
+                    <TableCell
+                      isHeader
+                      className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-700 dark:text-gray-400"
+                    >
                       Produk
-                    </th>
-                    <th className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-500 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-500 dark:text-gray-400"
+                    >
                       Kuantitas
-                    </th>
-                    <th className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-700 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-700 dark:text-gray-400"
+                    >
                       Satuan
-                    </th>
-                    <th className="px-5 py-4 text-sm font-medium text-end whitespace-nowrap text-gray-700 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-4 text-sm font-medium text-end whitespace-nowrap text-gray-700 dark:text-gray-400"
+                    >
                       Harga Satuan
-                    </th>
-                    <th className="px-5 py-4 text-sm font-medium text-end whitespace-nowrap text-gray-700 dark:text-gray-400">
+                    </TableCell>
+                    <TableCell
+                      isHeader
+                      className="px-5 py-4 text-sm font-medium text-end whitespace-nowrap text-gray-700 dark:text-gray-400"
+                    >
                       Jumlah
-                    </th>
+                    </TableCell>
                   </TableRow>
                 </TableHeader>
                 <tbody className="divide-y divide-gray-100 bg-white dark:divide-gray-800 dark:bg-white/[0.03]">
                   {loading ? (
-                    <tr>
-                      <td colSpan={6} className="text-center py-16">
-                        <div className="sweet-loading">
-                          <BeatLoader color="var(--color-brand-600)" />
-                        </div>
-                      </td>
-                    </tr>
-                  ) : isEmpty(data) || !data.items ? (
-                    <tr>
-                      <td colSpan={6} className="text-center py-4">
-                        Data tidak tersedia
-                      </td>
-                    </tr>
+                    <TableLoading colSpan={5} />
+                  ) : isEmpty(data) || !data ? (
+                    <TableNotFound colSpan={5} />
                   ) : (
-                    data?.items.map((item, index) => {
-                      return (
-                        <tr key={`table-item-purchase-detail-${index}`}>
-                          <td className="px-5 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
-                            {item.material.name}
-                          </td>
-                          <td className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-800 dark:text-white/90">
-                            {item.qty}
-                          </td>
-                          <td className="px-5 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
-                            {item.unit.name}
-                          </td>
-                          <td className="px-5 py-4 text-sm whitespace-nowrap text-end text-gray-500 dark:text-gray-400">
-                            {formatIDRLocale(item.price, {
-                              withSymbol: true,
-                            })}
-                          </td>
-                          <td className="px-5 py-4 text-sm whitespace-nowrap text-end text-gray-500 dark:text-gray-400">
-                            {formatIDRLocale(item.qty * item.price, {
-                              withSymbol: true,
-                            })}
-                          </td>
-                        </tr>
-                      );
-                    })
+                    <>
+                      <TableRow>
+                        <TableCell>tes</TableCell>
+                      </TableRow>
+                    </>
                   )}
                 </tbody>
               </Table>
@@ -166,7 +156,7 @@ export default function RBJournalShow() {
                     </span>
                     <Skeleton isLoading={loading} height="2rem">
                       <span className="text-md font-semibold text-gray-800 dark:text-white/90">
-                        {formatIDRLocale(data?.total_amount ?? 0, {
+                        {formatIDRLocale(0, {
                           withSymbol: true,
                         })}
                       </span>
@@ -190,7 +180,7 @@ export default function RBJournalShow() {
                 </span>
                 <Skeleton isLoading={loading} height="2rem">
                   <span className="w-1/2 text-sm text-gray-700 sm:w-2/3 dark:text-gray-400">
-                    {data?.supplier.name}
+                    {data?.document_number}
                   </span>
                 </Skeleton>
               </li>
@@ -210,7 +200,7 @@ export default function RBJournalShow() {
                 </span>
                 <Skeleton isLoading={loading} height="2rem">
                   <span className="w-1/2 text-sm text-gray-700 sm:w-2/3 dark:text-gray-400">
-                    {data?.due_date}
+                    {data?.date}
                   </span>
                 </Skeleton>
               </li>
