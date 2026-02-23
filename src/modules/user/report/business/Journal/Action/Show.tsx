@@ -124,9 +124,9 @@ export default function RBJournalShow() {
             </TableHeader>
             <tbody className="divide-y divide-gray-100 bg-white dark:divide-gray-800 dark:bg-white/[0.03]">
               {loading ? (
-                <TableLoading colSpan={4} />
+                <TableLoading colSpan={5} />
               ) : isEmpty(data) || !data ? (
-                <TableNotFound colSpan={4} />
+                <TableNotFound colSpan={5} />
               ) : (
                 <>
                   {/* ACCOUNT */}
