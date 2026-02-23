@@ -58,6 +58,10 @@ export default [
               { path: ":id/edit", element: <User.COAEditPage /> },
               { path: ":id/import", element: <User.COAImportPage /> },
               { path: "balance-setup", element: <User.COABalanceSetupPage /> },
+              {
+                path: "balance-conversion/:id/edit",
+                element: <User.COABalanceConversionpPage />,
+              },
             ],
           },
 

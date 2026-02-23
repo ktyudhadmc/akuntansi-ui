@@ -92,7 +92,7 @@ export default function Lock() {
           <Button
             type="button"
             onClick={goBack}
-            className="uppercase md:w-auto w-full"
+            className="uppercase w-full"
             size="sm"
             variant="outline"
           >
@@ -100,7 +100,7 @@ export default function Lock() {
           </Button>
           <Button
             type="submit"
-            className=" uppercase md:w-auto w-full"
+            className=" uppercase w-full"
             size="sm"
             disabled={!isValid || isSubmitting}
           >
