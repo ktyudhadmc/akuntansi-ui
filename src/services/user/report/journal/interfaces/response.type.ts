@@ -40,4 +40,10 @@ export interface Account {
   id: number;
   code: string;
   name: string;
+  category: AccountCategory;
+}
+
+export interface AccountCategory {
+  id: number;
+  name: string;
 }

@@ -1,7 +1,8 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import useGoBack from "@hooks/useGoBack";
 import useMapInputOptions from "@hooks/useMapInputOptions";
 
 import Form from "@components/form/Form";
@@ -21,7 +22,7 @@ import useGetGeneralJournal from "@services/user/journal/hooks/useGet";
 type FormFields = ICreateGeneralJournalPayload;
 
 export default function GeneralJournalEdit() {
-  const navigate = useNavigate();
+  const goBack = useGoBack();
   const params = useParams();
 
   const methods = useForm<FormFields>({ mode: "onChange" });
@@ -49,7 +50,7 @@ export default function GeneralJournalEdit() {
         toast.error("Gagal menyimpan data!");
       } else {
         methods.reset();
-        navigate(-1);
+        goBack();
         toast.success("Berhasil menyimpan data!");
       }
     }
@@ -93,7 +94,7 @@ export default function GeneralJournalEdit() {
               placeholder="Nomor referensi"
               defaultValue={data?.reff}
               name="reff"
-              required
+              // required
             />
           </Skeleton>
           <Skeleton isLoading={loading}>
@@ -102,7 +103,7 @@ export default function GeneralJournalEdit() {
               name="description"
               placeholder="Deskripsi"
               defaultValue={data?.description}
-              required
+              // required
             />
           </Skeleton>
           <Skeleton isLoading={loading}>
@@ -111,7 +112,7 @@ export default function GeneralJournalEdit() {
               name="remarks"
               placeholder="Catatan tambahan"
               defaultValue={data?.remarks}
-              required
+              // required
             />
           </Skeleton>
 
@@ -151,7 +152,7 @@ export default function GeneralJournalEdit() {
         <div className="flex justify-end mt-4 gap-2">
           <Button
             type="button"
-            onClick={() => navigate(-1)}
+            onClick={goBack}
             className="uppercase"
             size="sm"
             variant="outline"
