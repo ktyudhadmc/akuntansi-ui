@@ -1,7 +1,7 @@
 export interface IGetAllLedgerResponse {
   status?: string;
   message?: string;
-  data: LedgerAllResponse[];
+  data: LedgerDataResponse;
 }
 
 export interface IGetLedgerByAccountResponse {
@@ -23,11 +23,22 @@ export interface IGetLedgerByAccountResponseOld {
 }
 
 /** SPECIAL RESPONSE :) */
+export interface LedgerDataResponse {
+  account: LedgerAllResponse[];
+  summary: LedgerSummary;
+}
 export interface LedgerAllResponse {
   id: string;
   code: string;
   name: string;
   children: LedgerItemWithBalance[];
+}
+
+export interface LedgerSummary {
+  opening_balance: number;
+  debit_transaction: number;
+  credit_transaction: number;
+  closing_balance: number;
 }
 
 export interface LedgerItemWithBalance extends Account {

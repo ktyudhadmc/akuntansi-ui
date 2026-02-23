@@ -41,7 +41,7 @@ export default function TableItem({ item }: Props) {
           {item.code}
         </Link>
       </td>
-      <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 ">
+      <td className="px-5 py-1 text-brand-600 dark:text-white text-start text-theme-xs dark:text-gray-400 ">
         {/* <AccountBankIntegrationCreate
           onOpen={isOpen}
           onClose={closeModal}
@@ -52,7 +52,7 @@ export default function TableItem({ item }: Props) {
             to={`${item.id}`}
             // target="_blank"
             // rel="noopener noreferrer"
-            className={`flex my-auto text-brand-600`}
+            className={`flex my-auto`}
           >
             {item.name}
           </Link>

@@ -12,6 +12,7 @@ interface Props {
   endBalance: number;
   credit: number;
   debit: number;
+  loading?: boolean;
 }
 
 export default function RBLedgerHeader({
@@ -19,6 +20,7 @@ export default function RBLedgerHeader({
   endBalance,
   credit,
   debit,
+  loading,
 }: Props) {
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
@@ -26,24 +28,28 @@ export default function RBLedgerHeader({
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
           <CardStatistic
             title="Saldo awal"
+            loading={loading}
             value={formatIDRLocale(startBalance, { withSymbol: true })}
             variant="success"
             icon={<AiOutlineClockCircle />}
           />
           <CardStatistic
             title="Debit"
+            loading={loading}
             value={formatIDRLocale(debit, { withSymbol: true })}
             variant="success"
             icon={<AiOutlineArrowUp />}
           />
           <CardStatistic
             title="Kredit"
+            loading={loading}
             value={formatIDRLocale(credit, { withSymbol: true })}
             variant="danger"
             icon={<AiOutlineArrowDown />}
           />
           <CardStatistic
             title="Saldo akhir"
+            loading={loading}
             value={formatIDRLocale(endBalance, { withSymbol: true })}
             icon={<AiOutlineWallet />}
           />
