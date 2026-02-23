@@ -13,7 +13,8 @@ export { default as COAImportPage } from "./account/chart-of-account/ImportPage"
 
 // ACCOUNT - CHART OF ACCOUNT
 export { default as COAShowPage } from "./account/chart-of-account/ShowPage";
-export { default as COABalanceSetupPage } from "./account/chart-of-account/BalanceSetupPage";
+export { default as COABalanceSetupPage } from "./account/chart-of-account/BalanceSetup";
+export { default as COABalanceConversionpPage } from "./account/chart-of-account/BalanceSetup/ConversionPage";
 
 //ACCOUNT - CASH BANK
 export { default as CBPage } from "./account/cash-bank";

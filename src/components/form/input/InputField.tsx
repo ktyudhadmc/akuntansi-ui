@@ -8,6 +8,17 @@ import { EyeCloseIcon, EyeIcon } from "@assets/icons";
 
 interface InputProps {
   type?: "text" | "number" | "email" | "password" | "date" | "time" | string;
+  inputMode?:
+    | "text"
+    | "email"
+    | "search"
+    | "tel"
+    | "url"
+    | "none"
+    | "numeric"
+    | "decimal"
+    | undefined;
+  pattern?: string;
   id?: string;
   name?: string;
   placeholder?: string;
@@ -34,6 +45,8 @@ interface InputProps {
 const Input: FC<InputProps> = ({
   label,
   type = "text",
+  inputMode,
+  pattern,
   id,
   name,
   placeholder,
@@ -120,6 +133,8 @@ const Input: FC<InputProps> = ({
                 message: "Tidak Boleh Kosong",
               },
             }))}
+          inputMode={inputMode}
+          pattern={pattern}
           id={id}
           key={id}
           name={name}

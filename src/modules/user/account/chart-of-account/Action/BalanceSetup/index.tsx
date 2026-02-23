@@ -15,7 +15,7 @@ export default function COABalanceSetup() {
   const [subConversionDate, setSubConversionDate] = useState<string>();
 
   const onSubmit = async () => {
-    alert(subConversionDate);
+    navigate("../balance-conversion/1/edit");
   };
 
   useEffect(() => {
@@ -68,21 +68,21 @@ export default function COABalanceSetup() {
       <div className="flex gap-2 w-full">
         <Button
           type="button"
-          onClick={() => navigate(-1)}
-          className="uppercase w-full"
-          size="sm"
-          variant="outline"
-        >
-          Batal
-        </Button>
-        <Button
-          type="button"
           className=" uppercase w-full"
           size="sm"
           disabled={!conversionDate}
           onClick={onSubmit}
         >
-          Kirim
+          Lihat saldo
+        </Button>
+        <Button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="uppercase w-full"
+          size="sm"
+          variant="outline"
+        >
+          Kembali
         </Button>
       </div>
     </div>
