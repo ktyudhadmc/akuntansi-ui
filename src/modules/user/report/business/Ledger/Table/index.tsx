@@ -15,10 +15,11 @@ export default function RBLedger() {
   return (
     <>
       <RBLedgerHeader
-        credit={0}
-        debit={0}
-        startBalance={0}
-        endBalance={0}
+        credit={data?.summary.credit_transaction ?? 0}
+        debit={data?.summary.debit_transaction ?? 0}
+        startBalance={data?.summary.opening_balance ?? 0}
+        endBalance={data?.summary.closing_balance ?? 0}
+        loading={loading}
       />
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
@@ -59,7 +60,7 @@ export default function RBLedger() {
                         </div>
                       </td>
                     </tr>
-                  ) : isEmpty(data) || !data ? (
+                  ) : isEmpty(data) || !data.account ? (
                     <tr>
                       <td colSpan={5} className="text-center py-4">
                         Data tidak tersedia
@@ -67,7 +68,7 @@ export default function RBLedger() {
                     </tr>
                   ) : (
                     <>
-                      {data.map((item, index) => {
+                      {data?.account.map((item, index) => {
                         return (
                           <TableItem
                             key={`table-account-${index}`}

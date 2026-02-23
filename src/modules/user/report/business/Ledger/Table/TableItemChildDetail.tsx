@@ -26,8 +26,8 @@ export default function TableItemChildDetail({
         return `/user/sales/${id}`;
       case "purchase":
         return `/user/purchases/${id}`;
-      case "journal":
-        return `/user/journals/${id}/edit`;
+      case "memorial":
+        return `/user/reports/journal/${id}`;
       default:
         return "#";
     }
