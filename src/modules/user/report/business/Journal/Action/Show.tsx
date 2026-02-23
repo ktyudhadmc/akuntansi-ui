@@ -133,7 +133,7 @@ export default function RBJournalShow() {
                   <TableRow>
                     <TableCell>
                       <Link
-                        className={`flex my-auto text-brand-600`}
+                        className={`flex my-auto text-brand-600 dark:text-white`}
                         to={getAccountUrl(
                           data.account.id,
                           data.account?.category?.id,
@@ -144,7 +144,7 @@ export default function RBJournalShow() {
                     </TableCell>
                     <TableCell>
                       <Link
-                        className={`flex my-auto text-brand-600`}
+                        className={`flex my-auto text-brand-600 dark:text-white`}
                         to={getAccountUrl(
                           data.account.id,
                           data.account?.category?.id,
@@ -166,7 +166,7 @@ export default function RBJournalShow() {
                   <TableRow>
                     <TableCell>
                       <Link
-                        className={`flex my-auto text-brand-600`}
+                        className={`flex my-auto text-brand-600 dark:text-white`}
                         to={getAccountUrl(
                           data.counter_account.id,
                           data.counter_account?.category?.id,
@@ -177,7 +177,7 @@ export default function RBJournalShow() {
                     </TableCell>
                     <TableCell>
                       <Link
-                        className={`flex my-auto text-brand-600`}
+                        className={`flex my-auto text-brand-600 dark:text-white`}
                         to={getAccountUrl(
                           data.counter_account.id,
                           data.counter_account?.category?.id,
