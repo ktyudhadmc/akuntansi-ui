@@ -2,6 +2,12 @@ import type { ReactNode } from "react";
 import clsx from "clsx";
 import { BeatLoader } from "react-spinners";
 
+// Props for TableWrapper
+interface TableWrapperProps {
+  children: ReactNode; // Table content (thead, tbody, etc.)
+  className?: string; // Optional className for styling
+}
+
 // Props for Table
 interface TableProps {
   children: ReactNode; // Table content (thead, tbody, etc.)
@@ -51,6 +57,17 @@ interface TableNotFoundProps {
 interface TableLoadingProps {
   colSpan?: number;
 }
+
+// Table wrapper
+const TableWrapper: React.FC<TableWrapperProps> = ({ children, className }) => {
+  return (
+    <div
+      className={`overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 ${className}`}
+    >
+      <div className="custom-scrollbar overflow-x-auto">{children}</div>
+    </div>
+  );
+};
 
 // Table Component
 const Table: React.FC<TableProps> = ({ children, className }) => {
@@ -154,6 +171,7 @@ function TableLoading({ colSpan = 1 }: TableLoadingProps) {
   );
 }
 export {
+  TableWrapper,
   Table,
   TableHeader,
   TableBody,

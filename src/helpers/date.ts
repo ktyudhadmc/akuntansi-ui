@@ -1,4 +1,7 @@
 import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 export const formatMonthValue = (date = new Date()): string => {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
@@ -13,7 +16,7 @@ export const parseMonthValue = (value: string) => {
 };
 
 export const parseMonthAndRange = (value: string) => {
-  const base = dayjs(value + "-01");
+  const base = dayjs(value, ["YYYY-MM", "MM-YYYY"], true);
 
   return {
     year: base.year(),

@@ -81,7 +81,10 @@ export default [
       /** PERIOD */
       { path: "periods", element: <User.PeriodPage /> },
       { path: "periods/lock", element: <User.PeriodLockPage /> },
-      { path: "periods/:id/lock-preview", element: <User.PeriodLockShowPage /> },
+      {
+        path: "periods/:id/lock-preview",
+        element: <User.PeriodLockShowPage />,
+      },
 
       { path: "periods/books/close", element: <User.PeriodClosePage /> },
 
@@ -172,6 +175,7 @@ export default [
       /** REPORT */
       { path: "reports", element: <User.ReportPage /> },
       { path: "reports/journal", element: <User.RBJournalPage /> },
+      { path: "reports/journal/:id", element: <User.RBJournalShowPage /> },
       { path: "reports/ledger", element: <User.RBLedgerPage /> },
       { path: "reports/trial-balance", element: <User.RBTrialBalancePage /> },
       { path: "reports/profit-loss", element: <User.RBProfitLossPage /> },

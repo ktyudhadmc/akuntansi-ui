@@ -32,7 +32,7 @@ export default function TableHeader({ setSearch }: Props) {
   const isValid = methods.formState.isValid;
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setLedgerDate(state.start_date);
+    setLedgerDate(state.date);
   };
 
   const onClear = () => {
