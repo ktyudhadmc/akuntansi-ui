@@ -7,8 +7,10 @@ interface StatCardProps {
   title: string | React.ReactNode;
   value: string | number;
   icon: React.ReactNode;
+  information?: string | React.ReactNode;
   variant?: Variant;
   loading?: boolean;
+  valueColor?: string | Variant;
 }
 
 const variantStyles: Record<Variant, string> = {
@@ -18,12 +20,22 @@ const variantStyles: Record<Variant, string> = {
   brand: "bg-brand-600/10 text-brand-600",
 };
 
+const valueColors: Record<Variant | string, string> = {
+  success: "text-success-500",
+  danger: "text-error-500",
+  warning: "text-warning-500",
+  brand: "text-brand-600",
+  default: "text-gray-800 dark:text-white/90",
+};
+
 export default function CardStatistic({
   title,
   value,
   icon,
   variant = "brand",
   loading = false,
+  information,
+  valueColor = "default",
 }: StatCardProps) {
   return (
     <article className="flex gap-5 rounded-xl border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-800 dark:bg-white/[0.03]">
@@ -37,11 +49,19 @@ export default function CardStatistic({
       </div>
 
       <div className="flex-1">
-        <Skeleton isLoading={loading} height="1.2rem">
-          <h3 className="text-title-xs font-semibold text-gray-800 dark:text-white/90">
-            {value}
-          </h3>
-        </Skeleton>
+        <div className="flex gap-2">
+          <Skeleton isLoading={loading} height="1.2rem">
+            <h3
+              className={clsx(
+                "text-title-xs font-semibold",
+                valueColors[valueColor],
+              )}
+            >
+              {value}
+            </h3>
+          </Skeleton>
+          {information}
+        </div>
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{title}</p>
       </div>
     </article>
