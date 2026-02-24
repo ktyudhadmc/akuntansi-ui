@@ -1,13 +1,24 @@
 export interface IGetAllResponse {
   status?: string;
   message?: string;
-  data: Sale[];
+  data: SaleResponse;
 }
 
 export interface IGetResponse {
   status?: string;
   message?: string;
   data: Sale;
+}
+
+interface SaleResponse {
+  sales: Sale[];
+  summary: SaleSummary;
+}
+
+export interface SaleSummary {
+  total_gross: number;
+  total_tax: number;
+  total_net: number;
 }
 
 export interface Sale {
