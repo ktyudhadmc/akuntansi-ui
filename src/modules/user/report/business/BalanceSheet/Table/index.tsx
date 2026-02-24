@@ -44,9 +44,9 @@ export default function RBBalanceSheet() {
 
             <TableBody>
               {loading ? (
-                <TableLoading colSpan={2} />
+                <TableLoading colSpan={3} />
               ) : isEmpty(data) || !data ? (
-                <TableNotFound colSpan={2} />
+                <TableNotFound colSpan={3} />
               ) : (
                 data
                   .filter((item) => item.is_posting)
