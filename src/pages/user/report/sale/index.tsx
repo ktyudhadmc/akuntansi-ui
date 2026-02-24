@@ -22,6 +22,12 @@ export default function ReportSalePage() {
       description:
         "Menampilkan semua faktur yang belum dibayar dan saldo memo kredit pelanggan pada tanggal tertentu.",
     },
+    {
+      title: "Beban Pokok Penjualan",
+      path: "cogs",
+      description:
+        "Menampilkan total biaya langsung atas produk yang terjual dalam periode tertentu untuk menghitung laba kotor dan margin penjualan.",
+    },
   ];
 
   return (
