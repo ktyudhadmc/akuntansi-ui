@@ -1,11 +1,12 @@
-import Badge from "@components/ui/badge/Badge";
 import CardStatistic from "@components/ui/card/CardStatistic";
+import { Tooltip } from "@components/ui/tooltip";
 import { formatIDRLocale } from "@helpers/currency";
 import {
   AiOutlineClockCircle,
   AiOutlineArrowUp,
   AiOutlineArrowDown,
   AiOutlineWallet,
+  AiOutlineInfoCircle,
 } from "react-icons/ai";
 
 interface Props {
@@ -36,34 +37,47 @@ export default function RBLedgerHeader({
             icon={<AiOutlineClockCircle />}
           />
           <CardStatistic
-            title={
-              <div className="flex justify-between">
-                <span>Debit</span>
-                {!isBalanced && <Badge color="error">Tidak seimbang</Badge>}
-              </div>
-            }
+            title={"Debit"}
             loading={loading}
             value={formatIDRLocale(debit, { withSymbol: true })}
-            variant={isBalanced ? "success" : "danger"}
+            variant={"success"}
+            valueColor={isBalanced ? "default" : "danger"}
             icon={<AiOutlineArrowUp />}
+            information={
+              !isBalanced && (
+                <Tooltip
+                  text="Jumlah debit dan kredit tidak seimbang"
+                  placement="top"
+                >
+                  <AiOutlineInfoCircle className="my-auto text-gray-600 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-300 cursor-pointer rounded-full" />
+                </Tooltip>
+              )
+            }
           />
           <CardStatistic
-            title={
-              <div className="flex justify-between">
-                <span>Kredit</span>
-                {!isBalanced && <Badge color="error">Tidak seimbang</Badge>}
-              </div>
-            }
+            title={"Kredit"}
             loading={loading}
             value={formatIDRLocale(credit, { withSymbol: true })}
-            variant={isBalanced ? "danger" : "danger"}
+            variant={"danger"}
+            valueColor={isBalanced ? "default" : "danger"}
             icon={<AiOutlineArrowDown />}
+            information={
+              !isBalanced && (
+                <Tooltip
+                  text="Jumlah debit dan kredit tidak seimbang"
+                  placement="top"
+                >
+                  <AiOutlineInfoCircle className="my-auto text-gray-600 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-gray-300 cursor-pointer rounded-full" />
+                </Tooltip>
+              )
+            }
           />
           <CardStatistic
             title="Saldo akhir"
             loading={loading}
             value={formatIDRLocale(endBalance, { withSymbol: true })}
-            variant={isBalanced ? "brand" : "danger"}
+            valueColor={isBalanced ? "default" : "danger"}
+            variant={"brand"}
             icon={<AiOutlineWallet />}
           />
         </div>
