@@ -11,7 +11,12 @@ export default function SaleTable() {
   return (
     <>
       {/* header */}
-      <SaleHeader loading={loading} income={data?.summary.total_net ?? 0} />
+      <SaleHeader
+        loading={loading}
+        grossRevenue={data?.summary.total_net ?? 0}
+        taxAmount={data?.summary.total_tax ?? 0}
+        revenueIncludingTax={data?.summary.total_net ?? 0}
+      />
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
           <TableHeader setSearchCallback={setName} />

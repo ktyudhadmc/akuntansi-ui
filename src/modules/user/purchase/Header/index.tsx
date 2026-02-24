@@ -1,6 +1,6 @@
 import CardStatistic from "@components/ui/card/CardStatistic";
 import { formatIDRLocale } from "@helpers/currency";
-import { AiOutlineArrowDown } from "react-icons/ai";
+import { AiOutlineArrowDown, AiOutlineBarChart, AiOutlinePercentage } from "react-icons/ai";
 
 export default function PurchaseHeader() {
   return (
@@ -9,10 +9,22 @@ export default function PurchaseHeader() {
         <div className="space-y-6">
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
             <CardStatistic
-              title="Pengeluaran"
+              title="Biaya Sebelum Pajak"
               value={formatIDRLocale(0, { withSymbol: true })}
               variant="danger"
               icon={<AiOutlineArrowDown />}
+            />
+            <CardStatistic
+              title="Pajak"
+              value={formatIDRLocale(0, { withSymbol: true })}
+              variant="danger"
+              icon={<AiOutlinePercentage />}
+            />
+            <CardStatistic
+              title="Total Biaya"
+              value={formatIDRLocale(0, { withSymbol: true })}
+              variant="danger"
+              icon={<AiOutlineBarChart />}
             />
           </div>
         </div>
