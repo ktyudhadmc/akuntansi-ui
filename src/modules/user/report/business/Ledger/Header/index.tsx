@@ -1,3 +1,4 @@
+import Badge from "@components/ui/badge/Badge";
 import CardStatistic from "@components/ui/card/CardStatistic";
 import { formatIDRLocale } from "@helpers/currency";
 import {
@@ -22,10 +23,11 @@ export default function RBLedgerHeader({
   debit,
   loading,
 }: Props) {
+  const isBalanced = credit === debit;
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
       <div className="space-y-6">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
+        <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-4">
           <CardStatistic
             title="Saldo awal"
             loading={loading}
@@ -34,23 +36,34 @@ export default function RBLedgerHeader({
             icon={<AiOutlineClockCircle />}
           />
           <CardStatistic
-            title="Debit"
+            title={
+              <div className="flex justify-between">
+                <span>Debit</span>
+                {!isBalanced && <Badge color="error">Tidak seimbang</Badge>}
+              </div>
+            }
             loading={loading}
             value={formatIDRLocale(debit, { withSymbol: true })}
-            variant="success"
+            variant={isBalanced ? "success" : "danger"}
             icon={<AiOutlineArrowUp />}
           />
           <CardStatistic
-            title="Kredit"
+            title={
+              <div className="flex justify-between">
+                <span>Kredit</span>
+                {!isBalanced && <Badge color="error">Tidak seimbang</Badge>}
+              </div>
+            }
             loading={loading}
             value={formatIDRLocale(credit, { withSymbol: true })}
-            variant="danger"
+            variant={isBalanced ? "danger" : "danger"}
             icon={<AiOutlineArrowDown />}
           />
           <CardStatistic
             title="Saldo akhir"
             loading={loading}
             value={formatIDRLocale(endBalance, { withSymbol: true })}
+            variant={isBalanced ? "brand" : "danger"}
             icon={<AiOutlineWallet />}
           />
         </div>

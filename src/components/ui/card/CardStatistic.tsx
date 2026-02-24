@@ -4,7 +4,7 @@ import clsx from "clsx";
 type Variant = "success" | "danger" | "warning" | "brand";
 
 interface StatCardProps {
-  title: string;
+  title: string | React.ReactNode;
   value: string | number;
   icon: React.ReactNode;
   variant?: Variant;
