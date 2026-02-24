@@ -19,7 +19,7 @@ export default function TableItem({ item }: Props) {
         {item.date}
       </td>
       <td className="px-5 py-1.5 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-        <Link to={`${item.id}/edit`} className={`flex my-auto text-brand-600`}>
+        <Link to={`${item.id}`} className={`flex my-auto text-brand-600`}>
           {item.document_number}
         </Link>
       </td>
@@ -31,11 +31,26 @@ export default function TableItem({ item }: Props) {
           {item.customer.name}
         </Link>
       </td>
+
       <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
         <Badge size="sm" color={isService ? "info" : "success"}>
           {item.items[0]?.service_type.name}
         </Badge>
       </td>
+      <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
+        {item.items.map((value) => (
+          <div className="flex">
+            <p className="w-64 truncate">{value.material.name}</p>
+            <p className="w-20 text-right whitespace-nowrap">
+              {value.qty} {value.unit.name}
+            </p>
+            <p className="w-28 text-right whitespace-nowrap">
+              {formatIDRLocale(value.price, { withSymbol: true })}
+            </p>
+          </div>
+        ))}
+      </td>
+
       <td className="px-4 py-1.5 text-black text-end text-theme-xs dark:text-white font-medium">
         {formatIDRLocale(item.total_gross, { withSymbol: true })}
       </td>

@@ -289,7 +289,7 @@ export default function EditSale() {
                       Satuan
                     </th>
                     <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                      Akun pembelian
+                      Akun penjualan
                     </th>
                     <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                       Harga Satuan
