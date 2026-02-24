@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom";
 
 import { formatIDRLocale } from "@helpers/currency";
-
-import TableItemMenu from "./TableItemMenu";
 import Badge from "@components/ui/badge/Badge";
 
 import type { Sale } from "@services/user/sale/interfaces/response.type";
+import TableItemAction from "./TableItemAction";
 
 interface Props {
   item: Sale;
+  openDropdownId: string | null;
+  setOpenDropdownId: (id: string | null) => void;
 }
 
-export default function TableItem({ item }: Props) {
+export default function TableItem({
+  item,
+  openDropdownId,
+  setOpenDropdownId,
+}: Props) {
   const isService = item.items[0]?.service_type.id == "1";
+
   return (
     <tr>
       <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
@@ -56,7 +62,13 @@ export default function TableItem({ item }: Props) {
       </td>
 
       <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
-        <TableItemMenu id={item.id} invoice={item.document_number} />
+        {/* <TableItemMenu id={item.id} invoice={item.document_number} /> */}
+        <TableItemAction
+          id={item.id}
+          invoice={item.document_number}
+          openDropdownId={openDropdownId}
+          setOpenDropdownId={setOpenDropdownId}
+        />
       </td>
     </tr>
   );
