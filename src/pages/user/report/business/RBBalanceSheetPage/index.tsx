@@ -2,7 +2,7 @@ import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
 import RBBalanceSheet from "@modules/user/report/business/BalanceSheet/Table";
 
-export default function RBCashFlowPage() {
+export default function RBBalanceSheetPage() {
   const pageTitle = "Neraca";
   return (
     <>
