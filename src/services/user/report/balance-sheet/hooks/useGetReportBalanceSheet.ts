@@ -3,10 +3,15 @@ import useSWR, { type Fetcher } from "swr";
 import type { IGetAllResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
+import useUserStore from "@store/useUserStore";
+import { parseMonthAndRange } from "@helpers/date";
 
 export default function useGetReportBalanceSheet() {
   const [name, setName] = useState("");
   const [categoryId, setCategoryId] = useState("");
+
+  const balanceSheetDate = useUserStore((state) => state.balanceSheetDate);
+  const { start_date, end_date } = parseMonthAndRange(balanceSheetDate);
 
   const fetcher: Fetcher<IGetAllResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -14,7 +19,7 @@ export default function useGetReportBalanceSheet() {
       .then((res) => res.data);
 
   const qs = querystring.stringify(
-    { search: name, category_id: categoryId },
+    { search: name, category_id: categoryId, start_date, end_date },
     { skipEmptyString: true, skipNull: true },
   );
 

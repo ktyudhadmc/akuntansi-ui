@@ -32,6 +32,10 @@ import createUserProfitLossSlice, {
   type UserProfitLossState,
 } from "./slices/user/report/profit-loss.slice";
 
+import createUserBalanceSheetSlice, {
+  type UserBalanceSheetState,
+} from "./slices/user/report/balance-sheet";
+
 type BoundSliceTypes = { default: null } & UserContactState &
   UserPurchaseState &
   UserSaleState &
@@ -39,7 +43,8 @@ type BoundSliceTypes = { default: null } & UserContactState &
   UserLedgerState &
   UserTrialBalanceState &
   UserCashFlowState &
-  UserProfitLossState;
+  UserProfitLossState &
+  UserBalanceSheetState;
 
 const useUserStore = create<BoundSliceTypes>()((...setter) => ({
   default: null,
@@ -51,6 +56,7 @@ const useUserStore = create<BoundSliceTypes>()((...setter) => ({
   ...createUserTrialBalanceSlice(...setter),
   ...createUserCashFlowSlice(...setter),
   ...createUserProfitLossSlice(...setter),
+  ...createUserBalanceSheetSlice(...setter),
 }));
 
 export default useUserStore;
