@@ -5,7 +5,7 @@ import useDeleteBankStatement from "@services/user/account/cash-bank/hooks/useDe
 import { toast } from "react-toastify";
 
 interface Props {
-  id: string;
+  id: number;
   name: string;
   onOpen: boolean;
   onClose: () => void;

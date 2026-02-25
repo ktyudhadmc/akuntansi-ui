@@ -72,6 +72,7 @@ export default [
               { index: true, element: <User.CBPage /> },
               { path: ":id", element: <User.CBShowPage /> },
               { path: "import", element: <User.CBImportPage /> },
+              { path: "journal/:id", element: <User.CBJournalShowPage /> },
             ],
           },
         ],

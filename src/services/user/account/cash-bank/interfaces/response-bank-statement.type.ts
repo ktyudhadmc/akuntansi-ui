@@ -4,8 +4,14 @@ export interface IGetAllBankStatementResponse {
   data: BankStatement[];
 }
 
+export interface IGetBankStatementResponse {
+  status?: string;
+  message?: string;
+  data: BankStatement;
+}
+
 export interface BankStatement {
-  id: string;
+  id: number;
   date: Date;
   reference: string | null;
   type: string;
@@ -16,7 +22,13 @@ export interface BankStatement {
 }
 
 export interface Account {
-  id: string;
+  id: number;
   code: string;
+  name: string;
+  sub_type: AccountSubType;
+}
+
+export interface AccountSubType {
+  id: number;
   name: string;
 }
