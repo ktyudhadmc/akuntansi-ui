@@ -1,11 +1,11 @@
 import useRevalidateMutation from "@lib/swr/useRevalidateMutation";
-import type { IBulkDeleteAccountPayload } from "../interfaces/request.type";
+import type { IBulkDeleteBankStatementPayload } from "../interfaces/request.type";
 import axiosInstance from "@lib/axios-instance";
 
-export default function useBulkDeleteAccount() {
+export default function useBulkDeletBankStatement() {
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const deleteBulkData = async (payload: IBulkDeleteAccountPayload) => {
+  const bulkDeleteData = async (payload: IBulkDeleteBankStatementPayload) => {
     const { ids } = payload;
 
     try {
@@ -13,12 +13,12 @@ export default function useBulkDeleteAccount() {
         withToken: true,
         withCompany: true,
         tokenType: "user",
-      }).post("/accounts/bulk-delete", {
+      }).post("/accounts/cash-bank/bulk-delete", {
         ids,
       });
 
       if (res.status === 200) {
-        revalidateMutationsByKey(/^\/accounts/);
+        revalidateMutationsByKey(/^\/accounts\/cash-bank/);
       }
 
       return { response: res, error: null };
@@ -27,9 +27,9 @@ export default function useBulkDeleteAccount() {
         return { response: null, error: "Server error" };
       }
 
-      return { response: null, error: error.data.message };
+      return { response: null, error: error.response.data.message };
     }
   };
 
-  return { deleteBulkData };
+  return { bulkDeleteData };
 }
