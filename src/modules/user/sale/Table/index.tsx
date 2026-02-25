@@ -4,9 +4,11 @@ import useGetAll from "@services/user/sale/hooks/useGetAll";
 import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
 import SaleHeader from "../Header";
+import { useState } from "react";
 
 export default function SaleTable() {
   const { data, loading, setName } = useGetAll();
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
   return (
     <>
@@ -64,7 +66,12 @@ export default function SaleTable() {
                   ) : (
                     data.sales.map((item, index) => {
                       return (
-                        <TableItem key={`table-sale-${index}`} item={item} />
+                        <TableItem
+                          key={`table-sale-${index}`}
+                          item={item}
+                          openDropdownId={openDropdownId}
+                          setOpenDropdownId={setOpenDropdownId}
+                        />
                       );
                     })
                   )}
