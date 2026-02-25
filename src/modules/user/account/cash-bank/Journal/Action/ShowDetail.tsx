@@ -71,18 +71,18 @@ export default function CBJournalShowDetail({ item, onOpen, onClose }: Props) {
                     className={`flex my-auto text-brand-600 dark:text-white`}
                     to={getAccountUrl(
                       item.bank_account.id,
-                      item.bank_account?.sub_type?.id,
+                      item.bank_account?.category?.id,
                     )}
                   >
                     {item.bank_account.code}
                   </Link>
                 </TableCell>
-                <TableCell>
+                <TableCell className="whitespace-nowrap">
                   <Link
                     className={`flex my-auto text-brand-600 dark:text-white`}
                     to={getAccountUrl(
                       item.bank_account.id,
-                      item.bank_account?.sub_type?.id,
+                      item.bank_account?.category?.id,
                     )}
                   >
                     {item.bank_account.name}
@@ -103,18 +103,18 @@ export default function CBJournalShowDetail({ item, onOpen, onClose }: Props) {
                     className={`flex my-auto text-brand-600 dark:text-white`}
                     to={getAccountUrl(
                       item.counter_account.id,
-                      item.counter_account?.sub_type?.id,
+                      item.counter_account?.category?.id,
                     )}
                   >
                     {item.counter_account.code}
                   </Link>
                 </TableCell>
-                <TableCell>
+                <TableCell className="whitespace-nowrap">
                   <Link
                     className={`flex my-auto text-brand-600 dark:text-white`}
                     to={getAccountUrl(
                       item.counter_account.id,
-                      item.counter_account?.sub_type?.id,
+                      item.counter_account?.category?.id,
                     )}
                   >
                     {item.counter_account.name}

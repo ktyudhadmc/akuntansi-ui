@@ -64,7 +64,7 @@ export interface LedgerItemTransaction {
 /** transaction */
 
 export interface LedgerResponse {
-  mutations: Ledger[];
+  mutation: Ledger[];
   balance: Balance;
 }
 
@@ -85,19 +85,14 @@ export interface AccountWithBalance extends Account {
 
 /** DOMAIN */
 export interface Ledger {
+  id: number;
   date: string;
-  transaction: Transaction;
+  type: string;
+  document_number: string;
   description: string;
   debit: number;
   credit: number;
   balance: number;
-}
-
-export interface Transaction {
-  id: string;
-  type: string;
-  document_number: string;
-  // description: string;
 }
 export interface LedgerOld {
   account: Account;
@@ -127,6 +122,6 @@ export interface Journal {
 }
 
 export interface Balance {
-  opening: string;
-  closing: string;
+  opening_balance: string;
+  closing_balance: string;
 }
