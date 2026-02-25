@@ -28,6 +28,8 @@ export default function TableItemChildDetail({
         return `/user/purchases/${id}`;
       case "memorial":
         return `/user/reports/journal/${id}`;
+      case "bank":
+        return `/user/accounts/cash-bank/journal/${id}`;
       default:
         return "#";
     }
