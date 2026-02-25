@@ -14,6 +14,7 @@ export interface BankStatement {
   id: number;
   date: Date;
   reference: string | null;
+  document_number: string | null;
   type: string;
   amount: number;
   description: string;
@@ -25,7 +26,7 @@ export interface Account {
   id: number;
   code: string;
   name: string;
-  sub_type: AccountSubType;
+  category: AccountSubType;
 }
 
 export interface AccountSubType {

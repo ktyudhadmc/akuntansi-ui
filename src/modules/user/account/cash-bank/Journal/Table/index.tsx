@@ -55,14 +55,14 @@ export default function CBShowJournalTable() {
                     </div>
                   </td>
                 </tr>
-              ) : isEmpty(ledgers?.mutations) || !ledgers?.mutations ? (
+              ) : isEmpty(ledgers?.mutation) || !ledgers?.mutation ? (
                 <tr>
                   <td colSpan={5} className="text-center py-4">
                     Data tidak tersedia
                   </td>
                 </tr>
               ) : (
-                ledgers.mutations.map((item, index) => {
+                ledgers.mutation.map((item, index) => {
                   return (
                     <TableItem key={`table-account-${index}`} item={item} />
                   );
