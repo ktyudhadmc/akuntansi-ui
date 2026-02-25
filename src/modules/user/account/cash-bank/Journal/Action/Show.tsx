@@ -56,8 +56,8 @@ export default function CBJournalShow() {
                 </span>
 
                 <Skeleton isLoading={loading} height="20px" width="100px">
-                  <span className="text-base font-medium text-gray-700 dark:text-white">
-                    {data?.reference}
+                  <span className="text-md font-medium text-gray-700 dark:text-white">
+                    {data?.document_number}
                   </span>
                 </Skeleton>
               </div>
@@ -118,7 +118,7 @@ export default function CBJournalShow() {
                 className={`text-sm text-brand-600 dark:text-white my-auto`}
                 to={getAccountUrl(
                   data?.counter_account.id,
-                  data?.counter_account?.sub_type?.id,
+                  data?.counter_account?.category?.id,
                 )}
               >
                 {data?.counter_account.name}
@@ -159,24 +159,26 @@ export default function CBJournalShow() {
                           className={`flex my-auto text-brand-600 dark:text-white`}
                           to={getAccountUrl(
                             data.bank_account.id,
-                            data.bank_account?.sub_type?.id,
+                            data.bank_account?.category?.id,
                           )}
                         >
                           {data.bank_account.code}
                         </Link>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="whitespace-nowrap">
                         <Link
                           className={`flex my-auto text-brand-600 dark:text-white`}
                           to={getAccountUrl(
                             data.bank_account.id,
-                            data.bank_account?.sub_type?.id,
+                            data.bank_account?.category?.id,
                           )}
                         >
                           {data.bank_account.name}
                         </Link>
                       </TableCell>
-                      <TableCell>{data.description}</TableCell>
+                      <TableCell className="lg:max-w-md w-xs line-clamp-3">
+                        {data.description}
+                      </TableCell>
                       <TableCell className="text-end font-semibold">
                         {formatIDRLocale(data.amount)}
                       </TableCell>
