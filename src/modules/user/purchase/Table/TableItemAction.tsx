@@ -11,13 +11,13 @@ import {
 } from "@floating-ui/react";
 import { createPortal } from "react-dom";
 
+import DeletePurchase from "../Action/Delete";
 import { useModal } from "@hooks/useModal";
-
-import DeleteSale from "../Action/Delete";
 
 interface Props {
   id: string;
   invoice: string;
+  date: Date;
   openDropdownId: string | null;
   setOpenDropdownId: (id: string | null) => void;
 }
@@ -25,6 +25,7 @@ interface Props {
 export default function TableItemAction({
   id,
   invoice,
+  date,
   openDropdownId,
   setOpenDropdownId,
 }: Props) {
@@ -59,9 +60,10 @@ export default function TableItemAction({
 
   return (
     <>
-      <DeleteSale
+      <DeletePurchase
         id={id}
-        invoice={invoice}
+        date={date}
+        name={invoice}
         key={`modal-delete-${id}`}
         onOpen={isOpen}
         onClose={closeModal}
