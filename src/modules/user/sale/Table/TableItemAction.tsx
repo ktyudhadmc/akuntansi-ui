@@ -1,4 +1,3 @@
-// import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 import { HiDotsHorizontal, HiEye, HiPencil, HiTrash } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import {
@@ -12,8 +11,9 @@ import {
 } from "@floating-ui/react";
 import { createPortal } from "react-dom";
 
-import DeleteSale from "../Action/Delete";
 import { useModal } from "@hooks/useModal";
+
+import DeleteSale from "../Action/Delete";
 
 interface Props {
   id: string;
@@ -67,99 +67,55 @@ export default function TableItemAction({
         onClose={closeModal}
       />
 
-      {/* <div className="relative inline-block">
-        <button
-          onClick={toggleDropdown}
-          className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
-        >
-          <HiDotsHorizontal />
-        </button>
-
-        <Dropdown
-          isOpen={isOpenDropdown}
-          onClose={closeDropdown}
-          className="absolute right-0 flex flex-col rounded-lg border border-gray-200 bg-white p-2 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
-        >
-          <ul className="flex gap-1 border-gray-200 dark:border-gray-800">
-            <li>
-              <DropdownItem
-                onItemClick={() => navigate(`${id}`)}
-                className="flex items-center !px-3 font-medium text-gray-700 rounded-md group text-theme-xs hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-              >
-                <HiEye className="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300" />
-              </DropdownItem>
-            </li>
-            <li>
-              <DropdownItem
-                onItemClick={() => navigate(`${id}/edit`)}
-                className="flex items-center !px-3 font-medium text-gray-700 rounded-md group text-theme-xs hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-              >
-                <HiPencil className="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300" />
-              </DropdownItem>
-            </li>
-            <li>
-              <DropdownItem
-                onItemClick={openModal}
-                className="flex items-center !px-3 font-medium text-gray-700 rounded-md group text-theme-xs hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-              >
-                <HiTrash className="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300" />
-              </DropdownItem>
-            </li>
-          </ul>
-        </Dropdown>
-      </div> */}
-
       <div className="relative inline-block">
         <div>
-          <div>
-            <button
-              ref={refs.setReference}
-              {...getReferenceProps({
-                onClick: toggleDropdown,
-              })}
-              className="text-gray-500 dark:text-gray-400 "
-            >
-              <HiDotsHorizontal size={16} />
-            </button>
-          </div>
-
-          {isOpenDropdown &&
-            createPortal(
-              <div
-                ref={refs.setFloating}
-                style={floatingStyles}
-                {...getFloatingProps()}
-                className="z-10"
-              >
-                <div
-                  className="p-2 bg-white border border-gray-200 rounded-2xl shadow-lg dark:border-gray-800 dark:bg-gray-900"
-                  style={{ display: "block" }}
-                >
-                  <div className="space-y-1 flex">
-                    <button
-                      onClick={() => navigate(`${id}`)}
-                      className="text-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-                    >
-                      <HiEye />
-                    </button>
-                    <button
-                      onClick={() => navigate(`${id}/edit`)}
-                      className="text-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-                    >
-                      <HiPencil />
-                    </button>
-                    <button
-                      onClick={openModal}
-                      className="text-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
-                    >
-                      <HiTrash />
-                    </button>
-                  </div>
-                </div>
-              </div>,
-              document.body,
-            )}
+          <button
+            ref={refs.setReference}
+            {...getReferenceProps({
+              onClick: toggleDropdown,
+            })}
+            className="text-gray-500 dark:text-gray-400 "
+          >
+            <HiDotsHorizontal size={16} />
+          </button>
         </div>
+
+        {isOpenDropdown &&
+          createPortal(
+            <div
+              ref={refs.setFloating}
+              style={floatingStyles}
+              {...getFloatingProps()}
+              className="z-10"
+            >
+              <div
+                className="p-2 bg-white border border-gray-200 rounded-2xl shadow-lg dark:border-gray-800 dark:bg-gray-900"
+                style={{ display: "block" }}
+              >
+                <div className="space-y-1 flex">
+                  <button
+                    onClick={() => navigate(`${id}`)}
+                    className="text-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+                  >
+                    <HiEye />
+                  </button>
+                  <button
+                    onClick={() => navigate(`${id}/edit`)}
+                    className="text-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+                  >
+                    <HiPencil />
+                  </button>
+                  <button
+                    onClick={openModal}
+                    className="text-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+                  >
+                    <HiTrash />
+                  </button>
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )}
       </div>
     </>
   );
