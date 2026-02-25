@@ -16,3 +16,7 @@ export interface ICreateIntegrationBankAccountPayload {
 export interface IImportBankStatementPayload {
   file: File;
 }
+
+export interface IBulkDeleteBankStatementPayload {
+  ids: (number | string)[];
+}

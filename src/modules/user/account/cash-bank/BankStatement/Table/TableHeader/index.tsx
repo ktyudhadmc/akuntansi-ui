@@ -1,25 +1,34 @@
 import { useCallback } from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { isEmpty } from "lodash";
 import debounce from "lodash/debounce";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { MdOutlineRefresh } from "react-icons/md";
-// import { useNavigate } from "react-router-dom";
+import { HiTrash } from "react-icons/hi";
 
 import { todayYMString } from "@helpers/index";
+import { useModal } from "@hooks/useModal";
 
 import Button from "@components/ui/button/Button";
 import FilterInput from "@components/form/input/FilterInput";
+import Input from "@components/form/input/InputField";
 import Form from "@components/form/Form";
 
-import Input from "@components/form/input/InputField";
+import BankStatementBulkDelete from "../../Action/BulkDelete";
 
 interface Props {
   date: string;
   setSearch: (param: string) => void;
   setDate: (param: string) => void;
+  selectedIds: (number | string)[];
 }
 
-export default function TableHeader({ date, setSearch, setDate }: Props) {
-  // const navigate = useNavigate();
+export default function TableHeader({
+  date,
+  setSearch,
+  setDate,
+  selectedIds,
+}: Props) {
+  const { openModal, isOpen, closeModal } = useModal();
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -33,7 +42,7 @@ export default function TableHeader({ date, setSearch, setDate }: Props) {
   const isValid = methods.formState.isValid;
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setDate(state.start_date);
+    setDate(state.date);
   };
 
   const onClear = () => {
@@ -46,6 +55,12 @@ export default function TableHeader({ date, setSearch, setDate }: Props) {
 
   return (
     <>
+      <BankStatementBulkDelete
+        onOpen={isOpen}
+        onClose={closeModal}
+        selectedIds={selectedIds}
+      />
+
       {/* Create */}
       <div className="flex lg:flex-row flex-col justify-between gap-4">
         <Form {...methods} onSubmit={onSubmit}>
@@ -69,26 +84,21 @@ export default function TableHeader({ date, setSearch, setDate }: Props) {
               >
                 Filter
               </Button>
+
+              {!isEmpty(selectedIds) && (
+                <Button onClick={openModal} size="sm" variant="outline">
+                  <HiTrash />
+                </Button>
+              )}
             </div>
           </div>
         </Form>
 
-        {/* <div className="flex flex-row flex-col justify-between gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => navigate("../import")}
-          >
-            Impor
-          </Button>
-          <div className="w-full"> */}
         <FilterInput
           withPrefixIcon
           placeholder="Cari"
           onChange={(e) => debouncedSearch(e.target.value)}
         />
-        {/* </div>
-        </div> */}
       </div>
     </>
   );
