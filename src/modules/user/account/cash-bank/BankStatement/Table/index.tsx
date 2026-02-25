@@ -5,7 +5,10 @@ import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
 import TableHeader from "./TableHeader";
 
+import Checkbox from "@components/form/default/Checkbox";
+
 import useGetAllBankStatement from "@services/user/account/cash-bank/hooks/useGetAllBankStatement";
+import { useBulkSelect } from "@hooks/useBulkSelect";
 
 export default function CBBankStatementTable() {
   const params = useParams();
@@ -14,10 +17,20 @@ export default function CBBankStatementTable() {
     params.id as string,
   );
 
+  const { selectedIds, isSelected, toggleOne, toggleAll, isAllSelected } =
+    useBulkSelect();
+
+  const allIds = data?.map((item) => item.id) ?? [];
+
   return (
     <>
       {/* TABLE HEADER */}
-      <TableHeader setSearch={setSearch} date={date} setDate={setDate} />
+      <TableHeader
+        setSearch={setSearch}
+        date={date}
+        setDate={setDate}
+        selectedIds={selectedIds}
+      />
 
       {/* TABLE */}
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
@@ -26,6 +39,13 @@ export default function CBBankStatementTable() {
             {/* Table Header */}
             <thead className="border-b border-gray-100 dark:border-white/[0.05]">
               <tr>
+                <th className="pl-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 flex gap-4">
+                  <Checkbox
+                    className="cursor-pointer"
+                    checked={isAllSelected(allIds)}
+                    onChange={() => toggleAll(allIds)}
+                  />
+                </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Tanggal
                 </th>
@@ -41,9 +61,9 @@ export default function CBBankStatementTable() {
                 <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                   Saldo
                 </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400">
+                {/* <th className="px-5 py-3 font-medium text-gray-500 text-center text-theme-xs dark:text-gray-400">
                   Sumber
-                </th>
+                </th> */}
                 <th></th>
               </tr>
             </thead>
@@ -66,7 +86,12 @@ export default function CBBankStatementTable() {
               ) : (
                 data.map((item, index) => {
                   return (
-                    <TableItem key={`table-account-${index}`} item={item} />
+                    <TableItem
+                      key={`table-account-${index}`}
+                      item={item}
+                      checked={isSelected(item.id)}
+                      onToggle={() => toggleOne(item.id)}
+                    />
                   );
                 })
               )}
