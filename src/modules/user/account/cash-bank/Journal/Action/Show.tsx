@@ -192,11 +192,11 @@ export default function CBJournalShow() {
           <div className="flex flex-wrap justify-between sm:justify-end">
             <div className="mt-6 w-full space-y-1 text-right sm:w-xs">
               <ul className="space-y-2">
-                <li className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                <li className="flex items-center justify-between gap-4">
+                  <span className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                     Sub Total
                   </span>
-                  <Skeleton isLoading={loading} height="2rem">
+                  <Skeleton isLoading={loading} height="1.5rem">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-400">
                       {formatIDRLocale(data?.amount ?? 0, {
                         withSymbol: true,
