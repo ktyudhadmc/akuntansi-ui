@@ -1,7 +1,7 @@
 export interface IGetAllResponse {
   status?: string;
   message?: string;
-  data: Purchase[];
+  data: PurchaseResponse;
 }
 
 export interface IGetResponse {
@@ -10,6 +10,14 @@ export interface IGetResponse {
   data: Purchase;
 }
 
+export interface PurchaseResponse {
+  purchases: Purchase[];
+  summary: PurchaseSummary;
+}
+
+interface PurchaseSummary {
+  total_purchase: number;
+}
 export interface Purchase {
   id: string;
   document_number: string;

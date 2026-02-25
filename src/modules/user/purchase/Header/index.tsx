@@ -1,14 +1,22 @@
 import CardStatistic from "@components/ui/card/CardStatistic";
 import { formatIDRLocale } from "@helpers/currency";
-import { AiOutlineArrowDown, AiOutlineBarChart, AiOutlinePercentage } from "react-icons/ai";
+import {
+  // AiOutlineArrowDown,
+  AiOutlineBarChart,
+  // AiOutlinePercentage,
+} from "react-icons/ai";
 
-export default function PurchaseHeader() {
+interface Props {
+  expenseAmount: number;
+  loading: boolean;
+}
+export default function PurchaseHeader({ loading, expenseAmount }: Props) {
   return (
     <>
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
-            <CardStatistic
+            {/* <CardStatistic
               title="Biaya Sebelum Pajak"
               value={formatIDRLocale(0, { withSymbol: true })}
               variant="danger"
@@ -19,10 +27,11 @@ export default function PurchaseHeader() {
               value={formatIDRLocale(0, { withSymbol: true })}
               variant="danger"
               icon={<AiOutlinePercentage />}
-            />
+            /> */}
             <CardStatistic
+              loading={loading}
               title="Total Biaya"
-              value={formatIDRLocale(0, { withSymbol: true })}
+              value={formatIDRLocale(expenseAmount, { withSymbol: true })}
               variant="danger"
               icon={<AiOutlineBarChart />}
             />
