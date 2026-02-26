@@ -27,8 +27,8 @@ export default function useGetAll() {
   const qs = querystring.stringify(
     {
       search: name,
-      start_date,
-      end_date,
+      start_transaction_date: start_date,
+      end_transaction_date: end_date,
       // start_transaction_date: startTransactionDate,
       // end_transaction_date: endTransactionDate,
       // start_due_date: startDueDate,
