@@ -85,6 +85,10 @@ export { default as RBProfitLossPage } from "./report/business/RBProfitLossPage"
 export { default as RBCashFlowPage } from "./report/business/RBCashFlowPage";
 export { default as RBBalanceSheetPage } from "./report/business/RBBalanceSheetPage";
 
+// REPORT SALES
+export { default as RSSaleListPage } from "./report/sale/RSSaleListPage";
+export { default as RSSaleByCustomerPage } from "./report/sale/RSSaleByCustomerPage";
+
 // SALE
 export { default as SalePage } from "./sale";
 export { default as CreateSalePage } from "./sale/create";
