@@ -122,6 +122,6 @@ export interface Journal {
 }
 
 export interface Balance {
-  opening_balance: string;
-  closing_balance: string;
+  opening_balance: number;
+  closing_balance: number;
 }
