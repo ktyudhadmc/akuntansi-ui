@@ -34,13 +34,13 @@ export default function CBJournalShowDetail({ item, onOpen, onClose }: Props) {
       className="lg:max-w-fit max-w-sm m-4"
     >
       <div className="relative max-w-fit rounded-3xl bg-white p-6 dark:bg-gray-900 lg:p-10">
-        <div className="relative items-center justify-start z-1 lg:mb-7 mb-5">
+        <div className="relative items-center justify-start z-1 lg:mb-4 mb-3">
           <small className="text-gray-500 dark:text-gray-400 text-theme-xs">
             Laporan Jurnal
           </small>
           <br />
           <p className="text-sm text-black dark:text-white font-semibold">
-            {item.reference}
+            {item.document_number}
           </p>
         </div>
         <TableWrapper>
