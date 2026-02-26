@@ -193,7 +193,7 @@ export default [
 
           /** SALE */
           { path: "sales-list", element: <User.RSSaleListPage /> },
-          { path: "sales-by-customer", element: <User.RSSaleListPage /> },
+          { path: "sales-by-customer", element: <User.RSSaleByCustomerPage /> },
         ],
       },
 
