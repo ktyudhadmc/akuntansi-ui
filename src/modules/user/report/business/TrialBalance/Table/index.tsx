@@ -116,37 +116,37 @@ export default function RBTrialBalance() {
                   )}
                 </TableBody>
 
-                {data?.total && (
-                  <tfoot className="border-t dark:border-white/[0.10]">
-                    <tr>
-                      <td
-                        colSpan={2}
-                        className="pl-5 py-1 text-black text-start text-theme-xs dark:text-white whitespace-nowrap font-semibold"
-                      >
-                        Total
-                      </td>
+                <tfoot className="border-t dark:border-white/[0.10]">
+                  <tr>
+                    <td
+                      colSpan={2}
+                      className="pl-5 py-1 text-black text-start text-theme-sm dark:text-white whitespace-nowrap font-semibold"
+                    >
+                      Total
+                    </td>
 
-                      <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                        {formatIDRLocale(data.total.opening_balance.debit)}
-                      </td>
-                      <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                        {formatIDRLocale(data.total.opening_balance.credit)}
-                      </td>
-                      <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                        {formatIDRLocale(data.total.movement_balance.debit)}
-                      </td>
-                      <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                        {formatIDRLocale(data.total.movement_balance.credit)}
-                      </td>
-                      <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                        {formatIDRLocale(data.total.closing_balance.debit)}
-                      </td>
-                      <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                        {formatIDRLocale(data.total.closing_balance.credit)}
-                      </td>
-                    </tr>
-                  </tfoot>
-                )}
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                      {formatIDRLocale(data?.total.opening_balance.debit ?? 0)}
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                      {formatIDRLocale(data?.total.opening_balance.credit ?? 0)}
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                      {formatIDRLocale(data?.total.movement_balance.debit ?? 0)}
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                      {formatIDRLocale(
+                        data?.total.movement_balance.credit ?? 0,
+                      )}
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                      {formatIDRLocale(data?.total.closing_balance.debit ?? 0)}
+                    </td>
+                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                      {formatIDRLocale(data?.total.closing_balance.credit ?? 0)}
+                    </td>
+                  </tr>
+                </tfoot>
               </Table>
             </div>
           </div>

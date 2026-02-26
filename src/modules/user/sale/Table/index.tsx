@@ -15,7 +15,7 @@ export default function SaleTable() {
       {/* header */}
       <SaleHeader
         loading={loading}
-        grossRevenue={data?.summary.total_net ?? 0}
+        grossRevenue={data?.summary.total_gross ?? 0}
         taxAmount={data?.summary.total_tax ?? 0}
         revenueIncludingTax={data?.summary.total_net ?? 0}
       />
