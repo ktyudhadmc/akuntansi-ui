@@ -61,7 +61,7 @@ export default function TableHeader({ setSearchCallback }: Props) {
             <Button
               size="sm"
               onClick={toggleDropdown}
-              className="lg:w-auto w-full"
+              className="dropdown-toggle lg:w-auto w-full"
             >
               <span>Tindakan</span>
               <AiFillCaretDown />

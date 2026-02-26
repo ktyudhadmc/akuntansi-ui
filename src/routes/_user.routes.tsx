@@ -178,14 +178,24 @@ export default [
       },
 
       /** REPORT */
-      { path: "reports", element: <User.ReportPage /> },
-      { path: "reports/journal", element: <User.RBJournalPage /> },
-      { path: "reports/journal/:id", element: <User.RBJournalShowPage /> },
-      { path: "reports/ledger", element: <User.RBLedgerPage /> },
-      { path: "reports/trial-balance", element: <User.RBTrialBalancePage /> },
-      { path: "reports/profit-loss", element: <User.RBProfitLossPage /> },
-      { path: "reports/cash-flow", element: <User.RBCashFlowPage /> },
-      { path: "reports/balance-sheet", element: <User.RBBalanceSheetPage /> },
+      {
+        path: "reports",
+        children: [
+          { index: true, element: <User.ReportPage /> },
+          /** BUSINESS */
+          { path: "journal", element: <User.RBJournalPage /> },
+          { path: "journal/:id", element: <User.RBJournalShowPage /> },
+          { path: "ledger", element: <User.RBLedgerPage /> },
+          { path: "trial-balance", element: <User.RBTrialBalancePage /> },
+          { path: "profit-loss", element: <User.RBProfitLossPage /> },
+          { path: "cash-flow", element: <User.RBCashFlowPage /> },
+          { path: "balance-sheet", element: <User.RBBalanceSheetPage /> },
+
+          /** SALE */
+          { path: "sales-list", element: <User.RSSaleListPage /> },
+          { path: "sales-by-customer", element: <User.RSSaleListPage /> },
+        ],
+      },
 
       /** TAX */
       { path: "taxes", element: <User.TaxPage /> },
