@@ -38,9 +38,9 @@ export default function TableItem({ item }: Props) {
 
   return (
     <TableRow>
-      <TableCell>{formatDateAsYMD(item.transaction_date)}</TableCell>
-      <TableCell>{item.transaction_type.name}</TableCell>
-      <TableCell>
+      <TableCell className="whitespace-nowrap">{formatDateAsYMD(item.transaction_date)}</TableCell>
+      <TableCell className="whitespace-nowrap">{item.transaction_type.name}</TableCell>
+      <TableCell className="whitespace-nowrap">
         <Link
           to={`/user/sales/${item.id}`}
           className="cursor-pointer text-brand-500 dark:text-white hover:underline"
@@ -48,7 +48,7 @@ export default function TableItem({ item }: Props) {
           {item.transaction_number}
         </Link>
       </TableCell>
-      <TableCell>
+      <TableCell className="whitespace-nowrap">
         <Link
           to={`/user/contacts/${item.customer.id}/edit?tab=customer`}
           className="cursor-pointer text-brand-500 dark:text-white hover:underline"
@@ -56,12 +56,12 @@ export default function TableItem({ item }: Props) {
           {item.customer.name}
         </Link>
       </TableCell>
-      <TableCell className="capitalize">
+      <TableCell className="capitalize whitespace-nowrap">
         <Badge size="sm" color={getStatusColor(item.transaction_status.name)}>
           {getStatusLabel(item.transaction_status.name)}
         </Badge>
       </TableCell>
-      <TableCell className="max-w-xs line-clamp-3">
+      <TableCell className="lg:max-w-xs w-48 line-clamp-3">
         {item.description}
       </TableCell>
       <TableCell className="text-black dark:text-white text-end whitespace-nowrap">
