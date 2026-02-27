@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
 import { isEmpty } from "lodash";
 
 import TableItem from "./TableItem";
@@ -7,6 +6,7 @@ import TableHeader from "./TableHeader";
 
 import useGetLedgerByAccount from "@services/user/report/ledger/hooks/useGetLedgerByAccount";
 import { formatIDRLocale } from "@helpers/currency";
+import { TableLoading, TableNotFound } from "@components/ui/table";
 
 export default function CBShowJournalTable() {
   const params = useParams();
@@ -66,19 +66,9 @@ export default function CBShowJournalTable() {
 
           <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
             {ledgerLoading ? (
-              <tr>
-                <td colSpan={5} className="text-center py-16">
-                  <div className="sweet-loading">
-                    <BeatLoader color="var(--color-brand-600)" />
-                  </div>
-                </td>
-              </tr>
+              <TableLoading colSpan={5} />
             ) : isEmpty(ledgers?.mutation) || !ledgers?.mutation ? (
-              <tr>
-                <td colSpan={5} className="text-center py-4">
-                  Data tidak tersedia
-                </td>
-              </tr>
+              <TableNotFound colSpan={5} />
             ) : (
               <>
                 {ledgers.mutation.map((item, index) => {

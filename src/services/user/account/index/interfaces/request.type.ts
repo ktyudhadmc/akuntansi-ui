@@ -8,5 +8,5 @@ export interface ICreateAccountPayload {
 }
 
 export interface IBulkDeleteAccountPayload {
-  ids: string[];
+  ids: (number | string)[];
 }

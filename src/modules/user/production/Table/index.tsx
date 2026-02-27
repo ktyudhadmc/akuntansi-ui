@@ -1,9 +1,9 @@
-import { BeatLoader } from "react-spinners";
 import { isEmpty } from "lodash";
 
 import TableItem from "./TableItem";
 import TableHeader from "./TableHeader";
 import useGetAll from "@services/user/production/hooks/useGetAll";
+import { TableLoading, TableNotFound } from "@components/ui/table";
 
 export default function ProductionTable() {
   const { data, loading, setName } = useGetAll();
@@ -34,19 +34,9 @@ export default function ProductionTable() {
 
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {loading ? (
-                <tr>
-                  <td colSpan={4} className="text-center py-16">
-                    <div className="sweet-loading">
-                      <BeatLoader color="var(--color-brand-600)" />
-                    </div>
-                  </td>
-                </tr>
+                <TableLoading colSpan={4} />
               ) : isEmpty(data) || !data ? (
-                <tr>
-                  <td colSpan={4} className="text-center py-4">
-                    Data tidak tersedia
-                  </td>
-                </tr>
+                <TableNotFound colSpan={4} />
               ) : (
                 data?.map((item, index) => {
                   return (

@@ -3,7 +3,7 @@ import TableHeader from "./Header";
 
 import useGetAll from "@services/user/inventory/index/hooks/useGetAll";
 import { isEmpty } from "lodash";
-import { BeatLoader } from "react-spinners";
+import { TableLoading, TableNotFound } from "@components/ui/table";
 
 export default function InventoryTable() {
   const { data, loading, setName } = useGetAll();
@@ -38,19 +38,9 @@ export default function InventoryTable() {
 
             <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {loading ? (
-                <tr>
-                  <td colSpan={6} className="text-center py-16">
-                    <div className="sweet-loading">
-                      <BeatLoader color="var(--color-brand-600)" />
-                    </div>
-                  </td>
-                </tr>
+                <TableLoading colSpan={6} />
               ) : isEmpty(data) || !data ? (
-                <tr>
-                  <td colSpan={6} className="text-center py-4">
-                    Data tidak tersedia
-                  </td>
-                </tr>
+                <TableNotFound colSpan={6}/>
               ) : (
                 data.map((item, index) => {
                   return (
