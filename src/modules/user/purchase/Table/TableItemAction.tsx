@@ -35,7 +35,7 @@ export default function TableItemAction({
   const { openModal, isOpen, closeModal } = useModal();
 
   function toggleDropdown() {
-    setOpenDropdownId(isOpen ? null : id);
+    setOpenDropdownId(isOpenDropdown ? null : id);
   }
 
   function closeDropdown() {

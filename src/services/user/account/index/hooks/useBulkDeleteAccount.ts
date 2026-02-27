@@ -5,7 +5,7 @@ import axiosInstance from "@lib/axios-instance";
 export default function useBulkDeleteAccount() {
   const revalidateMutationsByKey = useRevalidateMutation();
 
-  const deleteBulkData = async (payload: IBulkDeleteAccountPayload) => {
+  const bulkDeleteData = async (payload: IBulkDeleteAccountPayload) => {
     const { ids } = payload;
 
     try {
@@ -27,9 +27,9 @@ export default function useBulkDeleteAccount() {
         return { response: null, error: "Server error" };
       }
 
-      return { response: null, error: error.data.message };
+      return { response: null, error: error.response.data.message };
     }
   };
 
-  return { deleteBulkData };
+  return { bulkDeleteData };
 }

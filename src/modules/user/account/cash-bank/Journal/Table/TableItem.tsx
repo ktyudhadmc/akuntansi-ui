@@ -30,7 +30,7 @@ export default function TableItem({ item }: Props) {
       <td className="px-5 py-1 text-gray-500 text-start text-sm dark:text-gray-400 max-w-xs">
         <Link
           to={getTransactionUrl(item.id, item.type)}
-          className="cursor-pointer text-brand-400 dark:text-gray-400"
+          className="cursor-pointer text-brand-400 dark:text-white"
         >
           ({item.document_number ?? "-"})
         </Link>

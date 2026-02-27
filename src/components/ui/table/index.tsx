@@ -115,7 +115,11 @@ const TableFoot: React.FC<TableFootProps> = ({ children, className }) => {
 
 // TableRow Component
 const TableRow: React.FC<TableRowProps> = ({ children, className }) => {
-  return <tr className={className}>{children}</tr>;
+  return (
+    <tr className={clsx("hover:bg-gray-50 hover:dark:bg-gray-800", className)}>
+      {children}
+    </tr>
+  );
 };
 
 // TableCell Component
@@ -130,6 +134,7 @@ const TableCell: React.FC<TableCellProps> = ({
   const classNameDefault = isHeader
     ? "px-5 py-3 font-medium text-gray-500 text-theme-xs dark:text-gray-400"
     : "px-5 py-1 text-gray-500 text-theme-xs dark:text-gray-400";
+
   return (
     <CellTag
       colSpan={colSpan}
