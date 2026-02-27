@@ -6,21 +6,23 @@ import { isEmpty } from "lodash";
 import { BeatLoader } from "react-spinners";
 import Checkbox from "@components/form/default/Checkbox";
 import { useBulkSelect } from "@hooks/useBulkSelect";
-import Button from "@components/ui/button/Button";
-import { HiTrash } from "react-icons/hi";
 
 export default function AccountTable() {
   const { data, loading, setName } = useGetAll();
 
   const { selectedIds, isSelected, toggleOne, toggleAll, isAllSelected } =
     useBulkSelect<number>();
+
   const allIds =
     data?.filter((item) => item.is_posting).map((item) => item.id) ?? [];
 
   console.log(selectedIds);
   return (
     <>
-      <TableHeader setSearchCallback={(e) => setName(e)} />
+      <TableHeader
+        setSearchCallback={(e) => setName(e)}
+        selectedIds={selectedIds}
+      />
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full">
@@ -33,11 +35,6 @@ export default function AccountTable() {
                     checked={isAllSelected(allIds)}
                     onChange={() => toggleAll(allIds)}
                   />
-                  {isAllSelected(allIds) && (
-                    <Button size="xs" variant="outline">
-                      <HiTrash />
-                    </Button>
-                  )}
                 </th>
                 <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
                   Kunci
@@ -54,7 +51,6 @@ export default function AccountTable() {
                 <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
                   Saldo di jurnal
                 </th>
-                <th></th>
               </tr>
             </thead>
 

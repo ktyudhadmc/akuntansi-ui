@@ -4,10 +4,16 @@ import clsx from "clsx";
 interface Props {
   text?: string;
   placement?: "top" | "bottom" | "left" | "right";
+  className?: string;
   children: React.ReactNode;
 }
 
-export function Tooltip({ text, placement = "top", children }: Props) {
+export function Tooltip({
+  text,
+  placement = "top",
+  children,
+  className,
+}: Props) {
   const [show, setShow] = useState(false);
 
   const position = {
@@ -42,9 +48,10 @@ export function Tooltip({ text, placement = "top", children }: Props) {
       {show && (
         <div role="tooltip" className={`absolute z-50 ${position[placement]}`}>
           <div
-            className="relative min-w-48 max-w-xs text-center rounded-lg px-3.5 py-2 text-xs font-medium shadow-md
-             bg-white text-gray-700 border border-gray-200
-             dark:bg-[#1E2634] dark:text-white dark:border-gray-700"
+            className={clsx(
+              "relative min-w-48 max-w-xs text-center rounded-lg px-3.5 py-2 text-xs font-medium shadow-md bg-white text-gray-700 border border-gray-200 dark:bg-[#1E2634] dark:text-white dark:border-gray-700",
+              className,
+            )}
           >
             {text}
 

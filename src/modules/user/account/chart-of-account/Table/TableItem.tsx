@@ -1,7 +1,7 @@
 import type { Account } from "@services/user/account/index/interfaces/response.type";
 import { formatIDR } from "@helpers/currency";
 
-import TableItemMenu from "./TableItemMenu";
+// import TableItemMenu from "./TableItemMenu";
 import { AiOutlineDash, AiOutlineLock } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Checkbox from "@components/form/default/Checkbox";
@@ -50,10 +50,10 @@ export default function TableItem({ item, checked, onToggle }: Props) {
       <td className="px-5 py-1 text-gray-500 text-center text-base dark:text-gray-400 whitespace-nowrap">
         {item.is_posting ? <AiOutlineDash /> : <AiOutlineLock />}
       </td>
-      <td className="px-5 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-        {item.code}
+      <td className="px-5 py-1 text-brand-600 dark:text-white text-start text-theme-xs whitespace-nowrap">
+        <Link to={getAccountUrl(item.id, item.category?.id)}>{item.code}</Link>
       </td>
-      <td className="text-brand-600 dark:text-white text-start text-theme-xs font-medium ">
+      <td className="text-brand-600 dark:text-white text-start text-theme-xs font-medium whitespace-nowrap">
         <Link
           to={getAccountUrl(item.id, item.category?.id)}
           // target="_blank"
@@ -63,20 +63,20 @@ export default function TableItem({ item, checked, onToggle }: Props) {
           {item.name}
         </Link>
       </td>
-      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
+      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-white">
         {formatIDR(0)}
       </td>
-      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
+      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-white">
         {formatIDR(0)}
       </td>
-      <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
+      {/* <td className="px-4 py-1  whitespace-nowrap text-gray-500 text-end text-theme-xs dark:text-gray-400">
         <TableItemMenu
           id={item.id}
           name={item.name}
           code={item.code}
           isLock={!item.is_posting}
         />
-      </td>
+      </td> */}
     </tr>
   );
 }
