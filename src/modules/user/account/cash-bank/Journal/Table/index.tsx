@@ -45,7 +45,7 @@ export default function CBShowJournalTable() {
               </th>
             </tr>
 
-            <tr className="bg-gray-50 dark:bg-white/[0.02] border-b border-gray-100">
+            <tr>
               <td
                 className="px-5 py-2 text-theme-sm text-black dark:text-white"
                 colSpan={2}
@@ -90,8 +90,8 @@ export default function CBShowJournalTable() {
             )}
           </tbody>
 
-          <tfoot className="sticky bottom-0 z-10">
-            <tr className="bg-gray-50 dark:bg-white/[0.02]">
+          <tfoot className="sticky bottom-0 z-10  dark:border-white/[0.05]  bg-gray-50 dark:bg-gray-700">
+            <tr>
               <td
                 className="px-5 py-2 text-theme-sm text-black dark:text-white"
                 colSpan={2}
