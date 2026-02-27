@@ -28,7 +28,7 @@ export default function TableItem({ item, checked, onToggle }: Props) {
     1: "pl-8 pr-4",
     2: "pl-12 pr-4",
     3: "pl-16 pr-4",
-    4: "px-20 pr-4",
+    4: "pl-20 pr-4",
   };
 
   const paddingClass = indentClasses[item.level] || "px-4";

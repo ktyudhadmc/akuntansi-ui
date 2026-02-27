@@ -24,6 +24,14 @@ export const TEMPLATE_IMPORT_SALE = appEnv.VITE_TEMPLATE_IMPORT_SALE;
 export const TEMPLATE_IMPORT_CASH_BANK = appEnv.VITE_TEMPLATE_IMPORT_CASH_BANK;
 export const TEMPLATE_IMPORT_JOURNAL = appEnv.VITE_TEMPLATE_IMPORT_JOURNAL;
 
+/** EXPORT */
+/** EXPORT - REPORT */
+export const REPORT_URLS = {
+  profitLoss: `${BASE_API_URL}/reports/profit-loss`,
+  balanceSheet: `${BASE_API_URL}/reports/balance-sheet`,
+  cashFlow: `${BASE_API_URL}/reports/cash-flow`,
+} as const;
+
 const config = {
   APP_NAME,
   BASE_API_URL,
@@ -40,6 +48,9 @@ const config = {
   TEMPLATE_IMPORT_PURCHASE,
   TEMPLATE_IMPORT_CASH_BANK,
   TEMPLATE_IMPORT_JOURNAL,
+
+  /** EXPORT */
+  REPORT_URLS,
 };
 
 export default config;
