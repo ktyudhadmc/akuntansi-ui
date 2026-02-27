@@ -89,10 +89,10 @@ export default function CBShowJournalTable() {
                 Saldo Akhir
               </td>
               <td className="px-5 py-2 text-end text-theme-xs text-gray-400">
-                -
+                {formatIDRLocale(ledgers?.balance.total_debit ?? 0)}
               </td>
               <td className="px-5 py-2 text-end text-theme-xs text-gray-400">
-                -
+                {formatIDRLocale(ledgers?.balance.total_credit ?? 0)}
               </td>
               <td className="px-5 py-2 text-end text-theme-sm text-black dark:text-white">
                 {formatIDRLocale(ledgers?.balance.closing_balance ?? 0)}

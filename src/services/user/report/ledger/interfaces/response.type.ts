@@ -123,5 +123,7 @@ export interface Journal {
 
 export interface Balance {
   opening_balance: number;
+  total_debit: number;
+  total_credit: number;
   closing_balance: number;
 }
