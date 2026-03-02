@@ -88,6 +88,8 @@ export { default as RBBalanceSheetPage } from "./report/business/RBBalanceSheetP
 // REPORT SALES
 export { default as RSSaleListPage } from "./report/sale/RSSaleListPage";
 export { default as RSSaleByCustomerPage } from "./report/sale/RSSaleByCustomerPage";
+export { default as RSCustomerBalancePage } from "./report/sale/RSCustomerBalancePage";
+export { default as RSCashOfGoodsSoldPage } from "./report/sale/RSCashOfGoodsSoldPage";
 
 // SALE
 export { default as SalePage } from "./sale";
