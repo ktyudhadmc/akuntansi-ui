@@ -21,10 +21,10 @@ export default function TableItem({ item }: Props) {
         {formatIDRLocale(item.opening_balance.credit)}
       </td>
       <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r dark:border-white/[0.10]">
-        {formatIDRLocale(item.movement_balance.debit)}
+        {formatIDRLocale(item.movements.total_movement.debit)}
       </td>
       <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r dark:border-white/[0.10]">
-        {formatIDRLocale(item.movement_balance.credit)}
+        {formatIDRLocale(item.movements.total_movement.credit)}
       </td>
       <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap border-r dark:border-white/[0.10]">
         {formatIDRLocale(item.closing_balance.debit)}

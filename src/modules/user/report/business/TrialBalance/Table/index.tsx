@@ -3,7 +3,7 @@ import { isEmpty } from "lodash";
 import TableAction from "./TableAction";
 import TableItem from "./TableItem";
 
-import { formatIDRLocale } from "@helpers/currency";
+// import { formatIDRLocale } from "@helpers/currency";
 
 import {
   Table,
@@ -105,7 +105,7 @@ export default function RBTrialBalance() {
                   ) : isEmpty(data) || !data ? (
                     <TableNotFound colSpan={8} />
                   ) : (
-                    data?.accounts.map((item, index) => {
+                    data?.map((item, index) => {
                       return (
                         <TableItem
                           key={`table-item-trial-balance-${index}`}
@@ -126,24 +126,30 @@ export default function RBTrialBalance() {
                     </td>
 
                     <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      {formatIDRLocale(data?.total.opening_balance.debit ?? 0)}
+                      0
+                      {/* {formatIDRLocale(data?.total.opening_balance.debit ?? 0)} */}
                     </td>
                     <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      {formatIDRLocale(data?.total.opening_balance.credit ?? 0)}
+                      0
+                      {/* {formatIDRLocale(data?.total.opening_balance.credit ?? 0)} */}
                     </td>
                     <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      {formatIDRLocale(data?.total.movement_balance.debit ?? 0)}
+                      0
+                      {/* {formatIDRLocale(data?.total.movement_balance.debit ?? 0)} */}
                     </td>
                     <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      {formatIDRLocale(
+                      0
+                      {/* {formatIDRLocale(
                         data?.total.movement_balance.credit ?? 0,
-                      )}
+                      )} */}
                     </td>
                     <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      {formatIDRLocale(data?.total.closing_balance.debit ?? 0)}
+                      0
+                      {/* {formatIDRLocale(data?.total.closing_balance.debit ?? 0)} */}
                     </td>
                     <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      {formatIDRLocale(data?.total.closing_balance.credit ?? 0)}
+                      0
+                      {/* {formatIDRLocale(data?.total.closing_balance.credit ?? 0)} */}
                     </td>
                   </tr>
                 </tfoot>

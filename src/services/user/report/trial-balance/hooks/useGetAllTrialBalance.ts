@@ -4,12 +4,12 @@ import type { IGetAllTrialBalanceResponse } from "../interfaces/response.type";
 import axiosInstance from "@lib/axios-instance";
 import querystring from "query-string";
 import useUserStore from "@store/useUserStore";
-import { parseMonthAndRange } from "@helpers/date";
+// import { parseMonthAndRange } from "@helpers/date";
 
 export default function useGetAllTrialBalance() {
   const [search, setSearch] = useState("");
   const trialBalanceDate = useUserStore((state) => state.trialBalanceDate);
-  const { start_date, end_date } = parseMonthAndRange(trialBalanceDate);
+  // const { start_date, end_date } = parseMonthAndRange(trialBalanceDate);
 
   const fetcher: Fetcher<IGetAllTrialBalanceResponse, string> = (url) =>
     axiosInstance({ withToken: true, withCompany: true, tokenType: "user" })
@@ -19,13 +19,14 @@ export default function useGetAllTrialBalance() {
   const qs = querystring.stringify(
     {
       search,
-      start_date,
-      end_date,
+      year_month: trialBalanceDate,
+      // start_date,
+      // end_date,
     },
     { skipEmptyString: true, skipNull: true },
   );
 
-  const { data, error } = useSWR(`/reports/trial-balance?${qs}`, fetcher);
+  const { data, error } = useSWR(`/trial-balance?${qs}`, fetcher);
 
   const onSetSearch = useCallback((search: string) => {
     setSearch(search);
