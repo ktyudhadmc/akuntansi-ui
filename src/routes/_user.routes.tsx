@@ -182,7 +182,7 @@ export default [
         path: "reports",
         children: [
           { index: true, element: <User.ReportPage /> },
-          /** BUSINESS */
+          /** REPORT - BUSINESS */
           { path: "journal", element: <User.RBJournalPage /> },
           { path: "journal/:id", element: <User.RBJournalShowPage /> },
           { path: "ledger", element: <User.RBLedgerPage /> },
@@ -191,11 +191,14 @@ export default [
           { path: "cash-flow", element: <User.RBCashFlowPage /> },
           { path: "balance-sheet", element: <User.RBBalanceSheetPage /> },
 
-          /** SALE */
+          /** REPORT - SALE */
           { path: "sales-list", element: <User.RSSaleListPage /> },
           { path: "sales-by-customer", element: <User.RSSaleByCustomerPage /> },
           { path: "customer-balance", element: <User.RSCustomerBalancePage /> },
           { path: "cogs", element: <User.RSCashOfGoodsSoldPage /> },
+
+          /** REPORT - PURCHASE */
+          { path: "purchases-list", element: <User.RPPurchaseListPage /> },
         ],
       },
 
