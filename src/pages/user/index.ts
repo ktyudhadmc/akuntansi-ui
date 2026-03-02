@@ -91,6 +91,9 @@ export { default as RSSaleByCustomerPage } from "./report/sale/RSSaleByCustomerP
 export { default as RSCustomerBalancePage } from "./report/sale/RSCustomerBalancePage";
 export { default as RSCashOfGoodsSoldPage } from "./report/sale/RSCashOfGoodsSoldPage";
 
+// REPORT PURCHASES
+export { default as RPPurchaseListPage } from "./report/purchase/RPPurchaseListPage";
+
 // SALE
 export { default as SalePage } from "./sale";
 export { default as CreateSalePage } from "./sale/create";
