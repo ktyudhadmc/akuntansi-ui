@@ -1,28 +1,37 @@
 import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
+import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
-import config from "@constants/config";
 import { todayYMString } from "@helpers/index";
 import { useDropdown } from "@hooks/useDropdown";
+import useDownload from "@services/global/download/hooks/useDownload";
 import useUserStore from "@store/useUserStore";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { AiFillCaretDown } from "react-icons/ai";
 import { MdOutlineRefresh } from "react-icons/md";
 
 export default function TableAction() {
+  const { loading: loadingDownload, trigger } = useDownload();
   const urlExports = [
     {
       label: "pdf",
-      value: `${config.REPORT_URLS.cashFlow}?type=pdf&mode=download`,
+      onClick: () =>
+        trigger({ url: "/reports/cash-flow", mode: "download", type: "pdf" }),
     },
     {
       label: "csv",
-      value: `${config.REPORT_URLS.cashFlow}?type=csv&mode=download`,
+      onClick: () =>
+        trigger({ url: "/reports/cash-flow", mode: "download", type: "csv" }),
     },
     {
       label: "xlsx",
-      value: `${config.REPORT_URLS.cashFlow}?type=xlsx&mode=download`,
+      onClick: () =>
+        trigger({
+          url: "/reports/cash-flow",
+          mode: "download",
+          type: "xlsx",
+        }),
     },
   ];
 
@@ -88,11 +97,18 @@ export default function TableAction() {
           variant="outline"
           onClick={toggleDropdown}
           className="dropdown-toggle lg:w-auto w-full"
+          disabled={loadingDownload}
         >
-          <span>Ekspor</span>
-          <AiFillCaretDown
-            className={` transition-transform duration-200 ${isOpenDropdown ? "rotate-180" : ""}`}
-          />
+          {loadingDownload ? (
+            <Spinner />
+          ) : (
+            <>
+              <span>Ekspor</span>
+              <AiFillCaretDown
+                className={` transition-transform duration-200 ${isOpenDropdown ? "rotate-180" : ""}`}
+              />
+            </>
+          )}
         </Button>
 
         <Dropdown
@@ -105,10 +121,7 @@ export default function TableAction() {
               <li key={index}>
                 <DropdownItem
                   onItemClick={closeDropdown}
-                  onClick={() => window.open(item.value)}
-                  tag="a"
-                  target="_blank"
-                  to={item.value}
+                  onClick={item.onClick}
                   className=" !text-center !w-full !py-2 font-medium text-gray-700 rounded-lg group text-theme-xs uppercase hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
                 >
                   {item.label}

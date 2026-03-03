@@ -8,7 +8,7 @@ import ReportBusinessPage from "./business";
 import ReportSalePage from "./sale";
 import ReportPurchasePage from "./purchase";
 import ReportBankPage from "./bank";
-
+import ReportProductionPage from "./production";
 
 export default function ReportPage() {
   const pageTitle = "Laporan";
@@ -38,13 +38,13 @@ export default function ReportPage() {
             onChange={(e) => setSearchParams({ tab: e })}
           />
 
-
           {/* {activeTab != "business" && <h4>Halaman {activeTab}, It Works!</h4>} */}
 
           {activeTab == "business" && <ReportBusinessPage />}
           {activeTab == "sales" && <ReportSalePage />}
           {activeTab == "purchases" && <ReportPurchasePage />}
           {activeTab == "bank" && <ReportBankPage />}
+          {activeTab == "production" && <ReportProductionPage />}
         </div>
       </div>
     </>
