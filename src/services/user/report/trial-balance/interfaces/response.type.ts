@@ -16,7 +16,7 @@ export interface TrialBalanceTotal {
 }
 
 export interface TrialBalanceAccount {
-  id: string;
+  id: number;
   name: string;
   code: string;
   opening_balance: Balance;

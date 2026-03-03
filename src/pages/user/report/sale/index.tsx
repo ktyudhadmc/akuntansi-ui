@@ -1,34 +1,42 @@
 import { useNavigate } from "react-router-dom";
 import Button from "@components/ui/button/Button";
+import useDownload from "@services/global/download/hooks/useDownload";
+import Spinner from "@components/Reusable/Spinner";
 
 export default function ReportSalePage() {
   const navigate = useNavigate();
+
+  const { loading: loadingDownload, trigger } = useDownload();
   const data = [
     {
+      type: "navigate",
       title: "Daftar Penjualan",
       path: "sales-list",
       description:
         "Menampilkan transaksi penjualan secara kronologis berdasarkan tipenya dalam periode tertentu. Template laporan ini bisa Anda custom sesuai kebutuhan.",
     },
     {
+      type: "navigate",
       title: "Penjualan per pelanggan",
       path: "sales-by-customer",
       description:
         "Menampilkan semua transaksi penjualan dari setiap pelanggan dalam periode tertentu.",
     },
     {
+      type: "navigate",
       title: "Piutang pelanggan",
       path: "customer-balance",
       description:
         "Menampilkan semua faktur yang belum dibayar dan saldo memo kredit pelanggan pada tanggal tertentu.",
     },
     {
+      type: "download",
       title: "Beban Pokok Penjualan",
-      path: "cogs",
+      onClick: () => trigger({ url: "/reports/cogs", mode: "download" }),
       description:
         "Menampilkan total biaya langsung atas produk yang terjual dalam periode tertentu untuk menghitung laba kotor dan margin penjualan.",
     },
-  ];
+  ] as const;
 
   return (
     <div className="w-full grid md:grid-cols-2 gap-8">
@@ -46,13 +54,24 @@ export default function ReportSalePage() {
               {item.description}
             </p>
 
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => navigate(item.path)}
-            >
-              Lihat laporan
-            </Button>
+            {item.type == "download" ? (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={item.onClick}
+                disabled={loadingDownload}
+              >
+                {loadingDownload ? <Spinner /> : "Ekspor laporan"}
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => navigate(item.path)}
+              >
+                Lihat laporan
+              </Button>
+            )}
           </div>
         </div>
       ))}

@@ -1,22 +1,39 @@
 import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
+import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
-import config from "@constants/config";
+
 import { todayYMString } from "@helpers/index";
 import { useDropdown } from "@hooks/useDropdown";
+import useDownload from "@services/global/download/hooks/useDownload";
 import useUserStore from "@store/useUserStore";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { AiFillCaretDown } from "react-icons/ai";
 import { MdOutlineRefresh } from "react-icons/md";
 
 export default function TableAction() {
-  const baseUrl = `${config.BASE_API_URL}/reports/profit-loss`;
-
+  const { loading: loadingDownload, trigger } = useDownload();
   const urlExports = [
-    { label: "pdf", value: `${baseUrl}?type=pdf&mode=download` },
-    { label: "csv", value: `${baseUrl}?type=csv&mode=download` },
-    { label: "xlsx", value: `${baseUrl}?type=xlsx&mode=download` },
+    {
+      label: "pdf",
+      onClick: () =>
+        trigger({ url: "/reports/profit-loss", mode: "download", type: "pdf" }),
+    },
+    {
+      label: "csv",
+      onClick: () =>
+        trigger({ url: "/reports/profit-loss", mode: "download", type: "csv" }),
+    },
+    {
+      label: "xlsx",
+      onClick: () =>
+        trigger({
+          url: "/reports/profit-loss",
+          mode: "download",
+          type: "xlsx",
+        }),
+    },
   ];
 
   const {
@@ -47,7 +64,7 @@ export default function TableAction() {
   };
 
   return (
-    <div className="flex items-end lg:flex-row flex-col lg:justify-between justify-normal">
+    <div className="flex items-end lg:flex-row flex-col lg:justify-between justify-normal gap-4">
       {/* TABLE HEADER */}
       <Form {...methods} onSubmit={onSubmit}>
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
@@ -74,26 +91,24 @@ export default function TableAction() {
         </div>
       </Form>
 
-      {/* <Button
-        type="button"
-        size="sm"
-        variant="outline"
-        onClick={() => window.open(url)}
-      >
-        Ekspor
-      </Button> */}
-
-      <div className="relative">
+      <div className="relative lg:w-auto w-full">
         <Button
           size="sm"
           variant="outline"
           onClick={toggleDropdown}
           className="dropdown-toggle lg:w-auto w-full"
+          disabled={loadingDownload}
         >
-          <span>Ekspor</span>
-          <AiFillCaretDown
-            className={` transition-transform duration-200 ${isOpenDropdown ? "rotate-180" : ""}`}
-          />
+          {loadingDownload ? (
+            <Spinner />
+          ) : (
+            <>
+              <span>Ekspor</span>
+              <AiFillCaretDown
+                className={` transition-transform duration-200 ${isOpenDropdown ? "rotate-180" : ""}`}
+              />
+            </>
+          )}
         </Button>
 
         <Dropdown
@@ -106,10 +121,7 @@ export default function TableAction() {
               <li key={index}>
                 <DropdownItem
                   onItemClick={closeDropdown}
-                  onClick={() => window.open(item.value)}
-                  tag="a"
-                  target="_blank"
-                  to={item.value}
+                  onClick={item.onClick}
                   className=" !text-center !w-full !py-2 font-medium text-gray-700 rounded-lg group text-theme-xs uppercase hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
                 >
                   {item.label}
