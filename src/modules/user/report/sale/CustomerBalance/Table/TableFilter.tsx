@@ -10,7 +10,6 @@ import Input from "@components/form/input/InputField";
 import { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
-import config from "@constants/config";
 
 export default function TableFilter() {
   const saleCustomerBalanceDate = useUserStore(
@@ -20,11 +19,19 @@ export default function TableFilter() {
     (state) => state.setSaleCustomerBalanceDate,
   );
 
-  const baseUrl = `${config.BASE_API_URL}/report/sale-list`;
   const urlExports = [
-    { label: "pdf", value: `${baseUrl}?type=pdf` },
-    { label: "csv", value: `${baseUrl}?type=csv` },
-    { label: "xlsx", value: `${baseUrl}?type=xlsx` },
+    {
+      label: "pdf",
+      onClick: () => console.log("pdf"),
+    },
+    {
+      label: "csv",
+      onClick: () => console.log("csv"),
+    },
+    {
+      label: "xlsx",
+      onClick: () => console.log("xlsx"),
+    },
   ];
 
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
@@ -107,9 +114,7 @@ export default function TableFilter() {
                   <li key={index}>
                     <DropdownItem
                       onItemClick={closeDropdown}
-                      tag="a"
-                      target="_blank"
-                      to={item.value}
+                      onClick={item.onClick}
                       className=" !text-center !w-full !py-2 font-medium text-gray-700 rounded-lg group text-theme-xs uppercase hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
                     >
                       {item.label}
