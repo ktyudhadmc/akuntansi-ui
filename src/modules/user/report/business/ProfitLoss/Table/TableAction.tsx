@@ -11,12 +11,19 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { MdOutlineRefresh } from "react-icons/md";
 
 export default function TableAction() {
-  const baseUrl = `${config.BASE_API_URL}/reports/profit-loss`;
-
   const urlExports = [
-    { label: "pdf", value: `${baseUrl}?type=pdf&mode=download` },
-    { label: "csv", value: `${baseUrl}?type=csv&mode=download` },
-    { label: "xlsx", value: `${baseUrl}?type=xlsx&mode=download` },
+    {
+      label: "pdf",
+      value: `${config.REPORT_URLS.profitLoss}?type=pdf&mode=download`,
+    },
+    {
+      label: "csv",
+      value: `${config.REPORT_URLS.profitLoss}?type=csv&mode=download`,
+    },
+    {
+      label: "xlsx",
+      value: `${config.REPORT_URLS.profitLoss}?type=xlsx&mode=download`,
+    },
   ];
 
   const {
