@@ -12,6 +12,7 @@ import useSendOtp from "@services/auth/hooks/useSendOtp";
 import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import { useCountdown } from "@hooks/useCountdown";
+import { maskPhone } from "@helpers/index";
 
 // import useGlobalStore from "@store/useStore";
 
@@ -95,8 +96,8 @@ export default function VerifyOtp() {
               <span className="text-sm italic font-bold"> Jurnal</span>
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Kode Verifikasi telah dikirimkan ke <b>{phone}</b> untuk masuk
-              akun!
+              Kode Verifikasi telah dikirimkan ke <b>{maskPhone(phone)}</b>{" "}
+              untuk masuk akun!
             </p>
           </div>
           <div>
@@ -136,13 +137,13 @@ export default function VerifyOtp() {
               <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
                 Tidak menerima kode verifikasi?
                 {isFinished ? (
-                  <a
-                    className="text-brand-500 hover:text-brand-600 dark:text-brand-400 ml-1 cursor-pointer"
-                    href="javascript:void();"
+                  <button
+                    type="button"
+                    className="text-brand-500 hover:text-brand-600 dark:text-brand-400 ml-1 cursor-pointer hover:underline"
                     onClick={onResend}
                   >
                     Kirim Ulang
-                  </a>
+                  </button>
                 ) : (
                   <span className="ml-1 font-normal text-brand-600 dark:text-white">
                     ({totalSeconds})
