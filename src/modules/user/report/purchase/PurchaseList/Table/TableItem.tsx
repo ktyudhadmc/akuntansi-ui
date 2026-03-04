@@ -54,10 +54,10 @@ export default function TableItem({ item }: Props) {
       </TableCell>
       <TableCell className="whitespace-nowrap">
         <Link
-          to={`/user/contacts/${item.customer.id}/edit?tab=customer`}
+          to={`/user/contacts/${item.supplier.id}/edit?tab=supplier`}
           className="cursor-pointer text-brand-500 dark:text-white hover:underline"
         >
-          {item.customer.name}
+          {item.supplier.name}
         </Link>
       </TableCell>
       <TableCell className="capitalize whitespace-nowrap">

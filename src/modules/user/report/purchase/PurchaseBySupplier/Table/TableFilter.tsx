@@ -1,5 +1,7 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { MdOutlineRefresh } from "react-icons/md";
+import { useState } from "react";
+import { AiFillCaretDown } from "react-icons/ai";
 
 import useUserStore from "@store/useUserStore";
 import { todayYMDString, todayYMString } from "@helpers/index";
@@ -7,31 +9,31 @@ import { todayYMDString, todayYMString } from "@helpers/index";
 import Button from "@components/ui/button/Button";
 import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
-import { useState } from "react";
-import { AiFillCaretDown } from "react-icons/ai";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
-import { toast } from "react-toastify";
+
+// import useDownload from "@services/global/download/hooks/useDownload";
 
 export default function TableFilter() {
-  const saleCustomerBalanceDate = useUserStore(
-    (state) => state.saleCustomerBalanceDate,
+  const purchaseBySupplierDate = useUserStore(
+    (state) => state.purchaseBySupplierDate,
   );
-  const setSaleCustomerBalanceDate = useUserStore(
-    (state) => state.setSaleCustomerBalanceDate,
+  const setPurchaseBySupplierDate = useUserStore(
+    (state) => state.setPurchaseBySupplierDate,
   );
 
+  // const { loading: loadingDownload, trigger } = useDownload();
   const urlExports = [
     {
       label: "pdf",
-      onClick: () => toast.info('Testing download pdf!'),
+      onClick: () => alert("pdf"),
     },
     {
       label: "csv",
-      onClick: () => toast.info('Testing download csv!'),
+      onClick: () => alert("csv"),
     },
     {
       label: "xlsx",
-      onClick: () => toast.info('Testing download xlsx!'),
+      onClick: () => alert("xlsx"),
     },
   ];
 
@@ -49,7 +51,7 @@ export default function TableFilter() {
   const isValid = methods.formState.isValid;
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setSaleCustomerBalanceDate(state.date);
+    setPurchaseBySupplierDate(state.date);
   };
 
   const onClear = () => {
@@ -64,11 +66,11 @@ export default function TableFilter() {
     <div>
       <div className="lg:flex items-end">
         <Form {...methods} onSubmit={onSubmit}>
-          <div className="grid lg:grid-cols-4 md:grid-cols-1 gap-4 items-end">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
             <Input
               name="date"
               type="month"
-              defaultValue={saleCustomerBalanceDate}
+              defaultValue={purchaseBySupplierDate}
             />
             <div className="flex gap-2 md:col-span-2">
               <Button

@@ -1,25 +1,27 @@
-import {
-  Table,
-  TableCell,
-  TableRow,
-  TableHeader,
-  TableWrapper,
-  TableBody,
-  TableLoading,
-  TableNotFound,
-  TableFoot,
-} from "@components/ui/table";
 import { isEmpty } from "lodash";
+import { useEffect } from "react";
+
+import usePagination from "@hooks/usePagination";
+
 import TableItem from "./TableItem";
 import TableFilter from "./TableFilter";
-
-import useGetReportCustomerBalance from "@services/user/report/customer-balance/hooks/useGetReportCustomerBalance";
-import usePagination from "@hooks/usePagination";
-import { useEffect } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFoot,
+  TableHeader,
+  TableLoading,
+  TableNotFound,
+  TableRow,
+  TableWrapper,
+} from "@components/ui/table";
 import TablePagination from "@components/ui/table/TablePagination";
-import { formatIDRLocale } from "@helpers/currency";
 
-export default function RSCustomerBalance() {
+import { formatIDRLocale } from "@helpers/currency";
+import useGetReportPurchaseBySupplier from "@services/user/report/purchase-by-supplier/hooks/useGetReportPurchaseBySupplier";
+
+export default function RPPurchaseBySupplier() {
   const {
     loading,
     summary,
@@ -28,7 +30,7 @@ export default function RSCustomerBalance() {
     pageLimit,
     setPageLimit,
     setPageNum,
-  } = useGetReportCustomerBalance();
+  } = useGetReportPurchaseBySupplier();
 
   const {
     currentPage,
@@ -50,32 +52,41 @@ export default function RSCustomerBalance() {
           <Table>
             <TableHeader className="bg-gray-50 dark:bg-gray-700">
               <TableRow>
-                <TableCell isHeader className="whitepsace-nowrap text-start">
+                <TableCell isHeader className="text-start">
                   Tanggal
                 </TableCell>
-                <TableCell isHeader className="whitespace-nowrap text-start">
+                <TableCell isHeader className="text-start">
+                  Tipe Transaksi
+                </TableCell>
+                <TableCell isHeader className="text-start">
                   Nomor Transaksi
                 </TableCell>
-                <TableCell isHeader className="whitespace-nowrap text-start">
-                  Jatuh Tempo
+                <TableCell isHeader className="text-start">
+                  Produk
                 </TableCell>
-                <TableCell isHeader className="whitespace-nowrap text-start">
-                  Deskripsi
+                <TableCell isHeader className="text-start">
+                  Keterangan
+                </TableCell>
+                <TableCell isHeader className="text-start">
+                  Kuantitas
+                </TableCell>
+                <TableCell isHeader className="text-start">
+                  Satuan
                 </TableCell>
                 <TableCell isHeader className="text-end">
-                  Jumlah
+                  Harga Satuan
                 </TableCell>
                 <TableCell isHeader className="text-end">
-                  Sisa Piutang
+                  Total Nominal Tagihan
                 </TableCell>
               </TableRow>
             </TableHeader>
 
             <TableBody>
               {loading ? (
-                <TableLoading colSpan={6} />
+                <TableLoading colSpan={9} />
               ) : isEmpty(data) || !data ? (
-                <TableNotFound colSpan={6} />
+                <TableNotFound colSpan={9} />
               ) : (
                 data.map((item, index) => (
                   <TableItem key={`table-item-${index}`} item={item} />
@@ -83,19 +94,18 @@ export default function RSCustomerBalance() {
               )}
             </TableBody>
 
-            <TableFoot>
-              <TableRow className="border-t-2 border-t-gray-200 dark:border-t-gray-700">
+            <TableFoot className="border-t border-gray-300 dark:border-gray-500">
+              <TableRow>
                 <TableCell
-                  colSpan={4}
-                  className="text-end !text-black dark:!text-white font-semibold"
+                  colSpan={8}
+                  className="text-start font-medium !text-black dark:!text-white !text-sm"
                 >
-                  Grand Total
+                  Total
                 </TableCell>
-                <TableCell className="whitespace-nowrap text-end dark:!text-white !text-black font-medium">
-                  {formatIDRLocale(summary.total_amount)}
-                </TableCell>
-                <TableCell className="whitespace-nowrap text-end dark:!text-white !text-black font-medium">
-                  {formatIDRLocale(summary.total_remaining)}
+                <TableCell className="text-end font-medium !text-black dark:!text-white !text-sm">
+                  {formatIDRLocale(summary?.grand_total ?? 0, {
+                    withSymbol: true,
+                  })}
                 </TableCell>
               </TableRow>
             </TableFoot>

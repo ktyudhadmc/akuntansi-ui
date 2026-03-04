@@ -1,13 +1,15 @@
-import { TableCell, TableRow } from "@components/ui/table";
-import { Tooltip } from "@components/ui/tooltip";
-import { formatIDRLocale, formatDateAsYMD } from "@helpers/index";
-import type { CustomerBalance } from "@services/user/report/customer-balance/interfaces/response.type";
 import { useState } from "react";
 import { HiChevronDown } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
+import { TableCell, TableRow } from "@components/ui/table";
+import { Tooltip } from "@components/ui/tooltip";
+import { formatIDRLocale, formatDateAsYMD } from "@helpers/index";
+
+import type { SupplierBalance } from "@services/user/report/supplier-balance/interfaces/response.type";
+
 interface Props {
-  item: CustomerBalance;
+  item: SupplierBalance;
 }
 export default function TableItem({ item }: Props) {
   const [open, setOpen] = useState(false);
