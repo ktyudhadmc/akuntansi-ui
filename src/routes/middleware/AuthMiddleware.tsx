@@ -28,6 +28,10 @@ export default function AuthMiddleware({
   // const setOpenPeriods = useGlobalStore((state) => state.setOpenPeriods);
 
   const currentCompany = useGlobalStore((state) => state.currentCompany);
+  const currentCompanyLoading = useGlobalStore(
+    (state) => state.currentCompanyLoading,
+  );
+
   const setCurrentCompany = useGlobalStore((state) => state.setCurrentCompany);
   const setCurrentCompanyLoading = useGlobalStore(
     (state) => state.setCurrentCompanyLoading,
@@ -39,6 +43,10 @@ export default function AuthMiddleware({
     (state) => state.setIsSelectCompany,
   );
 
+  const [storageCompany, setStorageCompany] = useState(() =>
+    localStorage.getItem(config.LOCAL_STORAGE_COMPANY_KEY),
+  );
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -46,8 +54,6 @@ export default function AuthMiddleware({
     Cookies.get("token-user") ||
     Cookies.get("token-company") ||
     Cookies.get("token");
-
-  const storageCompany = localStorage.getItem(config.LOCAL_STORAGE_COMPANY_KEY);
 
   /** set is loggedIn */
   const isLoggedIn = !!token;
@@ -57,7 +63,9 @@ export default function AuthMiddleware({
   const isSelectCompany = !!storageCompany;
   // setIsSelectCompany(isSelectCompany);
 
-  const { data: company } = useCurrentCompany(storageCompany as string);
+  const { data: company, loading: companyLoading } = useCurrentCompany(
+    storageCompany ?? undefined,
+  );
 
   const role = Cookies.get("token")
     ? "admin"
@@ -66,8 +74,19 @@ export default function AuthMiddleware({
       : "user";
 
   useEffect(() => {
-    setCurrentCompanyLoading(!storageCompany);
-  }, [storageCompany, setCurrentCompanyLoading]);
+    const handleStorage = () => {
+      setStorageCompany(localStorage.getItem(config.LOCAL_STORAGE_COMPANY_KEY));
+    };
+
+    // Untuk perubahan dari tab lain
+    window.addEventListener("storage", handleStorage);
+
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
+
+  useEffect(() => {
+    setCurrentCompanyLoading(!!storageCompany && companyLoading);
+  }, [storageCompany, companyLoading, setCurrentCompanyLoading]);
 
   useEffect(() => {
     setIsLoggedIn(isLoggedIn);
@@ -183,6 +202,8 @@ export default function AuthMiddleware({
       redirectToLogin();
       setMounted(true);
     } else if (isLoggedIn) {
+      if (currentCompanyLoading) return;
+
       if (!isSelectCompany) {
         redirectToOnBoard();
       }
@@ -193,7 +214,7 @@ export default function AuthMiddleware({
 
       setMounted(true);
     }
-  }, [isLoggedIn, currentCompany, pathname]);
+  }, [isLoggedIn, currentCompany, pathname, currentCompanyLoading]);
 
   return <>{mounted ? children : <Spinner />}</>;
 }

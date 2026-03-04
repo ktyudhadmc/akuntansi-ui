@@ -1,18 +1,23 @@
-import { useSetCurrentCompany } from "@services/auth/hooks/useSetCurrentCompany";
-
-import useGetAllCompany from "@services/global/company/hooks/useGetAll";
-import Skeleton from "@components/Skeleton/Skeleton";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
-import AvatarText from "@components/ui/avatar/AvatarText";
 import { HiArrowRight } from "react-icons/hi";
+
+import { setStorageCompany } from "@helpers/index";
+import AvatarText from "@components/ui/avatar/AvatarText";
+import Skeleton from "@components/Skeleton/Skeleton";
+
+import useGetAllCompany from "@services/global/company/hooks/useGetAll";
 
 export default function OnBoard() {
   const navigate = useNavigate();
-  const { setCompany } = useSetCurrentCompany();
 
   const { data, loading } = useGetAllCompany();
+
+  const handleSelectCompany = (companyId: string) => {
+    setStorageCompany(companyId);
+    toast.success("Berhasil memilih perusahaan");
+    navigate("/user/dashboard");
+  };
 
   return (
     <div>
@@ -47,11 +52,7 @@ export default function OnBoard() {
                 <div className="flex items-center justify-between border-t border-gray-200 px-5 py-2.5 dark:border-gray-800">
                   <div className="flex gap-3">
                     <button
-                      onClick={() => {
-                        setCompany(item.id.toString());
-                        toast.success("Berhasil memilih perusahaan");
-                        navigate("/user/dashboard");
-                      }}
+                      onClick={() => handleSelectCompany(item.id.toString())}
                       className="shadow-theme-xs inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 pl-4 pr-2 py-3 text-sm font-medium text-brand-600 dark:border-gray-700 dark:text-gray-400 hover:bg-brand-600 hover:text-white dark:hover:bg-gray-400 dark:hover:text-gray-700 animation ease-in-out duration-100"
                     >
                       Buka Jurnal
