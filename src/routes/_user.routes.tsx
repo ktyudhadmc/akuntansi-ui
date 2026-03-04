@@ -199,6 +199,10 @@ export default [
 
           /** REPORT - PURCHASE */
           { path: "purchases-list", element: <User.RPPurchaseListPage /> },
+          {
+            path: "purchases-by-supplier",
+            element: <User.RPPurchaseBySupplierPage />,
+          },
         ],
       },
 
