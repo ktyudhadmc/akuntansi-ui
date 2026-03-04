@@ -62,7 +62,7 @@ export default function RPPurchaseList() {
                   Nomor Transaksi
                 </TableCell>
                 <TableCell isHeader className="text-start">
-                  Pelanggan
+                  Supplier
                 </TableCell>
                 <TableCell isHeader className="text-start">
                   Status

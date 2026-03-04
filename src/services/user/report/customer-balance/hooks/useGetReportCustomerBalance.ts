@@ -42,10 +42,16 @@ export default function useGetReportCustomerBalance() {
   const DUMMY_DATA: IGetReportCustomerBalance = {
     status: "success",
     message: "Data retrieved successfully",
+    summary: {
+      total_amount: 23500000 + 25000000,
+      total_remaining: 13500000 + 5000000,
+    },
     data: [
       {
         id: 1,
         name: "PT. Maju Bersama",
+        total_amount: 23500000,
+        total_remaining: 13500000,
         transaction: [
           {
             id: 101,
@@ -70,6 +76,8 @@ export default function useGetReportCustomerBalance() {
       {
         id: 2,
         name: "CV. Sumber Rejeki",
+        total_amount: 25000000,
+        total_remaining: 5000000,
         transaction: [
           {
             id: 201,
@@ -111,6 +119,7 @@ export default function useGetReportCustomerBalance() {
   return {
     loading: !data && !error,
     data: data?.data ?? DUMMY_DATA.data,
+    summary: data?.summary ?? DUMMY_DATA.summary,
     pagination: data?.pagination ?? DUMMY_DATA.pagination,
     pageNum,
     setPageNum,

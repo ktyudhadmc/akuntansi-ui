@@ -1,22 +1,22 @@
 import type { Pagination } from "@services/global/pagination/interfaces/pagination.type";
 
-export interface IGetReportCustomerBalance {
+export interface IGetReportSupplierBalance {
   status?: string;
   message?: string;
-  data: CustomerBalance[];
-  summary: CustomerBalanceSummary;
+  data: SupplierBalance[];
+  summary: SupplierBalanceSummary;
   pagination: Pagination;
 }
 
-export interface CustomerBalance {
+export interface SupplierBalance {
   id: number;
   name: string;
   total_amount: number;
   total_remaining: number;
-  transaction: CustomerBalanceTransaction[];
+  transaction: SupplierBalanceTransaction[];
 }
 
-export interface CustomerBalanceTransaction {
+export interface SupplierBalanceTransaction {
   id: number;
   transaction_date: Date;
   due_date: Date;
@@ -26,7 +26,7 @@ export interface CustomerBalanceTransaction {
   remaining: number;
 }
 
-export interface CustomerBalanceSummary {
+export interface SupplierBalanceSummary {
   total_amount: number;
   total_remaining: number;
 }

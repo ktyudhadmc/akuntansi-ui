@@ -13,13 +13,13 @@ import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
 import TableFilter from "./TableFilter";
 
-import useGetReportCustomerBalance from "@services/user/report/customer-balance/hooks/useGetReportCustomerBalance";
 import usePagination from "@hooks/usePagination";
 import { useEffect } from "react";
 import TablePagination from "@components/ui/table/TablePagination";
 import { formatIDRLocale } from "@helpers/currency";
+import useGetReportSupplierBalance from "@services/user/report/supplier-balance/hooks/useGetReportSupplierBalance";
 
-export default function RSCustomerBalance() {
+export default function RPSupplierBalance() {
   const {
     loading,
     summary,
@@ -28,7 +28,7 @@ export default function RSCustomerBalance() {
     pageLimit,
     setPageLimit,
     setPageNum,
-  } = useGetReportCustomerBalance();
+  } = useGetReportSupplierBalance();
 
   const {
     currentPage,

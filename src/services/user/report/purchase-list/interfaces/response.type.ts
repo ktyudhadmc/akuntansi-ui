@@ -12,7 +12,7 @@ export interface PurchaseList {
   transaction_date: Date;
   transaction_type: TransactionType;
   transaction_status: TransactionStatus;
-  customer: Customer;
+  supplier: Supplier;
   note: string;
   description: string;
   original_amount: number;
@@ -29,7 +29,7 @@ interface TransactionStatus {
   name: string;
 }
 
-interface Customer {
+interface Supplier {
   id: number;
   name: string;
 }

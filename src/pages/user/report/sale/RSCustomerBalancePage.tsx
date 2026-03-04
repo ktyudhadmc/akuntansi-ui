@@ -3,7 +3,7 @@ import PageMeta from "@components/common/PageMeta";
 import RSCustomerBalance from "@modules/user/report/sale/CustomerBalance/Table";
 
 export default function RSCustomerBalancePage() {
-  const pageTitle = "Piutang Pelanggan";
+  const pageTitle = "Laporan Piutang Pelanggan";
   return (
     <>
       <PageMeta title={pageTitle} />

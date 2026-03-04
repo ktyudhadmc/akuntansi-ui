@@ -12,7 +12,7 @@ export default function ReportPurchasePage() {
     },
     {
       title: "Pembelian per supplier",
-      path: "purchase-by-supplier",
+      path: "purchases-by-supplier",
       description:
         "Menampilkan semua transaksi pembelian dari setiap supplier dalam periode tertentu.",
     },
