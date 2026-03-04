@@ -1,5 +1,4 @@
 import { isEmpty } from "lodash";
-import { BeatLoader } from "react-spinners";
 
 import TableItem from "./TableItem";
 
@@ -8,6 +7,7 @@ import { formatIDRLocale } from "@helpers/index";
 import useGetAllLedger from "@services/user/report/ledger/hooks/useGetAllLedger";
 import TableHeader from "./TableHeader";
 import RBLedgerHeader from "../Header";
+import { TableLoading, TableNotFound } from "@components/ui/table";
 
 export default function RBLedger() {
   const { data, loading, setSearch } = useGetAllLedger();
@@ -53,19 +53,9 @@ export default function RBLedger() {
 
                 <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                   {loading ? (
-                    <tr>
-                      <td colSpan={5} className="text-center py-16">
-                        <div className="sweet-loading">
-                          <BeatLoader color="var(--color-brand-600)" />
-                        </div>
-                      </td>
-                    </tr>
+                    <TableLoading colSpan={5} />
                   ) : isEmpty(data) || !data.account ? (
-                    <tr>
-                      <td colSpan={5} className="text-center py-4">
-                        Data tidak tersedia
-                      </td>
-                    </tr>
+                    <TableNotFound colSpan={5} />
                   ) : (
                     <>
                       {data?.account.map((item, index) => {

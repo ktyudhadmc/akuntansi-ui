@@ -4,12 +4,15 @@ export interface IGetReportCustomerBalance {
   status?: string;
   message?: string;
   data: CustomerBalance[];
+  summary: CustomerBalanceSummary;
   pagination: Pagination;
 }
 
 export interface CustomerBalance {
   id: number;
   name: string;
+  total_amount: number;
+  total_remaining: number;
   transaction: CustomerBalanceTransaction[];
 }
 
@@ -21,4 +24,9 @@ export interface CustomerBalanceTransaction {
   description: string;
   amount: number;
   remaining: number;
+}
+
+export interface CustomerBalanceSummary {
+  total_amount: number;
+  total_remaining: number;
 }

@@ -10,6 +10,7 @@ import Input from "@components/form/input/InputField";
 import { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
+import { toast } from "react-toastify";
 
 export default function TableFilter() {
   const saleCustomerBalanceDate = useUserStore(
@@ -22,15 +23,15 @@ export default function TableFilter() {
   const urlExports = [
     {
       label: "pdf",
-      onClick: () => console.log("pdf"),
+      onClick: () => toast.info('Testing download pdf!'),
     },
     {
       label: "csv",
-      onClick: () => console.log("csv"),
+      onClick: () => toast.info('Testing download csv!'),
     },
     {
       label: "xlsx",
-      onClick: () => console.log("xlsx"),
+      onClick: () => toast.info('Testing download xlsx!'),
     },
   ];
 

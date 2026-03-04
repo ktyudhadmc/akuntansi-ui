@@ -7,6 +7,7 @@ import {
   TableBody,
   TableLoading,
   TableNotFound,
+  TableFoot,
 } from "@components/ui/table";
 import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
@@ -16,10 +17,18 @@ import useGetReportCustomerBalance from "@services/user/report/customer-balance/
 import usePagination from "@hooks/usePagination";
 import { useEffect } from "react";
 import TablePagination from "@components/ui/table/TablePagination";
+import { formatIDRLocale } from "@helpers/currency";
 
 export default function RSCustomerBalance() {
-  const { loading, data, pagination, pageLimit, setPageLimit, setPageNum } =
-    useGetReportCustomerBalance();
+  const {
+    loading,
+    summary,
+    data,
+    pagination,
+    pageLimit,
+    setPageLimit,
+    setPageNum,
+  } = useGetReportCustomerBalance();
 
   const {
     currentPage,
@@ -41,8 +50,12 @@ export default function RSCustomerBalance() {
           <Table>
             <TableHeader className="bg-gray-50 dark:bg-gray-700">
               <TableRow>
-                <TableCell isHeader className="whitepsace-nowrap text-start">Tanggal</TableCell>
-                <TableCell isHeader className="whitespace-nowrap text-start">Nomor Transaksi</TableCell>
+                <TableCell isHeader className="whitepsace-nowrap text-start">
+                  Tanggal
+                </TableCell>
+                <TableCell isHeader className="whitespace-nowrap text-start">
+                  Nomor Transaksi
+                </TableCell>
                 <TableCell isHeader className="whitespace-nowrap text-start">
                   Jatuh Tempo
                 </TableCell>
@@ -69,6 +82,23 @@ export default function RSCustomerBalance() {
                 ))
               )}
             </TableBody>
+
+            <TableFoot>
+              <TableRow className="border-t-2 border-t-gray-200 dark:border-t-gray-700">
+                <TableCell
+                  colSpan={4}
+                  className="text-end !text-black dark:!text-white font-semibold"
+                >
+                  Grand Total
+                </TableCell>
+                <TableCell className="whitespace-nowrap text-end dark:!text-white !text-black font-medium">
+                  {formatIDRLocale(summary.total_amount)}
+                </TableCell>
+                <TableCell className="whitespace-nowrap text-end dark:!text-white !text-black font-medium">
+                  {formatIDRLocale(summary.total_remaining)}
+                </TableCell>
+              </TableRow>
+            </TableFoot>
           </Table>
         </TableWrapper>
 
