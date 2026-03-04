@@ -7,7 +7,6 @@ import * as Sentry from "@sentry/react";
 
 import { AppWrapper } from "@components/common/PageMeta.tsx";
 import { ThemeProvider } from "@context/ThemeContext.tsx";
-import Loader from "@components/Reusable/Loader";
 import { initAnalytics, subscribeGA } from "@constants/analytics";
 
 import GetBrowserRoutes from "./routes/index.routes";
@@ -17,6 +16,7 @@ import "./styles/index.css";
 import "swiper/swiper-bundle.css";
 import "flatpickr/dist/flatpickr.css";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "@components/ui/spinner";
 
 initAnalytics();
 
@@ -48,7 +48,7 @@ root.render(
 
     <ThemeProvider>
       <AppWrapper>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Spinner />}>
           <RouterProvider router={router} />
         </Suspense>
       </AppWrapper>
