@@ -4,17 +4,17 @@
 import type { Product } from "@services/user/product/index/interfaces/response.type";
 import Badge from "@components/ui/badge/Badge";
 import TableItemMenu from "./TableItemMenu";
+import { Link } from "react-router-dom";
 
 interface Props {
   item: Product;
 }
 
 export default function TableItem({ item }: Props) {
-
   const categoryColorMap: Record<string, "primary" | "info" | "success"> = {
     "MEKANIK DAN SPARE PART": "primary",
     "ASSET, INVENTARIS": "info",
-    "IT": "success",
+    IT: "success",
   };
 
   return (
@@ -26,13 +26,21 @@ export default function TableItem({ item }: Props) {
         {item.code}
       </td>
       <td className="px-4 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400">
-        <h4 className="font-bold uppercase">{item.name}</h4>
+        <Link
+          to={`${item.id}`}
+          className="cursor-pointer text-brand-500 dark:text-gray-400 hover:underline font-medium uppercase"
+        >
+          {item.name}
+        </Link>
         <p className="text-theme-xs">{item.specification}</p>
       </td>
       <td className="px-4 py-1 text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-
         {item.class && (
-          <Badge variant="light" color={categoryColorMap[item.class] ?? "primary"} size="sm">
+          <Badge
+            variant="light"
+            color={categoryColorMap[item.class] ?? "primary"}
+            size="sm"
+          >
             {item.class}
           </Badge>
         )}

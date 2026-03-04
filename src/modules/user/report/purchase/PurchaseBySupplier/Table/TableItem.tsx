@@ -44,7 +44,7 @@ export default function TableItem({ item }: Props) {
           </TableCell>
           <TableCell className="whitespace-nowrap">
             <Link
-              to={`/user/products/${child.product.id}/edit`}
+              to={`/user/products/${child.product.id}`}
               className="cursor-pointer text-brand-500 dark:text-white hover:underline"
             >
               {child.product.name}
