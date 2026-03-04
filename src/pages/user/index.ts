@@ -64,6 +64,7 @@ export { default as ProductUnitPage } from "./product-unit";
 export { default as ProductPage } from "./product";
 export { default as CreateProductPage } from "./product/create";
 export { default as EditProductPage } from "./product/edit";
+export { default as ProductShowPage } from "./product/ShowPage";
 
 // PRODUCTION
 export { default as ProductionPage } from "./production";

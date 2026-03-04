@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import CreateProduct from "@modules/user/product/Action/Create";
+import CreateProduct from "@modules/user/product/Index/Action/Create";
 
 export default function CreateProductPage() {
   const pageTitle = "Tambah Material";
