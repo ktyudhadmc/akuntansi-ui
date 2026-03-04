@@ -203,6 +203,7 @@ export default [
             path: "purchases-by-supplier",
             element: <User.RPPurchaseBySupplierPage />,
           },
+          { path: "supplier-balance", element: <User.RPSupplierBalancePage /> },
         ],
       },
 

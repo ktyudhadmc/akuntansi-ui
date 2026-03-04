@@ -14,8 +14,12 @@ import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 // import useDownload from "@services/global/download/hooks/useDownload";
 
 export default function TableFilter() {
-  const saleListDate = useUserStore((state) => state.saleListDate);
-  const setSaleListDate = useUserStore((state) => state.setSaleListDate);
+  const purchaseBySupplierDate = useUserStore(
+    (state) => state.purchaseBySupplierDate,
+  );
+  const setPurchaseBySupplierDate = useUserStore(
+    (state) => state.setPurchaseBySupplierDate,
+  );
 
   // const { loading: loadingDownload, trigger } = useDownload();
   const urlExports = [
@@ -47,7 +51,7 @@ export default function TableFilter() {
   const isValid = methods.formState.isValid;
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setSaleListDate(state.date);
+    setPurchaseBySupplierDate(state.date);
   };
 
   const onClear = () => {
@@ -63,7 +67,11 @@ export default function TableFilter() {
       <div className="lg:flex items-end">
         <Form {...methods} onSubmit={onSubmit}>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
-            <Input name="date" type="month" defaultValue={saleListDate} />
+            <Input
+              name="date"
+              type="month"
+              defaultValue={purchaseBySupplierDate}
+            />
             <div className="flex gap-2 md:col-span-2">
               <Button
                 size="sm"

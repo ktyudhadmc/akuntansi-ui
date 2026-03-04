@@ -12,9 +12,11 @@ export default function useGetReportPurchaseBySupplier() {
   const [search, setSearch] = useState("");
   const [pageNum, setPageNum] = useState(1);
   const [pageLimit, setPageLimit] = useState(10);
-  const saleByCustomerDate = useUserStore((state) => state.saleByCustomerDate);
+  const purchaseBySupplierDate = useUserStore(
+    (state) => state.purchaseBySupplierDate,
+  );
 
-  const { start_date, end_date } = parseMonthAndRange(saleByCustomerDate);
+  const { start_date, end_date } = parseMonthAndRange(purchaseBySupplierDate);
 
   const fetcher: Fetcher<IGetReportPurchaseBySupplierResponse, string> = (
     url,
@@ -56,7 +58,7 @@ export default function useGetReportPurchaseBySupplier() {
             id: 1,
             transaction_number: "TRX-003",
             transaction_date: new Date("2024-01-15"),
-            transaction_type: { id: 1, name: "Penjualan" },
+            transaction_type: { id: 1, name: "Pembelian" },
             product: { id: 1, name: "Ayam Broiler" },
             unit: { id: 1, name: "Kg" },
             description: "Deskripsi",
@@ -69,7 +71,7 @@ export default function useGetReportPurchaseBySupplier() {
             id: 2,
             transaction_number: "TRX-003",
             transaction_date: new Date("2024-01-18"),
-            transaction_type: { id: 1, name: "Penjualan" },
+            transaction_type: { id: 1, name: "Pembelian" },
             product: { id: 2, name: "Ayam Kampung" },
             unit: { id: 1, name: "Kg" },
             description: "Deskripsi",
@@ -89,7 +91,7 @@ export default function useGetReportPurchaseBySupplier() {
             id: 3,
             transaction_number: "TRX-003",
             transaction_date: new Date("2024-01-16"),
-            transaction_type: { id: 1, name: "Penjualan" },
+            transaction_type: { id: 1, name: "Pembelian" },
             product: { id: 3, name: "Telur Ayam" },
             unit: { id: 2, name: "Butir" },
             description: "Deskripsi",
@@ -122,7 +124,7 @@ export default function useGetReportPurchaseBySupplier() {
             id: 5,
             transaction_number: "TRX-003",
             transaction_date: new Date("2024-01-17"),
-            transaction_type: { id: 1, name: "Penjualan" },
+            transaction_type: { id: 1, name: "Pembelian" },
             product: { id: 1, name: "Ayam Broiler" },
             unit: { id: 1, name: "Kg" },
             description: "Deskripsi",

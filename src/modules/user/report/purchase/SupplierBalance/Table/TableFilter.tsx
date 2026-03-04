@@ -7,28 +7,49 @@ import { todayYMDString, todayYMString } from "@helpers/index";
 import Button from "@components/ui/button/Button";
 import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
-import { useDropdown } from "@hooks/useDropdown";
-import { Dropdown, DropdownItem } from "@components/ui/dropdown";
+import { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
+import { Dropdown, DropdownItem } from "@components/ui/dropdown";
+import { toast } from "react-toastify";
 
 export default function TableFilter() {
-  const purchaseListDate = useUserStore((state) => state.purchaseListDate);
-  const setPurchaseListDate = useUserStore(
-    (state) => state.setPurchaseListDate,
+  const saleCustomerBalanceDate = useUserStore(
+    (state) => state.saleCustomerBalanceDate,
+  );
+  const setSaleCustomerBalanceDate = useUserStore(
+    (state) => state.setSaleCustomerBalanceDate,
   );
 
-  const {
-    isOpen: isOpenDropdown,
-    toggleDropdown,
-    closeDropdown,
-  } = useDropdown();
+  const urlExports = [
+    {
+      label: "pdf",
+      onClick: () => toast.info('Testing download pdf!'),
+    },
+    {
+      label: "csv",
+      onClick: () => toast.info('Testing download csv!'),
+    },
+    {
+      label: "xlsx",
+      onClick: () => toast.info('Testing download xlsx!'),
+    },
+  ];
+
+  const [isOpenDropdown, setIsOpenDropdown] = useState(false);
+  function toggleDropdown() {
+    setIsOpenDropdown((prev) => !prev);
+  }
+
+  function closeDropdown() {
+    setIsOpenDropdown(false);
+  }
 
   const methods = useForm<any>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
   const isValid = methods.formState.isValid;
 
   const onSubmit: SubmitHandler<any> = async (state) => {
-    setPurchaseListDate(state.date);
+    setSaleCustomerBalanceDate(state.date);
   };
 
   const onClear = () => {
@@ -39,27 +60,16 @@ export default function TableFilter() {
     });
   };
 
-  const urlExports = [
-    {
-      label: "pdf",
-      onClick: () => confirm("pdf"),
-    },
-    {
-      label: "csv",
-      onClick: () => confirm("csv"),
-    },
-    {
-      label: "xlsx",
-      onClick: () => confirm("xlsx"),
-    },
-  ];
-
   return (
     <div>
       <div className="lg:flex items-end">
         <Form {...methods} onSubmit={onSubmit}>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
-            <Input name="date" type="month" defaultValue={purchaseListDate} />
+          <div className="grid lg:grid-cols-4 md:grid-cols-1 gap-4 items-end">
+            <Input
+              name="date"
+              type="month"
+              defaultValue={saleCustomerBalanceDate}
+            />
             <div className="flex gap-2 md:col-span-2">
               <Button
                 size="sm"

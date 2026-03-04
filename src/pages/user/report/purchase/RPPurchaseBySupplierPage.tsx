@@ -9,7 +9,7 @@ export default function RPPurchaseBySupplierPage() {
       <PageMeta title={pageTitle} />
       <PageBreadcrumb
         pageTitle={pageTitle}
-        breadcrumbs={[{ label: "Penjualan", path: "/user/reports?tab=sales" }]}
+        breadcrumbs={[{ label: "Penjualan", path: "/user/reports?tab=purchases" }]}
       />
 
       <div className="space-y-6">
