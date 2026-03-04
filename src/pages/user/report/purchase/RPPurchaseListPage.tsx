@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import RSPurchaseList from "@modules/user/report/purchase/SaleList/Table";
+import RSPurchaseList from "@modules/user/report/purchase/PurchaseList/Table";
 
 export default function RPPurchaseListPage() {
   const pageTitle = "Daftar Pembelian";
