@@ -99,6 +99,7 @@ export default [
       /** PRODUK */
       { path: "products", element: <User.ProductPage /> },
       { path: "products/create", element: <User.CreateProductPage /> },
+      { path: "products/:id", element: <User.ProductShowPage /> },
       { path: "products/:id/edit", element: <User.EditProductPage /> },
 
       /** PRODUKSI */

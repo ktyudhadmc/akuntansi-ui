@@ -1,6 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
-import EditProduct from "@modules/user/product/Action/Edit";
+import EditProduct from "@modules/user/product/Index/Action/Edit";
 
 export default function EditProductPage() {
   const pageTitle = "Ubah Material";

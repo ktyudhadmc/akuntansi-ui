@@ -10,8 +10,8 @@ import { HiPlus } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 // import Filter from "./Filter";
 
-import { categoryOptions } from "@modules/user/product/Action/select-options.constants";
-import Unit from "@modules/user/product/Action/Unit";
+import { categoryOptions } from "@modules/user/product/Index/Action/select-options.constants";
+import Unit from "@modules/user/product/Index/Action/Unit";
 
 interface Props {
   setSearchCallback: (param: string) => void;
