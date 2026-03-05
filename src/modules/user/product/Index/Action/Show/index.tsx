@@ -1,24 +1,26 @@
 import { AiFillCaretDown } from "react-icons/ai";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Skeleton from "@components/Skeleton/Skeleton";
 import Button from "@components/ui/button/Button";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 import { useDropdown } from "@hooks/useDropdown";
-import useGetProduct from "@services/user/product/index/hooks/useGet";
 
 import { formatIDRLocale } from "@helpers/currency";
 import { MdOutlineSell, MdOutlineShoppingCart } from "react-icons/md";
 import { HiChevronLeft } from "react-icons/hi";
 import useGoBack from "@hooks/useGoBack";
+import type { Product } from "@services/user/product/index/interfaces/response.type";
 
-export default function ProductShow() {
+interface Props {
+  loading: boolean;
+  data?: Product;
+}
+
+export default function ProductShow({ loading, data }: Props) {
   const goBack = useGoBack();
   const navigate = useNavigate();
-  const params = useParams();
   const { isOpen, toggleDropdown, closeDropdown } = useDropdown();
-
-  const { data, loading } = useGetProduct(params.id as string);
 
   const INFO_ITEMS = [
     {
@@ -144,13 +146,13 @@ export default function ProductShow() {
                 {title}
               </h4>
             </div>
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-7 2xl:gap-x-32">
               {fields.map(({ label, value }) => (
                 <div key={label}>
                   <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
                     {label}
                   </p>
-                  <p className="text-sm font-medium text-gray-800 dark:text-white/90">
+                  <p className="text-sm font-medium text-gray-800 dark:text-white/90 whitespace-nowrap">
                     {value}
                   </p>
                 </div>

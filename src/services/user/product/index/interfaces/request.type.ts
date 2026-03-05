@@ -4,6 +4,12 @@ export interface ICreateProductPayload {
   specification: string;
   category: string;
 }
+
+/** UPSERT - PRODUCT UNIT */
+export interface IUpsertProductUnitPayload {
+  unit: ProductUnit[];
+}
+
 // export interface ICreateProductPayload {
 //   product_category_id: string;
 //   name: string;
@@ -16,7 +22,7 @@ export interface ICreateProductPayload {
 //   product_units: ProductUnit[];
 // }
 
-// interface ProductUnit {
-//   unit_id: number;
-//   conversion: number;
-// }
+interface ProductUnit {
+  unit_id: number;
+  conversion: number;
+}

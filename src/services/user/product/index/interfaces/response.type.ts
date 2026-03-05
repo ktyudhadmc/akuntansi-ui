@@ -21,6 +21,8 @@ export interface Product {
   name: string;
   specification: string;
   class: string;
+  unit?: Unit;
+  units?: ProductUnit[];
 }
 
 // cmivv :)
@@ -37,13 +39,13 @@ export interface Product {
 //   units?: ProductUnit[] | null;
 // }
 
-// interface ProductUnit {
-//   id: number;
-//   conversion: number;
-//   unit: Unit;
-// }
+export interface ProductUnit {
+  id: number;
+  conversion: number;
+  unit: Unit;
+}
 
-// interface Unit {
-//   id: number;
-//   name: string;
-// }
+export interface Unit {
+  id: number;
+  name: string;
+}
