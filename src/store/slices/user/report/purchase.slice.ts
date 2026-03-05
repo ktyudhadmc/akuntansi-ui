@@ -6,11 +6,13 @@ export declare interface UserReportPurchaseState {
   purchaseBySupplierDate: string;
   purchaseSupplierBalanceDate: string;
   purchaseExpenseListDate: string;
+  purchaseExpenseDetailDate: string;
 
   setPurchaseListDate: (param: string) => void;
   setPurchaseBySupplierDate: (param: string) => void;
   setPurchaseSupplierBalanceDate: (param: string) => void;
   setPurchaseExpenseListDate: (param: string) => void;
+  setPurchaseExpenseDetailDate: (param: string) => void;
 }
 
 const createUserReportPurchaseSlice: StateCreator<UserReportPurchaseState> = (
@@ -21,6 +23,7 @@ const createUserReportPurchaseSlice: StateCreator<UserReportPurchaseState> = (
   purchaseBySupplierDate: todayYMString,
   purchaseSupplierBalanceDate: todayYMString,
   purchaseExpenseListDate: todayYMString,
+  purchaseExpenseDetailDate: todayYMString,
 
   setPurchaseListDate: (param) => set({ purchaseListDate: param }),
   setPurchaseBySupplierDate: (param) => set({ purchaseBySupplierDate: param }),
@@ -28,6 +31,8 @@ const createUserReportPurchaseSlice: StateCreator<UserReportPurchaseState> = (
     set({ purchaseSupplierBalanceDate: param }),
   setPurchaseExpenseListDate: (param) =>
     set({ purchaseExpenseListDate: param }),
+  setPurchaseExpenseDetailDate: (param) =>
+    set({ purchaseExpenseDetailDate: param }),
 });
 
 export default createUserReportPurchaseSlice;

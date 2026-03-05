@@ -1,5 +1,6 @@
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
+import RPExpenseDetail from "@modules/user/report/purchase/ExpenseDetail/Table";
 
 export default function RPExpenseDetailPage() {
   const pageTitle = "Rincian Pembelian";
@@ -12,8 +13,8 @@ export default function RPExpenseDetailPage() {
           { label: "Pembelian", path: "/user/reports?tab=purchases" },
         ]}
       />
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
-        <div className="space-y-6">Halaman {pageTitle}, It Works!</div>
+      <div className="space-y-6">
+        <RPExpenseDetail />
       </div>
     </>
   );
