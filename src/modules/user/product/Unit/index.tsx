@@ -50,8 +50,8 @@ export default function ProductUnit({ loading, unit, productUnits }: Props) {
 
   return (
     <>
-      <Button variant="outline" size="sm" onClick={() => setIsAdd(true)}>
-        Atur Satuan
+      <Button variant="outline" size="sm" onClick={() => setIsAdd(!isAdd)}>
+        {isAdd ? "Batalkan" : "Atur Satuan"}
       </Button>
 
       <TableWrapper className="!rounded">

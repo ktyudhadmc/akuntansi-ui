@@ -16,7 +16,7 @@ export default function ProductShowPage() {
   /** tabs */
   const tabs = [
     { value: "transaction", label: "Transaksi produk" },
-    { value: "unit", label: "Pengaturan unit" },
+    { value: "unit", label: "Pengaturan satuan" },
   ];
   const activeTab = searchParams.get("tab") ?? "transaction";
 
