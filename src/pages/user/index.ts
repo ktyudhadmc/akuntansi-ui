@@ -96,6 +96,8 @@ export { default as RSCashOfGoodsSoldPage } from "./report/sale/RSCashOfGoodsSol
 export { default as RPPurchaseListPage } from "./report/purchase/RPPurchaseListPage";
 export { default as RPPurchaseBySupplierPage } from "./report/purchase/RPPurchaseBySupplierPage";
 export { default as RPSupplierBalancePage } from "./report/purchase/RPSupplierBalancePage";
+export { default as RPExpenseListPage } from "./report/purchase/RPExpenseListPage";
+export { default as RPExpenseDetailPage } from "./report/purchase/RPExpenseDetailPage";
 
 // SALE
 export { default as SalePage } from "./sale";
