@@ -205,6 +205,8 @@ export default [
             element: <User.RPPurchaseBySupplierPage />,
           },
           { path: "supplier-balance", element: <User.RPSupplierBalancePage /> },
+          { path: "expenses-list", element: <User.RPExpenseListPage /> },
+          { path: "expenses-detail", element: <User.RPExpenseDetailPage /> },
         ],
       },
 
