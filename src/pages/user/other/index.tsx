@@ -20,7 +20,12 @@ export default function OthersPage() {
       title: "Pajak",
       path: "../taxes",
       description:
-        "Menampilkan tipe-tipe pajak yang Anda pakai untuk penjualan kepada pelanggan atau pembelian dari supplier.",
+      "Menampilkan tipe-tipe pajak yang Anda pakai untuk penjualan kepada pelanggan atau pembelian dari supplier.",
+    },
+    {
+      title: "Daftar Transaksi",
+      path: "../transactions",
+      description: "Daftar dari semua transaksi",
     },
     {
       title: "Daftar Kunci Periode & Tutup Buku",

@@ -167,6 +167,12 @@ export default [
         ],
       },
 
+      /** TRANSACTION */
+      {
+        path: "transactions",
+        children: [{ index: true, element: <User.TransactionPage /> }],
+      },
+
       /** JOURNAL */
       {
         path: "journals",
