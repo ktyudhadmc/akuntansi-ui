@@ -1,10 +1,12 @@
-const DEFAULT_API_URL = "http://127.0.0.1:8000/api/v1";
-
 const appEnv = import.meta.env;
 
+/** APP */
+export const APP_URL = appEnv.VITE_APP_URL ?? "http://localhost:5173";
 export const APP_NAME = appEnv.VITE_APP_NAME ?? "Dinamika Jurnal";
 
-export const BASE_API_URL = appEnv.VITE_BASE_API_URL ?? DEFAULT_API_URL;
+/** BACKEND */
+export const BASE_API_URL =
+  appEnv.VITE_BASE_API_URL ?? "http://127.0.0.1:8000/api/v1";
 
 /** LOGING */
 export const SENTRY_DSN = appEnv.VITE_SENTRY_DSN;
@@ -25,11 +27,18 @@ export const TEMPLATE_IMPORT_CASH_BANK = appEnv.VITE_TEMPLATE_IMPORT_CASH_BANK;
 export const TEMPLATE_IMPORT_JOURNAL = appEnv.VITE_TEMPLATE_IMPORT_JOURNAL;
 
 const config = {
+  /** APP */
   APP_NAME,
+  APP_URL,
+
   BASE_API_URL,
+
+  /** ACTIVE COMPANY */
+  LOCAL_STORAGE_COMPANY_KEY,
+
+  /** LOGGING */
   SENTRY_DSN,
   GA_ID,
-  LOCAL_STORAGE_COMPANY_KEY,
 
   /** OFFICE */
   OFFICE_EMAIL,
