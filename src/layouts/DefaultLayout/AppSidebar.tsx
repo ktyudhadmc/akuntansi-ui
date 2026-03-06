@@ -32,6 +32,7 @@ import { useSidebar } from "@context/SidebarContext";
 import AvatarText from "@components/ui/avatar/AvatarText";
 import useGlobalStore from "@store/useStore";
 import SidebarWidget from "./SidebarWidget";
+import { HiOutlineHomeModern } from "react-icons/hi2";
 // import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
@@ -105,6 +106,11 @@ const navItems: NavItem[] = [
     icon: <MdOutlineInventory2 />,
     name: "Produksi",
     path: "/user/productions",
+  },
+  {
+    icon: <HiOutlineHomeModern />,
+    name: "Aset",
+    path: "/user/assets",
   },
   {
     icon: <MdOutlineReceiptLong />,
