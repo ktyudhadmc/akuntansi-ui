@@ -25,13 +25,15 @@ export default function TableFilter({ setSearch }: Props) {
       <Filter onOpen={isExpanded} onClose={closeDrawer} />
 
       <div className="flex lg:flex-row flex-col gap-2 justify-between">
-        <div className="flex lg:flex-row flex-col gap-2">
-          <FilterInput
-            name="date"
-            type="month"
-            value={transactionDate}
-            onChange={(e) => setTransactionDate(e.target.value)}
-          />
+        <div className="flex gap-2">
+          <div className="w-full">
+            <FilterInput
+              name="date"
+              type="month"
+              value={transactionDate}
+              onChange={(e) => setTransactionDate(e.target.value)}
+            />
+          </div>
 
           <Button size="sm" variant="outline" onClick={toggleDrawer}>
             <HiOutlineFilter />
