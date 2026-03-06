@@ -111,5 +111,8 @@ export { default as TaxPage } from "./tax";
 export { default as TaxCreatePage } from "./tax/CreatePage";
 export { default as TaxEditPage } from "./tax/EditPage";
 
+// TRANSACTION
+export { default as TransactionPage } from "./transaction";
+
 // OTHERS
 export { default as OtherPage } from "./other";
