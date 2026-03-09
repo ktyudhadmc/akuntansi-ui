@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { HiChevronDown } from "react-icons/hi";
+// import { HiChevronDown } from "react-icons/hi";
 import { useShallow } from "zustand/shallow";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
@@ -15,22 +15,22 @@ import { useModal } from "@hooks/useModal";
 import { Modal } from "@components/ui/modal";
 import Button from "@components/ui/button/Button";
 import AvatarText from "@components/ui/avatar/AvatarText";
-import Badge from "@components/ui/badge/Badge";
+// import Badge from "@components/ui/badge/Badge";
 import Skeleton from "@components/Skeleton/Skeleton";
-import { useMediaQuery } from "@hooks/useMediaQuery";
+// import { useMediaQuery } from "@hooks/useMediaQuery";
 
 export default function UserDropdown() {
   /** select company */
   const currentCompany = useGlobalStore((state) => state.currentCompany);
-  const currentCompanyLoading = useGlobalStore(
-    (state) => state.currentCompanyLoading,
-  );
+  // const currentCompanyLoading = useGlobalStore(
+  //   (state) => state.currentCompanyLoading,
+  // );
 
   const navigate = useNavigate();
   const { isOpen, openModal, closeModal } = useModal();
   const [isOpenDropown, setIsOpenDropdown] = useState(false);
 
-  const isMd = useMediaQuery("md");
+  // const isMd = useMediaQuery("md");
 
   function toggleDropdown() {
     setIsOpenDropdown(!isOpenDropown);
@@ -85,15 +85,15 @@ export default function UserDropdown() {
         className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
       >
         <Skeleton
-          isLoading={me == null}
-          width="2.75rem"
-          height="2.75rem"
+          isLoading={false}
+          width="2rem"
+          height="2rem"
           borderRadius="100%"
         >
-          <AvatarText text={me?.name ?? "unknown"} size="11" />
+          <AvatarText text={me?.name ?? "unknown"} size="8" />
         </Skeleton>
 
-        {isMd ? (
+        {/* {isMd ? (
           <div className="text-start ml-3 mr-1">
             <div className="flex items-center gap-2">
               <Skeleton isLoading={me == null} height="1rem" width="6rem">
@@ -125,7 +125,7 @@ export default function UserDropdown() {
                 }`}
             />
           </>
-        )}
+        )} */}
       </button>
 
       <Dropdown

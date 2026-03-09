@@ -7,9 +7,9 @@ interface Props {
 }
 
 const sizeClasses: Record<string, string> = {
-  "8": "w-8 h-8 ",
-  "10": "w-10 h-10",
-  "11": "w-11 h-11",
+  "8": "w-8 h-8 text-xs",
+  "10": "w-10 h-10 text-xs",
+  "11": "w-11 h-11 text-xs",
   "12": "w-12 h-12 ",
   "16": "w-16 h-16",
   "20": "w-20 h-20",
