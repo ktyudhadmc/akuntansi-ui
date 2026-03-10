@@ -22,6 +22,12 @@ import useUpdate from "@services/user/product/unit/hooks/useUpdate";
 import useGetAll from "@services/user/product/unit/hooks/useGetAll";
 import type { Unit } from "@services/user/product/unit/interfaces/response.type";
 import type { ICreateProductUnitPayload } from "@services/user/product/unit/interfaces/request.type";
+import {
+  TableCell,
+  TableHeader,
+  TableRow,
+  TableWrapper,
+} from "@components/ui/table";
 
 interface Props {
   onOpen: boolean;
@@ -68,45 +74,41 @@ export default function ProductUnit({ onOpen, onClose }: Props) {
         </Button>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-        <div className="max-w-full overflow-x-auto">
-          <table className="w-full">
-            <thead className="border-b border-gray-100 dark:border-white/[0.05]">
-              <tr>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Satuan
-                </th>
-                <th></th>
-              </tr>
-            </thead>
+      <TableWrapper isSticky>
+        <table className="w-full">
+          <TableHeader isSticky>
+            <TableRow>
+              <TableCell isHeader className="text-start">
+                Satuan
+              </TableCell>
+              <th></th>
+            </TableRow>
+          </TableHeader>
 
-            <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {isAdd && <TableItemForm onClose={() => setIsAdd(false)} />}
-              {loading ? (
-                <tr>
-                  <td colSpan={5} className="text-center py-16">
-                    <div className="sweet-loading">
-                      <BeatLoader color="var(--color-brand-600)" />
-                    </div>
-                  </td>
-                </tr>
-              ) : isEmpty(data) || !data ? (
-                <tr>
-                  <td colSpan={5} className="text-center py-4">
-                    Data tidak tersedia
-                  </td>
-                </tr>
-              ) : (
-                data?.map((item, index) => {
-                  return (
-                    <TableItem key={`table-product-${index}`} item={item} />
-                  );
-                })
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+          <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
+            {isAdd && <TableItemForm onClose={() => setIsAdd(false)} />}
+            {loading ? (
+              <tr>
+                <td colSpan={5} className="text-center py-16">
+                  <div className="sweet-loading">
+                    <BeatLoader color="var(--color-brand-600)" />
+                  </div>
+                </td>
+              </tr>
+            ) : isEmpty(data) || !data ? (
+              <tr>
+                <td colSpan={5} className="text-center py-4">
+                  Data tidak tersedia
+                </td>
+              </tr>
+            ) : (
+              data?.map((item, index) => {
+                return <TableItem key={`table-product-${index}`} item={item} />;
+              })
+            )}
+          </tbody>
+        </table>
+      </TableWrapper>
     </Drawer>
   );
 }

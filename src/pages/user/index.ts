@@ -22,6 +22,8 @@ export { default as CBImportPage } from "./account/cash-bank/ImportPage";
 export { default as CBShowPage } from "./account/cash-bank/ShowPage";
 export { default as CBJournalShowPage } from "./account/cash-bank/Journal/CBJournalShowPage";
 
+export { default as AssetPage } from "./asset";
+
 // CONTACT
 export { default as ContactPage } from "./contact";
 export { default as CreateContactPage } from "./contact/create";

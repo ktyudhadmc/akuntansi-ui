@@ -78,6 +78,9 @@ export default [
         ],
       },
 
+      /** ASSET */
+      { path: "assets", element: <User.AssetPage /> },
+
       /** CONTACT */
       { path: "contacts", element: <User.ContactPage /> },
       { path: "contacts/create", element: <User.CreateContactPage /> },
