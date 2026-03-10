@@ -1,20 +1,42 @@
+// import { useState } from "react";
+// import { HiChevronDown } from "react-icons/hi";
+// import { Link } from "react-router-dom";
+
+// import { Tooltip } from "@components/ui/tooltip";
+// import { formatIDRLocale, formatDateAsYMD } from "@helpers/index";
+
 import { TableCell, TableRow } from "@components/ui/table";
-import { Tooltip } from "@components/ui/tooltip";
-import { formatIDRLocale, formatDateAsYMD } from "@helpers/index";
+import { formatIDRLocale } from "@helpers/currency";
 import type { CustomerBalance } from "@services/user/report/customer-balance/interfaces/response.type";
-import { useState } from "react";
-import { HiChevronDown } from "react-icons/hi";
-import { Link } from "react-router-dom";
 
 interface Props {
   item: CustomerBalance;
 }
 export default function TableItem({ item }: Props) {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   return (
     <>
-      <TableRow className="bg-gray-50 dark:bg-gray-800">
+      <TableRow>
+        <TableCell className="font-medium text-brand-600">{item.unit}</TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.saldo_awal)}
+        </TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.pendapatan)}
+        </TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.estimasi_pph_23)}
+        </TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.pembayaran)}
+        </TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.saldo_akhir)}
+        </TableCell>
+      </TableRow>
+
+      {/* <TableRow className="bg-gray-50 dark:bg-gray-800">
         <TableCell
           colSpan={6}
           className="!text-black dark:text-white font-medium"
@@ -91,7 +113,7 @@ export default function TableItem({ item }: Props) {
         <TableCell className="whitespace-nowrap text-end dark:!text-white !text-black font-medium">
           {formatIDRLocale(item.total_remaining)}
         </TableCell>
-      </TableRow>
+      </TableRow> */}
     </>
   );
 }

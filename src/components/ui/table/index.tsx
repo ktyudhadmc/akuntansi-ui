@@ -132,8 +132,8 @@ const TableCell: React.FC<TableCellProps> = ({
 }) => {
   const CellTag = isHeader ? "th" : "td";
   const classNameDefault = isHeader
-    ? "px-5 py-3 font-medium text-gray-500 text-theme-xs dark:text-gray-400"
-    : "px-5 py-1 text-gray-500 text-theme-xs dark:text-gray-400";
+    ? "px-5 py-3 font-medium text-black text-theme-xs dark:text-white"
+    : "px-5 py-1 text-black text-theme-xs dark:text-white";
 
   return (
     <CellTag
@@ -155,7 +155,7 @@ function TableNotFound({
     <tr>
       <td
         colSpan={colSpan}
-        className="text-center py-16 text-gray-700 dark:text-gray-400"
+        className="text-center py-16 text-gray-700 dark:text-white"
       >
         {message}
       </td>
