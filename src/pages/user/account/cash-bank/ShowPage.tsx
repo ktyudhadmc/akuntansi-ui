@@ -7,7 +7,7 @@ import CBShow from "@modules/user/account/cash-bank/Index/Action/Show";
 import CBShowJournalTable from "@modules/user/account/cash-bank/Journal/Table";
 
 export default function CBShowPage() {
-  const pageTitle = "Kas & Bank";
+  const pageTitle = "Detail Kas & Bank";
 
   const tabs = [
     { value: "journal", label: "Transaksi Jurnal" },
@@ -20,7 +20,12 @@ export default function CBShowPage() {
   return (
     <>
       <PageMeta title={pageTitle} />
-      <PageBreadcrumb pageTitle={pageTitle} />
+      <PageBreadcrumb
+        pageTitle={pageTitle}
+        breadcrumbs={[
+          { label: "Kas & Bank", path: "/user/accounts/cash-bank" },
+        ]}
+      />
 
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6 lg:mb-8 mb-6">
         <div className="space-y-6">

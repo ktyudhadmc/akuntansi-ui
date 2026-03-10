@@ -7,7 +7,10 @@ export default function SaleShowPage() {
   return (
     <>
       <PageMeta title={pageTitle} />
-      <PageBreadcrumb pageTitle={pageTitle} />
+      <PageBreadcrumb
+        pageTitle={pageTitle}
+        breadcrumbs={[{ label: "Penjualan", path: "/user/sales" }]}
+      />
 
       <SaleShow />
     </>

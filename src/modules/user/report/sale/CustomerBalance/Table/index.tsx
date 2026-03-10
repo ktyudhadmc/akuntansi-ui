@@ -46,9 +46,10 @@ export default function RSCustomerBalance() {
       <div className="space-y-6">
         <TableFilter />
 
-        <TableWrapper>
+        <TableWrapper isSticky>
           <Table>
-            <TableHeader className="bg-gray-50 dark:bg-gray-700">
+            {/* Table Header */}
+            <TableHeader>
               <TableRow>
                 {/* <TableCell isHeader className="whitepsace-nowrap text-start">
                   Tanggal

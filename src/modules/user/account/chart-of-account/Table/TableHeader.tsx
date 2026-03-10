@@ -23,7 +23,7 @@ interface Props {
   selectedIds: (number | string)[];
 }
 
-export default function TableHeader({ setSearchCallback, selectedIds }: Props) {
+export default function TableFilter({ setSearchCallback, selectedIds }: Props) {
   const navigate = useNavigate();
   const { isOpen: isOpenModal, closeModal, openModal } = useModal();
 
