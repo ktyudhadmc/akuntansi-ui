@@ -6,8 +6,8 @@ export function usePeriodPermissions(date: Date) {
   const current = useGlobalStore((state) => state.currentPeriod);
   const opens = useGlobalStore((state) => state.openPeriods);
 
-  console.log('current');
-  console.log(current);
+  // console.log('current');
+  // console.log(current);
 
   return useMemo(() => {
     const isInRange = (period?: any) =>

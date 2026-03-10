@@ -3,19 +3,19 @@ import Button from "@components/ui/button/Button";
 
 // import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 
-import debounce from "lodash/debounce";
-// import { AiFillCaretDown } from "react-icons/ai";
-import { useCallback } from "react";
 import FilterInput from "@components/form/input/FilterInput";
 import Filter from "./Filter";
 import { useDrawer } from "@hooks/useDrawer";
 import { HiOutlineFilter, HiPlus } from "react-icons/hi";
+import { useDebouncedCallback } from "@hooks/useDebounceCallback";
+import useUserStore from "@store/useUserStore";
+import { Tooltip } from "@components/ui/tooltip";
 
 interface Props {
-  setSearchCallback: (param: string) => void;
+  setSearch: (param: string) => void;
 }
 
-export default function TableFilter({ setSearchCallback }: Props) {
+export default function TableFilter({ setSearch }: Props) {
   const navigate = useNavigate();
   const { isExpanded, toggleDrawer, closeDrawer } = useDrawer();
   // const [isOpenDropown, setIsOpenDropdown] = useState(false);
@@ -27,18 +27,16 @@ export default function TableFilter({ setSearchCallback }: Props) {
   //   setIsOpenDropdown(false);
   // }
 
-  const debouncedSearch = useCallback(
-    debounce((value: string) => {
-      setSearchCallback(value);
-    }, 500),
-    [], // make sure debounce isn't recreated on every render
-  );
+  const debouncedSearch = useDebouncedCallback(setSearch, 500);
+
+  const purchaseDate = useUserStore((state) => state.purchaseDate);
+  const setPurchaseDate = useUserStore((state) => state.setPurchaseDate);
 
   return (
     <>
       <Filter onOpen={isExpanded} onClose={closeDrawer} />
       {/* Create */}
-      <div className="flex lg:flex-row flex-col justify-between gap-4">
+      <div className="flex lg:flex-row flex-col justify-between gap-2">
         {/* Button create with detail */}
         {/* <div className="relative">
           <Button size="sm" onClick={toggleDropdown}>
@@ -56,10 +54,33 @@ export default function TableFilter({ setSearchCallback }: Props) {
           </Dropdown>
         </div> */}
 
-        <Button size="sm" variant="primary" onClick={() => navigate("create")}>
-          <HiPlus />
-          Buat pembelian baru
-        </Button>
+        <div className="flex lg:flex-row flex-col gap-2">
+          <Button
+            size="sm"
+            variant="primary"
+            onClick={() => navigate("create")}
+            className="whitespace-nowrap"
+          >
+            <HiPlus />
+            Buat pembelian baru
+          </Button>
+
+          <div className="flex gap-2">
+            <div className="w-full">
+              <FilterInput
+                name="date"
+                type="month"
+                value={purchaseDate}
+                onChange={(e) => setPurchaseDate(e.target.value)}
+              />
+            </div>
+            <Tooltip text="Filter lainnya" className="!min-w-32">
+              <Button size="sm" variant="outline" onClick={toggleDrawer}>
+                <HiOutlineFilter />
+              </Button>
+            </Tooltip>
+          </div>
+        </div>
 
         {/* Search */}
         <div className="flex lg:flex-row flex-col gap-2">
@@ -70,18 +91,13 @@ export default function TableFilter({ setSearchCallback }: Props) {
           >
             Impor
           </Button>
-          <div className="flex gap-2">
-            <div className="w-full">
-              <FilterInput
-                withPrefixIcon
-                placeholder="Cari"
-                onChange={(e) => debouncedSearch(e.target.value)}
-              />
-            </div>
 
-            <Button size="sm" variant="outline" onClick={toggleDrawer}>
-              <HiOutlineFilter />
-            </Button>
+          <div className="w-full">
+            <FilterInput
+              withPrefixIcon
+              placeholder="Cari"
+              onChange={(e) => debouncedSearch(e.target.value)}
+            />
           </div>
         </div>
       </div>

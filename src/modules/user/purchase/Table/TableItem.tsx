@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import TableItemAction from "./TableItemAction";
 import { TableCell, TableRow } from "@components/ui/table";
 import { Tooltip } from "@components/ui/tooltip";
+import Badge from "@components/ui/badge/Badge";
 
 interface Props {
   item: Purchase;
@@ -40,7 +41,7 @@ export default function TableItem({
       </TableCell>
 
       <TableCell className="text-start whitespace-nowrap">
-        {item.items.map((value) => (
+        {/* {item.items.map((value) => (
           <div className="flex">
             <p className="w-64 truncate">
               {value.material.name}
@@ -52,7 +53,11 @@ export default function TableItem({
               {formatIDRLocale(value.price, { withSymbol: true })}
             </p>
           </div>
-        ))}
+        ))} */}
+        <p className="w-64 truncate mb-1">{item.items[0].material.name}</p>
+        {item.items.length > 1 && (
+          <Badge size="sm" color="info">+{item.items.length - 1} lainnya</Badge>
+        )}
       </TableCell>
       <TableCell className="!pr-1 text-end whitespace-nowrap font-medium !text-black dark:!text-white cursor-pointer">
         <Tooltip
