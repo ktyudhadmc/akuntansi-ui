@@ -9,6 +9,7 @@ import { useDrawer } from "@hooks/useDrawer";
 import { HiOutlineFilter, HiPlus } from "react-icons/hi";
 import { useDebouncedCallback } from "@hooks/useDebounceCallback";
 import useUserStore from "@store/useUserStore";
+import { Tooltip } from "@components/ui/tooltip";
 
 interface Props {
   setSearch: (param: string) => void;
@@ -73,9 +74,11 @@ export default function TableFilter({ setSearch }: Props) {
                 onChange={(e) => setPurchaseDate(e.target.value)}
               />
             </div>
-            <Button size="sm" variant="outline" onClick={toggleDrawer}>
-              <HiOutlineFilter />
-            </Button>
+            <Tooltip text="Filter lainnya" className="!min-w-32">
+              <Button size="sm" variant="outline" onClick={toggleDrawer}>
+                <HiOutlineFilter />
+              </Button>
+            </Tooltip>
           </div>
         </div>
 
