@@ -61,8 +61,6 @@ export default function TableFilter({ setSearchCallback }: Props) {
           Buat pembelian baru
         </Button>
 
-        
-
         {/* Search */}
         <div className="flex lg:flex-row flex-col gap-2">
           <Button
