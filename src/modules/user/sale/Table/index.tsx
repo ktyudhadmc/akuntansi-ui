@@ -1,10 +1,19 @@
-import TableHeader from "./Header";
+import TableFilter from "./Header";
 import useGetAll from "@services/user/sale/hooks/useGetAll";
 import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
 import SaleHeader from "../Header";
 import { useState } from "react";
-import { TableLoading, TableNotFound } from "@components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableLoading,
+  TableNotFound,
+  TableRow,
+  TableWrapper,
+} from "@components/ui/table";
 
 export default function SaleTable() {
   const { data, loading, setName } = useGetAll();
@@ -21,54 +30,70 @@ export default function SaleTable() {
       />
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
-          <TableHeader setSearchCallback={setName} />
-          <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-            <div className="max-w-full overflow-x-auto">
-              <table className="w-full">
-                <thead className="border-b border-gray-100 dark:border-white/[0.05]">
-                  <tr>
-                    <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-                      Tanggal
-                    </th>
-                    <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-                      Nomor
-                    </th>
-                    <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-                      Pelanggan
-                    </th>
-                    <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-                      Jenis layanan
-                    </th>
-                    <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap">
-                      Produk
-                    </th>
-                    <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400 whitespace-nowrap">
-                      Total Harga
-                    </th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                  {loading ? (
-                    <TableLoading colSpan={6} />
-                  ) : isEmpty(data?.sales) || !data?.sales ? (
-                    <TableNotFound colSpan={6} />
-                  ) : (
-                    data.sales.map((item, index) => {
-                      return (
-                        <TableItem
-                          key={`table-sale-${index}`}
-                          item={item}
-                          openDropdownId={openDropdownId}
-                          setOpenDropdownId={setOpenDropdownId}
-                        />
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <TableFilter setSearchCallback={setName} />
+          <TableWrapper isSticky>
+            <Table>
+              <TableHeader isSticky>
+                <TableRow>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                  >
+                    Tanggal
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                  >
+                    Nomor
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                  >
+                    Pelanggan
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                  >
+                    Jenis layanan
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                  >
+                    Produk
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                  >
+                    Total Harga
+                  </TableCell>
+                  <th></th>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {loading ? (
+                  <TableLoading colSpan={6} />
+                ) : isEmpty(data?.sales) || !data?.sales ? (
+                  <TableNotFound colSpan={6} />
+                ) : (
+                  data.sales.map((item, index) => {
+                    return (
+                      <TableItem
+                        key={`table-sale-${index}`}
+                        item={item}
+                        openDropdownId={openDropdownId}
+                        setOpenDropdownId={setOpenDropdownId}
+                      />
+                    );
+                  })
+                )}
+              </TableBody>
+            </Table>
+          </TableWrapper>
         </div>
       </div>
     </>

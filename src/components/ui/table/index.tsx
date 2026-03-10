@@ -6,6 +6,7 @@ import { BeatLoader } from "react-spinners";
 interface TableWrapperProps {
   children: ReactNode; // Table content (thead, tbody, etc.)
   className?: string; // Optional className for styling
+  isSticky?: boolean;
 }
 
 // Props for Table
@@ -18,6 +19,7 @@ interface TableProps {
 interface TableHeaderProps {
   children: ReactNode; // Header row(s)
   className?: string; // Optional className for styling
+  isSticky?: boolean;
 }
 
 // Props for TableBody
@@ -30,6 +32,7 @@ interface TableBodyProps {
 interface TableFootProps {
   children: ReactNode; // Body row(s)
   className?: string; // Optional className for styling
+  isSticky?: boolean;
 }
 
 // Props for TableRow
@@ -59,7 +62,18 @@ interface TableLoadingProps {
 }
 
 // Table wrapper
-const TableWrapper: React.FC<TableWrapperProps> = ({ children, className }) => {
+const TableWrapper: React.FC<TableWrapperProps> = ({
+  children,
+  className,
+  isSticky = false,
+}) => {
+  if (isSticky)
+    return (
+      <div className="overflow-auto sm:rounded-lg max-h-[calc(100vh-35vh)] rounded-2xl border border-gray-100 dark:border-gray-800 custom-scrollbar">
+        {children}
+      </div>
+    );
+
   return (
     <div
       className={`overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 ${className}`}
@@ -75,7 +89,18 @@ const Table: React.FC<TableProps> = ({ children, className }) => {
 };
 
 // TableHeader Component
-const TableHeader: React.FC<TableHeaderProps> = ({ children, className }) => {
+const TableHeader: React.FC<TableHeaderProps> = ({
+  children,
+  className,
+  isSticky = false,
+}) => {
+  if (isSticky) {
+    return (
+      <thead className="sticky top-0 z-10 border-b border-gray-100 dark:border-white/[0.05]  bg-gray-50 dark:bg-gray-700">
+        {children}
+      </thead>
+    );
+  }
   return (
     <thead
       className={`border-b border-gray-100 dark:border-white/[0.05] ${className}`}
@@ -100,16 +125,27 @@ const TableBody: React.FC<TableBodyProps> = ({ children, className }) => {
 };
 
 // TableFoot Component
-const TableFoot: React.FC<TableFootProps> = ({ children, className }) => {
+const TableFoot: React.FC<TableFootProps> = ({
+  children,
+  className,
+  isSticky = false,
+}) => {
+  if (isSticky) {
+    return (
+      <tfoot className="sticky bottom-0 z-10 border-b border-gray-100 dark:border-white/[0.05]  bg-gray-50 dark:bg-gray-700">
+        {children}
+      </tfoot>
+    );
+  }
   return (
-    <tbody
+    <tfoot
       className={clsx(
         "divide-y divide-gray-100 dark:divide-white/[0.05]",
         className,
       )}
     >
       {children}
-    </tbody>
+    </tfoot>
   );
 };
 

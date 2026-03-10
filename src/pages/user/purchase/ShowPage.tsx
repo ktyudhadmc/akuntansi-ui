@@ -7,7 +7,10 @@ export default function PurchaseShowPage() {
   return (
     <>
       <PageMeta title={pageTitle} />
-      <PageBreadcrumb pageTitle={pageTitle} />
+      <PageBreadcrumb
+        pageTitle={pageTitle}
+        breadcrumbs={[{ label: "Pembelian", path: "/user/purchases" }]}
+      />
 
       <PurchaseShow />
     </>

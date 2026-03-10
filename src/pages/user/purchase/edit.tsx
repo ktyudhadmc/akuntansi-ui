@@ -7,7 +7,10 @@ export default function CreatePurchasePage() {
   return (
     <>
       <PageMeta title={pageTitle} />
-      <PageBreadcrumb pageTitle={pageTitle} />
+      <PageBreadcrumb
+        pageTitle={pageTitle}
+        breadcrumbs={[{ label: "Pembelian", path: "/user/purchases" }]}
+      />
 
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">

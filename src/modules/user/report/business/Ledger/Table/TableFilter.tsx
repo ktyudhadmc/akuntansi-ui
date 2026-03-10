@@ -17,7 +17,7 @@ interface Props {
   setSearch: (params: string) => void;
 }
 
-export default function TableHeader({ setSearch }: Props) {
+export default function TableFilter({ setSearch }: Props) {
   // const startDate = useUserStore((state) => state.ledgerStartDate);
   // const endDate = useUserStore((state) => state.ledgerEndDate);
   const ledgerDate = useUserStore((state) => state.ledgerDate);
