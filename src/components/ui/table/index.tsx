@@ -69,7 +69,9 @@ const TableWrapper: React.FC<TableWrapperProps> = ({
 }) => {
   if (isSticky)
     return (
-      <div className="overflow-auto sm:rounded-lg max-h-[calc(100vh-35vh)] rounded-2xl border border-gray-100 dark:border-gray-800 custom-scrollbar">
+      <div
+        className={`overflow-auto sm:rounded-lg max-h-[calc(100vh-35vh)] rounded-2xl border border-gray-100 dark:border-gray-800 custom-scrollbar ${className}`}
+      >
         {children}
       </div>
     );

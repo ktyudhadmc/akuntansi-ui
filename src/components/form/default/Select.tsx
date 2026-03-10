@@ -17,6 +17,8 @@ interface SelectProps {
   defaultValue?: any;
   placeholder?: string;
   onChange: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   className?: string;
 }
 
@@ -28,6 +30,8 @@ const Select: React.FC<SelectProps> = ({
   options,
   placeholder,
   onChange,
+  onFocus,
+  onBlur,
   className = "",
   value,
   defaultValue,
@@ -61,6 +65,8 @@ const Select: React.FC<SelectProps> = ({
         required={required}
         disabled={disabled}
         onChange={handleChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
         {/* Placeholder option */}
         {placeholder && (

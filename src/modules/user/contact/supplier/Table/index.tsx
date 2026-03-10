@@ -45,8 +45,8 @@ export default function SupplierTable() {
             {/* Table Header */}
             <TableHeader>
               <TableRow>
-                <TableCell isHeader>Kode Supplier</TableCell>
-                <TableCell isHeader>Nama</TableCell>
+                <TableCell isHeader className="text-start">Kode Supplier</TableCell>
+                <TableCell isHeader className="text-start">Nama</TableCell>
                 <th></th>
               </TableRow>
             </TableHeader>

@@ -75,7 +75,7 @@ export default function NavBar() {
         rel="stylesheet"
       />
 
-      <nav className="sticky top-[49px] py-2 px-5 bg-white border-gray-200 z-99999 dark:border-gray-800 dark:bg-gray-900 lg:border-b hidden lg:block  overflow-x-auto">
+      <nav className="sticky top-[63px] py-2 px-5 bg-white border-gray-200 dark:border-gray-800 dark:bg-gray-900 lg:border-b hidden lg:block  overflow-x-auto">
         <ul className="flex w-full gap-4 overflow-x-auto custom-scrollbar">
           {navItems.map(
             (nav, index) =>
