@@ -55,7 +55,11 @@ export default function Filter({ onClose, onOpen }: Props) {
   // const setStartDueDate = useUserStore((state) => state.setStartDueDate);
   // const setEndDueDate = useUserStore((state) => state.setEndDueDate);
 
-  const { data: customers, loading: customerLoading, setName: setSearchCustomer } = useGetAll();
+  const {
+    data: customers,
+    loading: customerLoading,
+    setName: setSearchCustomer,
+  } = useGetAll();
   const customerOptions = useMapInputOptions(customers);
 
   const methods = useForm({ mode: "onChange" });
@@ -65,11 +69,10 @@ export default function Filter({ onClose, onOpen }: Props) {
     // setEndTransactionDate(state.end_date);
     // setStartDueDate(state.start_due_date);
     // setEndDueDate(state.end_due_date);
-    setSaleDate(state.date)
+    setSaleDate(state.date);
     setCustomer(state.customer);
 
     onClose();
-
   };
 
   const onClear = () => {
@@ -83,6 +86,7 @@ export default function Filter({ onClose, onOpen }: Props) {
     });
 
     resetSaleFilter();
+    onClose();
   };
 
   return (
@@ -135,8 +139,12 @@ export default function Filter({ onClose, onOpen }: Props) {
           />
         </div> */}
 
-
-        <Input label="Tanggal" type="month" name="date" defaultValue={saleDate ?? ''} />
+        <Input
+          label="Tanggal"
+          type="month"
+          name="date"
+          defaultValue={saleDate ?? ""}
+        />
 
         <SelectTwoRhf
           label="Pelanggan"

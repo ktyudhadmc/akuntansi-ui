@@ -69,13 +69,16 @@ export default function PurchaseShow() {
         <div className="lg:col-span-8 2xl:col-span-9">
           <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/3">
             <h2 className="mb-5 text-lg font-semibold text-gray-800 dark:text-white/90">
-             Rincian
+              Rincian
             </h2>
             <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800">
               <div className="custom-scrollbar overflow-x-auto">
                 <table className="min-w-full text-left text-sm text-gray-700 dark:border-gray-800">
                   <thead className="bg-gray-50 dark:bg-gray-700">
                     <tr className="border-b border-gray-100 whitespace-nowrap dark:border-gray-800">
+                      <th className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-700 dark:text-gray-400">
+                        No.
+                      </th>
                       <th className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-700 dark:text-gray-400">
                         Produk
                       </th>
@@ -112,6 +115,9 @@ export default function PurchaseShow() {
                       data?.items.map((item, index) => {
                         return (
                           <tr key={`table-item-purchase-detail-${index}`}>
+                            <td className="px-5 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
+                              {++index}
+                            </td>
                             <td className="px-5 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
                               {item.material.name}
                             </td>
