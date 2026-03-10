@@ -7,39 +7,39 @@ import {
   TableBody,
   TableLoading,
   TableNotFound,
-  TableFoot,
+  // TableFoot,
 } from "@components/ui/table";
 import { isEmpty } from "lodash";
 import TableItem from "./TableItem";
 import TableFilter from "./TableFilter";
 
 import useGetReportCustomerBalance from "@services/user/report/customer-balance/hooks/useGetReportCustomerBalance";
-import usePagination from "@hooks/usePagination";
-import { useEffect } from "react";
-import TablePagination from "@components/ui/table/TablePagination";
-import { formatIDRLocale } from "@helpers/currency";
+// import usePagination from "@hooks/usePagination";
+// import { useEffect } from "react";
+// import TablePagination from "@components/ui/table/TablePagination";
+// import { formatIDRLocale } from "@helpers/currency";
 
 export default function RSCustomerBalance() {
   const {
     loading,
-    summary,
     data,
-    pagination,
-    pageLimit,
-    setPageLimit,
-    setPageNum,
+    // summary,
+    // pagination,
+    // pageLimit,
+    // setPageLimit,
+    // setPageNum,
   } = useGetReportCustomerBalance();
 
-  const {
-    currentPage,
-    goNextPage,
-    goPrevPage,
-    setPageNum: onSetPageNum,
-  } = usePagination(pagination?.last_page || 1);
+  // const {
+  //   currentPage,
+  //   goNextPage,
+  //   goPrevPage,
+  //   setPageNum: onSetPageNum,
+  // } = usePagination(pagination?.last_page || 1);
 
-  useEffect(() => {
-    setPageNum(currentPage);
-  }, [currentPage]);
+  // useEffect(() => {
+  //   setPageNum(currentPage);
+  // }, [currentPage]);
 
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
@@ -50,7 +50,7 @@ export default function RSCustomerBalance() {
           <Table>
             <TableHeader className="bg-gray-50 dark:bg-gray-700">
               <TableRow>
-                <TableCell isHeader className="whitepsace-nowrap text-start">
+                {/* <TableCell isHeader className="whitepsace-nowrap text-start">
                   Tanggal
                 </TableCell>
                 <TableCell isHeader className="whitespace-nowrap text-start">
@@ -67,6 +67,26 @@ export default function RSCustomerBalance() {
                 </TableCell>
                 <TableCell isHeader className="text-end">
                   Sisa Piutang
+                </TableCell> */}
+
+                <TableCell isHeader className="whitespace-nowrap text-start">
+                  Pelanggan
+                </TableCell>
+
+                <TableCell isHeader className="text-end">
+                  Saldo Awal
+                </TableCell>
+                <TableCell isHeader className="text-end">
+                  Pendapatan
+                </TableCell>
+                <TableCell isHeader className="text-end">
+                  PPH
+                </TableCell>
+                <TableCell isHeader className="text-end">
+                  Pembayaran
+                </TableCell>
+                <TableCell isHeader className="text-end">
+                  Saldo Akhir
                 </TableCell>
               </TableRow>
             </TableHeader>
@@ -82,7 +102,7 @@ export default function RSCustomerBalance() {
                 ))
               )}
             </TableBody>
-
+            {/* 
             <TableFoot>
               <TableRow className="border-t-2 border-t-gray-200 dark:border-t-gray-700">
                 <TableCell
@@ -98,11 +118,11 @@ export default function RSCustomerBalance() {
                   {formatIDRLocale(summary.total_remaining)}
                 </TableCell>
               </TableRow>
-            </TableFoot>
+            </TableFoot> */}
           </Table>
         </TableWrapper>
 
-        <TablePagination
+        {/* <TablePagination
           goNextPage={goNextPage}
           goPrevPage={goPrevPage}
           setPageNum={onSetPageNum}
@@ -113,7 +133,7 @@ export default function RSCustomerBalance() {
           setPageLimit={(limit) => setPageLimit(limit)}
           currentPage={currentPage}
           lastPage={pagination?.last_page}
-        />
+        /> */}
       </div>
     </div>
   );
