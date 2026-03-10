@@ -37,7 +37,7 @@ export default function VerifyOtp() {
   const { handleSendOtp } = useSendOtp("user");
 
   const onSubmit = async (otp: string) => {
-    if (otp.length !== otpLength) return;
+    if (otp.length !== otpLength || submitLoading) return;
 
     try {
       setSubmitLoading(true);
