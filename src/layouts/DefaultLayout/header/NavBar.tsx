@@ -1,4 +1,4 @@
-import { HiOutlineCube } from "react-icons/hi";
+import { HiOutlineCube, HiOutlineViewList } from "react-icons/hi";
 import { AiOutlineBank } from "react-icons/ai";
 import {
   MdOutlineSell,
@@ -53,6 +53,11 @@ const navItems: NavItem[] = [
     name: "Daftar Akun",
     path: "/user/accounts/chart-of-account",
   },
+  {
+    icon: <HiOutlineViewList />,
+    name: "Daftar Lainnya",
+    path: "/user/others",
+  },
 ];
 
 export default function NavBar() {
@@ -71,7 +76,7 @@ export default function NavBar() {
       />
 
       <nav className="sticky top-[49px] py-2 px-5 flex w-full bg-white border-gray-200 z-99999 dark:border-gray-800 dark:bg-gray-900 lg:border-b hidden lg:block">
-        <ul className="flex gap-4 items-center justify-center overflow-auto">
+        <ul className="flex gap-4 overflow-auto">
           {navItems.map(
             (nav, index) =>
               nav.path && (
@@ -93,7 +98,9 @@ export default function NavBar() {
                     >
                       {nav.icon}
                     </span>
-                    <span className="menu-item-text whitespace-nowrap">{nav.name}</span>
+                    <span className="menu-item-text whitespace-nowrap">
+                      {nav.name}
+                    </span>
                   </Link>
                 </li>
               ),

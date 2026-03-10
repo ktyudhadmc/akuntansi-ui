@@ -1,75 +1,75 @@
 import useGetAll from "@services/user/report/journal/hooks/useGetAll";
 import { isEmpty } from "lodash";
-import { BeatLoader } from "react-spinners";
+
 import TableItem from "./TableItem";
-import TableHeader from "./TableHeader";
+import TableFilter from "./TableFilter";
 import { formatIDRLocale } from "@helpers/index";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFoot,
+  TableHeader,
+  TableLoading,
+  TableNotFound,
+  TableRow,
+  TableWrapper,
+} from "@components/ui/table";
 
 export default function GeneralJournal() {
   const { data, loading, setSearch } = useGetAll();
 
   return (
     <>
-      <TableHeader setSearch={setSearch} />
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-        <div className="max-w-full overflow-x-auto">
-          <table className="w-full">
-            {/* Table Header */}
-            <thead className="border-b border-gray-100 dark:border-white/[0.05]">
-              <tr>
-                <th className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400">
-                  Akun
-                </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Debit
-                </th>
-                <th className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400">
-                  Kredit
-                </th>
-                <th></th>
-              </tr>
-            </thead>
+      <TableFilter setSearch={setSearch} />
+      <TableWrapper isSticky>
+        <Table>
+          {/* Table Header */}
+          <TableHeader isSticky>
+            <TableRow className="pointer-events-none">
+              <TableCell className="text-start" isHeader>
+                Akun
+              </TableCell>
+              <TableCell className="text-end" isHeader>
+                Debit
+              </TableCell>
+              <TableCell className="text-end" isHeader>
+                Kredit
+              </TableCell>
+              <th></th>
+            </TableRow>
+          </TableHeader>
 
-            <tbody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {loading ? (
-                <tr>
-                  <td colSpan={5} className="text-center py-16">
-                    <div className="sweet-loading">
-                      <BeatLoader color="var(--color-brand-600)" />
-                    </div>
-                  </td>
-                </tr>
-              ) : isEmpty(data) || !data.list ? (
-                <tr>
-                  <td colSpan={5} className="text-center py-4">
-                    Data tidak tersedia
-                  </td>
-                </tr>
-              ) : (
-                <>
-                  {data?.list.map((item, index) => {
-                    return (
-                      <TableItem key={`table-account-${index}`} item={item} />
-                    );
-                  })}
-
-                  <tr>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white font-semibold">
-                      Total Keseluruhan
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                      {formatIDRLocale(data.summary.total_debit)}
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap font-semibold">
-                      {formatIDRLocale(data.summary.total_credit)}
-                    </td>
-                  </tr>
-                </>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+          <TableBody>
+            {loading ? (
+              <TableLoading colSpan={3} />
+            ) : isEmpty(data?.list) ? (
+              <TableNotFound colSpan={3} />
+            ) : (
+              <>
+                {data?.list.map((item, index) => {
+                  return (
+                    <TableItem key={`table-account-${index}`} item={item} />
+                  );
+                })}
+              </>
+            )}
+          </TableBody>
+          <TableFoot isSticky>
+            <TableRow  className="pointer-events-none">
+              <TableCell isHeader className="text-end">
+                Total Keseluruhan
+              </TableCell>
+              <TableCell isHeader className="text-end">
+                {formatIDRLocale(data?.summary.total_debit ?? 0)}
+              </TableCell>
+              <TableCell isHeader className="text-end">
+                {formatIDRLocale(data?.summary.total_credit ?? 0)}
+              </TableCell>
+            </TableRow>
+          </TableFoot>
+        </Table>
+      </TableWrapper>
     </>
   );
 }

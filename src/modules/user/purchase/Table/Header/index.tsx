@@ -15,7 +15,7 @@ interface Props {
   setSearchCallback: (param: string) => void;
 }
 
-export default function TableHeader({ setSearchCallback }: Props) {
+export default function TableFilter({ setSearchCallback }: Props) {
   const navigate = useNavigate();
   const { isExpanded, toggleDrawer, closeDrawer } = useDrawer();
   // const [isOpenDropown, setIsOpenDropdown] = useState(false);
@@ -60,8 +60,6 @@ export default function TableHeader({ setSearchCallback }: Props) {
           <HiPlus />
           Buat pembelian baru
         </Button>
-
-        
 
         {/* Search */}
         <div className="flex lg:flex-row flex-col gap-2">

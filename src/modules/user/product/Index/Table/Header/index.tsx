@@ -18,7 +18,7 @@ interface Props {
   setCategoryCallback: (param: string) => void;
 }
 
-export default function TableHeader({
+export default function TableFilter({
   setSearchCallback,
   setCategoryCallback,
 }: Props) {

@@ -9,10 +9,12 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFoot,
   TableHeader,
   TableLoading,
   TableNotFound,
   TableRow,
+  TableWrapper,
 } from "@components/ui/table";
 import useGetAllTrialBalance from "@services/user/report/trial-balance/hooks/useGetAllTrialBalance";
 
@@ -24,138 +26,139 @@ export default function RBTrialBalance() {
         <div className="space-y-6">
           <TableAction />
 
-          <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-            <div className="max-w-full overflow-x-auto">
-              <Table className="w-full">
-                <TableHeader className="px-6 py-3.5 border-t border-gray-100 border-y bg-gray-50 dark:border-white/[0.05] dark:bg-white/[0.05]">
-                  <TableRow>
-                    <TableCell
-                      colSpan={2}
-                      rowSpan={2}
-                      isHeader
-                      className="border-r align-middle dark:border-white/[0.10]"
-                    >
-                      Daftar Akun
-                    </TableCell>
-                    <TableCell
-                      colSpan={2}
-                      isHeader
-                      className="border-r border-b dark:border-white/[0.10]"
-                    >
-                      Saldo Awal
-                    </TableCell>
-                    <TableCell
-                      colSpan={2}
-                      isHeader
-                      className="border-r border-b dark:border-white/[0.10]"
-                    >
-                      Pergerakan
-                    </TableCell>
-                    <TableCell
-                      colSpan={2}
-                      isHeader
-                      className="border-r border-b dark:border-white/[0.10]"
-                    >
-                      Saldo Akhir
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell
-                      isHeader
-                      className="text-center border-r dark:border-white/[0.10]"
-                    >
-                      Debit
-                    </TableCell>
-                    <TableCell
-                      isHeader
-                      className="text-center border-r dark:border-white/[0.10]"
-                    >
-                      Kredit
-                    </TableCell>
-                    <TableCell
-                      isHeader
-                      className="text-center border-r dark:border-white/[0.10]"
-                    >
-                      Debit
-                    </TableCell>
-                    <TableCell
-                      isHeader
-                      className="text-center border-r dark:border-white/[0.10]"
-                    >
-                      Kredit
-                    </TableCell>
-                    <TableCell
-                      isHeader
-                      className="text-center border-r dark:border-white/[0.10]"
-                    >
-                      Debit
-                    </TableCell>
-                    <TableCell
-                      isHeader
-                      className="text-center border-r dark:border-white/[0.10]"
-                    >
-                      Kredit
-                    </TableCell>
-                  </TableRow>
-                </TableHeader>
+          <TableWrapper isSticky>
+            <Table className="w-full">
+              <TableHeader isSticky>
+                <TableRow className="pointer-events-none">
+                  <TableCell
+                    colSpan={2}
+                    rowSpan={2}
+                    isHeader
+                    className="border-r align-middle dark:border-white/[0.10]"
+                  >
+                    Daftar Akun
+                  </TableCell>
+                  <TableCell
+                    colSpan={2}
+                    isHeader
+                    className="border-r border-b dark:border-white/[0.10]"
+                  >
+                    Saldo Awal
+                  </TableCell>
+                  <TableCell
+                    colSpan={2}
+                    isHeader
+                    className="border-r border-b dark:border-white/[0.10]"
+                  >
+                    Pergerakan
+                  </TableCell>
+                  <TableCell
+                    colSpan={2}
+                    isHeader
+                    className="border-r border-b dark:border-white/[0.10]"
+                  >
+                    Saldo Akhir
+                  </TableCell>
+                </TableRow>
+                <TableRow className="pointer-events-none">
+                  <TableCell
+                    isHeader
+                    className="text-center border-r dark:border-white/[0.10]"
+                  >
+                    Debit
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="text-center border-r dark:border-white/[0.10]"
+                  >
+                    Kredit
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="text-center border-r dark:border-white/[0.10]"
+                  >
+                    Debit
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="text-center border-r dark:border-white/[0.10]"
+                  >
+                    Kredit
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="text-center border-r dark:border-white/[0.10]"
+                  >
+                    Debit
+                  </TableCell>
+                  <TableCell
+                    isHeader
+                    className="text-center border-r dark:border-white/[0.10]"
+                  >
+                    Kredit
+                  </TableCell>
+                </TableRow>
+              </TableHeader>
 
-                <TableBody>
-                  {loading ? (
-                    <TableLoading colSpan={8} />
-                  ) : isEmpty(data) || !data ? (
-                    <TableNotFound colSpan={8} />
-                  ) : (
-                    data?.map((item, index) => {
-                      return (
-                        <TableItem
-                          key={`table-item-trial-balance-${index}`}
-                          item={item}
-                        />
-                      );
-                    })
-                  )}
-                </TableBody>
+              <TableBody>
+                {loading ? (
+                  <TableLoading colSpan={8} />
+                ) : isEmpty(data) || !data ? (
+                  <TableNotFound colSpan={8} />
+                ) : (
+                  data?.map((item, index) => {
+                    return (
+                      <TableItem
+                        key={`table-item-trial-balance-${index}`}
+                        item={item}
+                      />
+                    );
+                  })
+                )}
+              </TableBody>
 
-                <tfoot className="border-t dark:border-white/[0.10]">
-                  <tr>
-                    <td
-                      colSpan={2}
-                      className="pl-5 py-1 text-black text-start text-theme-sm dark:text-white whitespace-nowrap font-semibold"
-                    >
-                      Total
-                    </td>
+              <TableFoot
+                isSticky
+                className="border-t dark:!border-white/[0.10]"
+              >
+                <tr>
+                  <td
+                    colSpan={2}
+                    className="pl-5 py-1 text-black text-start text-theme-sm dark:text-white whitespace-nowrap font-semibold"
+                  >
+                    Total
+                  </td>
 
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      0
-                      {/* {formatIDRLocale(data?.total.opening_balance.debit ?? 0)} */}
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      0
-                      {/* {formatIDRLocale(data?.total.opening_balance.credit ?? 0)} */}
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      0
-                      {/* {formatIDRLocale(data?.total.movement_balance.debit ?? 0)} */}
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      0
-                      {/* {formatIDRLocale(
+                  <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                    0
+                    {/* {formatIDRLocale(data?.total.opening_balance.debit ?? 0)} */}
+                  </td>
+                  <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                    0
+                    {/* {formatIDRLocale(data?.total.opening_balance.credit ?? 0)} */}
+                  </td>
+                  <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                    0
+                    {/* {formatIDRLocale(data?.total.movement_balance.debit ?? 0)} */}
+                  </td>
+                  <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                    0
+                    {/* {formatIDRLocale(
                         data?.total.movement_balance.credit ?? 0,
                       )} */}
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      0
-                      {/* {formatIDRLocale(data?.total.closing_balance.debit ?? 0)} */}
-                    </td>
-                    <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
-                      0
-                      {/* {formatIDRLocale(data?.total.closing_balance.credit ?? 0)} */}
-                    </td>
-                  </tr>
-                </tfoot>
-              </Table>
-            </div>
-          </div>
+                  </td>
+                  <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                    0
+                    {/* {formatIDRLocale(data?.total.closing_balance.debit ?? 0)} */}
+                  </td>
+                  <td className="px-5 py-1 text-black text-end text-theme-xs dark:text-white whitespace-nowrap">
+                    0
+                    {/* {formatIDRLocale(data?.total.closing_balance.credit ?? 0)} */}
+                  </td>
+                </tr>
+              </TableFoot>
+            </Table>
+          </TableWrapper>
         </div>
       </div>
     </>
