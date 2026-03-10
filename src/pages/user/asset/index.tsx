@@ -4,18 +4,16 @@ import PageMeta from "@components/common/PageMeta";
 import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import { TabUnderline } from "@components/ui/tabs";
 
-export default function ReportPage() {
-  const pageTitle = "Laporan";
+export default function AssetPage() {
+  const pageTitle = "Manajemen Aset";
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const activeTab = searchParams.get("tab") ?? "business";
+  const activeTab = searchParams.get("tab") ?? "pending";
   const tabs = [
-    { value: "business", label: "Sekilas bisnis" },
-    { value: "sales", label: "Penjualan" },
-    { value: "purchases", label: "Pembelian" },
-    { value: "products", label: "Produk" },
-    { value: "bank", label: "Bank" },
-    { value: "production", label: "Produksi" },
+    { value: "pending", label: "Aset Tertunda" },
+    { value: "active", label: "Aset Aktif" },
+    { value: "sold", label: "Dijual/Dilepas" },
+    { value: "depreciation", label: "Penyusutan" },
   ];
 
   return (
@@ -32,9 +30,7 @@ export default function ReportPage() {
             onChange={(e) => setSearchParams({ tab: e })}
           />
 
-          {activeTab != "business" && <h4>Halaman {activeTab}, It Works!</h4>}
-
- 
+          <h4>Halaman {activeTab}, It Works!</h4>
         </div>
       </div>
     </>

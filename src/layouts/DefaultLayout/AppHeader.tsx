@@ -8,6 +8,8 @@ import NotificationDropdown from "@layouts/DefaultLayout/header/NotificationDrop
 import UserDropdown from "@layouts/DefaultLayout/header/UserDropdown";
 import useGlobalStore from "@store/useStore";
 import Skeleton from "@components/Skeleton/Skeleton";
+import CompanySelector from "./header/CompanySelector";
+import { useMediaQuery } from "@hooks/useMediaQuery";
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
@@ -17,6 +19,8 @@ const AppHeader: React.FC = () => {
   const currentCompanyLoading = useGlobalStore(
     (state) => state.currentCompanyLoading,
   );
+
+  const isLg = useMediaQuery("lg");
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
@@ -125,6 +129,8 @@ const AppHeader: React.FC = () => {
               />
             </svg>
           </button>
+
+          {isLg && <CompanySelector />}
         </div>
         <div
           className={`${

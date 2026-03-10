@@ -49,8 +49,8 @@ export default function CustomerTable() {
             {/* Table Header */}
             <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
               <TableRow>
-                <TableCell isHeader>Kode Pelanggan</TableCell>
-                <TableCell isHeader>Nama</TableCell>
+                <TableCell isHeader className="text-start">Kode Pelanggan</TableCell>
+                <TableCell isHeader className="text-start">Nama</TableCell>
                 <th></th>
               </TableRow>
             </TableHeader>

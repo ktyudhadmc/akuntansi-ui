@@ -56,7 +56,7 @@ export default function TableFilter({
           </Button>
 
           <Button size="sm" variant="outline" onClick={toggleDrawer}>
-            Atur satuan material
+            Atur satuan
           </Button>
         </div>
 
