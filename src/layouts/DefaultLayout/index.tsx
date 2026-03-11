@@ -19,7 +19,7 @@ const LayoutContent: React.FC = () => {
           isExpanded || isHovered ? "lg:ml-[290px]" : "lg:ml-[90px]"
         } ${isMobileOpen ? "ml-0" : ""}`}
       > */}
-      <div className={`flex-1 transition-all duration-300 ease-in-out`}>
+      <div className={`flex-1 min-w-0 transition-all duration-300 ease-in-out`}>
         <AppHeader />
         <NavBar />
         <div className="p-4 mx-auto max-w-(--breakpoint-3xl) md:p-6">

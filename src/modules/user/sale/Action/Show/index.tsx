@@ -1,8 +1,10 @@
 import { isEmpty } from "lodash";
-import { HiOutlinePrinter } from "react-icons/hi";
-import { useNavigate, useParams } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
-
+import {
+  HiChevronLeft,
+  HiOutlinePencil,
+  HiOutlinePrinter,
+} from "react-icons/hi";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { formatIDRLocale } from "@helpers/currency";
 
 import Skeleton from "@components/Skeleton/Skeleton";
@@ -10,10 +12,18 @@ import Badge from "@components/ui/badge/Badge";
 import Button from "@components/ui/button/Button";
 
 import useGetSale from "@services/user/sale/hooks/useGet";
+import useGoBack from "@hooks/useGoBack";
+import {
+  TableCell,
+  TableLoading,
+  TableNotFound,
+  TableRow,
+} from "@components/ui/table";
 
 export default function SaleShow() {
   const navigate = useNavigate();
   const params = useParams();
+  const goBack = useGoBack();
 
   const { data, loading } = useGetSale(params.id as string);
 
@@ -49,15 +59,28 @@ export default function SaleShow() {
             </Skeleton>
           </div>
         </div>
-        <div className="flex gap-4">
-          <Button
-            onClick={() => navigate("edit")}
-            size="sm"
-            variant="outline"
-            className="lg:w-fit w-full"
-          >
-            Ubah
-          </Button>
+        <div className="flex lg:flex-row flex-col gap-2">
+          <div className="flex gap-2">
+            <Button
+              onClick={goBack}
+              size="sm"
+              variant="outline"
+              className="group items-center !gap-0 overflow-hidden"
+            >
+              <HiChevronLeft className="shrink-0 mx-auto" size={20} />
+              <span className="max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:max-w-[100px]">
+                Kembali
+              </span>
+            </Button>
+            <Button
+              onClick={() => navigate("edit")}
+              size="sm"
+              variant="outline"
+              className="lg:w-fit w-full"
+            >
+              <HiOutlinePencil /> Ubah
+            </Button>
+          </div>
           <Button size="sm" className="lg:w-fit w-full">
             <HiOutlinePrinter />
             Cetak
@@ -95,43 +118,36 @@ export default function SaleShow() {
                   </thead>
                   <tbody className="divide-y divide-gray-100 bg-white dark:divide-gray-800 dark:bg-white/[0.03]">
                     {loading ? (
-                      <tr>
-                        <td colSpan={6} className="text-center py-16">
-                          <div className="sweet-loading">
-                            <BeatLoader color="var(--color-brand-600)" />
-                          </div>
-                        </td>
-                      </tr>
+                      <TableLoading colSpan={5} />
                     ) : isEmpty(data) || !data.items ? (
-                      <tr>
-                        <td colSpan={6} className="text-center py-4">
-                          Data tidak tersedia
-                        </td>
-                      </tr>
+                      <TableNotFound colSpan={5} />
                     ) : (
                       data?.items.map((item, index) => {
                         return (
-                          <tr key={`table-item-purchase-detail-${index}`}>
-                            <td className="px-5 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
-                              {item.material.name}
-                            </td>
-                            <td className="px-5 py-4 text-sm font-medium whitespace-nowrap text-gray-800 dark:text-white/90">
-                              {item.qty}
-                            </td>
-                            <td className="px-5 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
+                          <TableRow key={`table-item-purchase-detail-${index}`}>
+                            <TableCell className="!py-4">
+                              <Link
+                                to={`/user/products/${item.material.id}`}
+                                className="text-brand-600 font-medium hover:underline"
+                              >
+                                {item.material.name}
+                              </Link>
+                            </TableCell>
+                            <TableCell className="!py-4">{item.qty}</TableCell>
+                            <TableCell className="!py-4">
                               {item.unit.name}
-                            </td>
-                            <td className="px-5 py-4 text-sm whitespace-nowrap text-end text-gray-500 dark:text-gray-400">
+                            </TableCell>
+                            <TableCell className="text-end whitespace-nowrap !py-4 font-medium">
                               {formatIDRLocale(item.price, {
                                 withSymbol: true,
                               })}
-                            </td>
-                            <td className="px-5 py-4 text-sm whitespace-nowrap text-end text-gray-500 dark:text-gray-400">
+                            </TableCell>
+                            <TableCell className="text-end whitespace-nowrap !py-4 font-medium">
                               {formatIDRLocale(item.qty * item.price, {
                                 withSymbol: true,
                               })}
-                            </td>
-                          </tr>
+                            </TableCell>
+                          </TableRow>
                         );
                       })
                     )}
