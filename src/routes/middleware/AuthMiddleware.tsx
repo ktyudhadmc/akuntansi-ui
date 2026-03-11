@@ -12,6 +12,8 @@ import useCurrentCompany from "@services/auth/hooks/useCurrentCompany";
 // import { getActivePeriod } from "@services/auth/hooks/useGetActivePeriod";
 import type { Period } from "@services/auth/interfaces/period.type";
 
+import { toastInfo } from "@components/ui/toast";
+
 type Props = {
   children: React.ReactNode;
   withoutRedirection?: boolean;
@@ -154,6 +156,13 @@ export default function AuthMiddleware({
   };
 
   const redirectToOnBoard = () => {
+    if (!pathname.includes("onboard")) {
+      toastInfo(
+        "Perusahaan belum dipilih",
+        "Silakan pilih perusahaan terlebih dahulu untuk melanjutkan",
+      );
+    }
+
     switch (role) {
       case "admin":
         navigate("/admin/onboard");
