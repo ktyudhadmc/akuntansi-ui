@@ -14,6 +14,7 @@ import { GridIcon } from "@assets/icons";
 import { HiOutlineHomeModern } from "react-icons/hi2";
 import { Link, useLocation } from "react-router-dom";
 import { useCallback } from "react";
+import useGlobalStore from "@store/useStore";
 
 type NavItem = {
   name: string;
@@ -67,6 +68,10 @@ export default function NavBar() {
     (path: string) => location.pathname.startsWith(path),
     [location.pathname],
   );
+
+  const currentCompany = useGlobalStore((state) => state.currentCompany);
+
+  if (!currentCompany) return;
 
   return (
     <>
