@@ -71,8 +71,13 @@ export default [
             children: [
               { index: true, element: <User.CBPage /> },
               { path: ":id", element: <User.CBShowPage /> },
+              { path: "transfer", element: <User.CBTransferPage /> },
               { path: "import", element: <User.CBImportPage /> },
               { path: "journal/:id", element: <User.CBJournalShowPage /> },
+              {
+                path: "journal/:id/edit",
+                element: <User.CBEditTransferPage />,
+              },
             ],
           },
         ],

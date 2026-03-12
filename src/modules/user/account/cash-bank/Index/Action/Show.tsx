@@ -67,16 +67,33 @@ export default function CBShow() {
             <Button
               size="sm"
               onClick={toggleDropdown}
+              className="dropdown-toggle lg:w-auto w-full"
+            >
+              <span>Buat Transaksi</span>
+              <AiFillCaretDown
+                className={` transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+              />
+            </Button>
+            <Dropdown
+              isOpen={isOpen}
+              onClose={closeDropdown}
               className="lg:w-auto w-full"
             >
-              <span>Buat transaksi</span>
-              <AiFillCaretDown />
-            </Button>
+              <DropdownItem
+                onItemClick={closeDropdown}
+                onClick={() => navigate("../transfer")}
+                className="w-full whitespace-nowrap items-center dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+              >
+                Transfer uang
+              </DropdownItem>
 
-            <Dropdown isOpen={isOpen} onClose={closeDropdown}>
-              <DropdownItem>Transfer uang</DropdownItem>
-              <DropdownItem>Terima uang</DropdownItem>
-              <DropdownItem>Kirim uang</DropdownItem>
+              <DropdownItem className=" w-full whitespace-nowrap items-center dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+                Terima uang
+              </DropdownItem>
+
+              <DropdownItem className=" w-full whitespace-nowrap items-center dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+                Kirim uang
+              </DropdownItem>
             </Dropdown>
           </div>
         </div>
