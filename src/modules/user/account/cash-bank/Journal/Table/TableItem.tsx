@@ -1,12 +1,14 @@
 import { formatIDRLocale } from "@helpers/currency";
 import type { Ledger } from "@services/user/report/ledger/interfaces/response.type";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 interface Props {
   item: Ledger;
 }
 
 export default function TableItem({ item }: Props) {
+  const params = useParams();
+
   const getTransactionUrl = (id: number, type: string) => {
     switch (type) {
       case "sales":
@@ -16,7 +18,7 @@ export default function TableItem({ item }: Props) {
       case "journal":
         return `/user/journals/${id}/edit`;
       case "bank":
-        return `/user/accounts/cash-bank/journal/${id}`;
+        return `/user/accounts/cash-bank/${params.id}/journal/${id}`;
       default:
         return "#";
     }

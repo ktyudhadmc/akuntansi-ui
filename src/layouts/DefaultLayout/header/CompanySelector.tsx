@@ -41,7 +41,33 @@ export default function CompanySelector() {
       };
       navigate(dashboardRoutes[role] ?? "/");
     }
+
+    const safePath = getSafePathAfterCompanySwitch(pathname);
+
+    navigate(safePath || `/${role}/dashboard`);
   };
+
+
+  /** redirect auto */
+  function getSafePathAfterCompanySwitch(pathname: string) {
+    const segments = pathname.split("/").filter(Boolean);
+
+    const cleaned: string[] = [];
+
+    for (const seg of segments) {
+      const isNumberId = /^\d+$/.test(seg);
+      const isUuid =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
+          seg,
+        );
+
+      if (isNumberId || isUuid) break;
+
+      cleaned.push(seg);
+    }
+
+    return "/" + cleaned.join("/");
+  }
 
   return (
     <div className="w-xs">
