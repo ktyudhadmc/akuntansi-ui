@@ -73,9 +73,12 @@ export default [
               { path: ":id", element: <User.CBShowPage /> },
               { path: "transfer", element: <User.CBTransferPage /> },
               { path: "import", element: <User.CBImportPage /> },
-              { path: "journal/:id", element: <User.CBJournalShowPage /> },
               {
-                path: "journal/:id/edit",
+                path: ":id/journal/:transactionId",
+                element: <User.CBJournalShowPage />,
+              },
+              {
+                path: ":id/journal/:transctionId/edit",
                 element: <User.CBEditTransferPage />,
               },
             ],
