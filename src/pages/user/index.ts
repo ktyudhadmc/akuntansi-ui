@@ -20,8 +20,11 @@ export { default as COABalanceConversionpPage } from "./account/chart-of-account
 export { default as CBPage } from "./account/cash-bank";
 export { default as CBImportPage } from "./account/cash-bank/ImportPage";
 export { default as CBShowPage } from "./account/cash-bank/ShowPage";
+export { default as CBTransferPage } from "./account/cash-bank/CreateTransferPage";
+export { default as CBEditTransferPage } from "./account/cash-bank/EditTransferPage";
 export { default as CBJournalShowPage } from "./account/cash-bank/Journal/CBJournalShowPage";
 
+// ASSET
 export { default as AssetPage } from "./asset";
 
 // CONTACT

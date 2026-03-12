@@ -1,10 +1,11 @@
-export interface ICreateAccountPayload {
-  company_id: number;
-  code: string;
-  name: string;
-  is_posting: boolean;
-  normal_balance: string;
-  report_type: string;
+export interface ICreateTransactionPayload {
+  account_id: number;
+  counter_account_id: number;
+  date: string;
+  amount: string;
+  type: string;
+  reference: string;
+  description: string;
 }
 
 export interface ICreateIntegrationBankAccountPayload {

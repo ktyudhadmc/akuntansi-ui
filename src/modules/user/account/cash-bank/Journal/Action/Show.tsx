@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash";
-import { HiChevronLeft } from "react-icons/hi";
-import { Link, useParams } from "react-router-dom";
+import { HiChevronLeft, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { formatIDRLocale } from "@helpers/currency";
 import { useModal } from "@hooks/useModal";
@@ -20,16 +20,23 @@ import Skeleton from "@components/Skeleton/Skeleton";
 import Button from "@components/ui/button/Button";
 import Badge from "@components/ui/badge/Badge";
 
-import useGetBankStatement from "@services/user/account/cash-bank/hooks/useGetBankStatement";
 import { formatDateAsYMD } from "@helpers/date";
+import useGetTransaction from "@services/user/account/cash-bank/hooks/useGetTransaction";
+import Delete from "./Delete";
 
 export default function CBJournalShow() {
   const goBack = useGoBack();
   const params = useParams();
+  const navigate = useNavigate();
 
   const { isOpen, openModal, closeModal } = useModal();
+  const {
+    isOpen: isOpenTransaction,
+    openModal: openModalTransaction,
+    closeModal: closeModalTransaction,
+  } = useModal();
 
-  const { data, loading } = useGetBankStatement(params.id as string);
+  const { data, loading } = useGetTransaction(params.id as string);
 
   const getAccountUrl = (id?: number, categoryId?: number | null) => {
     const cashBank = categoryId == 3;
@@ -44,7 +51,19 @@ export default function CBJournalShow() {
   return (
     <>
       {data && (
-        <CBJournalShowDetail onOpen={isOpen} onClose={closeModal} item={data} />
+        <>
+          <CBJournalShowDetail
+            onOpen={isOpen}
+            onClose={closeModal}
+            item={data}
+          />
+          <Delete
+            onOpen={isOpenTransaction}
+            onClose={closeModalTransaction}
+            id={data?.id}
+            code={data?.document_number ?? "-"}
+          />
+        </>
       )}
       <div className="space-y-6">
         <div className="flex flex-col justify-between gap-4 rounded-2xl border border-gray-200 bg-white px-6 py-5 sm:flex-row sm:items-center dark:border-gray-800 dark:bg-white/3">
@@ -78,7 +97,7 @@ export default function CBJournalShow() {
 
           <Badge color="success">Terekonsiliasi</Badge>
 
-          <div className="flex justify-end gap-4">
+          <div className="flex justify-end gap-2">
             <Button
               onClick={goBack}
               size="sm"
@@ -90,6 +109,25 @@ export default function CBJournalShow() {
               <span className="max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:max-w-[100px]">
                 Kembali
               </span>
+            </Button>
+
+            <Button
+              onClick={() => navigate("edit")}
+              size="sm"
+              variant="outline"
+              className="lg:w-fit w-full"
+              disabled={!data}
+            >
+              <HiOutlinePencil />
+            </Button>
+            <Button
+              onClick={openModalTransaction}
+              size="sm"
+              variant="outline"
+              className="lg:w-fit w-full"
+              disabled={!data}
+            >
+              <HiOutlineTrash />
             </Button>
             <Button
               onClick={openModal}

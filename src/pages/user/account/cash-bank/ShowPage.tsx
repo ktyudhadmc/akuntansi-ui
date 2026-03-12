@@ -2,7 +2,7 @@ import PageBreadcrumb from "@components/common/PageBreadCrumb";
 import PageMeta from "@components/common/PageMeta";
 import { TabUnderline } from "@components/ui/tabs";
 import { useTabs } from "@hooks/useTabs";
-import CBBankStatementTable from "@modules/user/account/cash-bank/BankStatement/Table/index";
+// import CBBankStatementTable from "@modules/user/account/cash-bank/BankStatement/Table/index";
 import CBShow from "@modules/user/account/cash-bank/Index/Action/Show";
 import CBShowJournalTable from "@modules/user/account/cash-bank/Journal/Table";
 
@@ -11,7 +11,7 @@ export default function CBShowPage() {
 
   const tabs = [
     { value: "journal", label: "Transaksi Jurnal" },
-    { value: "bank-statement", label: "Rekening Koran" },
+    // { value: "bank-statement", label: "Rekening Koran" },
     // { value: "reconcile", label: "Rekonsiliasi" },
     // { value: "cash_coding", label: "Pemetaan Kas" },
   ];
@@ -44,7 +44,7 @@ export default function CBShowPage() {
           />
 
           {activeTab == "journal" && <CBShowJournalTable />}
-          {activeTab == "bank-statement" && <CBBankStatementTable />}
+          {/* {activeTab == "bank-statement" && <CBBankStatementTable />} */}
         </div>
       </div>
     </>
