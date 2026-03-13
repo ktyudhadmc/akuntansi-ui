@@ -38,6 +38,7 @@ export default function useGetAllLedger() {
   return {
     loading: !data && !error,
     data: data?.data,
+    summary: data?.data.summary,
     error,
     search,
     setSearch: onSetSearch,

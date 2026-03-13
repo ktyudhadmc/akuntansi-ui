@@ -22,7 +22,8 @@ const LayoutContent: React.FC = () => {
       <div className={`flex-1 min-w-0 transition-all duration-300 ease-in-out`}>
         <AppHeader />
         <NavBar />
-        <div className="p-4 mx-auto max-w-(--breakpoint-3xl) md:p-6">
+        {/* <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6"> */}
+        <div className="p-4 mx-auto max-w-[1650px] md:p-6">
           <Outlet />
         </div>
       </div>

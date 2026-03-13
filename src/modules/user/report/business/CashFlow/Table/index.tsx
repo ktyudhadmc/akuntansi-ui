@@ -14,6 +14,7 @@ import {
   // TableLoading,
   // TableNotFound,
   TableRow,
+  TableWrapper,
 } from "@components/ui/table";
 
 // import useGetAllCashFlow from "@services/user/report/cash-flow/hooks/useGetAllCashFlow";
@@ -57,22 +58,21 @@ export default function RBCashFlow() {
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
       <div className="space-y-6">
         <TableAction />
-        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-          <div className="max-w-full overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableCell isHeader className="text-start">
-                    Nama Akun & Kategori
-                  </TableCell>
-                  <TableCell isHeader className="text-end">
-                    <span className="mr-8"> Tanggal </span>
-                    {todayYMDString}
-                  </TableCell>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {/* {loading ? (
+        <TableWrapper isSticky>
+          <Table>
+            <TableHeader isSticky>
+              <TableRow>
+                <TableCell isHeader className="text-start">
+                  Nama Akun & Kategori
+                </TableCell>
+                <TableCell isHeader className="text-end">
+                  <span className="mr-8"> Tanggal </span>
+                  {todayYMDString}
+                </TableCell>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {/* {loading ? (
                   <TableLoading colSpan={8} />
                 ) : isEmpty(data) || !data ? (
                   <TableNotFound colSpan={8} />
@@ -85,32 +85,32 @@ export default function RBCashFlow() {
                   ))
                 )} */}
 
-                {/* for testing */}
-                {data?.map((item, index) => (
-                  <TableItem key={`cashflow-table-item-${index}`} item={item} />
-                ))}
-              </TableBody>
+              {/* for testing */}
+              {data?.map((item, index) => (
+                <TableItem key={`cashflow-table-item-${index}`} item={item} />
+              ))}
+            </TableBody>
 
-              {data && (
-                <TableFoot>
-                  <TableRow>
-                    <TableCell
-                      colSpan={2}
-                      className="!text-sm !text-black dark:!text-white font-medium"
-                    >
-                      <div className="py-3"></div>
-                    </TableCell>
-                  </TableRow>
+            {data && (
+              <TableFoot>
+                <TableRow>
+                  <TableCell
+                    colSpan={2}
+                    className="!text-sm !text-black dark:!text-white font-medium"
+                  >
+                    <div className="py-3"></div>
+                  </TableCell>
+                </TableRow>
 
-                  <TableRow>
-                    <TableCell className="!text-sm !text-black dark:!text-white font-medium">
-                      Kenaikan (Penurunan) Kas
-                    </TableCell>
-                    <TableCell className="!text-sm !text-black dark:!text-white text-end">
-                      {formatIDRLocale(0)}
-                    </TableCell>
-                  </TableRow>
-                  {/* <TableRow>
+                <TableRow>
+                  <TableCell className="!text-sm !text-black dark:!text-white font-medium">
+                    Kenaikan (Penurunan) Kas
+                  </TableCell>
+                  <TableCell className="!text-sm !text-black dark:!text-white text-end">
+                    {formatIDRLocale(0)}
+                  </TableCell>
+                </TableRow>
+                {/* <TableRow>
                   <TableCell className="!text-sm !text-black dark:!text-white font-medium">
                     Total revaluasi bank
                   </TableCell>
@@ -118,27 +118,26 @@ export default function RBCashFlow() {
                     {formatIDRLocale(0)}
                   </TableCell>
                 </TableRow> */}
-                  <TableRow>
-                    <TableCell className="!text-sm !text-black dark:!text-white font-medium">
-                      Saldo kas awal
-                    </TableCell>
-                    <TableCell className="!text-sm !text-black dark:!text-white text-end">
-                      {formatIDRLocale(0)}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="!text-sm !text-black dark:!text-white font-medium">
-                      Saldo kas akhir
-                    </TableCell>
-                    <TableCell className="!text-sm !text-black dark:!text-white text-end">
-                      {formatIDRLocale(0)}
-                    </TableCell>
-                  </TableRow>
-                </TableFoot>
-              )}
-            </Table>
-          </div>
-        </div>
+                <TableRow>
+                  <TableCell className="!text-sm !text-black dark:!text-white font-medium">
+                    Saldo kas awal
+                  </TableCell>
+                  <TableCell className="!text-sm !text-black dark:!text-white text-end">
+                    {formatIDRLocale(0)}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="!text-sm !text-black dark:!text-white font-medium">
+                    Saldo kas akhir
+                  </TableCell>
+                  <TableCell className="!text-sm !text-black dark:!text-white text-end">
+                    {formatIDRLocale(0)}
+                  </TableCell>
+                </TableRow>
+              </TableFoot>
+            )}
+          </Table>
+        </TableWrapper>
       </div>
     </div>
   );
