@@ -31,9 +31,12 @@ export default function RBBalanceSheet() {
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
       <div className="space-y-6">
         <TableFilter />
-        <TableWrapper>
+        <TableWrapper isSticky>
           <Table>
-            <TableHeader className="px-5 py-3.5 border-t border-gray-100 border-y bg-gray-50 dark:border-white/[0.05] dark:bg-white/[0.05]">
+            <TableHeader
+              isSticky
+              className="px-5 py-3.5 border-t border-gray-100 border-y bg-gray-50 dark:border-white/[0.05] dark:bg-white/[0.05]"
+            >
               <TableRow>
                 <TableCell colSpan={2} isHeader className="text-start">
                   Nama Akun
