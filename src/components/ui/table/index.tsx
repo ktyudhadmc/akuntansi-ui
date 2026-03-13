@@ -98,14 +98,14 @@ const TableHeader: React.FC<TableHeaderProps> = ({
 }) => {
   if (isSticky) {
     return (
-      <thead className="sticky top-0 z-10 border-b border-gray-100 dark:border-white/[0.05]  bg-gray-50 dark:bg-gray-700">
+      <thead className="sticky top-0 z-10 bg-gray-50 dark:bg-gray-700">
         {children}
       </thead>
     );
   }
   return (
     <thead
-      className={`border-b border-gray-100 dark:border-white/[0.05] ${className}`}
+      className={`bg-gray-50 dark:bg-gray-700 ${className}`}
     >
       {children}
     </thead>
@@ -170,7 +170,7 @@ const TableCell: React.FC<TableCellProps> = ({
 }) => {
   const CellTag = isHeader ? "th" : "td";
   const classNameDefault = isHeader
-    ? "px-5 py-3 font-medium text-black text-theme-xs dark:text-white"
+    ? "px-5 py-3 font-medium text-theme-xs text-black dark:text-white"
     : "px-5 py-1 text-black text-theme-xs dark:text-white";
 
   return (

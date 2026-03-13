@@ -16,9 +16,10 @@ import TableAction from "./TableAction";
 import TablePagination from "@components/ui/table/TablePagination";
 
 import usePagination from "@hooks/usePagination";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CustomerTable() {
+  const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
   const {
     data,
     loading,
@@ -49,8 +50,12 @@ export default function CustomerTable() {
             {/* Table Header */}
             <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
               <TableRow>
-                <TableCell isHeader className="text-start">Kode Pelanggan</TableCell>
-                <TableCell isHeader className="text-start">Nama</TableCell>
+                <TableCell isHeader className="text-start">
+                  Kode Pelanggan
+                </TableCell>
+                <TableCell isHeader className="text-start">
+                  Nama
+                </TableCell>
                 <th></th>
               </TableRow>
             </TableHeader>
@@ -63,7 +68,12 @@ export default function CustomerTable() {
               ) : (
                 data?.map((item, index) => {
                   return (
-                    <TableItem key={`table-customer-${index}`} item={item} />
+                    <TableItem
+                      key={`table-customer-${index}`}
+                      item={item}
+                      openDropdownId={openDropdownId}
+                      setOpenDropdownId={setOpenDropdownId}
+                    />
                   );
                 })
               )}

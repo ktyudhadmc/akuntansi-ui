@@ -18,7 +18,6 @@ export interface Contact {
   name: string;
   code: string;
   class: string;
-  specification: string;
   // email: string;
   // phone: string;
   // is_supplier: boolean;
