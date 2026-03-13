@@ -6,7 +6,7 @@ import { formatIDRLocale } from "@helpers/index";
 
 import useGetAllLedger from "@services/user/report/ledger/hooks/useGetAllLedger";
 import TableFilter from "./TableFilter";
-import RBLedgerHeader from "../Header";
+// import RBLedgerHeader from "../Header";
 import {
   Table,
   TableBody,
@@ -20,17 +20,17 @@ import {
 } from "@components/ui/table";
 
 export default function RBLedger() {
-  const { data, loading, setSearch } = useGetAllLedger();
+  const { data, summary, loading, setSearch } = useGetAllLedger();
 
   return (
     <>
-      <RBLedgerHeader
+      {/* <RBLedgerHeader
         credit={data?.summary.credit_transaction ?? 0}
         debit={data?.summary.debit_transaction ?? 0}
         startBalance={data?.summary.opening_balance ?? 0}
         endBalance={data?.summary.closing_balance ?? 0}
         loading={loading}
-      />
+      /> */}
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
         <div className="space-y-6">
           <TableFilter setSearch={setSearch} />
@@ -77,13 +77,13 @@ export default function RBLedger() {
                     Total Keseluruhan
                   </TableCell>
                   <TableCell isHeader className="text-end">
-                    {formatIDRLocale(0)}
+                    {formatIDRLocale(summary?.debit_transaction ?? 0)}
                   </TableCell>
                   <TableCell isHeader className="text-end">
-                    {formatIDRLocale(0)}
+                    {formatIDRLocale(summary?.credit_transaction ?? 0)}
                   </TableCell>
                   <TableCell isHeader className="text-end">
-                    {formatIDRLocale(0)}
+                    {formatIDRLocale(summary?.closing_balance ?? 0)}
                   </TableCell>
                 </TableRow>
               </TableFoot>

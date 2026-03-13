@@ -84,13 +84,15 @@ export default function TableFilter({ setSearch }: Props) {
 
         {/* Search */}
         <div className="flex lg:flex-row flex-col gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => navigate("import")}
-          >
-            Impor
-          </Button>
+          <Tooltip text="Impor Pembelian" className="!min-w-32">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => navigate("import")}
+            >
+              Impor
+            </Button>
+          </Tooltip>
 
           <div className="w-full">
             <FilterInput

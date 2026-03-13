@@ -49,7 +49,7 @@ export default function RSCustomerBalance() {
         <TableWrapper isSticky>
           <Table>
             {/* Table Header */}
-            <TableHeader>
+            <TableHeader isSticky>
               <TableRow>
                 {/* <TableCell isHeader className="whitepsace-nowrap text-start">
                   Tanggal

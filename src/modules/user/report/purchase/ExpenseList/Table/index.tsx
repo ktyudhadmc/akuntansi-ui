@@ -48,9 +48,9 @@ export default function RPExpenseList() {
       <div className="space-y-6">
         <TableFilter />
 
-        <TableWrapper>
+        <TableWrapper isSticky>
           <Table>
-            <TableHeader className="bg-gray-50 dark:bg-gray-700">
+            <TableHeader isSticky className="bg-gray-50 dark:bg-gray-700">
               <TableRow>
                 <TableCell isHeader className="text-start">
                   Tanggal
@@ -97,7 +97,7 @@ export default function RPExpenseList() {
               )}
             </TableBody>
 
-            <TableFoot className="border-t-2 border-gray-200 dark:border-gray-800">
+            <TableFoot isSticky className="border-t-2 border-gray-200 dark:border-gray-800">
               <TableRow>
                 <TableCell
                   colSpan={7}

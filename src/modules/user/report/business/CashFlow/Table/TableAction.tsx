@@ -64,10 +64,10 @@ export default function TableAction() {
   };
 
   return (
-    <div className="flex items-end lg:flex-row flex-col lg:justify-between justify-normal">
+    <div className="flex items-end lg:flex-row flex-col lg:justify-between justify-normal gap-2">
       {/* TABLE HEADER */}
       <Form {...methods} onSubmit={onSubmit}>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-2 items-end">
           <Input type="month" name="date" defaultValue={cashFlowDate} />
 
           <div className="flex gap-2 md:col-span-2">
@@ -91,7 +91,7 @@ export default function TableAction() {
         </div>
       </Form>
 
-      <div className="relative">
+      <div className="relative lg:w-fit w-full">
         <Button
           size="sm"
           variant="outline"

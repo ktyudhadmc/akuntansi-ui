@@ -37,37 +37,37 @@ export default function SaleTable() {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                    className="px-5 py-3 font-medium text-start whitespace-nowrap"
                   >
                     Tanggal
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                    className="px-5 py-3 font-medium text-start whitespace-nowrap"
                   >
                     Nomor
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                    className="px-5 py-3 font-medium text-start whitespace-nowrap"
                   >
                     Pelanggan
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                    className="px-5 py-3 font-medium text-start whitespace-nowrap"
                   >
                     Jenis layanan
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                    className="px-5 py-3 font-medium text-start whitespace-nowrap"
                   >
                     Produk
                   </TableCell>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400 whitespace-nowrap"
+                    className="px-5 py-3 font-medium text-end whitespace-nowrap"
                   >
                     Total Harga
                   </TableCell>

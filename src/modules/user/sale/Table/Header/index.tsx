@@ -7,6 +7,7 @@ import { useDrawer } from "@hooks/useDrawer";
 import { HiOutlineFilter, HiPlus } from "react-icons/hi";
 import { useDebouncedCallback } from "@hooks/useDebounceCallback";
 import useUserStore from "@store/useUserStore";
+import { Tooltip } from "@components/ui/tooltip";
 
 interface Props {
   setSearch: (param: string) => void;
@@ -71,21 +72,25 @@ export default function TableFilter({ setSearch }: Props) {
                 onChange={(e) => setSaleDate(e.target.value)}
               />
             </div>
-            <Button size="sm" variant="outline" onClick={toggleDrawer}>
-              <HiOutlineFilter />
-            </Button>
+            <Tooltip text="Filter lainnya" className="!min-w-32">
+              <Button size="sm" variant="outline" onClick={toggleDrawer}>
+                <HiOutlineFilter />
+              </Button>
+            </Tooltip>
           </div>
         </div>
 
         {/* Search */}
         <div className="flex lg:flex-row flex-col gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => navigate("import")}
-          >
-            Impor
-          </Button>
+          <Tooltip text="Impor Penjualan" className="!min-w-32">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => navigate("import")}
+            >
+              Impor
+            </Button>
+          </Tooltip>
 
           <div className="w-full">
             <FilterInput
