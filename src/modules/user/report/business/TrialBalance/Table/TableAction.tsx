@@ -1,8 +1,8 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { MdOutlineRefresh } from "react-icons/md";
+// import { MdOutlineRefresh } from "react-icons/md";
 
 import useUserStore from "@store/useUserStore";
-import { todayYMString } from "@helpers/index";
+// import { todayYMString } from "@helpers/index";
 
 import Button from "@components/ui/button/Button";
 import Form from "@components/form/Form";
@@ -14,7 +14,7 @@ export default function TableAction() {
     (state) => state.setTrialBalanceDate,
   );
 
-  const resetFilter = useUserStore((state) => state.resetTrialBalanceFilter);
+  // const resetFilter = useUserStore((state) => state.resetTrialBalanceFilter);
 
   const methods = useForm<any>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
@@ -24,30 +24,30 @@ export default function TableAction() {
     setTrialBalanceDate(state.date);
   };
 
-  const onClear = () => {
-    methods.reset({
-      trialBalanceDate: todayYMString,
-    });
+  // const onClear = () => {
+  //   methods.reset({
+  //     trialBalanceDate: todayYMString,
+  //   });
 
-    resetFilter();
-  };
+  //   resetFilter();
+  // };
 
   return (
     <div>
       <div className="lg:flex items-end">
         {/* TABLE HEADER */}
         <Form {...methods} onSubmit={onSubmit}>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-2 items-end">
             <Input name="date" type="month" defaultValue={trialBalanceDate} />
             <div className="flex gap-2 md:col-span-2">
-              <Button
+              {/* <Button
                 size="sm"
                 variant="outline"
                 onClick={onClear}
                 disabled={!isValid}
               >
                 <MdOutlineRefresh className="text-xl scale-x-[-1]" />
-              </Button>
+              </Button> */}
 
               <Button
                 size="sm"

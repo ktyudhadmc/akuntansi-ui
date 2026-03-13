@@ -4,13 +4,13 @@ import Spinner from "@components/Reusable/Spinner";
 import Button from "@components/ui/button/Button";
 import { Dropdown, DropdownItem } from "@components/ui/dropdown";
 
-import { todayYMString } from "@helpers/index";
+// import { todayYMString } from "@helpers/index";
 import { useDropdown } from "@hooks/useDropdown";
 import useDownload from "@services/global/download/hooks/useDownload";
 import useUserStore from "@store/useUserStore";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { AiFillCaretDown } from "react-icons/ai";
-import { MdOutlineRefresh } from "react-icons/md";
+// import { MdOutlineRefresh } from "react-icons/md";
 
 export default function TableAction() {
   const { loading: loadingDownload, trigger } = useDownload();
@@ -43,9 +43,9 @@ export default function TableAction() {
   } = useDropdown();
   const profitLossDate = useUserStore((state) => state.profitLossDate);
   const setProfitLossDate = useUserStore((state) => state.setProfitLossDate);
-  const resetProfitLossFilter = useUserStore(
-    (state) => state.resetProfitLossFilter,
-  );
+  // const resetProfitLossFilter = useUserStore(
+  //   (state) => state.resetProfitLossFilter,
+  // );
 
   const methods = useForm<any>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
@@ -55,30 +55,30 @@ export default function TableAction() {
     setProfitLossDate(state.date);
   };
 
-  const onClear = () => {
-    methods.reset({
-      date: todayYMString,
-    });
+  // const onClear = () => {
+  //   methods.reset({
+  //     date: todayYMString,
+  //   });
 
-    resetProfitLossFilter();
-  };
+  //   resetProfitLossFilter();
+  // };
 
   return (
-    <div className="flex items-end lg:flex-row flex-col lg:justify-between justify-normal gap-4">
+    <div className="flex items-end lg:flex-row flex-col lg:justify-between justify-normal gap-2">
       {/* TABLE HEADER */}
       <Form {...methods} onSubmit={onSubmit}>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-2 items-end">
           <Input type="month" name="date" defaultValue={profitLossDate} />
 
           <div className="flex gap-2 md:col-span-2">
-            <Button
+            {/* <Button
               size="sm"
               variant="outline"
               onClick={onClear}
               disabled={!isValid}
             >
               <MdOutlineRefresh className="text-xl scale-x-[-1]" />
-            </Button>
+            </Button> */}
 
             <Button
               size="sm"

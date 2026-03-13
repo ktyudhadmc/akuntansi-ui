@@ -13,10 +13,8 @@ interface Props {
 export default function PurchaseHeader({ loading, expenseAmount }: Props) {
   return (
     <>
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
-        <div className="space-y-6">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
-            {/* <CardStatistic
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
+        {/* <CardStatistic
               title="Biaya Sebelum Pajak"
               value={formatIDRLocale(0, { withSymbol: true })}
               variant="danger"
@@ -28,15 +26,13 @@ export default function PurchaseHeader({ loading, expenseAmount }: Props) {
               variant="danger"
               icon={<AiOutlinePercentage />}
             /> */}
-            <CardStatistic
-              loading={loading}
-              title="Total Biaya"
-              value={formatIDRLocale(expenseAmount, { withSymbol: true })}
-              variant="danger"
-              icon={<AiOutlineBarChart />}
-            />
-          </div>
-        </div>
+        <CardStatistic
+          loading={loading}
+          title="Total Biaya"
+          value={formatIDRLocale(expenseAmount, { withSymbol: true })}
+          variant="danger"
+          icon={<AiOutlineBarChart />}
+        />
       </div>
     </>
   );

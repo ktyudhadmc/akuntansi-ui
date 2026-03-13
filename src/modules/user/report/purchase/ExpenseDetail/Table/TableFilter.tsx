@@ -1,10 +1,10 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { MdOutlineRefresh } from "react-icons/md";
+// import { MdOutlineRefresh } from "react-icons/md";
 import { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 
 import useUserStore from "@store/useUserStore";
-import { todayYMString } from "@helpers/index";
+// import { todayYMString } from "@helpers/index";
 
 import Button from "@components/ui/button/Button";
 import Form from "@components/form/Form";
@@ -52,32 +52,32 @@ export default function TableFilter() {
     setPurchaseExpenseDetailDate(state.date);
   };
 
-  const onClear = () => {
-    methods.reset({
-      date: todayYMString,
-    });
-    setPurchaseExpenseDetailDate(todayYMString);
-  };
+  // const onClear = () => {
+  //   methods.reset({
+  //     date: todayYMString,
+  //   });
+  //   setPurchaseExpenseDetailDate(todayYMString);
+  // };
 
   return (
     <div>
       <div className="lg:flex items-end">
         <Form {...methods} onSubmit={onSubmit}>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-2 items-end">
             <Input
               name="date"
               type="month"
               defaultValue={purchaseExpenseDetailDate}
             />
             <div className="flex gap-2 md:col-span-2">
-              <Button
+              {/* <Button
                 size="sm"
                 variant="outline"
                 onClick={onClear}
                 disabled={!isValid}
               >
                 <MdOutlineRefresh className="text-xl scale-x-[-1]" />
-              </Button>
+              </Button> */}
 
               <Button
                 size="sm"
@@ -90,7 +90,7 @@ export default function TableFilter() {
           </div>
         </Form>
 
-        <div className="lg:mt-auto mt-4">
+        <div className="lg:mt-auto mt-2">
           <div className="relative">
             <Button
               size="sm"

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { HiChevronDown } from "react-icons/hi";
-import { Link } from "react-router-dom";
+// import { useState } from "react";
+// import { HiChevronDown } from "react-icons/hi";
+// import { Link } from "react-router-dom";
 
 import { TableCell, TableRow } from "@components/ui/table";
-import { Tooltip } from "@components/ui/tooltip";
-import { formatIDRLocale, formatDateAsYMD } from "@helpers/index";
+// import { Tooltip } from "@components/ui/tooltip";
+import { formatIDRLocale } from "@helpers/index";
 
 import type { SupplierBalance } from "@services/user/report/supplier-balance/interfaces/response.type";
 
@@ -12,11 +12,28 @@ interface Props {
   item: SupplierBalance;
 }
 export default function TableItem({ item }: Props) {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   return (
     <>
-      <TableRow className="bg-gray-50 dark:bg-gray-800">
+      <TableRow>
+        <TableCell className="font-medium text-brand-600">
+          {item.supplier_name}
+        </TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.pembelian)}
+        </TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.uang_muka)}
+        </TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.pembayaran)}
+        </TableCell>
+        <TableCell className="text-end whitespace-nowrap">
+          {formatIDRLocale(item.saldo_hutang)}
+        </TableCell>
+      </TableRow>
+      {/* <TableRow className="bg-gray-50 dark:bg-gray-800">
         <TableCell
           colSpan={6}
           className="!text-black dark:text-white font-medium"
@@ -93,7 +110,7 @@ export default function TableItem({ item }: Props) {
         <TableCell className="whitespace-nowrap text-end dark:!text-white !text-black font-medium">
           {formatIDRLocale(item.total_remaining)}
         </TableCell>
-      </TableRow>
+      </TableRow> */}
     </>
   );
 }

@@ -1,8 +1,8 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { MdOutlineRefresh } from "react-icons/md";
+// import { MdOutlineRefresh } from "react-icons/md";
 
 import useUserStore from "@store/useUserStore";
-import { todayYMDString, todayYMString } from "@helpers/index";
+// import { todayYMDString, todayYMString } from "@helpers/index";
 
 // import DatePicker from "@components/form/date-picker";
 import Button from "@components/ui/button/Button";
@@ -26,7 +26,7 @@ export default function TableFilter({ setSearch }: Props) {
   // const setEndDate = useUserStore((state) => state.setLedgerEndDate);
   const setLedgerDate = useUserStore((state) => state.setLedgerDate);
 
-  const resetLedgerFilter = useUserStore((state) => state.resetLedgerFilter);
+  // const resetLedgerFilter = useUserStore((state) => state.resetLedgerFilter);
 
   const methods = useForm<any>({ mode: "onChange" });
   const { isSubmitting } = methods.formState;
@@ -39,15 +39,15 @@ export default function TableFilter({ setSearch }: Props) {
     setLedgerDate(state.date);
   };
 
-  const onClear = () => {
-    methods.reset({
-      start_date: todayYMDString,
-      end_date: todayYMDString,
-      date: todayYMString,
-    });
+  // const onClear = () => {
+  //   methods.reset({
+  //     start_date: todayYMDString,
+  //     end_date: todayYMDString,
+  //     date: todayYMString,
+  //   });
 
-    resetLedgerFilter();
-  };
+  //   resetLedgerFilter();
+  // };
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -61,7 +61,7 @@ export default function TableFilter({ setSearch }: Props) {
       <div className="lg:flex items-end">
         {/* TABLE HEADER */}
         <Form {...methods} onSubmit={onSubmit}>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-2 items-end">
             {/* <DatePicker
               label="Tgl. mulai"
               placeholder="Pilih tanggal"
@@ -80,14 +80,14 @@ export default function TableFilter({ setSearch }: Props) {
 
             <Input name="date" type="month" defaultValue={ledgerDate} />
             <div className="flex gap-2 md:col-span-2">
-              <Button
+              {/* <Button
                 size="sm"
                 variant="outline"
                 onClick={onClear}
                 disabled={!isValid}
               >
                 <MdOutlineRefresh className="text-xl scale-x-[-1]" />
-              </Button>
+              </Button> */}
 
               <Button
                 size="sm"
@@ -100,7 +100,7 @@ export default function TableFilter({ setSearch }: Props) {
           </div>
         </Form>
 
-        <div className="lg:mt-auto mt-4">
+        <div className="lg:mt-auto mt-2">
           <FilterInput
             withPrefixIcon
             placeholder="Cari"

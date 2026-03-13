@@ -8,8 +8,8 @@ import NotificationDropdown from "@layouts/DefaultLayout/header/NotificationDrop
 import UserDropdown from "@layouts/DefaultLayout/header/UserDropdown";
 import useGlobalStore from "@store/useStore";
 import Skeleton from "@components/Skeleton/Skeleton";
-import CompanySelector from "./header/CompanySelector";
-import { useMediaQuery } from "@hooks/useMediaQuery";
+// import CompanySelector from "./header/CompanySelector";
+// import { useMediaQuery } from "@hooks/useMediaQuery";
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
@@ -20,7 +20,7 @@ const AppHeader: React.FC = () => {
     (state) => state.currentCompanyLoading,
   );
 
-  const isLg = useMediaQuery("lg");
+  // const isLg = useMediaQuery("lg");
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
@@ -130,7 +130,14 @@ const AppHeader: React.FC = () => {
             </svg>
           </button>
 
-          {isLg && <CompanySelector />}
+          <Link to="/user/dashboard" className="lg:block hidden">
+            <h3 className="dark:text-white text-brand-600 font-semibold text-lg tracking-wide">
+              Dinamika
+              <span className="text-xs font-normal italic tracking-normal capitaliZe">
+                Jurnal
+              </span>
+            </h3>
+          </Link>
         </div>
         <div
           className={`${

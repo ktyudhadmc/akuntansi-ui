@@ -1,11 +1,11 @@
 import Form from "@components/form/Form";
 import Input from "@components/form/input/InputField";
 import Button from "@components/ui/button/Button";
-import { todayYMString } from "@helpers/date";
+// import { todayYMString } from "@helpers/date";
 import useUserStore from "@store/useUserStore";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { HiDownload } from "react-icons/hi";
-import { MdOutlineRefresh } from "react-icons/md";
+// import { MdOutlineRefresh } from "react-icons/md";
 
 export default function TableFilter() {
   const balanceSheetDate = useUserStore((state) => state.balanceSheetDate);
@@ -21,31 +21,31 @@ export default function TableFilter() {
     setBalanceSheetDate(state.date);
   };
 
-  const onClear = () => {
-    methods.reset({
-      date: todayYMString,
-    });
+  // const onClear = () => {
+  //   methods.reset({
+  //     date: todayYMString,
+  //   });
 
-    setBalanceSheetDate(todayYMString);
-  };
+  //   setBalanceSheetDate(todayYMString);
+  // };
 
   return (
     <div>
-      <div className="flex lg:flex-row flex-col lg:justify-between">
+      <div className="flex lg:flex-row flex-col lg:justify-between gap-2">
         {/* TABLE FILTER */}
         <Form {...methods} onSubmit={onSubmit}>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 items-end">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-2 items-end">
             <Input type="month" name="date" defaultValue={balanceSheetDate} />
 
             <div className="flex gap-2 md:col-span-2">
-              <Button
+              {/* <Button
                 size="sm"
                 variant="outline"
                 onClick={onClear}
                 disabled={!isValid}
               >
                 <MdOutlineRefresh className="text-xl scale-x-[-1]" />
-              </Button>
+              </Button> */}
 
               <Button
                 size="sm"
@@ -59,7 +59,7 @@ export default function TableFilter() {
         </Form>
 
         <div>
-          <Button size="sm" variant="outline">
+          <Button size="sm" variant="outline" className="lg:w-fit w-full">
             <HiDownload /> Ekspor
           </Button>
         </div>
